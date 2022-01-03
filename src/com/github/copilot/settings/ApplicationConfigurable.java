@@ -34,8 +34,7 @@ implements Configurable {
         return CopilotBundle.get("applicationConfigurable.displayName");
     }
 
-    @Nullable
-    public JComponent createComponent() {
+        public JComponent createComponent() {
         return this.form.getPanel();
     }
 
@@ -88,8 +87,7 @@ implements Configurable {
         }
     }
 
-    @NotNull
-    private UpdateChannel findConfiguredChannel() {
+        private UpdateChannel findConfiguredChannel() {
         UpdateChannel currentChannel = UpdateChannel.Stable;
         for (UpdateChannel channel : UpdateChannel.values()) {
             String url = channel.getChannelUrl();
@@ -105,7 +103,7 @@ implements Configurable {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", "com/github/copilot/settings/ApplicationConfigurable", "findConfiguredChannel"));
+        throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/settings/ApplicationConfigurable", "findConfiguredChannel"));
     }
 }
 

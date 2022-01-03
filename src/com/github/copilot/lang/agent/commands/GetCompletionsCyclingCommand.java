@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class GetCompletionsCyclingCommand
 extends GetCompletionsCommand {
-    public GetCompletionsCyclingCommand(@NotNull Document doc, @Nullable Map<Object, Object> options) {
+    public GetCompletionsCyclingCommand(Document doc, Map<Object, Object> options) {
         if (doc == null) {
             GetCompletionsCyclingCommand.$$$reportNull$$$0(0);
         }
@@ -23,13 +23,12 @@ extends GetCompletionsCommand {
     }
 
     @Override
-    @NotNull
-    public String getCommandName() {
+        public String getCommandName() {
         return "getCompletionsCycling";
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "doc", "com/github/copilot/lang/agent/commands/GetCompletionsCyclingCommand", "<init>"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "doc", "com/github/copilot/lang/agent/commands/GetCompletionsCyclingCommand", "<init>"));
     }
 }
 

@@ -12,7 +12,7 @@ public class JsonRpcErrorException
 extends RuntimeException {
     private final int requestId;
 
-    public JsonRpcErrorException(int requestId, @NotNull String message) {
+    public JsonRpcErrorException(int requestId, String message) {
         if (message == null) {
             JsonRpcErrorException.$$$reportNull$$$0(0);
         }
@@ -30,7 +30,7 @@ extends RuntimeException {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "message", "com/github/copilot/lang/agent/rpc/JsonRpcErrorException", "<init>"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "message", "com/github/copilot/lang/agent/rpc/JsonRpcErrorException", "<init>"));
     }
 }
 

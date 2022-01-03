@@ -17,17 +17,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 final class APILogprobs {
-    @Nullable
-    private final List<Integer> textOffset;
-    @Nullable
-    private final List<Double> tokenLogprobs;
-    @Nullable
-    private final List<StringDoublePair> topLogprobs;
-    @Nullable
-    private final List<String> tokens;
+        private final List<Integer> textOffset;
+        private final List<Double> tokenLogprobs;
+        private final List<StringDoublePair> topLogprobs;
+        private final List<String> tokens;
 
-    @NotNull
-    Map<String, String> createTelemetryJson() {
+        Map<String, String> createTelemetryJson() {
         Gson gson = OpenAIServiceImpl.GSON;
         String fallback = "unset";
         Map<String, String> map = Map.of("logprobs_text_offset", this.textOffset == null ? fallback : gson.toJson(this.textOffset), "logprobs_token_logprobs", this.tokenLogprobs == null ? fallback : gson.toJson(this.tokenLogprobs), "logprobs_top_logprobs", this.topLogprobs == null ? fallback : gson.toJson(this.topLogprobs), "logprobs_tokens", this.tokens == null ? fallback : gson.toJson(this.tokens));
@@ -37,8 +32,7 @@ final class APILogprobs {
         return map;
     }
 
-    @Nullable
-    Double calculateMeanLogprob() {
+        Double calculateMeanLogprob() {
         List<Double> values = this.tokenLogprobs;
         if (values == null || values.isEmpty()) {
             return null;
@@ -54,30 +48,26 @@ final class APILogprobs {
         return numTokens > 0.0 ? Double.valueOf(logProbSum / numTokens) : null;
     }
 
-    public APILogprobs(@Nullable List<Integer> textOffset, @Nullable List<Double> tokenLogprobs, @Nullable List<StringDoublePair> topLogprobs, @Nullable List<String> tokens) {
+    public APILogprobs(List<Integer> textOffset, List<Double> tokenLogprobs, List<StringDoublePair> topLogprobs, List<String> tokens) {
         this.textOffset = textOffset;
         this.tokenLogprobs = tokenLogprobs;
         this.topLogprobs = topLogprobs;
         this.tokens = tokens;
     }
 
-    @Nullable
-    public List<Integer> getTextOffset() {
+        public List<Integer> getTextOffset() {
         return this.textOffset;
     }
 
-    @Nullable
-    public List<Double> getTokenLogprobs() {
+        public List<Double> getTokenLogprobs() {
         return this.tokenLogprobs;
     }
 
-    @Nullable
-    public List<StringDoublePair> getTopLogprobs() {
+        public List<StringDoublePair> getTopLogprobs() {
         return this.topLogprobs;
     }
 
-    @Nullable
-    public List<String> getTokens() {
+        public List<String> getTokens() {
         return this.tokens;
     }
 
@@ -128,7 +118,7 @@ final class APILogprobs {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", "com/github/copilot/openai/APILogprobs", "createTelemetryJson"));
+        throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/openai/APILogprobs", "createTelemetryJson"));
     }
 }
 

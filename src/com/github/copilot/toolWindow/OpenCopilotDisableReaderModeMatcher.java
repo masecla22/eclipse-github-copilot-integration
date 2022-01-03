@@ -23,8 +23,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class OpenCopilotDisableReaderModeMatcher
 implements ReaderModeMatcher {
-    @Nullable
-    public Boolean matches(@NotNull Project project, @NotNull VirtualFile virtualFile, @Nullable Editor editor, @NotNull ReaderModeProvider.ReaderMode readerMode) {
+        public Boolean matches(Project project, VirtualFile virtualFile, Editor editor, ReaderModeProvider.ReaderMode readerMode) {
         if (project == null) {
             OpenCopilotDisableReaderModeMatcher.$$$reportNull$$$0(0);
         }
@@ -62,7 +61,7 @@ implements ReaderModeMatcher {
         }
         objectArray[1] = "com/github/copilot/toolWindow/OpenCopilotDisableReaderModeMatcher";
         objectArray[2] = "matches";
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

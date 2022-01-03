@@ -9,10 +9,8 @@ package com.github.copilot.lang.agent.rpc;
 import org.jetbrains.annotations.NotNull;
 
 public interface JsonRpcCommand<T> {
-    @NotNull
-    public String getCommandName();
+        public String getCommandName();
 
-    @NotNull
-    public Class<T> getResponseType();
+        public Class<T> getResponseType();
 }
 

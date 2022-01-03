@@ -181,11 +181,9 @@ public final class OpenAICompletionResponse {
         @SerializedName(value="index")
         public int index;
         @SerializedName(value="logprobs")
-        @Nullable
-        public Logprobs logprobs;
+                public Logprobs logprobs;
         @SerializedName(value="finish_reason")
-        @Nullable
-        public String finishReason;
+                public String finishReason;
 
         boolean isFinished() {
             return this.finishReason != null && !this.finishReason.isEmpty();
@@ -199,13 +197,11 @@ public final class OpenAICompletionResponse {
             return this.index;
         }
 
-        @Nullable
-        public Logprobs getLogprobs() {
+                public Logprobs getLogprobs() {
             return this.logprobs;
         }
 
-        @Nullable
-        public String getFinishReason() {
+                public String getFinishReason() {
             return this.finishReason;
         }
 
@@ -217,11 +213,11 @@ public final class OpenAICompletionResponse {
             this.index = index;
         }
 
-        public void setLogprobs(@Nullable Logprobs logprobs) {
+        public void setLogprobs(Logprobs logprobs) {
             this.logprobs = logprobs;
         }
 
-        public void setFinishReason(@Nullable String finishReason) {
+        public void setFinishReason(String finishReason) {
             this.finishReason = finishReason;
         }
 

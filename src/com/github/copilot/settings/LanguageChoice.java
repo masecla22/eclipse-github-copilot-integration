@@ -11,12 +11,10 @@ import com.intellij.lang.Language;
 import org.jetbrains.annotations.NotNull;
 
 class LanguageChoice {
-    @NotNull
-    private final Language language;
+        private final Language language;
     private boolean selected;
 
-    @NotNull
-    public Language getLanguage() {
+        public Language getLanguage() {
         Language language = this.language;
         if (language == null) {
             LanguageChoice.$$$reportNull$$$0(0);
@@ -68,7 +66,7 @@ class LanguageChoice {
         return "LanguageChoice(language=" + this.getLanguage() + ", selected=" + this.isSelected() + ")";
     }
 
-    public LanguageChoice(@NotNull Language language, boolean selected) {
+    public LanguageChoice(Language language, boolean selected) {
         if (language == null) {
             LanguageChoice.$$$reportNull$$$0(1);
         }
@@ -87,11 +85,11 @@ class LanguageChoice {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

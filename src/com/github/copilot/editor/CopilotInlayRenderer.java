@@ -16,13 +16,10 @@ import org.jetbrains.annotations.NotNull;
 
 public interface CopilotInlayRenderer
 extends EditorCustomElementRenderer {
-    @NotNull
-    public List<String> getContentLines();
+        public List<String> getContentLines();
 
-    @NotNull
-    public Inlay<CopilotInlayRenderer> getInlay();
+        public Inlay<CopilotInlayRenderer> getInlay();
 
-    @NotNull
-    public CopilotCompletionType getType();
+        public CopilotCompletionType getType();
 }
 

@@ -25,7 +25,7 @@ extends DelegatingGitHubService {
     }
 
     @TestOnly
-    public void setCopilotTokenString(@Nullable String token) {
+    public void setCopilotTokenString(String token) {
         GitHubCopilotToken copilotToken = token == null ? null : new GitHubCopilotToken(token, System.currentTimeMillis() / 1000L + TimeUnit.HOURS.toSeconds(1L));
         this.setCopilotToken(copilotToken);
     }

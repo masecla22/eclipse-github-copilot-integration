@@ -15,8 +15,7 @@ public enum CompletionType {
     OpenCopilot;
 
 
-    @NotNull
-    public String getTelemetryPrefix() {
+        public String getTelemetryPrefix() {
         switch (this) {
             case GhostText: {
                 return "ghostText";
@@ -28,8 +27,7 @@ public enum CompletionType {
         throw new IllegalStateException("Unknown completion type: " + this);
     }
 
-    @NotNull
-    public String getTelemetryPropertyValue() {
+        public String getTelemetryPropertyValue() {
         switch (this) {
             case GhostText: {
                 return "ghostText";
@@ -41,8 +39,7 @@ public enum CompletionType {
         throw new IllegalStateException("Unknown completion type: " + this);
     }
 
-    @Nullable
-    public String getOpenAiIntent() {
+        public String getOpenAiIntent() {
         switch (this) {
             case GhostText: {
                 return "copilot-ghost";

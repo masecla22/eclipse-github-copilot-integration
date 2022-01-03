@@ -19,12 +19,10 @@ public final class LineInfo {
     private final int lineNumber;
     private final int lineStartOffset;
     private final int columnOffset;
-    @NotNull
-    private final String line;
+        private final String line;
     private final int nextLineIndent;
 
-    @NotNull
-    public static LineInfo create(@NotNull Document document, int offset) {
+        public static LineInfo create(Document document, int offset) {
         if (document == null) {
             LineInfo.$$$reportNull$$$0(0);
         }
@@ -33,8 +31,7 @@ public final class LineInfo {
         return new LineInfo(document.getLineCount(), line, lineRange.getStartOffset(), offset - lineRange.getStartOffset(), document.getText(lineRange), LineInfo.calculateNextLineIndent(document, offset));
     }
 
-    @NotNull
-    public String getLinePrefix() {
+        public String getLinePrefix() {
         String string = this.line.substring(0, this.columnOffset);
         if (string == null) {
             LineInfo.$$$reportNull$$$0(1);
@@ -42,8 +39,7 @@ public final class LineInfo {
         return string;
     }
 
-    @NotNull
-    public String getLineSuffix() {
+        public String getLineSuffix() {
         String string = this.line.substring(this.columnOffset);
         if (string == null) {
             LineInfo.$$$reportNull$$$0(2);
@@ -55,8 +51,7 @@ public final class LineInfo {
         return this.line.isBlank();
     }
 
-    @NotNull
-    public String getWhitespaceBeforeCursor() {
+        public String getWhitespaceBeforeCursor() {
         String string = CopilotStringUtil.trailingWhitespace(this.getLinePrefix());
         if (string == null) {
             LineInfo.$$$reportNull$$$0(3);
@@ -68,7 +63,7 @@ public final class LineInfo {
         return this.getLineStartOffset() + this.line.length();
     }
 
-    private static int calculateNextLineIndent(@NotNull Document document, int offset) {
+    private static int calculateNextLineIndent(Document document, int offset) {
         if (document == null) {
             LineInfo.$$$reportNull$$$0(4);
         }
@@ -83,7 +78,7 @@ public final class LineInfo {
         return -1;
     }
 
-    public LineInfo(int lineCount, int lineNumber, int lineStartOffset, int columnOffset, @NotNull String line, int nextLineIndent) {
+    public LineInfo(int lineCount, int lineNumber, int lineStartOffset, int columnOffset, String line, int nextLineIndent) {
         if (line == null) {
             LineInfo.$$$reportNull$$$0(5);
         }
@@ -114,8 +109,7 @@ public final class LineInfo {
         return this.columnOffset;
     }
 
-    @NotNull
-    public String getLine() {
+        public String getLine() {
         String string = this.line;
         if (string == null) {
             LineInfo.$$$reportNull$$$0(6);
@@ -180,14 +174,14 @@ public final class LineInfo {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 1: 
             case 2: 
             case 3: 
             case 6: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

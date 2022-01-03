@@ -27,15 +27,13 @@ import org.jetbrains.annotations.Nullable;
 final class OpenAIBodyHandler
 implements HttpResponse.BodyHandler<Object> {
     private static final Logger LOG = Logger.getInstance(OpenAIBodyHandler.class);
-    @NotNull
-    private final EditorRequest editorRequest;
-    @NotNull
-    private final JsonToApiChoiceProcessor jsonSubscriber;
+        private final EditorRequest editorRequest;
+        private final JsonToApiChoiceProcessor jsonSubscriber;
     private final Object lock;
     @GuardedBy(value="lock")
     private ServerSideEventProcessor jsonStreamProcessor;
 
-    OpenAIBodyHandler(@NotNull EditorRequest editorRequest, @NotNull JsonToApiChoiceProcessor jsonSubscriber) {
+    OpenAIBodyHandler(EditorRequest editorRequest, JsonToApiChoiceProcessor jsonSubscriber) {
         if (editorRequest == null) {
             OpenAIBodyHandler.$$$reportNull$$$0(0);
         }
@@ -51,8 +49,7 @@ implements HttpResponse.BodyHandler<Object> {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     @Override
-    @NotNull
-    public HttpResponse.BodySubscriber<Object> apply(@NotNull HttpResponse.ResponseInfo responseInfo) {
+        public HttpResponse.BodySubscriber<Object> apply(HttpResponse.ResponseInfo responseInfo) {
         if (responseInfo == null) {
             OpenAIBodyHandler.$$$reportNull$$$0(2);
         }
@@ -101,7 +98,7 @@ implements HttpResponse.BodyHandler<Object> {
     /*
      * WARNING - Removed try catching itself - possible behaviour change.
      */
-    void close(@Nullable Throwable error) {
+    void close(Throwable error) {
         LOG.debug("cancel");
         Object object = this.lock;
         synchronized (object) {
@@ -120,14 +117,14 @@ implements HttpResponse.BodyHandler<Object> {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 3: 
             case 4: 
             case 5: 
             case 6: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

@@ -26,8 +26,7 @@ implements JsonRpcMessageParser {
     private final ByteArray pendingContent = new ByteArray();
 
     @TestOnly
-    @NotNull
-    public String getPendingContent() {
+        public String getPendingContent() {
         String string = this.pendingContent.toString(StandardCharsets.UTF_8);
         if (string == null) {
             VSCodeJsonRpcParser.$$$reportNull$$$0(0);
@@ -36,7 +35,7 @@ implements JsonRpcMessageParser {
     }
 
     @Override
-    public void append(@NotNull String content) {
+    public void append(String content) {
         if (content == null) {
             VSCodeJsonRpcParser.$$$reportNull$$$0(1);
         }
@@ -87,11 +86,11 @@ implements JsonRpcMessageParser {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

@@ -54,7 +54,7 @@ public final class Maps {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "maps", "com/github/copilot/util/Maps", "merge"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "maps", "com/github/copilot/util/Maps", "merge"));
     }
 }
 

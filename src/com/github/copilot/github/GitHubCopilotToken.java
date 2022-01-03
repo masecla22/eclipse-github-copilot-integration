@@ -41,8 +41,7 @@ public class GitHubCopilotToken {
         return timeUnit.toSeconds(timeDelta) + System.currentTimeMillis() / 1000L >= this.expiresAtSeconds;
     }
 
-    @Nullable
-    public String getTrackingId() {
+        public String getTrackingId() {
         String token = this.token;
         if (token == null) {
             return null;

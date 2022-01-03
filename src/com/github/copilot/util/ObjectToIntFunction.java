@@ -10,6 +10,6 @@ import org.jetbrains.annotations.NotNull;
 
 @FunctionalInterface
 public interface ObjectToIntFunction<T> {
-    public int apply(@NotNull T var1);
+    public int apply(T var1);
 }
 

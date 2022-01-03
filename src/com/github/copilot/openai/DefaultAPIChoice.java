@@ -18,26 +18,20 @@ import org.jetbrains.annotations.Nullable;
 
 public final class DefaultAPIChoice
 implements APIChoice {
-    @NotNull
-    private final CompletionResponseInfo responseInfo;
-    @NotNull
-    private final List<String> completion;
+        private final CompletionResponseInfo responseInfo;
+        private final List<String> completion;
     private final int numTokens;
     private final int choiceIndex;
     private final int requestID;
-    @NotNull
-    private final String completionId;
+        private final String completionId;
     private final int createdTimestamp;
-    @Nullable
-    private final Double meanLogProb;
-    @NotNull
-    private final TelemetryData baseTelemetryData;
+        private final Double meanLogProb;
+        private final TelemetryData baseTelemetryData;
     private final boolean isCached;
     private TelemetryData telemetryData;
 
     @Override
-    @NotNull
-    public APIChoice asCached() {
+        public APIChoice asCached() {
         DefaultAPIChoice defaultAPIChoice = this.withCached(true);
         if (defaultAPIChoice == null) {
             DefaultAPIChoice.$$$reportNull$$$0(0);
@@ -46,8 +40,7 @@ implements APIChoice {
     }
 
     @Override
-    @NotNull
-    public synchronized TelemetryData getTelemetryData() {
+        public synchronized TelemetryData getTelemetryData() {
         if (this.telemetryData == null) {
             this.telemetryData = TelemetryUtil.createChoiceTelemetry(this, this.baseTelemetryData);
         }
@@ -59,8 +52,7 @@ implements APIChoice {
     }
 
     @Override
-    @Nullable
-    public DefaultAPIChoice withoutPrefix(@NotNull String prefix) {
+        public DefaultAPIChoice withoutPrefix(String prefix) {
         if (prefix == null) {
             DefaultAPIChoice.$$$reportNull$$$0(2);
         }
@@ -68,8 +60,7 @@ implements APIChoice {
     }
 
     @Override
-    @NotNull
-    public CompletionResponseInfo getResponseInfo() {
+        public CompletionResponseInfo getResponseInfo() {
         CompletionResponseInfo completionResponseInfo = this.responseInfo;
         if (completionResponseInfo == null) {
             DefaultAPIChoice.$$$reportNull$$$0(3);
@@ -78,8 +69,7 @@ implements APIChoice {
     }
 
     @Override
-    @NotNull
-    public List<String> getCompletion() {
+        public List<String> getCompletion() {
         List<String> list = this.completion;
         if (list == null) {
             DefaultAPIChoice.$$$reportNull$$$0(4);
@@ -103,8 +93,7 @@ implements APIChoice {
     }
 
     @Override
-    @NotNull
-    public String getCompletionId() {
+        public String getCompletionId() {
         String string = this.completionId;
         if (string == null) {
             DefaultAPIChoice.$$$reportNull$$$0(5);
@@ -118,13 +107,11 @@ implements APIChoice {
     }
 
     @Override
-    @Nullable
-    public Double getMeanLogProb() {
+        public Double getMeanLogProb() {
         return this.meanLogProb;
     }
 
-    @NotNull
-    public TelemetryData getBaseTelemetryData() {
+        public TelemetryData getBaseTelemetryData() {
         TelemetryData telemetryData = this.baseTelemetryData;
         if (telemetryData == null) {
             DefaultAPIChoice.$$$reportNull$$$0(6);
@@ -212,7 +199,7 @@ implements APIChoice {
         return "DefaultAPIChoice(responseInfo=" + this.getResponseInfo() + ", completion=" + this.getCompletion() + ", numTokens=" + this.getNumTokens() + ", choiceIndex=" + this.getChoiceIndex() + ", requestID=" + this.getRequestID() + ", completionId=" + this.getCompletionId() + ", createdTimestamp=" + this.getCreatedTimestamp() + ", meanLogProb=" + this.getMeanLogProb() + ", baseTelemetryData=" + this.getBaseTelemetryData() + ", isCached=" + this.isCached() + ", telemetryData=" + this.getTelemetryData() + ")";
     }
 
-    public DefaultAPIChoice(@NotNull CompletionResponseInfo responseInfo, @NotNull List<String> completion, int numTokens, int choiceIndex, int requestID, @NotNull String completionId, int createdTimestamp, @Nullable Double meanLogProb, @NotNull TelemetryData baseTelemetryData, boolean isCached) {
+    public DefaultAPIChoice(CompletionResponseInfo responseInfo, List<String> completion, int numTokens, int choiceIndex, int requestID, String completionId, int createdTimestamp, Double meanLogProb, TelemetryData baseTelemetryData, boolean isCached) {
         if (responseInfo == null) {
             DefaultAPIChoice.$$$reportNull$$$0(7);
         }
@@ -249,7 +236,7 @@ implements APIChoice {
         this.isCached = isCached;
     }
 
-    public DefaultAPIChoice(@NotNull CompletionResponseInfo responseInfo, @NotNull List<String> completion, int numTokens, int choiceIndex, int requestID, @NotNull String completionId, int createdTimestamp, @Nullable Double meanLogProb, @NotNull TelemetryData baseTelemetryData, boolean isCached, TelemetryData telemetryData) {
+    public DefaultAPIChoice(CompletionResponseInfo responseInfo, List<String> completion, int numTokens, int choiceIndex, int requestID, String completionId, int createdTimestamp, Double meanLogProb, TelemetryData baseTelemetryData, boolean isCached, TelemetryData telemetryData) {
         if (responseInfo == null) {
             DefaultAPIChoice.$$$reportNull$$$0(11);
         }
@@ -288,7 +275,7 @@ implements APIChoice {
     }
 
     @Override
-    public DefaultAPIChoice withCompletion(@NotNull List<String> completion) {
+    public DefaultAPIChoice withCompletion(List<String> completion) {
         if (completion == null) {
             DefaultAPIChoice.$$$reportNull$$$0(15);
         }
@@ -319,7 +306,7 @@ implements APIChoice {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 2: 
@@ -332,7 +319,7 @@ implements APIChoice {
             case 13: 
             case 14: 
             case 15: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

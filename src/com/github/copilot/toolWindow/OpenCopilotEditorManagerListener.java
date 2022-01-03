@@ -23,14 +23,14 @@ public class OpenCopilotEditorManagerListener
 implements FileEditorManagerListener {
     private final Project project;
 
-    public OpenCopilotEditorManagerListener(@NotNull Project project) {
+    public OpenCopilotEditorManagerListener(Project project) {
         if (project == null) {
             OpenCopilotEditorManagerListener.$$$reportNull$$$0(0);
         }
         this.project = project;
     }
 
-    public void selectionChanged(@NotNull FileEditorManagerEvent event) {
+    public void selectionChanged(FileEditorManagerEvent event) {
         FileEditor newEditor;
         if (event == null) {
             OpenCopilotEditorManagerListener.$$$reportNull$$$0(1);
@@ -71,7 +71,7 @@ implements FileEditorManagerListener {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

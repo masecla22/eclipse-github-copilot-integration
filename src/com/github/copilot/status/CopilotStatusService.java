@@ -30,8 +30,7 @@ Disposable {
     @GuardedBy(value="lock")
     private CopilotStatus status = CopilotStatus.Ready;
 
-    @NotNull
-    public static CopilotStatus getCurrentStatus() {
+        public static CopilotStatus getCurrentStatus() {
         CopilotStatus copilotStatus = ((CopilotStatusService)ApplicationManager.getApplication().getService(CopilotStatusService.class)).status;
         if (copilotStatus == null) {
             CopilotStatusService.$$$reportNull$$$0(0);
@@ -43,7 +42,7 @@ Disposable {
         ApplicationManager.getApplication().getMessageBus().connect((Disposable)this).subscribe(CopilotStatusListener.TOPIC, (Object)this);
     }
 
-    public static void notifyApplication(@NotNull CopilotStatus status) {
+    public static void notifyApplication(CopilotStatus status) {
         if (status == null) {
             CopilotStatusService.$$$reportNull$$$0(1);
         }
@@ -54,7 +53,7 @@ Disposable {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     @Override
-    public void onCopilotStatus(@NotNull CopilotStatus status) {
+    public void onCopilotStatus(CopilotStatus status) {
         if (status == null) {
             CopilotStatusService.$$$reportNull$$$0(2);
         }
@@ -90,12 +89,12 @@ Disposable {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: 
             case 2: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

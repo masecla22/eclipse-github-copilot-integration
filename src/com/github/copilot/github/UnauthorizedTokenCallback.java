@@ -12,6 +12,6 @@ import org.jetbrains.annotations.NotNull;
 
 @FunctionalInterface
 public interface UnauthorizedTokenCallback {
-    public void onUnauthorizedToken(@NotNull Project var1, @NotNull String var2);
+    public void onUnauthorizedToken(Project var1, String var2);
 }
 

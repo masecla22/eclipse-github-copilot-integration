@@ -30,7 +30,7 @@ public final class JsonRPC {
     private JsonRPC() {
     }
 
-    public static String serializeCommand(int requestId, @NotNull String name, @NotNull Object command) {
+    public static String serializeCommand(int requestId, String name, Object command) {
         if (name == null) {
             JsonRPC.$$$reportNull$$$0(0);
         }
@@ -45,7 +45,7 @@ public final class JsonRPC {
         return GSON.toJson((JsonElement)json);
     }
 
-    public static String serializeNotification(@NotNull String name, @NotNull Object command) {
+    public static String serializeNotification(String name, Object command) {
         if (name == null) {
             JsonRPC.$$$reportNull$$$0(2);
         }
@@ -59,7 +59,7 @@ public final class JsonRPC {
         return GSON.toJson((JsonElement)json);
     }
 
-    public static JsonRpcResponse parseResponse(@NotNull String responseContent) throws JsonRpcErrorException, JsonParseException {
+    public static JsonRpcResponse parseResponse(String responseContent) throws JsonRpcErrorException, JsonParseException {
         JsonObject response;
         if (responseContent == null) {
             JsonRPC.$$$reportNull$$$0(4);
@@ -75,8 +75,7 @@ public final class JsonRPC {
         return new JsonRpcResponse(id, resultJSON);
     }
 
-    @NotNull
-    public static <T> T parseResponse(@NotNull JsonElement json, Class<T> responseType) throws JsonSyntaxException {
+        public static <T> T parseResponse(JsonElement json, Class<T> responseType) throws JsonSyntaxException {
         if (json == null) {
             JsonRPC.$$$reportNull$$$0(5);
         }
@@ -95,11 +94,11 @@ public final class JsonRPC {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 6: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

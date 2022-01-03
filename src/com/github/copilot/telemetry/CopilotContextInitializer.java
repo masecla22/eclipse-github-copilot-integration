@@ -40,8 +40,7 @@ implements ContextInitializer {
         context.getCloud().setRoleInstance("");
     }
 
-    @NotNull
-    private static String vscodeOSName() {
+        private static String vscodeOSName() {
         if (SystemInfoRt.isWindows) {
             return "win32";
         }
@@ -59,7 +58,7 @@ implements ContextInitializer {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", "com/github/copilot/telemetry/CopilotContextInitializer", "vscodeOSName"));
+        throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/telemetry/CopilotContextInitializer", "vscodeOSName"));
     }
 }
 

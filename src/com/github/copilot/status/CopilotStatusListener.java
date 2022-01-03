@@ -15,6 +15,6 @@ import org.jetbrains.annotations.NotNull;
 public interface CopilotStatusListener {
     public static final Topic<CopilotStatusListener> TOPIC = Topic.create((String)"copilot.status", CopilotStatusListener.class);
 
-    public void onCopilotStatus(@NotNull CopilotStatus var1);
+    public void onCopilotStatus(CopilotStatus var1);
 }
 

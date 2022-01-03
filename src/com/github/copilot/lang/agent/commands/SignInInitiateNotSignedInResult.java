@@ -11,10 +11,8 @@ import org.jetbrains.annotations.NotNull;
 
 public final class SignInInitiateNotSignedInResult
 implements SignInInitiateResult {
-    @NotNull
-    private final String userCode;
-    @NotNull
-    private final String verificationUri;
+        private final String userCode;
+        private final String verificationUri;
     private final long expiresInSeconds;
     private final long intervalSeconds;
 
@@ -26,7 +24,7 @@ implements SignInInitiateResult {
     /*
      * WARNING - void declaration
      */
-    public SignInInitiateNotSignedInResult(@NotNull String userCode, @NotNull String verificationUri, long expiresInSeconds, long l) {
+    public SignInInitiateNotSignedInResult(String userCode, String verificationUri, long expiresInSeconds, long l) {
         void intervalSeconds;
         if (userCode == null) {
             SignInInitiateNotSignedInResult.$$$reportNull$$$0(0);
@@ -46,8 +44,7 @@ implements SignInInitiateResult {
         this.intervalSeconds = intervalSeconds;
     }
 
-    @NotNull
-    public String getUserCode() {
+        public String getUserCode() {
         String string = this.userCode;
         if (string == null) {
             SignInInitiateNotSignedInResult.$$$reportNull$$$0(2);
@@ -55,8 +52,7 @@ implements SignInInitiateResult {
         return string;
     }
 
-    @NotNull
-    public String getVerificationUri() {
+        public String getVerificationUri() {
         String string = this.verificationUri;
         if (string == null) {
             SignInInitiateNotSignedInResult.$$$reportNull$$$0(3);
@@ -122,12 +118,12 @@ implements SignInInitiateResult {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 2: 
             case 3: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

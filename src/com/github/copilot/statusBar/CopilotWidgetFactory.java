@@ -23,14 +23,12 @@ import org.jetbrains.annotations.NotNull;
 public class CopilotWidgetFactory
 extends StatusBarEditorBasedWidgetFactory {
     @NonNls
-    @NotNull
-    public String getId() {
+        public String getId() {
         return "com.github.copilot";
     }
 
     @Nls
-    @NotNull
-    public String getDisplayName() {
+        public String getDisplayName() {
         String string = CopilotBundle.get("statusBar.displayName");
         if (string == null) {
             CopilotWidgetFactory.$$$reportNull$$$0(0);
@@ -38,15 +36,14 @@ extends StatusBarEditorBasedWidgetFactory {
         return string;
     }
 
-    @NotNull
-    public StatusBarWidget createWidget(@NotNull Project project) {
+        public StatusBarWidget createWidget(Project project) {
         if (project == null) {
             CopilotWidgetFactory.$$$reportNull$$$0(1);
         }
         return new CopilotStatusBarWidget(project);
     }
 
-    public void disposeWidget(@NotNull StatusBarWidget widget) {
+    public void disposeWidget(StatusBarWidget widget) {
         if (widget == null) {
             CopilotWidgetFactory.$$$reportNull$$$0(2);
         }
@@ -60,12 +57,12 @@ extends StatusBarEditorBasedWidgetFactory {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: 
             case 2: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

@@ -16,8 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public interface TelemetryService {
-    @NotNull
-    public static TelemetryService getInstance() {
+        public static TelemetryService getInstance() {
         TelemetryService telemetryService = (TelemetryService)ApplicationManager.getApplication().getService(TelemetryService.class);
         if (telemetryService == null) {
             TelemetryService.$$$reportNull$$$0(0);
@@ -25,20 +24,20 @@ public interface TelemetryService {
         return telemetryService;
     }
 
-    public void setTrackingId(@Nullable String var1);
+    public void setTrackingId(String var1);
 
-    public void trackException(@NotNull Throwable var1, @NotNull Map<String, String> var2);
+    public void trackException(Throwable var1, Map<String, String> var2);
 
-    public void track(@NotNull String var1, @NotNull TelemetryData var2);
+    public void track(String var1, TelemetryData var2);
 
-    default public void track(@NotNull String name) {
+    default public void track(String name) {
         if (name == null) {
             TelemetryService.$$$reportNull$$$0(1);
         }
         this.track(name, Collections.emptyMap(), Collections.emptyMap());
     }
 
-    default public void track(@NotNull String name, @NotNull Map<String, String> properties) {
+    default public void track(String name, Map<String, String> properties) {
         if (name == null) {
             TelemetryService.$$$reportNull$$$0(2);
         }
@@ -48,20 +47,20 @@ public interface TelemetryService {
         this.track(name, properties, Collections.emptyMap());
     }
 
-    public void track(@NotNull String var1, @NotNull Map<String, String> var2, @NotNull Map<String, Double> var3);
+    public void track(String var1, Map<String, String> var2, Map<String, Double> var3);
 
-    public void trackSecure(@NotNull String var1, @NotNull TelemetryData var2);
+    public void trackSecure(String var1, TelemetryData var2);
 
-    default public void trackSecure(@NotNull String name) {
+    default public void trackSecure(String name) {
         if (name == null) {
             TelemetryService.$$$reportNull$$$0(4);
         }
         this.trackSecure(name, Collections.emptyMap(), Collections.emptyMap());
     }
 
-    public void trackSecure(@NotNull String var1, @NotNull Map<String, String> var2, @NotNull Map<String, Double> var3);
+    public void trackSecure(String var1, Map<String, String> var2, Map<String, Double> var3);
 
-    default public void trackSecure(@NotNull String name, @NotNull Map<String, String> properties) {
+    default public void trackSecure(String name, Map<String, String> properties) {
         if (name == null) {
             TelemetryService.$$$reportNull$$$0(5);
         }
@@ -79,7 +78,7 @@ public interface TelemetryService {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: 
@@ -88,7 +87,7 @@ public interface TelemetryService {
             case 4: 
             case 5: 
             case 6: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

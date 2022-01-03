@@ -16,17 +16,15 @@ import org.jetbrains.annotations.Nullable;
 
 @ThreadSafe
 public interface CompletionCache {
-    public boolean isLatestPrefix(@NotNull String var1);
+    public boolean isLatestPrefix(String var1);
 
-    @Nullable
-    public List<CopilotCompletion> get(@NotNull String var1, boolean var2);
+        public List<CopilotCompletion> get(String var1, boolean var2);
 
-    @Nullable
-    public List<CopilotCompletion> getLatest(@NotNull String var1);
+        public List<CopilotCompletion> getLatest(String var1);
 
-    public void add(@NotNull String var1, @NotNull String var2, boolean var3, @NotNull CopilotCompletion var4);
+    public void add(String var1, String var2, boolean var3, CopilotCompletion var4);
 
-    public void updateLatest(@NotNull String var1, @NotNull String var2, boolean var3);
+    public void updateLatest(String var1, String var2, boolean var3);
 
     public void clear();
 }

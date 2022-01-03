@@ -18,8 +18,7 @@ class TelemetryUtil {
     TelemetryUtil() {
     }
 
-    @NotNull
-    static TelemetryData createChoiceTelemetry(@NotNull APIChoice choice, @NotNull TelemetryData base) {
+        static TelemetryData createChoiceTelemetry(APIChoice choice, TelemetryData base) {
         if (choice == null) {
             TelemetryUtil.$$$reportNull$$$0(0);
         }
@@ -46,11 +45,11 @@ class TelemetryUtil {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 2: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

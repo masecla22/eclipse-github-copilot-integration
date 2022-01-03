@@ -29,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class CopilotActionPromoter
 implements ActionPromoter {
-    public List<AnAction> promote(@NotNull List<? extends AnAction> actions, @NotNull DataContext context) {
+    public List<AnAction> promote(List<? extends AnAction> actions, DataContext context) {
         Editor editor;
         if (actions == null) {
             CopilotActionPromoter.$$$reportNull$$$0(0);
@@ -70,7 +70,7 @@ implements ActionPromoter {
         return result;
     }
 
-    private static boolean isIdeaVimAction(@NotNull AnAction action) {
+    private static boolean isIdeaVimAction(AnAction action) {
         if (action == null) {
             CopilotActionPromoter.$$$reportNull$$$0(2);
         }
@@ -119,7 +119,7 @@ implements ActionPromoter {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

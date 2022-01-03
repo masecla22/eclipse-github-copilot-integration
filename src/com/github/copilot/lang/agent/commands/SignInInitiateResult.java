@@ -40,7 +40,7 @@ public interface SignInInitiateResult {
             throw new IllegalStateException("Unexpected status: " + status);
         }
 
-        private SignInInitiateResult readAuthRequired(@NotNull JsonObject o) {
+        private SignInInitiateResult readAuthRequired(JsonObject o) {
             if (o == null) {
                 TypeAdapter.$$$reportNull$$$0(0);
             }
@@ -52,7 +52,7 @@ public interface SignInInitiateResult {
         }
 
         private static /* synthetic */ void $$$reportNull$$$0(int n) {
-            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "o", "com/github/copilot/lang/agent/commands/SignInInitiateResult$TypeAdapter", "readAuthRequired"));
+            throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "o", "com/github/copilot/lang/agent/commands/SignInInitiateResult$TypeAdapter", "readAuthRequired"));
         }
     }
 }

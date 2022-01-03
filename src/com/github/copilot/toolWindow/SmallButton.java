@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 class SmallButton
 extends JButton {
-    public SmallButton(@NotNull String label) {
+    public SmallButton(String label) {
         if (label == null) {
             SmallButton.$$$reportNull$$$0(0);
         }
@@ -35,7 +35,7 @@ extends JButton {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "label", "com/github/copilot/toolWindow/SmallButton", "<init>"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "label", "com/github/copilot/toolWindow/SmallButton", "<init>"));
     }
 }
 

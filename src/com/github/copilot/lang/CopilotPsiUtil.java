@@ -62,14 +62,14 @@ public final class CopilotPsiUtil {
     private CopilotPsiUtil() {
     }
 
-    public static boolean isWhitespace(@NotNull PsiElement element) {
+    public static boolean isWhitespace(PsiElement element) {
         if (element == null) {
             CopilotPsiUtil.$$$reportNull$$$0(0);
         }
         return element instanceof PsiWhiteSpace || TokenType.WHITE_SPACE.equals(PsiUtilCore.getElementType((PsiElement)element));
     }
 
-    public static boolean isMatching(@NotNull PsiElement element, @NotNull TokenSet types) {
+    public static boolean isMatching(PsiElement element, TokenSet types) {
         if (element == null) {
             CopilotPsiUtil.$$$reportNull$$$0(1);
         }
@@ -79,7 +79,7 @@ public final class CopilotPsiUtil {
         return types.contains(PsiUtilCore.getElementType((PsiElement)element));
     }
 
-    public static boolean isMatching(@NotNull PsiElement element, @NotNull IElementType type) {
+    public static boolean isMatching(PsiElement element, IElementType type) {
         if (element == null) {
             CopilotPsiUtil.$$$reportNull$$$0(3);
         }
@@ -89,16 +89,14 @@ public final class CopilotPsiUtil {
         return type.equals(PsiUtilCore.getElementType((PsiElement)element));
     }
 
-    @Nullable
-    public static PsiElement prevNonWhitespaceLeaf(@NotNull PsiElement element) {
+        public static PsiElement prevNonWhitespaceLeaf(PsiElement element) {
         if (element == null) {
             CopilotPsiUtil.$$$reportNull$$$0(5);
         }
         return CopilotPsiUtil.prevNonWhitespaceLeaf(element, false);
     }
 
-    @Nullable
-    public static PsiElement prevNonWhitespaceLeaf(@NotNull PsiElement element, boolean withNewlines) {
+        public static PsiElement prevNonWhitespaceLeaf(PsiElement element, boolean withNewlines) {
         if (element == null) {
             CopilotPsiUtil.$$$reportNull$$$0(6);
         }
@@ -115,16 +113,14 @@ public final class CopilotPsiUtil {
         return leaf;
     }
 
-    @Nullable
-    public static PsiElement nextNonWhitespaceLeaf(@NotNull PsiElement element) {
+        public static PsiElement nextNonWhitespaceLeaf(PsiElement element) {
         if (element == null) {
             CopilotPsiUtil.$$$reportNull$$$0(7);
         }
         return CopilotPsiUtil.nextNonWhitespaceLeaf(element, false);
     }
 
-    @Nullable
-    public static PsiElement nextNonWhitespaceLeaf(@NotNull PsiElement element, boolean withNewlines) {
+        public static PsiElement nextNonWhitespaceLeaf(PsiElement element, boolean withNewlines) {
         if (element == null) {
             CopilotPsiUtil.$$$reportNull$$$0(8);
         }
@@ -141,7 +137,7 @@ public final class CopilotPsiUtil {
         return leaf;
     }
 
-    public static boolean isAtEndOfLineLeaf(@NotNull PsiElement element, int relativeOffset, boolean allowTrailingWhitespace) {
+    public static boolean isAtEndOfLineLeaf(PsiElement element, int relativeOffset, boolean allowTrailingWhitespace) {
         if (element == null) {
             CopilotPsiUtil.$$$reportNull$$$0(9);
         }
@@ -164,8 +160,7 @@ public final class CopilotPsiUtil {
         return true;
     }
 
-    @Nullable
-    public static PsiElement leafsSkipBackwardsUntil(@NotNull PsiElement element, boolean strict, boolean skipEmpty, boolean skipErrors, @NotNull Condition<? super PsiElement> condition) {
+        public static PsiElement leafsSkipBackwardsUntil(PsiElement element, boolean strict, boolean skipEmpty, boolean skipErrors, Condition<? super PsiElement> condition) {
         PsiElement leaf;
         if (element == null) {
             CopilotPsiUtil.$$$reportNull$$$0(10);
@@ -186,9 +181,8 @@ public final class CopilotPsiUtil {
     /*
      * WARNING - Removed try catching itself - possible behaviour change.
      */
-    @Nullable
-    @RequiresBackgroundThread
-    public static Integer findBlockEnd(@NotNull Project project, @NotNull Cancellable request, @NotNull FileType fileType, @NotNull String prefix, int prefixOffset, @NotNull String completion, boolean isEndOfStream, @NotNull IsValidBlockFunction isValidBlock, @Nullable ObjectToIntFunction<PsiElement> patchResult) {
+        @RequiresBackgroundThread
+    public static Integer findBlockEnd(Project project, Cancellable request, FileType fileType, String prefix, int prefixOffset, String completion, boolean isEndOfStream, IsValidBlockFunction isValidBlock, ObjectToIntFunction<PsiElement> patchResult) {
         if (project == null) {
             CopilotPsiUtil.$$$reportNull$$$0(12);
         }
@@ -235,9 +229,8 @@ public final class CopilotPsiUtil {
         }
     }
 
-    @Nullable
-    @RequiresReadLock
-    private static Integer doFindBlockEnd(@NotNull Project project, @NotNull Cancellable request, @NotNull FileType fileType, @NotNull String prefix, int prefixOffset, @NotNull String completion, boolean isEndOfStream, @NotNull IsValidBlockFunction isValidBlock, @Nullable ObjectToIntFunction<PsiElement> patchResult) {
+        @RequiresReadLock
+    private static Integer doFindBlockEnd(Project project, Cancellable request, FileType fileType, String prefix, int prefixOffset, String completion, boolean isEndOfStream, IsValidBlockFunction isValidBlock, ObjectToIntFunction<PsiElement> patchResult) {
         if (project == null) {
             CopilotPsiUtil.$$$reportNull$$$0(18);
         }
@@ -403,7 +396,7 @@ public final class CopilotPsiUtil {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

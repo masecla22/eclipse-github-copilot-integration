@@ -34,7 +34,7 @@ import org.jetbrains.annotations.NotNull;
 public class EnableCopilotCompletionsAction
 extends AnAction
 implements CopilotAction {
-    public void update(@NotNull AnActionEvent e) {
+    public void update(AnActionEvent e) {
         Project project;
         if (e == null) {
             EnableCopilotCompletionsAction.$$$reportNull$$$0(0);
@@ -48,7 +48,7 @@ implements CopilotAction {
         e.getPresentation().setEnabledAndVisible(currentlyDisabled);
     }
 
-    public void actionPerformed(@NotNull AnActionEvent e) {
+    public void actionPerformed(AnActionEvent e) {
         StatusBar bar;
         Project project;
         if (e == null) {
@@ -94,7 +94,7 @@ implements CopilotAction {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

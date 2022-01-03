@@ -29,40 +29,34 @@ public interface LanguageSupport {
     public static final String[] DEFAULT_SINGLE_LINE_STOP = new String[]{"\n"};
     public static final String[] DEFAULT_MULTI_LINE_STOP = new String[]{"\n\n\n"};
 
-    @Nullable
-    public static LanguageSupport find(@NotNull PsiFile file) {
+        public static LanguageSupport find(PsiFile file) {
         if (file == null) {
             LanguageSupport.$$$reportNull$$$0(0);
         }
         return (LanguageSupport)EP.findFirstSafe(e -> e.isAvailable(file));
     }
 
-    public boolean isAvailable(@NotNull PsiFile var1);
+    public boolean isAvailable(PsiFile var1);
 
-    @Nullable
-    public FileType getFileType();
+        public FileType getFileType();
 
-    @NotNull
-    public CopilotLanguage getCopilotLanguage();
+        public CopilotLanguage getCopilotLanguage();
 
     @RequiresBackgroundThread
     @RequiresReadLock
-    public boolean isEmptyBlockStart(@NotNull Project var1, @NotNull PsiFile var2, int var3);
+    public boolean isEmptyBlockStart(Project var1, PsiFile var2, int var3);
 
-    @Nullable
-    @RequiresBackgroundThread
-    public Integer findBlockEnd(@NotNull Project var1, @NotNull Cancellable var2, @NotNull String var3, int var4, @NotNull String var5, boolean var6);
+        @RequiresBackgroundThread
+    public Integer findBlockEnd(Project var1, Cancellable var2, String var3, int var4, String var5, boolean var6);
 
-    @NotNull
-    default public String[] getMultiLineStops() {
+        default public String[] getMultiLineStops() {
         if (DEFAULT_MULTI_LINE_STOP == null) {
             LanguageSupport.$$$reportNull$$$0(1);
         }
         return DEFAULT_MULTI_LINE_STOP;
     }
 
-    @NotNull
-    default public String[] getSingleLineStops() {
+        default public String[] getSingleLineStops() {
         if (DEFAULT_SINGLE_LINE_STOP == null) {
             LanguageSupport.$$$reportNull$$$0(2);
         }
@@ -77,12 +71,12 @@ public interface LanguageSupport {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 1: 
             case 2: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

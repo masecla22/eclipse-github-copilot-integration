@@ -13,14 +13,12 @@ import org.jetbrains.annotations.NotNull;
 public class SignOutCommand
 implements JsonRpcCommand<AuthStatusResult> {
     @Override
-    @NotNull
-    public String getCommandName() {
+        public String getCommandName() {
         return "signOut";
     }
 
     @Override
-    @NotNull
-    public Class<AuthStatusResult> getResponseType() {
+        public Class<AuthStatusResult> getResponseType() {
         return AuthStatusResult.class;
     }
 }

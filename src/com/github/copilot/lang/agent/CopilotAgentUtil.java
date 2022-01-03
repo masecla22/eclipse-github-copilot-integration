@@ -23,8 +23,7 @@ import org.jetbrains.annotations.Nullable;
 public class CopilotAgentUtil {
     private static final Logger LOG = Logger.getInstance(CopilotAgentUtil.class);
 
-    @Nullable
-    public static Path getNodeExecutablePath() {
+        public static Path getNodeExecutablePath() {
         File path = PathEnvironmentVariableUtil.findExecutableInPathOnAnyOS((String)"node");
         if (path == null) {
             LOG.warn("node executable not found in $PATH");
@@ -39,8 +38,7 @@ public class CopilotAgentUtil {
         return nioPath;
     }
 
-    @Nullable
-    public static Path getAgentDirectoryPath() {
+        public static Path getAgentDirectoryPath() {
         String envValue;
         if (ApplicationManager.getApplication().isUnitTestMode() && (envValue = System.getenv("GITHUB_COPILOT_AGENTDIR")) != null) {
             Path envPath = Paths.get(envValue, new String[0]);

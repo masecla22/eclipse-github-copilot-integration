@@ -42,7 +42,7 @@ final class InlayRendering {
     private InlayRendering() {
     }
 
-    static int calculateWidth(@NotNull Editor editor, @NotNull String text, @NotNull List<String> textLines) {
+    static int calculateWidth(Editor editor, String text, List<String> textLines) {
         if (editor == null) {
             InlayRendering.$$$reportNull$$$0(0);
         }
@@ -60,7 +60,7 @@ final class InlayRendering {
         return maxWidth;
     }
 
-    static void renderCodeBlock(@NotNull Editor editor, @NotNull String content, @NotNull List<String> contentLines, @NotNull Graphics2D g, @NotNull Rectangle2D region, @NotNull Color textColor) {
+    static void renderCodeBlock(Editor editor, String content, List<String> contentLines, Graphics2D g, Rectangle2D region, Color textColor) {
         if (editor == null) {
             InlayRendering.$$$reportNull$$$0(3);
         }
@@ -100,7 +100,7 @@ final class InlayRendering {
         g2.dispose();
     }
 
-    private static FontMetrics fontMetrics(@NotNull Editor editor, @NotNull Font font) {
+    private static FontMetrics fontMetrics(Editor editor, Font font) {
         if (editor == null) {
             InlayRendering.$$$reportNull$$$0(9);
         }
@@ -118,8 +118,7 @@ final class InlayRendering {
         return fontMetrics;
     }
 
-    @NotNull
-    private static Font getFont(@NotNull Editor editor, @NotNull String text) {
+        private static Font getFont(Editor editor, String text) {
         if (editor == null) {
             InlayRendering.$$$reportNull$$$0(11);
         }
@@ -135,7 +134,7 @@ final class InlayRendering {
         return font2;
     }
 
-    private static int fontSize(@NotNull Editor editor) {
+    private static int fontSize(Editor editor) {
         if (editor == null) {
             InlayRendering.$$$reportNull$$$0(14);
         }
@@ -150,11 +149,11 @@ final class InlayRendering {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 13: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

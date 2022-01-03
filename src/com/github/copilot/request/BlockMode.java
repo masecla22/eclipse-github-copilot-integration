@@ -28,8 +28,7 @@ public enum BlockMode {
         return 10;
     }
 
-    @NotNull
-    public String getTelemetryValue() {
+        public String getTelemetryValue() {
         switch (this) {
             case Client: {
                 return "parsing";

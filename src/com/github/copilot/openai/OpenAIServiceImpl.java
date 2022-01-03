@@ -57,7 +57,7 @@ implements OpenAIService {
      * WARNING - void declaration
      */
     @Override
-    public void fetchCompletions(@NotNull String apiToken, @NotNull LanguageEditorRequest request, @NotNull String prompt, int completionCount, double temperature, int maxTokens, int topP, @NotNull BlockMode blockMode, boolean multilineCompletions, @NotNull TelemetryData telemetryBaseData, @NotNull Flow.Subscriber<APIChoice> subscriber) {
+    public void fetchCompletions(String apiToken, LanguageEditorRequest request, String prompt, int completionCount, double temperature, int maxTokens, int topP, BlockMode blockMode, boolean multilineCompletions, TelemetryData telemetryBaseData, Flow.Subscriber<APIChoice> subscriber) {
         void subscriber2;
         if (apiToken == null) {
             OpenAIServiceImpl.$$$reportNull$$$0(0);
@@ -101,8 +101,7 @@ implements OpenAIService {
         });
     }
 
-    @NotNull
-    protected String getCompletionURL(LanguageSupport lang) {
+        protected String getCompletionURL(LanguageSupport lang) {
         String string = "https://copilot-proxy.githubusercontent.com" + lang.getCopilotLanguage().getEnginePath() + "/completions";
         if (string == null) {
             OpenAIServiceImpl.$$$reportNull$$$0(6);
@@ -110,7 +109,7 @@ implements OpenAIService {
         return string;
     }
 
-    private CompletableFuture<HttpResponse<Object>> postStreaming(@NotNull String url, @NotNull String secretKey, @Nullable String requestBody, @NotNull EditorRequest editorRequest, @NotNull JsonToApiChoiceProcessor jsonProcessor) {
+    private CompletableFuture<HttpResponse<Object>> postStreaming(String url, String secretKey, String requestBody, EditorRequest editorRequest, JsonToApiChoiceProcessor jsonProcessor) {
         if (url == null) {
             OpenAIServiceImpl.$$$reportNull$$$0(7);
         }
@@ -154,8 +153,7 @@ implements OpenAIService {
     /*
      * WARNING - void declaration
      */
-    @NotNull
-    private String createCompletionBody(@NotNull String prompt, int count, double temperature, int maxTokens, int topP, @NotNull String[] stopMarkers, @NotNull BlockMode blockMode, int n) {
+        private String createCompletionBody(String prompt, int count, double temperature, int maxTokens, int topP, String[] stopMarkers, BlockMode blockMode, int n) {
         void nextLineIndent;
         if (prompt == null) {
             OpenAIServiceImpl.$$$reportNull$$$0(11);
@@ -182,12 +180,12 @@ implements OpenAIService {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 6: 
             case 14: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

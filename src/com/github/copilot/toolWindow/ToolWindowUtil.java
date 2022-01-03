@@ -20,8 +20,7 @@ final class ToolWindowUtil {
     ToolWindowUtil() {
     }
 
-    @Nullable
-    static StatusText getEmptyText(@NotNull ToolWindow toolWindow) {
+        static StatusText getEmptyText(ToolWindow toolWindow) {
         Method method;
         if (toolWindow == null) {
             ToolWindowUtil.$$$reportNull$$$0(0);
@@ -37,8 +36,7 @@ final class ToolWindowUtil {
         }
     }
 
-    @Nullable
-    static Method getEmptyText(Class<? extends ToolWindow> klazz) {
+        static Method getEmptyText(Class<? extends ToolWindow> klazz) {
         try {
             return klazz.getMethod("getEmptyText", new Class[0]);
         }
@@ -48,7 +46,7 @@ final class ToolWindowUtil {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "toolWindow", "com/github/copilot/toolWindow/ToolWindowUtil", "getEmptyText"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "toolWindow", "com/github/copilot/toolWindow/ToolWindowUtil", "getEmptyText"));
     }
 }
 

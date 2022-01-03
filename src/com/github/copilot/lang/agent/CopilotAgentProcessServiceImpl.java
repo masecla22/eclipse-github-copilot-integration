@@ -108,8 +108,7 @@ Disposable {
      * Enabled aggressive exception aggregation
      */
     @Override
-    @NotNull
-    public <T> Promise<T> executeCommand(@NotNull JsonRpcCommand<T> command) {
+        public <T> Promise<T> executeCommand(JsonRpcCommand<T> command) {
         AsyncPromise<T> asyncPromise;
         if (command == null) {
             CopilotAgentProcessServiceImpl.$$$reportNull$$$0(0);
@@ -149,7 +148,7 @@ Disposable {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     @Override
-    public void executeNotification(@NotNull JsonRpcNotification notification) {
+    public void executeNotification(JsonRpcNotification notification) {
         if (notification == null) {
             CopilotAgentProcessServiceImpl.$$$reportNull$$$0(4);
         }
@@ -168,7 +167,7 @@ Disposable {
         }
     }
 
-    private KillableProcessHandler launchAgent(@NotNull String nodePath, @NotNull String agentFilePath) throws ExecutionException {
+    private KillableProcessHandler launchAgent(String nodePath, String agentFilePath) throws ExecutionException {
         if (nodePath == null) {
             CopilotAgentProcessServiceImpl.$$$reportNull$$$0(5);
         }
@@ -183,7 +182,7 @@ Disposable {
                     /*
                      * WARNING - Removed try catching itself - possible behaviour change.
                      */
-                    public void onTextAvailable(@NotNull ProcessEvent event, @NotNull Key outputType) {
+                    public void onTextAvailable(ProcessEvent event, Key outputType) {
                         if (event == null) {
                             1.$$$reportNull$$$0(0);
                         }
@@ -201,7 +200,7 @@ Disposable {
                         }
                     }
 
-                    public void processTerminated(@NotNull ProcessEvent event) {
+                    public void processTerminated(ProcessEvent event) {
                         if (event == null) {
                             1.$$$reportNull$$$0(2);
                         }
@@ -237,13 +236,13 @@ Disposable {
                                 break;
                             }
                         }
-                        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+                        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
                     }
                 });
             }
 
             protected // Could not load outer class - annotation placement on inner may be incorrect
-             @NotNull BaseOutputReader.Options readerOptions() {
+             BaseOutputReader.Options readerOptions() {
                 return new BaseOutputReader.Options(){
 
                     public BaseDataReader.SleepingPolicy policy() {
@@ -268,13 +267,13 @@ Disposable {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 1: 
             case 2: 
             case 3: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

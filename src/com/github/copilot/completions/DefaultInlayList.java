@@ -19,14 +19,11 @@ import org.jetbrains.annotations.NotNull;
 class DefaultInlayList
 implements CopilotInlayList {
     private final List<CopilotEditorInlay> inlays;
-    @NotNull
-    private final CopilotCompletion copilotCompletion;
-    @NotNull
-    private final TextRange replacementRange;
-    @NotNull
-    private final String replacementText;
+        private final CopilotCompletion copilotCompletion;
+        private final TextRange replacementRange;
+        private final String replacementText;
 
-    DefaultInlayList(@NotNull CopilotCompletion copilotCompletion, @NotNull TextRange replacementRange, @NotNull String replacementText, @NotNull Collection<CopilotEditorInlay> inlays) {
+    DefaultInlayList(CopilotCompletion copilotCompletion, TextRange replacementRange, String replacementText, Collection<CopilotEditorInlay> inlays) {
         if (copilotCompletion == null) {
             DefaultInlayList.$$$reportNull$$$0(0);
         }
@@ -51,8 +48,7 @@ implements CopilotInlayList {
     }
 
     @Override
-    @NotNull
-    public Iterator<CopilotEditorInlay> iterator() {
+        public Iterator<CopilotEditorInlay> iterator() {
         Iterator<CopilotEditorInlay> iterator = this.inlays.iterator();
         if (iterator == null) {
             DefaultInlayList.$$$reportNull$$$0(4);
@@ -119,8 +115,7 @@ implements CopilotInlayList {
     }
 
     @Override
-    @NotNull
-    public CopilotCompletion getCopilotCompletion() {
+        public CopilotCompletion getCopilotCompletion() {
         CopilotCompletion copilotCompletion = this.copilotCompletion;
         if (copilotCompletion == null) {
             DefaultInlayList.$$$reportNull$$$0(5);
@@ -129,8 +124,7 @@ implements CopilotInlayList {
     }
 
     @Override
-    @NotNull
-    public TextRange getReplacementRange() {
+        public TextRange getReplacementRange() {
         TextRange textRange = this.replacementRange;
         if (textRange == null) {
             DefaultInlayList.$$$reportNull$$$0(6);
@@ -139,8 +133,7 @@ implements CopilotInlayList {
     }
 
     @Override
-    @NotNull
-    public String getReplacementText() {
+        public String getReplacementText() {
         String string = this.replacementText;
         if (string == null) {
             DefaultInlayList.$$$reportNull$$$0(7);
@@ -156,14 +149,14 @@ implements CopilotInlayList {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 4: 
             case 5: 
             case 6: 
             case 7: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

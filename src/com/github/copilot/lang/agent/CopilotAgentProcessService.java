@@ -15,8 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.concurrency.Promise;
 
 public interface CopilotAgentProcessService {
-    @NotNull
-    public static CopilotAgentProcessService getInstance() {
+        public static CopilotAgentProcessService getInstance() {
         CopilotAgentProcessService copilotAgentProcessService = (CopilotAgentProcessService)ApplicationManager.getApplication().getService(CopilotAgentProcessService.class);
         if (copilotAgentProcessService == null) {
             CopilotAgentProcessService.$$$reportNull$$$0(0);
@@ -26,13 +25,12 @@ public interface CopilotAgentProcessService {
 
     public boolean isSupported();
 
-    @NotNull
-    public <T> Promise<T> executeCommand(@NotNull JsonRpcCommand<T> var1);
+        public <T> Promise<T> executeCommand(JsonRpcCommand<T> var1);
 
-    public void executeNotification(@NotNull JsonRpcNotification var1);
+    public void executeNotification(JsonRpcNotification var1);
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", "com/github/copilot/lang/agent/CopilotAgentProcessService", "getInstance"));
+        throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/lang/agent/CopilotAgentProcessService", "getInstance"));
     }
 }
 

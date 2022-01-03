@@ -65,7 +65,7 @@ class DeviceLoginForm {
         this.codeField.setExtensions(new ExtendableTextComponent.Extension[]{copy});
     }
 
-    public void update(@NotNull DeviceCodeResponse codeResponse) {
+    public void update(DeviceCodeResponse codeResponse) {
         if (codeResponse == null) {
             DeviceLoginForm.$$$reportNull$$$0(0);
         }
@@ -150,7 +150,7 @@ class DeviceLoginForm {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "codeResponse", "com/github/copilot/github/DeviceLoginForm", "update"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "codeResponse", "com/github/copilot/github/DeviceLoginForm", "update"));
     }
 }
 

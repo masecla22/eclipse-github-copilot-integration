@@ -68,7 +68,7 @@ implements CopilotCompletionService {
     protected final CompletionCache cache = new SimpleCompletionCache(32);
 
     @Override
-    public boolean isAvailable(@NotNull Editor editor) {
+    public boolean isAvailable(Editor editor) {
         Project project;
         if (editor == null) {
             DefaultCopilotCompletionService.$$$reportNull$$$0(0);
@@ -81,8 +81,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    @Nullable
-    public EditorRequest createRequest(@NotNull Editor editor, int offset, @NotNull CompletionType completionType) {
+        public EditorRequest createRequest(Editor editor, int offset, CompletionType completionType) {
         if (editor == null) {
             DefaultCopilotCompletionService.$$$reportNull$$$0(1);
         }
@@ -94,7 +93,7 @@ implements CopilotCompletionService {
 
     @Override
     @RequiresBackgroundThread
-    public boolean fetchCompletions(@NotNull EditorRequest request, @Nullable GitHubCopilotToken proxyToken, @Nullable Integer maxCompletions, boolean enableCaching, boolean cycling, @NotNull Flow.Subscriber<List<CopilotInlayList>> subscriber) {
+    public boolean fetchCompletions(EditorRequest request, GitHubCopilotToken proxyToken, Integer maxCompletions, boolean enableCaching, boolean cycling, Flow.Subscriber<List<CopilotInlayList>> subscriber) {
         List<CopilotCompletion> cachedItems;
         boolean isMultilineCompletion;
         String apiKey;
@@ -200,8 +199,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    @Nullable
-    public List<CopilotInlayList> fetchCachedCompletions(@NotNull EditorRequest request) {
+        public List<CopilotInlayList> fetchCachedCompletions(EditorRequest request) {
         if (request == null) {
             DefaultCopilotCompletionService.$$$reportNull$$$0(5);
         }
@@ -218,8 +216,7 @@ implements CopilotCompletionService {
         return inlays.isEmpty() ? null : inlays;
     }
 
-    @NotNull
-    private static TelemetryData createChoiceBaseTelemetryData(@NotNull EditorRequest request, @NotNull PromptInfo prompt, boolean isMultilineRequest) {
+        private static TelemetryData createChoiceBaseTelemetryData(EditorRequest request, PromptInfo prompt, boolean isMultilineRequest) {
         if (request == null) {
             DefaultCopilotCompletionService.$$$reportNull$$$0(6);
         }
@@ -233,8 +230,7 @@ implements CopilotCompletionService {
         return telemetryData;
     }
 
-    @NotNull
-    private TelemetryData createBaseTelemetryData(@NotNull LanguageEditorRequest request, @NotNull PromptInfo prompt, Float temperature, int completionCount, boolean isMultilineCompletion) {
+        private TelemetryData createBaseTelemetryData(LanguageEditorRequest request, PromptInfo prompt, Float temperature, int completionCount, boolean isMultilineCompletion) {
         if (request == null) {
             DefaultCopilotCompletionService.$$$reportNull$$$0(9);
         }
@@ -255,7 +251,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    public boolean isSupportingOnDemandCycling(@NotNull Editor editor) {
+    public boolean isSupportingOnDemandCycling(Editor editor) {
         LanguageSupport languageSupport;
         if (editor == null) {
             DefaultCopilotCompletionService.$$$reportNull$$$0(12);
@@ -273,7 +269,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    public void sendShownTelemetry(@NotNull CopilotCompletion completion) {
+    public void sendShownTelemetry(CopilotCompletion completion) {
         if (completion == null) {
             DefaultCopilotCompletionService.$$$reportNull$$$0(13);
         }
@@ -285,7 +281,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    public void sendAcceptedTelemetry(@NotNull CopilotCompletion completion, @NotNull CompletionType completionType) {
+    public void sendAcceptedTelemetry(CopilotCompletion completion, CompletionType completionType) {
         if (completion == null) {
             DefaultCopilotCompletionService.$$$reportNull$$$0(14);
         }
@@ -298,7 +294,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    public void sendRejectedTelemetry(@NotNull List<CopilotCompletion> completions) {
+    public void sendRejectedTelemetry(List<CopilotCompletion> completions) {
         if (completions == null) {
             DefaultCopilotCompletionService.$$$reportNull$$$0(16);
         }
@@ -319,12 +315,12 @@ implements CopilotCompletionService {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 8: 
             case 11: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

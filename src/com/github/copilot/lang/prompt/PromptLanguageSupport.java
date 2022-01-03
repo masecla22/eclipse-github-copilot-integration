@@ -25,38 +25,30 @@ import org.jetbrains.annotations.Nullable;
 public interface PromptLanguageSupport {
     public static final ExtensionPointName<PromptLanguageSupport> EP = new ExtensionPointName("com.github.copilot.prompt");
 
-    @Nullable
-    public static PromptLanguageSupport find(@NotNull CopilotLanguage language) {
+        public static PromptLanguageSupport find(CopilotLanguage language) {
         if (language == null) {
             PromptLanguageSupport.$$$reportNull$$$0(0);
         }
         return (PromptLanguageSupport)EP.findFirstSafe(e -> e.isAvailable(language));
     }
 
-    public boolean isAvailable(@NotNull CopilotLanguage var1);
+    public boolean isAvailable(CopilotLanguage var1);
 
-    @NotNull
-    public String getLanguageMarker(@NotNull PsiFile var1);
+        public String getLanguageMarker(PsiFile var1);
 
-    @Nullable
-    public String getLanguageId(@NotNull PsiFile var1);
+        public String getLanguageId(PsiFile var1);
 
-    @NotNull
-    public String getPathMarker(@NotNull Language var1, @NotNull String var2);
+        public String getPathMarker(Language var1, String var2);
 
-    @Nullable
-    public PsiElement findParentFunction(@NotNull PsiFile var1, int var2);
+        public PsiElement findParentFunction(PsiFile var1, int var2);
 
-    @NotNull
-    public TextRange findFunctionRange(@NotNull PsiElement var1);
+        public TextRange findFunctionRange(PsiElement var1);
 
-    @Nullable
-    public PsiElement findNextSiblingFunction(@NotNull PsiElement var1);
+        public PsiElement findNextSiblingFunction(PsiElement var1);
 
-    public boolean isSupportingMultilineCompletion(@NotNull Language var1);
+    public boolean isSupportingMultilineCompletion(Language var1);
 
-    @NotNull
-    default public BlockMode getBlockMode() {
+        default public BlockMode getBlockMode() {
         BlockMode blockMode = BlockMode.Client;
         if (blockMode == null) {
             PromptLanguageSupport.$$$reportNull$$$0(1);
@@ -72,11 +64,11 @@ public interface PromptLanguageSupport {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 1: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

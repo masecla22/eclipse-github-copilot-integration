@@ -27,48 +27,39 @@ class OpenAIHttpUtil {
     OpenAIHttpUtil() {
     }
 
-    @NotNull
-    static String getRequestId(@Nullable HttpResponse.ResponseInfo response) {
+        static String getRequestId(HttpResponse.ResponseInfo response) {
         return OpenAIHttpUtil.getHeaderOrEmptyString(response, HEADER_REQUEST_ID);
     }
 
-    @NotNull
-    static String getRequestId(@Nullable HttpHeaders headers) {
+        static String getRequestId(HttpHeaders headers) {
         return OpenAIHttpUtil.getHeaderOrEmptyString(headers, HEADER_REQUEST_ID);
     }
 
-    @NotNull
-    static String getServerExperiments(@Nullable HttpResponse.ResponseInfo response) {
+        static String getServerExperiments(HttpResponse.ResponseInfo response) {
         return OpenAIHttpUtil.getHeaderOrEmptyString(response, HEADER_COPILOT_EXPERIMENT);
     }
 
-    @NotNull
-    static String getServerExperiments(@Nullable HttpHeaders headers) {
+        static String getServerExperiments(HttpHeaders headers) {
         return OpenAIHttpUtil.getHeaderOrEmptyString(headers, HEADER_COPILOT_EXPERIMENT);
     }
 
-    @NotNull
-    public static String getProxyRole(@Nullable HttpResponse.ResponseInfo response) {
+        public static String getProxyRole(HttpResponse.ResponseInfo response) {
         return OpenAIHttpUtil.getHeaderOrEmptyString(response, HEADER_COPILOT_PROXY_ROLE);
     }
 
-    @NotNull
-    public static String getProxyRole(@Nullable HttpHeaders headers) {
+        public static String getProxyRole(HttpHeaders headers) {
         return OpenAIHttpUtil.getHeaderOrEmptyString(headers, HEADER_COPILOT_PROXY_ROLE);
     }
 
-    @NotNull
-    public static String getModelEndpoint(@Nullable HttpResponse.ResponseInfo response) {
+        public static String getModelEndpoint(HttpResponse.ResponseInfo response) {
         return OpenAIHttpUtil.getHeaderOrEmptyString(response, HEADER_COPILOT_MODEL_ENDPOINT);
     }
 
-    @NotNull
-    public static String getModelEndpoint(@Nullable HttpHeaders headers) {
+        public static String getModelEndpoint(HttpHeaders headers) {
         return OpenAIHttpUtil.getHeaderOrEmptyString(headers, HEADER_COPILOT_MODEL_ENDPOINT);
     }
 
-    @NotNull
-    private static String getHeaderOrEmptyString(@Nullable HttpResponse.ResponseInfo response, @NotNull String name) {
+        private static String getHeaderOrEmptyString(HttpResponse.ResponseInfo response, String name) {
         if (name == null) {
             OpenAIHttpUtil.$$$reportNull$$$0(0);
         }
@@ -78,8 +69,7 @@ class OpenAIHttpUtil {
         return OpenAIHttpUtil.getHeaderOrEmptyString(response.headers(), name);
     }
 
-    @NotNull
-    private static String getHeaderOrEmptyString(@Nullable HttpHeaders headers, @NotNull String name) {
+        private static String getHeaderOrEmptyString(HttpHeaders headers, String name) {
         if (name == null) {
             OpenAIHttpUtil.$$$reportNull$$$0(1);
         }
@@ -93,7 +83,7 @@ class OpenAIHttpUtil {
         return string;
     }
 
-    public static long getProcessingTime(@Nullable HttpResponse.ResponseInfo response) {
+    public static long getProcessingTime(HttpResponse.ResponseInfo response) {
         if (response == null) {
             return -1L;
         }
@@ -101,7 +91,7 @@ class OpenAIHttpUtil {
         return (long)StringUtilRt.parseDouble((String)timeStr.orElse(null), (double)-1.0);
     }
 
-    public static boolean isErrorException(@Nullable Throwable ex) {
+    public static boolean isErrorException(Throwable ex) {
         Throwable cause;
         if (ex == null) {
             return false;
@@ -120,11 +110,11 @@ class OpenAIHttpUtil {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 2: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

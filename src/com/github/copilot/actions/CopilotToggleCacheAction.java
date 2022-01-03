@@ -19,14 +19,14 @@ import org.jetbrains.annotations.NotNull;
 public class CopilotToggleCacheAction
 extends AnAction
 implements CopilotAction {
-    public void actionPerformed(@NotNull AnActionEvent e) {
+    public void actionPerformed(AnActionEvent e) {
         if (e == null) {
             CopilotToggleCacheAction.$$$reportNull$$$0(0);
         }
         CopilotApplicationSettings.settings().internalDisableHttpCache = !CopilotApplicationSettings.settings().internalDisableHttpCache;
     }
 
-    public void update(@NotNull AnActionEvent e) {
+    public void update(AnActionEvent e) {
         if (e == null) {
             CopilotToggleCacheAction.$$$reportNull$$$0(1);
         }
@@ -55,7 +55,7 @@ implements CopilotAction {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

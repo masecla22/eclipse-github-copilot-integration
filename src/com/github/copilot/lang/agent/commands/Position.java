@@ -19,14 +19,14 @@ public class Position {
     @SerializedName(value="character")
     int character;
 
-    public Position(@NotNull LineInfo lineInfo) {
+    public Position(LineInfo lineInfo) {
         if (lineInfo == null) {
             Position.$$$reportNull$$$0(0);
         }
         this(lineInfo.getLineNumber(), lineInfo.getColumnOffset());
     }
 
-    public int toOffset(@NotNull String text) {
+    public int toOffset(String text) {
         if (text == null) {
             Position.$$$reportNull$$$0(1);
         }
@@ -116,7 +116,7 @@ public class Position {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

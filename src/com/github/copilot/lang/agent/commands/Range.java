@@ -13,13 +13,11 @@ import org.jetbrains.annotations.NotNull;
 
 public class Range {
     @SerializedName(value="start")
-    @NotNull
-    Position start;
+        Position start;
     @SerializedName(value="end")
-    @NotNull
-    Position end;
+        Position end;
 
-    public Range(@NotNull Position start, @NotNull Position end) {
+    public Range(Position start, Position end) {
         if (start == null) {
             Range.$$$reportNull$$$0(0);
         }
@@ -36,8 +34,7 @@ public class Range {
         this.end = end;
     }
 
-    @NotNull
-    public Position getStart() {
+        public Position getStart() {
         Position position = this.start;
         if (position == null) {
             Range.$$$reportNull$$$0(2);
@@ -45,8 +42,7 @@ public class Range {
         return position;
     }
 
-    @NotNull
-    public Position getEnd() {
+        public Position getEnd() {
         Position position = this.end;
         if (position == null) {
             Range.$$$reportNull$$$0(3);
@@ -54,7 +50,7 @@ public class Range {
         return position;
     }
 
-    public void setStart(@NotNull Position start) {
+    public void setStart(Position start) {
         if (start == null) {
             Range.$$$reportNull$$$0(4);
         }
@@ -64,7 +60,7 @@ public class Range {
         this.start = start;
     }
 
-    public void setEnd(@NotNull Position end) {
+    public void setEnd(Position end) {
         if (end == null) {
             Range.$$$reportNull$$$0(5);
         }
@@ -121,12 +117,12 @@ public class Range {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 2: 
             case 3: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

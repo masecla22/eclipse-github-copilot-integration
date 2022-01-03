@@ -45,7 +45,7 @@ implements ToolWindowFactory,
 DumbAware {
     static final String ID = "github.copilotToolWindow";
 
-    public void init(@NotNull ToolWindow toolWindow) {
+    public void init(ToolWindow toolWindow) {
         Project project;
         if (toolWindow == null) {
             OpenCopilotToolWindowFactory.$$$reportNull$$$0(0);
@@ -57,7 +57,7 @@ DumbAware {
         if (project != null) {
             toolWindow.addContentManagerListener(new ContentManagerListener(){
 
-                public void contentRemoved(@NotNull ContentManagerEvent event) {
+                public void contentRemoved(ContentManagerEvent event) {
                     if (event == null) {
                         1.$$$reportNull$$$0(0);
                     }
@@ -66,13 +66,13 @@ DumbAware {
                 }
 
                 private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                    throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "event", "com/github/copilot/toolWindow/OpenCopilotToolWindowFactory$1", "contentRemoved"));
+                    throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "event", "com/github/copilot/toolWindow/OpenCopilotToolWindowFactory$1", "contentRemoved"));
                 }
             });
         }
     }
 
-    public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
+    public void createToolWindowContent(Project project, ToolWindow toolWindow) {
         if (project == null) {
             OpenCopilotToolWindowFactory.$$$reportNull$$$0(1);
         }
@@ -81,7 +81,7 @@ DumbAware {
         }
     }
 
-    public static void editorSelectionChanged(@NotNull Project project, @Nullable Editor newEditor) {
+    public static void editorSelectionChanged(Project project, Editor newEditor) {
         ToolWindow toolWindow;
         if (project == null) {
             OpenCopilotToolWindowFactory.$$$reportNull$$$0(3);
@@ -93,7 +93,7 @@ DumbAware {
         OpenCopilotToolWindowFactory.refreshEmptyText(project, newEditor);
     }
 
-    static void refreshEmptyText(@NotNull Project project, @Nullable Editor editor) {
+    static void refreshEmptyText(Project project, Editor editor) {
         ToolWindow toolWindow;
         if (project == null) {
             OpenCopilotToolWindowFactory.$$$reportNull$$$0(4);
@@ -119,7 +119,7 @@ DumbAware {
         }
     }
 
-    static void appendRefreshLine(@NotNull StatusText emptyText, @NotNull Editor editor) {
+    static void appendRefreshLine(StatusText emptyText, Editor editor) {
         if (emptyText == null) {
             OpenCopilotToolWindowFactory.$$$reportNull$$$0(5);
         }
@@ -190,7 +190,7 @@ DumbAware {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

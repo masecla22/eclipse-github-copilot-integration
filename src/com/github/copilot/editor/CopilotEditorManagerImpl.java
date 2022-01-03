@@ -113,7 +113,7 @@ implements CopilotEditorManager {
 
     @Override
     @RequiresEdt
-    public boolean isAvailable(@NotNull Editor editor) {
+    public boolean isAvailable(Editor editor) {
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(0);
         }
@@ -121,7 +121,7 @@ implements CopilotEditorManager {
     }
 
     @Override
-    public int countCompletionInlays(@NotNull Editor editor, @NotNull TextRange searchRange, boolean inlineInlays, boolean afterLineEndInlays, boolean blockInlays, boolean matchInLeadingWhitespace) {
+    public int countCompletionInlays(Editor editor, TextRange searchRange, boolean inlineInlays, boolean afterLineEndInlays, boolean blockInlays, boolean matchInLeadingWhitespace) {
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(1);
         }
@@ -161,7 +161,7 @@ implements CopilotEditorManager {
     }
 
     @Override
-    public boolean hasTypingAsSuggestedData(@NotNull Editor editor, char next) {
+    public boolean hasTypingAsSuggestedData(Editor editor, char next) {
         EditorRequestResultList request;
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(3);
@@ -186,7 +186,7 @@ implements CopilotEditorManager {
 
     @Override
     @RequiresEdt
-    public boolean applyCompletion(@NotNull Editor editor) {
+    public boolean applyCompletion(Editor editor) {
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(4);
         }
@@ -218,7 +218,7 @@ implements CopilotEditorManager {
 
     @Override
     @RequiresEdt
-    public void applyCompletion(@NotNull Project project, @NotNull Editor editor, @NotNull EditorRequest request, @NotNull CopilotInlayList completion) {
+    public void applyCompletion(Project project, Editor editor, EditorRequest request, CopilotInlayList completion) {
         if (project == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(5);
         }
@@ -248,7 +248,7 @@ implements CopilotEditorManager {
 
     @Override
     @RequiresEdt
-    public void disposeInlays(@NotNull Editor editor, @NotNull InlayDisposeContext disposeContext) {
+    public void disposeInlays(Editor editor, InlayDisposeContext disposeContext) {
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(9);
         }
@@ -273,7 +273,7 @@ implements CopilotEditorManager {
     }
 
     @Override
-    public void editorModified(@NotNull Editor editor) {
+    public void editorModified(Editor editor) {
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(11);
         }
@@ -282,7 +282,7 @@ implements CopilotEditorManager {
 
     @Override
     @RequiresEdt
-    public void editorModified(@NotNull Editor editor, int offset, boolean force) {
+    public void editorModified(Editor editor, int offset, boolean force) {
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(12);
         }
@@ -344,7 +344,7 @@ implements CopilotEditorManager {
     }
 
     @Override
-    public void cancelCompletionRequests(@NotNull Editor editor) {
+    public void cancelCompletionRequests(Editor editor) {
         List requests;
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(13);
@@ -365,9 +365,8 @@ implements CopilotEditorManager {
     }
 
     @Override
-    @NotNull
-    @RequiresEdt
-    public List<CopilotInlayRenderer> collectInlays(@NotNull Editor editor, int startOffset, int endOffset) {
+        @RequiresEdt
+    public List<CopilotInlayRenderer> collectInlays(Editor editor, int startOffset, int endOffset) {
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(14);
         }
@@ -389,7 +388,7 @@ implements CopilotEditorManager {
     }
 
     @Override
-    public boolean hasNextInlaySet(@NotNull Editor editor) {
+    public boolean hasNextInlaySet(Editor editor) {
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(16);
         }
@@ -399,7 +398,7 @@ implements CopilotEditorManager {
     }
 
     @Override
-    public boolean hasPreviousInlaySet(@NotNull Editor editor) {
+    public boolean hasPreviousInlaySet(Editor editor) {
         EditorRequestResultList request;
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(17);
@@ -408,7 +407,7 @@ implements CopilotEditorManager {
     }
 
     @Override
-    public void showNextInlaySet(@NotNull Editor editor) {
+    public void showNextInlaySet(Editor editor) {
         EditorRequestResultList request;
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(18);
@@ -429,7 +428,7 @@ implements CopilotEditorManager {
     }
 
     @Override
-    public void showPreviousInlaySet(@NotNull Editor editor) {
+    public void showPreviousInlaySet(Editor editor) {
         EditorRequestResultList request;
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(19);
@@ -444,7 +443,7 @@ implements CopilotEditorManager {
         this.insertInlays(set, request.getRequest(), editor, true, InlayDisposeContext.Cycling);
     }
 
-    private void queueCompletionRequest(@NotNull Editor editor, @NotNull EditorRequest contentRequest, @Nullable Integer maxCompletions, boolean enableCaching, boolean cycling, @Nullable Consumer<CopilotInlayList> onFirstCompletion) {
+    private void queueCompletionRequest(Editor editor, EditorRequest contentRequest, Integer maxCompletions, boolean enableCaching, boolean cycling, Consumer<CopilotInlayList> onFirstCompletion) {
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(20);
         }
@@ -460,7 +459,7 @@ implements CopilotEditorManager {
     }
 
     @RequiresBackgroundThread
-    private void requestCopilotCompletions(final @NotNull Editor editor, final @NotNull EditorRequest request, @Nullable Integer maxCompletions, boolean enableCaching, boolean cycling, final @Nullable Consumer<CopilotInlayList> onFirstCompletion) {
+    private void requestCopilotCompletions(final Editor editor, final EditorRequest request, Integer maxCompletions, boolean enableCaching, boolean cycling, final Consumer<CopilotInlayList> onFirstCompletion) {
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(22);
         }
@@ -527,7 +526,7 @@ implements CopilotEditorManager {
         });
     }
 
-    private void insertInlays(@NotNull CopilotInlayList inlays, @NotNull EditorRequest request, @NotNull Editor editor, boolean disposeExistingInlays, @NotNull InlayDisposeContext disposeContext) {
+    private void insertInlays(CopilotInlayList inlays, EditorRequest request, Editor editor, boolean disposeExistingInlays, InlayDisposeContext disposeContext) {
         if (inlays == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(24);
         }
@@ -554,7 +553,7 @@ implements CopilotEditorManager {
         this.doInsertInlays(inlays, request, editor, disposeExistingInlays, disposeContext);
     }
 
-    private void doInsertInlays(@NotNull CopilotInlayList inlays, @NotNull EditorRequest request, @NotNull Editor editor, boolean disposeExistingInlays, @NotNull InlayDisposeContext context) {
+    private void doInsertInlays(CopilotInlayList inlays, EditorRequest request, Editor editor, boolean disposeExistingInlays, InlayDisposeContext context) {
         if (inlays == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(28);
         }
@@ -599,7 +598,7 @@ implements CopilotEditorManager {
         ((InlayMessage)ApplicationManager.getApplication().getMessageBus().syncPublisher(INLAY_TOPIC)).inlaysUpdated(request);
     }
 
-    private boolean isProcessing(@NotNull Editor editor) {
+    private boolean isProcessing(Editor editor) {
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(32);
         }
@@ -613,7 +612,7 @@ implements CopilotEditorManager {
         }
     }
 
-    private void wrapProcessing(@NotNull Editor editor, @NotNull Runnable block) {
+    private void wrapProcessing(Editor editor, Runnable block) {
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(33);
         }
@@ -630,7 +629,7 @@ implements CopilotEditorManager {
         }
     }
 
-    private boolean isActiveRequest(@NotNull EditorRequest request, @NotNull Editor editor) {
+    private boolean isActiveRequest(EditorRequest request, Editor editor) {
         if (request == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(35);
         }
@@ -644,7 +643,7 @@ implements CopilotEditorManager {
         return stored != null && stored.getRequest().equalsRequest(request);
     }
 
-    private boolean addInlays(@NotNull Editor editor, @NotNull List<CopilotInlayList> inlaySets) {
+    private boolean addInlays(Editor editor, List<CopilotInlayList> inlaySets) {
         EditorRequestResultList stored;
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(37);
@@ -660,7 +659,7 @@ implements CopilotEditorManager {
         return stored != null;
     }
 
-    private void showRequestsDisabledNotification(@NotNull Project project) {
+    private void showRequestsDisabledNotification(Project project) {
         if (project == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(39);
         }
@@ -670,7 +669,7 @@ implements CopilotEditorManager {
         notification.notify(project);
     }
 
-    private void fetchOnDemandCompletions(@NotNull Editor editor, @NotNull EditorRequestResultList request) {
+    private void fetchOnDemandCompletions(Editor editor, EditorRequestResultList request) {
         if (editor == null) {
             CopilotEditorManagerImpl.$$$reportNull$$$0(40);
         }
@@ -688,7 +687,7 @@ implements CopilotEditorManager {
         });
     }
 
-    private void sendRejectedTelemetry(@Nullable EditorRequestResultList lastRequest) {
+    private void sendRejectedTelemetry(EditorRequestResultList lastRequest) {
         if (lastRequest == null) {
             return;
         }
@@ -707,11 +706,11 @@ implements CopilotEditorManager {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 15: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

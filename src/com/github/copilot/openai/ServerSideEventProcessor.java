@@ -33,7 +33,7 @@ implements Flow.Subscriber<String> {
     private final AtomicBoolean receivedDone;
     private volatile Flow.Subscription subscription;
 
-    ServerSideEventProcessor(@NotNull EditorRequest request, @NotNull Flow.Subscriber<JsonObject> jsonSubscriber) {
+    ServerSideEventProcessor(EditorRequest request, Flow.Subscriber<JsonObject> jsonSubscriber) {
         if (request == null) {
             ServerSideEventProcessor.$$$reportNull$$$0(0);
         }
@@ -48,7 +48,7 @@ implements Flow.Subscriber<String> {
     }
 
     @Override
-    public void onSubscribe(@NotNull Flow.Subscription subscription) {
+    public void onSubscribe(Flow.Subscription subscription) {
         if (subscription == null) {
             ServerSideEventProcessor.$$$reportNull$$$0(2);
         }
@@ -58,7 +58,7 @@ implements Flow.Subscriber<String> {
     }
 
     @Override
-    public void onNext(@NotNull String item) {
+    public void onNext(String item) {
         if (item == null) {
             ServerSideEventProcessor.$$$reportNull$$$0(3);
         }
@@ -117,7 +117,7 @@ implements Flow.Subscriber<String> {
         this.close(null);
     }
 
-    void close(@Nullable Throwable error) {
+    void close(Throwable error) {
         LOG.debug("close()");
         this.isClosed.set(true);
         if (error != null) {
@@ -175,7 +175,7 @@ implements Flow.Subscriber<String> {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

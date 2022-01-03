@@ -36,10 +36,8 @@ implements CompletionCache {
     private static final Logger LOG = Logger.getInstance(SimpleCompletionCache.class);
     private final ReadWriteLock lock = new ReentrantReadWriteLock();
     private final LinkedHashMap<CacheKey, List<CopilotCompletion>> cache;
-    @Nullable
-    private String lastPrefix;
-    @Nullable
-    private String lastPromptHash;
+        private String lastPrefix;
+        private String lastPromptHash;
     private boolean lastIsMultiline;
 
     public SimpleCompletionCache(final int cacheSize) {
@@ -55,7 +53,7 @@ implements CompletionCache {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     @Override
-    public boolean isLatestPrefix(@NotNull String prefix) {
+    public boolean isLatestPrefix(String prefix) {
         if (prefix == null) {
             SimpleCompletionCache.$$$reportNull$$$0(0);
         }
@@ -74,8 +72,7 @@ implements CompletionCache {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     @Override
-    @Nullable
-    public List<CopilotCompletion> get(@NotNull String prompt, boolean isMultiline) {
+        public List<CopilotCompletion> get(String prompt, boolean isMultiline) {
         if (prompt == null) {
             SimpleCompletionCache.$$$reportNull$$$0(1);
         }
@@ -95,8 +92,7 @@ implements CompletionCache {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     @Override
-    @Nullable
-    public List<CopilotCompletion> getLatest(@NotNull String prefix) {
+        public List<CopilotCompletion> getLatest(String prefix) {
         if (prefix == null) {
             SimpleCompletionCache.$$$reportNull$$$0(2);
         }
@@ -115,7 +111,7 @@ implements CompletionCache {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     @Override
-    public void add(@NotNull String prefix, @NotNull String prompt, boolean isMultiline, @NotNull CopilotCompletion item) {
+    public void add(String prefix, String prompt, boolean isMultiline, CopilotCompletion item) {
         if (prefix == null) {
             SimpleCompletionCache.$$$reportNull$$$0(3);
         }
@@ -147,7 +143,7 @@ implements CompletionCache {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     @Override
-    public void updateLatest(@NotNull String prefix, @NotNull String prompt, boolean isMultiline) {
+    public void updateLatest(String prefix, String prompt, boolean isMultiline) {
         if (prefix == null) {
             SimpleCompletionCache.$$$reportNull$$$0(6);
         }
@@ -181,8 +177,7 @@ implements CompletionCache {
         }
     }
 
-    @Nullable
-    private List<CopilotCompletion> getLatestLocked(@NotNull String prefix) {
+        private List<CopilotCompletion> getLatestLocked(String prefix) {
         if (prefix == null) {
             SimpleCompletionCache.$$$reportNull$$$0(8);
         }
@@ -201,7 +196,7 @@ implements CompletionCache {
         return adjustedChoices.isEmpty() ? null : adjustedChoices;
     }
 
-    private static String promptHash(@NotNull String prompt) {
+    private static String promptHash(String prompt) {
         if (prompt == null) {
             SimpleCompletionCache.$$$reportNull$$$0(9);
         }
@@ -273,7 +268,7 @@ implements CompletionCache {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 
     private static final class CacheKey {

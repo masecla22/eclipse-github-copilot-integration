@@ -16,10 +16,8 @@ import org.jetbrains.annotations.Nullable;
 
 public interface LanguageEditorRequest
 extends EditorRequest {
-    @NotNull
-    public LanguageSupport getLanguage();
+        public LanguageSupport getLanguage();
 
-    @Nullable
-    public PsiFile createFile();
+        public PsiFile createFile();
 }
 

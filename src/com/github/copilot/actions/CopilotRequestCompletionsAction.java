@@ -25,7 +25,7 @@ public class CopilotRequestCompletionsAction
 extends AnAction
 implements DumbAware,
 CopilotAction {
-    public void update(@NotNull AnActionEvent e) {
+    public void update(AnActionEvent e) {
         if (e == null) {
             CopilotRequestCompletionsAction.$$$reportNull$$$0(0);
         }
@@ -33,7 +33,7 @@ CopilotAction {
         e.getPresentation().setEnabled(editor != null && CopilotEditorUtil.isSelectedEditor(editor));
     }
 
-    public void actionPerformed(@NotNull AnActionEvent e) {
+    public void actionPerformed(AnActionEvent e) {
         if (e == null) {
             CopilotRequestCompletionsAction.$$$reportNull$$$0(1);
         }
@@ -62,7 +62,7 @@ CopilotAction {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

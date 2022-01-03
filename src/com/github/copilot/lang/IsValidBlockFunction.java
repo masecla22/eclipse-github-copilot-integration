@@ -12,6 +12,6 @@ import org.jetbrains.annotations.NotNull;
 
 @FunctionalInterface
 public interface IsValidBlockFunction {
-    public boolean isValidBlock(@NotNull PsiElement var1, boolean var2);
+    public boolean isValidBlock(PsiElement var1, boolean var2);
 }
 

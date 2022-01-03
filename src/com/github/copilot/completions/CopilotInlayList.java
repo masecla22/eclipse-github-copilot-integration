@@ -17,16 +17,12 @@ public interface CopilotInlayList
 extends Iterable<CopilotEditorInlay> {
     public boolean isEmpty();
 
-    @NotNull
-    public CopilotCompletion getCopilotCompletion();
+        public CopilotCompletion getCopilotCompletion();
 
-    @NotNull
-    public TextRange getReplacementRange();
+        public TextRange getReplacementRange();
 
-    @NotNull
-    public String getReplacementText();
+        public String getReplacementText();
 
-    @NotNull
-    public List<CopilotEditorInlay> getInlays();
+        public List<CopilotEditorInlay> getInlays();
 }
 

@@ -39,8 +39,7 @@ implements DataProvider {
         this.parentDisposable = parentDisposable;
     }
 
-    @Nullable
-    public Object getData(@NotNull @NonNls String dataId) {
+        public Object getData(@NonNls String dataId) {
         if (dataId == null) {
             DataProviderPanel.$$$reportNull$$$0(0);
         }
@@ -51,7 +50,7 @@ implements DataProvider {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "dataId", "com/github/copilot/toolWindow/DataProviderPanel", "getData"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "dataId", "com/github/copilot/toolWindow/DataProviderPanel", "getData"));
     }
 }
 

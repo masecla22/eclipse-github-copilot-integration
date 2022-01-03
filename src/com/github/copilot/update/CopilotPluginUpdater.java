@@ -57,7 +57,7 @@ public class CopilotPluginUpdater {
     private static final Logger LOG = Logger.getInstance(CopilotPluginUpdater.class);
 
     @RequiresEdt
-    private static void notifyUpdateAvailable(@NotNull Project project) {
+    private static void notifyUpdateAvailable(Project project) {
         if (project == null) {
             CopilotPluginUpdater.$$$reportNull$$$0(0);
         }
@@ -70,7 +70,7 @@ public class CopilotPluginUpdater {
     }
 
     @RequiresEdt
-    private static void notifyUpdateUnavailable(@NotNull Project project) {
+    private static void notifyUpdateUnavailable(Project project) {
         if (project == null) {
             CopilotPluginUpdater.$$$reportNull$$$0(1);
         }
@@ -80,13 +80,13 @@ public class CopilotPluginUpdater {
     }
 
     @RequiresBackgroundThread
-    private static void installCopilotUpdate(final @NotNull Project project) {
+    private static void installCopilotUpdate(final Project project) {
         if (project == null) {
             CopilotPluginUpdater.$$$reportNull$$$0(2);
         }
         new Task.Backgroundable(project, CopilotBundle.get("pluginUpdate.updatingTask.title"), true, PerformInBackgroundOption.ALWAYS_BACKGROUND){
 
-            public void run(@NotNull ProgressIndicator indicator) {
+            public void run(ProgressIndicator indicator) {
                 if (indicator == null) {
                     1.$$$reportNull$$$0(0);
                 }
@@ -123,13 +123,13 @@ public class CopilotPluginUpdater {
             }
 
             private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/update/CopilotPluginUpdater$1", "run"));
+                throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/update/CopilotPluginUpdater$1", "run"));
             }
         }.queue();
     }
 
     @RequiresEdt
-    private static void notifyRequiredRestart(@NotNull Project project) {
+    private static void notifyRequiredRestart(Project project) {
         if (project == null) {
             CopilotPluginUpdater.$$$reportNull$$$0(3);
         }
@@ -169,23 +169,22 @@ public class CopilotPluginUpdater {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 
     public static final class CheckUpdatesTask
     extends Task.Backgroundable {
-        @NotNull
-        private final Project project;
+                private final Project project;
         private final boolean notifyNoUpdate;
 
-        public CheckUpdatesTask(@NotNull Project project) {
+        public CheckUpdatesTask(Project project) {
             if (project == null) {
                 CheckUpdatesTask.$$$reportNull$$$0(0);
             }
             this(project, false);
         }
 
-        public CheckUpdatesTask(@NotNull Project project, boolean notifyNoUpdate) {
+        public CheckUpdatesTask(Project project, boolean notifyNoUpdate) {
             if (project == null) {
                 CheckUpdatesTask.$$$reportNull$$$0(1);
             }
@@ -194,7 +193,7 @@ public class CopilotPluginUpdater {
             this.notifyNoUpdate = notifyNoUpdate;
         }
 
-        public void run(@NotNull ProgressIndicator indicator) {
+        public void run(ProgressIndicator indicator) {
             if (indicator == null) {
                 CheckUpdatesTask.$$$reportNull$$$0(2);
             }
@@ -241,7 +240,7 @@ public class CopilotPluginUpdater {
                     break;
                 }
             }
-            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+            throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
         }
     }
 }

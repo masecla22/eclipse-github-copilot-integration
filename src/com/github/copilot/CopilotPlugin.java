@@ -32,8 +32,7 @@ public final class CopilotPlugin {
     private CopilotPlugin() {
     }
 
-    @NotNull
-    public static String getVersion() {
+        public static String getVersion() {
         IdeaPluginDescriptor plugin = PluginManagerCore.getPlugin((PluginId)COPILOT_ID);
         String string = plugin == null ? "unknown" : plugin.getVersion();
         if (string == null) {
@@ -42,8 +41,7 @@ public final class CopilotPlugin {
         return string;
     }
 
-    @NotNull
-    public static Path getPluginBasePath() {
+        public static Path getPluginBasePath() {
         IdeaPluginDescriptor plugin = PluginManagerCore.getPlugin((PluginId)COPILOT_ID);
         assert (plugin != null);
         Path path = plugin.getPluginPath();
@@ -53,13 +51,11 @@ public final class CopilotPlugin {
         return path;
     }
 
-    @Nullable
-    public static Disposable getLifecycleDisposable() {
+        public static Disposable getLifecycleDisposable() {
         return (Disposable)ApplicationManager.getApplication().getService(CopilotLifecycleService.class);
     }
 
-    @NotNull
-    public static String editorVersionString() {
+        public static String editorVersionString() {
         String string;
         try {
             BuildNumber build = ApplicationInfo.getInstance().getBuild();
@@ -74,8 +70,7 @@ public final class CopilotPlugin {
         return string;
     }
 
-    @NotNull
-    public static String pluginVersionString() {
+        public static String pluginVersionString() {
         String string;
         try {
             string = "copilot-intellij/" + CopilotPlugin.getVersion();
@@ -115,7 +110,7 @@ public final class CopilotPlugin {
                 break;
             }
         }
-        throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", objectArray));
+        throw new IllegalStateException(String.format("method %s.%s must not return null", objectArray));
     }
 }
 

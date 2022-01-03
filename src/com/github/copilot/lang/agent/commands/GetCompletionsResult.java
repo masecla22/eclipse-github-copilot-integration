@@ -15,10 +15,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class GetCompletionsResult {
     @SerializedName(value="completions")
-    @NotNull
-    List<Completion> completions;
+        List<Completion> completions;
 
-    public GetCompletionsResult(@NotNull List<Completion> completions) {
+    public GetCompletionsResult(List<Completion> completions) {
         if (completions == null) {
             GetCompletionsResult.$$$reportNull$$$0(0);
         }
@@ -28,8 +27,7 @@ public class GetCompletionsResult {
         this.completions = completions;
     }
 
-    @NotNull
-    public List<Completion> getCompletions() {
+        public List<Completion> getCompletions() {
         List<Completion> list = this.completions;
         if (list == null) {
             GetCompletionsResult.$$$reportNull$$$0(1);
@@ -37,7 +35,7 @@ public class GetCompletionsResult {
         return list;
     }
 
-    public void setCompletions(@NotNull List<Completion> completions) {
+    public void setCompletions(List<Completion> completions) {
         if (completions == null) {
             GetCompletionsResult.$$$reportNull$$$0(2);
         }
@@ -87,11 +85,11 @@ public class GetCompletionsResult {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 1: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }
@@ -161,22 +159,17 @@ public class GetCompletionsResult {
 
     public static final class Completion {
         @SerializedName(value="uuid")
-        @NotNull
-        private final String uuid;
+                private final String uuid;
         @SerializedName(value="text")
-        @NotNull
-        private final String text;
+                private final String text;
         @SerializedName(value="range")
-        @NotNull
-        private final Range range;
+                private final Range range;
         @SerializedName(value="displayText")
-        @NotNull
-        private final String displayText;
+                private final String displayText;
         @SerializedName(value="position")
-        @NotNull
-        private final Position position;
+                private final Position position;
 
-        public Completion(@NotNull String uuid, @NotNull String text, @NotNull Range range, @NotNull String displayText, @NotNull Position position) {
+        public Completion(String uuid, String text, Range range, String displayText, Position position) {
             if (uuid == null) {
                 Completion.$$$reportNull$$$0(0);
             }
@@ -214,8 +207,7 @@ public class GetCompletionsResult {
             this.position = position;
         }
 
-        @NotNull
-        public String getUuid() {
+                public String getUuid() {
             String string = this.uuid;
             if (string == null) {
                 Completion.$$$reportNull$$$0(5);
@@ -223,8 +215,7 @@ public class GetCompletionsResult {
             return string;
         }
 
-        @NotNull
-        public String getText() {
+                public String getText() {
             String string = this.text;
             if (string == null) {
                 Completion.$$$reportNull$$$0(6);
@@ -232,8 +223,7 @@ public class GetCompletionsResult {
             return string;
         }
 
-        @NotNull
-        public Range getRange() {
+                public Range getRange() {
             Range range = this.range;
             if (range == null) {
                 Completion.$$$reportNull$$$0(7);
@@ -241,8 +231,7 @@ public class GetCompletionsResult {
             return range;
         }
 
-        @NotNull
-        public String getDisplayText() {
+                public String getDisplayText() {
             String string = this.displayText;
             if (string == null) {
                 Completion.$$$reportNull$$$0(8);
@@ -250,8 +239,7 @@ public class GetCompletionsResult {
             return string;
         }
 
-        @NotNull
-        public Position getPosition() {
+                public Position getPosition() {
             Position position = this.position;
             if (position == null) {
                 Completion.$$$reportNull$$$0(9);
@@ -320,7 +308,7 @@ public class GetCompletionsResult {
             String string;
             switch (n) {
                 default: {
-                    string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                    string = "Argument for parameter '%s' of %s.%s must not be null";
                     break;
                 }
                 case 5: 
@@ -328,7 +316,7 @@ public class GetCompletionsResult {
                 case 7: 
                 case 8: 
                 case 9: {
-                    string = "@NotNull method %s.%s must not return null";
+                    string = "method %s.%s must not return null";
                     break;
                 }
             }

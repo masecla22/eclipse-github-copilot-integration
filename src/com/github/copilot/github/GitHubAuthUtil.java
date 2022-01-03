@@ -28,7 +28,7 @@ public final class GitHubAuthUtil {
     private GitHubAuthUtil() {
     }
 
-    public static void showUnauthorizedMessage(@NotNull Project project, @Nullable String url) {
+    public static void showUnauthorizedMessage(Project project, String url) {
         int clickedButton;
         if (project == null) {
             GitHubAuthUtil.$$$reportNull$$$0(0);
@@ -38,7 +38,7 @@ public final class GitHubAuthUtil {
         }
     }
 
-    public static boolean showTelemetryTermsDialog(@NotNull Project project) {
+    public static boolean showTelemetryTermsDialog(Project project) {
         if (project == null) {
             GitHubAuthUtil.$$$reportNull$$$0(1);
         }
@@ -62,7 +62,7 @@ public final class GitHubAuthUtil {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

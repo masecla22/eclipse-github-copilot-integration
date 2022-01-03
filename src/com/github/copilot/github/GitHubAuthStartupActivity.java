@@ -42,7 +42,7 @@ implements StartupActivity.Background {
     private final AtomicBoolean hasRun = new AtomicBoolean(false);
 
     @RequiresBackgroundThread
-    public void runActivity(@NotNull Project project) {
+    public void runActivity(Project project) {
         if (project == null) {
             GitHubAuthStartupActivity.$$$reportNull$$$0(0);
         }
@@ -63,7 +63,7 @@ implements StartupActivity.Background {
         }
     }
 
-    private void notifyUnauthorized(@NotNull Project project, @NotNull String url) {
+    private void notifyUnauthorized(Project project, String url) {
         if (project == null) {
             GitHubAuthStartupActivity.$$$reportNull$$$0(1);
         }
@@ -76,7 +76,7 @@ implements StartupActivity.Background {
         GitHubAuthStartupActivity.afterInit(project, () -> notification.notify(project));
     }
 
-    private void notifyTokenExpired(@NotNull Project project) {
+    private void notifyTokenExpired(Project project) {
         if (project == null) {
             GitHubAuthStartupActivity.$$$reportNull$$$0(3);
         }
@@ -85,7 +85,7 @@ implements StartupActivity.Background {
         GitHubAuthStartupActivity.afterInit(project, () -> notification.notify(project));
     }
 
-    private void promptTelemetryTerms(@NotNull Project project) {
+    private void promptTelemetryTerms(Project project) {
         if (project == null) {
             GitHubAuthStartupActivity.$$$reportNull$$$0(4);
         }
@@ -99,7 +99,7 @@ implements StartupActivity.Background {
         GitHubAuthStartupActivity.afterInit(project, () -> notification.notify(project));
     }
 
-    private static void afterInit(@NotNull Project project, @NotNull Runnable action) {
+    private static void afterInit(Project project, Runnable action) {
         if (project == null) {
             GitHubAuthStartupActivity.$$$reportNull$$$0(5);
         }
@@ -160,7 +160,7 @@ implements StartupActivity.Background {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

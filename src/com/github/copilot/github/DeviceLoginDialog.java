@@ -36,7 +36,7 @@ extends DialogWrapper {
     private final DeviceCodeResponse codeResponse;
 
     @RequiresEdt
-    public static boolean showDeviceLogin(@NotNull Project project, @NotNull DeviceCodeResponse codeResponse) {
+    public static boolean showDeviceLogin(Project project, DeviceCodeResponse codeResponse) {
         if (project == null) {
             DeviceLoginDialog.$$$reportNull$$$0(0);
         }
@@ -48,7 +48,7 @@ extends DialogWrapper {
         return dialog.showAndGet();
     }
 
-    public DeviceLoginDialog(@Nullable Project project, @NotNull DeviceCodeResponse codeResponse) {
+    public DeviceLoginDialog(Project project, DeviceCodeResponse codeResponse) {
         if (codeResponse == null) {
             DeviceLoginDialog.$$$reportNull$$$0(2);
         }
@@ -64,7 +64,7 @@ extends DialogWrapper {
         super.doOKAction();
     }
 
-    protected Action @NotNull [] createActions() {
+    protected Action [] createActions() {
         DialogWrapper.DialogWrapperAction proceedButton = new DialogWrapper.DialogWrapperAction(CopilotBundle.get("deviceAuth.okButton")){
 
             protected void doAction(ActionEvent e) {
@@ -79,8 +79,7 @@ extends DialogWrapper {
         return actionArray;
     }
 
-    @Nullable
-    protected JComponent createCenterPanel() {
+        protected JComponent createCenterPanel() {
         DeviceLoginForm form = new DeviceLoginForm();
         form.update(this.codeResponse);
         return form.getMainPanel();
@@ -94,11 +93,11 @@ extends DialogWrapper {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 3: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

@@ -71,7 +71,7 @@ Disposable {
     }
 
     @Override
-    public void setTrackingId(@Nullable String id) {
+    public void setTrackingId(String id) {
         if (id == null) {
             this.client.getContext().getUser().setId(null);
             this.clientSecure.getContext().getUser().setId(null);
@@ -85,7 +85,7 @@ Disposable {
     }
 
     @Override
-    public void trackException(@NotNull Throwable original, @NotNull Map<String, String> properties) {
+    public void trackException(Throwable original, Map<String, String> properties) {
         if (original == null) {
             AzureInsightsTelemetryService.$$$reportNull$$$0(0);
         }
@@ -100,7 +100,7 @@ Disposable {
     }
 
     @Override
-    public void track(@NotNull String name, @NotNull TelemetryData data) {
+    public void track(String name, TelemetryData data) {
         if (name == null) {
             AzureInsightsTelemetryService.$$$reportNull$$$0(2);
         }
@@ -111,7 +111,7 @@ Disposable {
     }
 
     @Override
-    public void track(@NotNull String name, @NotNull Map<String, String> properties, @NotNull Map<String, Double> metrics) {
+    public void track(String name, Map<String, String> properties, Map<String, Double> metrics) {
         if (name == null) {
             AzureInsightsTelemetryService.$$$reportNull$$$0(4);
         }
@@ -125,7 +125,7 @@ Disposable {
     }
 
     @Override
-    public void trackSecure(@NotNull String name, @NotNull TelemetryData data) {
+    public void trackSecure(String name, TelemetryData data) {
         if (name == null) {
             AzureInsightsTelemetryService.$$$reportNull$$$0(7);
         }
@@ -136,7 +136,7 @@ Disposable {
     }
 
     @Override
-    public void trackSecure(@NotNull String name, @NotNull Map<String, String> properties, @NotNull Map<String, Double> metrics) {
+    public void trackSecure(String name, Map<String, String> properties, Map<String, Double> metrics) {
         if (name == null) {
             AzureInsightsTelemetryService.$$$reportNull$$$0(9);
         }
@@ -149,7 +149,7 @@ Disposable {
         this.doTrack(this.clientSecure, name, properties, metrics);
     }
 
-    private void doTrack(@NotNull TelemetryClient client, @NotNull String name, @NotNull TelemetryData data) {
+    private void doTrack(TelemetryClient client, String name, TelemetryData data) {
         long displayedTimestamp;
         if (client == null) {
             AzureInsightsTelemetryService.$$$reportNull$$$0(12);
@@ -175,7 +175,7 @@ Disposable {
         this.doTrack(client, name, properties, (Map<String, Double>)((Object)metrics));
     }
 
-    private void doTrack(@NotNull TelemetryClient client, @NotNull String name, @NotNull Map<String, String> properties, @NotNull Map<String, Double> metrics) {
+    private void doTrack(TelemetryClient client, String name, Map<String, String> properties, Map<String, Double> metrics) {
         if (client == null) {
             AzureInsightsTelemetryService.$$$reportNull$$$0(15);
         }
@@ -201,7 +201,7 @@ Disposable {
         return map;
     }
 
-    private static TelemetryClient setupClient(@NotNull String key) {
+    private static TelemetryClient setupClient(String key) {
         if (key == null) {
             AzureInsightsTelemetryService.$$$reportNull$$$0(19);
         }
@@ -322,7 +322,7 @@ Disposable {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

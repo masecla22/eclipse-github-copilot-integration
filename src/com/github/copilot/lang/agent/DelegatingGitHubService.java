@@ -40,7 +40,7 @@ implements GitHubService {
 
     @Override
     @RequiresEdt
-    public void loginInteractive(@NotNull Project project) {
+    public void loginInteractive(Project project) {
         if (project == null) {
             DelegatingGitHubService.$$$reportNull$$$0(0);
         }
@@ -48,8 +48,7 @@ implements GitHubService {
     }
 
     @Override
-    @Nullable
-    public GitHubCopilotToken fetchCopilotTokenInteractive(@NotNull Project project, @Nullable GitHubSession sessionOverride, boolean storeToken, @NotNull UnauthorizedTokenCallback onUnauthorized, @NotNull Consumer<Project> onNewTokenExpired) {
+        public GitHubCopilotToken fetchCopilotTokenInteractive(Project project, GitHubSession sessionOverride, boolean storeToken, UnauthorizedTokenCallback onUnauthorized, Consumer<Project> onNewTokenExpired) {
         if (project == null) {
             DelegatingGitHubService.$$$reportNull$$$0(1);
         }
@@ -71,8 +70,7 @@ implements GitHubService {
      * WARNING - void declaration
      */
     @Override
-    @Nullable
-    public GitHubCopilotToken getCopilotToken(boolean requestIfMissing, long minimumValidity, @NotNull TimeUnit timeUnit) {
+        public GitHubCopilotToken getCopilotToken(boolean requestIfMissing, long minimumValidity, TimeUnit timeUnit) {
         void timeUnit2;
         if (timeUnit == null) {
             DelegatingGitHubService.$$$reportNull$$$0(4);
@@ -81,22 +79,20 @@ implements GitHubService {
     }
 
     @Override
-    @Nullable
-    public GitHubCopilotToken getCopilotToken() {
+        public GitHubCopilotToken getCopilotToken() {
         return this.getDelegate().getCopilotToken();
     }
 
     @Override
     @RequiresEdt
-    public void showLoginNotification(@NotNull Project project, boolean force) {
+    public void showLoginNotification(Project project, boolean force) {
         if (project == null) {
             DelegatingGitHubService.$$$reportNull$$$0(5);
         }
         this.getDelegate().showLoginNotification(project, force);
     }
 
-    @NotNull
-    private GitHubService getDelegate() {
+        private GitHubService getDelegate() {
         GitHubService gitHubService = CopilotAgent.isAgentSupportedAndEnabled() ? this.agentService : this.defaultService;
         if (gitHubService == null) {
             DelegatingGitHubService.$$$reportNull$$$0(6);
@@ -112,11 +108,11 @@ implements GitHubService {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 6: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

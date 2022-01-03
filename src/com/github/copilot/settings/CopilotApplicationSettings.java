@@ -40,12 +40,10 @@ import org.jetbrains.annotations.Nullable;
 @State(name="github-copilot", storages={@Storage(value="github-copilot.xml")})
 public class CopilotApplicationSettings
 implements PersistentStateComponent<CopilotApplicationState> {
-    @NotNull
-    private static final CredentialAttributes GITHUB_TOKEN_CREDENTIALS = CopilotApplicationSettings.createCredentials("GitHub Copilot API Token");
+        private static final CredentialAttributes GITHUB_TOKEN_CREDENTIALS = CopilotApplicationSettings.createCredentials("GitHub Copilot API Token");
     private CopilotApplicationState state;
 
-    @NotNull
-    public static CopilotApplicationState settings() {
+        public static CopilotApplicationState settings() {
         CopilotApplicationState state = ((CopilotApplicationSettings)ApplicationManager.getApplication().getService(CopilotApplicationSettings.class)).getState();
         assert (state != null);
         CopilotApplicationState copilotApplicationState = state;
@@ -55,8 +53,7 @@ implements PersistentStateComponent<CopilotApplicationState> {
         return copilotApplicationState;
     }
 
-    @Nullable
-    public static String getGitHubToken() {
+        public static String getGitHubToken() {
         CopilotLocalApplicationState localSettings = CopilotLocalApplicationSettings.settings();
         String token = localSettings.githubToken;
         if (token == null && !localSettings.githubTokenMigration) {
@@ -70,11 +67,11 @@ implements PersistentStateComponent<CopilotApplicationState> {
         return token;
     }
 
-    public static void setGitHubToken(@Nullable String secret) {
+    public static void setGitHubToken(String secret) {
         CopilotLocalApplicationSettings.settings().githubToken = secret;
     }
 
-    public static boolean isCopilotEnabled(@NotNull Project project, @NotNull Editor editor) {
+    public static boolean isCopilotEnabled(Project project, Editor editor) {
         PsiFile file;
         if (project == null) {
             CopilotApplicationSettings.$$$reportNull$$$0(1);
@@ -85,7 +82,7 @@ implements PersistentStateComponent<CopilotApplicationState> {
         return (file = PsiDocumentManager.getInstance((Project)project).getPsiFile(editor.getDocument())) != null && CopilotApplicationSettings.isCopilotEnabled(file);
     }
 
-    public static boolean isCopilotEnabled(@NotNull PsiFile file) {
+    public static boolean isCopilotEnabled(PsiFile file) {
         if (file == null) {
             CopilotApplicationSettings.$$$reportNull$$$0(3);
         }
@@ -93,7 +90,7 @@ implements PersistentStateComponent<CopilotApplicationState> {
         return CopilotApplicationSettings.isCopilotEnabled(language);
     }
 
-    public static boolean isCopilotEnabled(@NotNull Language language) {
+    public static boolean isCopilotEnabled(Language language) {
         if (language == null) {
             CopilotApplicationSettings.$$$reportNull$$$0(4);
         }
@@ -101,8 +98,7 @@ implements PersistentStateComponent<CopilotApplicationState> {
         return settings.enableCompletions && settings.isEnabled(language);
     }
 
-    @Nullable
-    public synchronized CopilotApplicationState getState() {
+        public synchronized CopilotApplicationState getState() {
         return this.state;
     }
 
@@ -110,23 +106,21 @@ implements PersistentStateComponent<CopilotApplicationState> {
         this.state = new CopilotApplicationState();
     }
 
-    public synchronized void loadState(@NotNull CopilotApplicationState state) {
+    public synchronized void loadState(CopilotApplicationState state) {
         if (state == null) {
             CopilotApplicationSettings.$$$reportNull$$$0(5);
         }
         this.state = state;
     }
 
-    @NotNull
-    private static CredentialAttributes createCredentials(@NotNull String name) {
+        private static CredentialAttributes createCredentials(String name) {
         if (name == null) {
             CopilotApplicationSettings.$$$reportNull$$$0(6);
         }
         return new CredentialAttributes(CopilotApplicationSettings.passwordSafeService(name), null, CopilotApplicationSettings.class, false, true);
     }
 
-    @NotNull
-    private static String passwordSafeService(@NotNull String name) {
+        private static String passwordSafeService(String name) {
         if (name == null) {
             CopilotApplicationSettings.$$$reportNull$$$0(7);
         }
@@ -145,7 +139,7 @@ implements PersistentStateComponent<CopilotApplicationState> {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: 
@@ -155,7 +149,7 @@ implements PersistentStateComponent<CopilotApplicationState> {
             case 5: 
             case 6: 
             case 7: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

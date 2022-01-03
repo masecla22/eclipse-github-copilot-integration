@@ -25,8 +25,7 @@ public class CompletionPopupInhibitor
 extends TypedHandlerDelegate {
     private static final Logger LOG = Logger.getInstance(CompletionPopupInhibitor.class);
 
-    @NotNull
-    public TypedHandlerDelegate.Result checkAutoPopup(char charTyped, @NotNull Project project, @NotNull Editor editor, @NotNull PsiFile file) {
+        public TypedHandlerDelegate.Result checkAutoPopup(char charTyped, Project project, Editor editor, PsiFile file) {
         boolean showIdeCompletions;
         if (project == null) {
             CompletionPopupInhibitor.$$$reportNull$$$0(0);
@@ -60,12 +59,12 @@ extends TypedHandlerDelegate {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 3: 
             case 4: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

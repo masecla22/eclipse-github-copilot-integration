@@ -36,7 +36,7 @@ CopilotAction {
         this.setInjectedContext(true);
     }
 
-    static boolean isSupported(@NotNull Editor editor) {
+    static boolean isSupported(Editor editor) {
         CopilotEditorManager manager;
         if (editor == null) {
             CopilotDisposeInlaysAction.$$$reportNull$$$0(0);
@@ -45,7 +45,7 @@ CopilotAction {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "editor", "com/github/copilot/actions/CopilotDisposeInlaysAction", "isSupported"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "editor", "com/github/copilot/actions/CopilotDisposeInlaysAction", "isSupported"));
     }
 
     private static class DisposeInlaysHandler
@@ -53,7 +53,7 @@ CopilotAction {
         private DisposeInlaysHandler() {
         }
 
-        protected boolean isEnabledForCaret(@NotNull Editor editor, @NotNull Caret caret, DataContext dataContext) {
+        protected boolean isEnabledForCaret(Editor editor, Caret caret, DataContext dataContext) {
             if (editor == null) {
                 DisposeInlaysHandler.$$$reportNull$$$0(0);
             }
@@ -63,14 +63,14 @@ CopilotAction {
             return CopilotDisposeInlaysAction.isSupported(editor);
         }
 
-        public boolean executeInCommand(@NotNull Editor editor, DataContext dataContext) {
+        public boolean executeInCommand(Editor editor, DataContext dataContext) {
             if (editor == null) {
                 DisposeInlaysHandler.$$$reportNull$$$0(2);
             }
             return false;
         }
 
-        protected void doExecute(@NotNull Editor editor, @Nullable Caret caret, DataContext dataContext) {
+        protected void doExecute(Editor editor, Caret caret, DataContext dataContext) {
             if (editor == null) {
                 DisposeInlaysHandler.$$$reportNull$$$0(3);
             }
@@ -113,7 +113,7 @@ CopilotAction {
                     break;
                 }
             }
-            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+            throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
         }
     }
 }

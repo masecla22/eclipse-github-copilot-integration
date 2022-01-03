@@ -29,12 +29,11 @@ Cancellable {
     private static final Logger LOG = Logger.getInstance(JsonToApiChoiceProcessor.class);
     private final SubmissionPublisher<APIChoice> apiChoicePublisher;
     private final APIChoiceTransformer choiceTransformer;
-    @NotNull
-    private final EditorRequest request;
+        private final EditorRequest request;
     private volatile boolean cancelled;
     private volatile Flow.Subscription subscription;
 
-    JsonToApiChoiceProcessor(@NotNull LanguageEditorRequest request, @NotNull TelemetryData telemetryBaseData, @NotNull Flow.Subscriber<APIChoice> subscriber) {
+    JsonToApiChoiceProcessor(LanguageEditorRequest request, TelemetryData telemetryBaseData, Flow.Subscriber<APIChoice> subscriber) {
         if (request == null) {
             JsonToApiChoiceProcessor.$$$reportNull$$$0(0);
         }
@@ -50,7 +49,7 @@ Cancellable {
         this.apiChoicePublisher.subscribe(subscriber);
     }
 
-    void updateWithResponse(@NotNull HttpResponse.ResponseInfo responseInfo) {
+    void updateWithResponse(HttpResponse.ResponseInfo responseInfo) {
         if (responseInfo == null) {
             JsonToApiChoiceProcessor.$$$reportNull$$$0(3);
         }
@@ -159,7 +158,7 @@ Cancellable {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

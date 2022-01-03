@@ -79,11 +79,9 @@ implements GitHubService {
     private static final Gson gson = new GsonBuilder().create();
     private final Object sessionLock = new Object();
     @GuardedBy(value="sessionLock")
-    @Nullable
-    private GitHubSession session;
+        private GitHubSession session;
     @GuardedBy(value="sessionLock")
-    @Nullable
-    private GitHubCopilotToken token;
+        private GitHubCopilotToken token;
 
     public GitHubDeviceAuthService() {
         this.refreshSession();
@@ -106,7 +104,7 @@ implements GitHubService {
     }
 
     @Override
-    public void loginInteractive(@NotNull Project project) {
+    public void loginInteractive(Project project) {
         DeviceCodeResponse codeResponse;
         if (project == null) {
             GitHubDeviceAuthService.$$$reportNull$$$0(0);
@@ -154,7 +152,7 @@ implements GitHubService {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     @Override
-    public GitHubCopilotToken fetchCopilotTokenInteractive(@NotNull Project project, @Nullable GitHubSession sessionOverride, boolean storeToken, @NotNull UnauthorizedTokenCallback onUnauthorized, @NotNull Consumer<Project> onNewTokenExpired) {
+    public GitHubCopilotToken fetchCopilotTokenInteractive(Project project, GitHubSession sessionOverride, boolean storeToken, UnauthorizedTokenCallback onUnauthorized, Consumer<Project> onNewTokenExpired) {
         GitHubCopilotToken newToken;
         GitHubSession session;
         if (project == null) {
@@ -198,7 +196,7 @@ implements GitHubService {
      * WARNING - void declaration
      */
     @Override
-    public GitHubCopilotToken getCopilotToken(boolean requestIfMissing, long minimumValidity, @NotNull TimeUnit timeUnit) {
+    public GitHubCopilotToken getCopilotToken(boolean requestIfMissing, long minimumValidity, TimeUnit timeUnit) {
         GitHubSession currentSession;
         if (timeUnit == null) {
             GitHubDeviceAuthService.$$$reportNull$$$0(4);
@@ -249,22 +247,21 @@ implements GitHubService {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     @TestOnly
-    public void setCopilotToken(@Nullable GitHubCopilotToken token) {
+    public void setCopilotToken(GitHubCopilotToken token) {
         Object object = this.sessionLock;
         synchronized (object) {
             this.token = token;
         }
     }
 
-    @Nullable
-    private DeviceCodeResponse retrieveDeviceCode(@NotNull Project project) {
+        private DeviceCodeResponse retrieveDeviceCode(Project project) {
         if (project == null) {
             GitHubDeviceAuthService.$$$reportNull$$$0(5);
         }
         try {
             return (DeviceCodeResponse)ProgressManager.getInstance().run((Task.WithResult)new Task.WithResult<DeviceCodeResponse, Exception>(project, "Retrieving GitHub Device Code", true){
 
-                protected DeviceCodeResponse compute(@NotNull ProgressIndicator indicator) throws Exception {
+                protected DeviceCodeResponse compute(ProgressIndicator indicator) throws Exception {
                     if (indicator == null) {
                         1.$$$reportNull$$$0(0);
                     }
@@ -274,7 +271,7 @@ implements GitHubService {
                 }
 
                 private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                    throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/github/GitHubDeviceAuthService$1", "compute"));
+                    throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/github/GitHubDeviceAuthService$1", "compute"));
                 }
             });
         }
@@ -284,8 +281,7 @@ implements GitHubService {
         }
     }
 
-    @Nullable
-    private DeviceTokenResponse retrieveToken(@Nullable Project project, final @NotNull DeviceCodeResponse codeResponse) {
+        private DeviceTokenResponse retrieveToken(Project project, final DeviceCodeResponse codeResponse) {
         if (codeResponse == null) {
             GitHubDeviceAuthService.$$$reportNull$$$0(6);
         }
@@ -293,7 +289,7 @@ implements GitHubService {
             String title = CopilotBundle.get("deviceAuth.progressTitle");
             return (DeviceTokenResponse)ProgressManager.getInstance().run((Task.WithResult)new Task.WithResult<DeviceTokenResponse, Exception>(project, title, true){
 
-                protected DeviceTokenResponse compute(@NotNull ProgressIndicator indicator) {
+                protected DeviceTokenResponse compute(ProgressIndicator indicator) {
                     if (indicator == null) {
                         2.$$$reportNull$$$0(0);
                     }
@@ -324,7 +320,7 @@ implements GitHubService {
                 }
 
                 private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                    throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/github/GitHubDeviceAuthService$2", "compute"));
+                    throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/github/GitHubDeviceAuthService$2", "compute"));
                 }
             });
         }
@@ -336,7 +332,7 @@ implements GitHubService {
         }
     }
 
-    private void waitForGitHub(@NotNull ProgressIndicator indicator, long intervalMillis) {
+    private void waitForGitHub(ProgressIndicator indicator, long intervalMillis) {
         if (indicator == null) {
             GitHubDeviceAuthService.$$$reportNull$$$0(7);
         }
@@ -367,7 +363,7 @@ implements GitHubService {
     /*
      * WARNING - Removed try catching itself - possible behaviour change.
      */
-    private void storeSessionData(@Nullable GitHubSession newSession, @Nullable GitHubCopilotToken newCopilotToken) {
+    private void storeSessionData(GitHubSession newSession, GitHubCopilotToken newCopilotToken) {
         Object object = this.sessionLock;
         synchronized (object) {
             if (newSession != null) {
@@ -386,8 +382,7 @@ implements GitHubService {
         }
     }
 
-    @Nullable
-    private static GitHubCopilotToken retrieveCopilotTokenInBackground(@Nullable Project project, final @NotNull GitHubSession session) {
+        private static GitHubCopilotToken retrieveCopilotTokenInBackground(Project project, final GitHubSession session) {
         if (session == null) {
             GitHubDeviceAuthService.$$$reportNull$$$0(8);
         }
@@ -395,7 +390,7 @@ implements GitHubService {
             String title = CopilotBundle.get("github.auth.fetchingToken");
             Task.WithResult<GitHubCopilotToken, Exception> task = new Task.WithResult<GitHubCopilotToken, Exception>(project, title, true){
 
-                protected GitHubCopilotToken compute(@NotNull ProgressIndicator indicator) {
+                protected GitHubCopilotToken compute(ProgressIndicator indicator) {
                     if (indicator == null) {
                         3.$$$reportNull$$$0(0);
                     }
@@ -403,7 +398,7 @@ implements GitHubService {
                 }
 
                 private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                    throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/github/GitHubDeviceAuthService$3", "compute"));
+                    throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/github/GitHubDeviceAuthService$3", "compute"));
                 }
             };
             return (GitHubCopilotToken)ProgressManager.getInstance().run((Task.WithResult)task);
@@ -418,8 +413,7 @@ implements GitHubService {
     }
 
     @RequiresBackgroundThread
-    @Nullable
-    private static GitHubCopilotToken retrieveCopilotToken(@NotNull GitHubSession session) {
+        private static GitHubCopilotToken retrieveCopilotToken(GitHubSession session) {
         if (session == null) {
             GitHubDeviceAuthService.$$$reportNull$$$0(9);
         }
@@ -533,7 +527,7 @@ implements GitHubService {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

@@ -26,8 +26,7 @@ public class CopilotLocalApplicationSettings
 implements PersistentStateComponent<CopilotLocalApplicationState> {
     private CopilotLocalApplicationState state;
 
-    @NotNull
-    public static CopilotLocalApplicationState settings() {
+        public static CopilotLocalApplicationState settings() {
         CopilotLocalApplicationState state = ((CopilotLocalApplicationSettings)ApplicationManager.getApplication().getService(CopilotLocalApplicationSettings.class)).getState();
         assert (state != null);
         CopilotLocalApplicationState copilotLocalApplicationState = state;
@@ -37,8 +36,7 @@ implements PersistentStateComponent<CopilotLocalApplicationState> {
         return copilotLocalApplicationState;
     }
 
-    @Nullable
-    public synchronized CopilotLocalApplicationState getState() {
+        public synchronized CopilotLocalApplicationState getState() {
         return this.state;
     }
 
@@ -48,7 +46,7 @@ implements PersistentStateComponent<CopilotLocalApplicationState> {
         this.state = state;
     }
 
-    public synchronized void loadState(@NotNull CopilotLocalApplicationState state) {
+    public synchronized void loadState(CopilotLocalApplicationState state) {
         if (state == null) {
             CopilotLocalApplicationSettings.$$$reportNull$$$0(1);
         }
@@ -63,11 +61,11 @@ implements PersistentStateComponent<CopilotLocalApplicationState> {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

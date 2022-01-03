@@ -15,14 +15,14 @@ import org.jetbrains.annotations.NotNull;
 public class NullCommandSender
 implements JsonRpcCommandSender {
     @Override
-    public void sendCommand(int id, @NotNull JsonRpcCommand<?> command) throws IOException {
+    public void sendCommand(int id, JsonRpcCommand<?> command) throws IOException {
         if (command == null) {
             NullCommandSender.$$$reportNull$$$0(0);
         }
     }
 
     @Override
-    public void sendNotification(@NotNull JsonRpcNotification notification) throws IOException {
+    public void sendNotification(JsonRpcNotification notification) throws IOException {
         if (notification == null) {
             NullCommandSender.$$$reportNull$$$0(1);
         }
@@ -57,7 +57,7 @@ implements JsonRpcCommandSender {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

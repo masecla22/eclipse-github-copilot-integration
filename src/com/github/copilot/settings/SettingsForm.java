@@ -85,18 +85,16 @@ public class SettingsForm {
         this.updateCheckbox.setSelected(enabled);
     }
 
-    @Nullable
-    public Color getInlayTextColor() {
+        public Color getInlayTextColor() {
         return this.inlayTextColorBox.isSelected() ? this.inlayTextColorPanel.getSelectedColor() : null;
     }
 
-    public void setInlayTextColor(@Nullable Color color) {
+    public void setInlayTextColor(Color color) {
         this.inlayTextColorBox.setSelected(color != null);
         this.inlayTextColorPanel.setSelectedColor(color);
     }
 
-    @NotNull
-    public UpdateChannel getUpdateChannel() {
+        public UpdateChannel getUpdateChannel() {
         UpdateChannel updateChannel = (UpdateChannel)((Object)this.updateChannelBox.getItem());
         if (updateChannel == null) {
             SettingsForm.$$$reportNull$$$0(0);
@@ -104,14 +102,14 @@ public class SettingsForm {
         return updateChannel;
     }
 
-    public void setUpdateChannel(@NotNull UpdateChannel channel) {
+    public void setUpdateChannel(UpdateChannel channel) {
         if (channel == null) {
             SettingsForm.$$$reportNull$$$0(1);
         }
         this.updateChannelBox.setSelectedItem((Object)channel);
     }
 
-    public void setDisabledLanguages(@NotNull Set<String> languageIds) {
+    public void setDisabledLanguages(Set<String> languageIds) {
         if (languageIds == null) {
             SettingsForm.$$$reportNull$$$0(2);
         }
@@ -237,12 +235,12 @@ public class SettingsForm {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: 
             case 2: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

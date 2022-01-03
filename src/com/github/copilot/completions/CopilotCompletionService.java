@@ -31,16 +31,15 @@ public interface CopilotCompletionService {
         return (CopilotCompletionService)ApplicationManager.getApplication().getService(CopilotCompletionService.class);
     }
 
-    public boolean isAvailable(@NotNull Editor var1);
+    public boolean isAvailable(Editor var1);
 
-    @Nullable
-    public EditorRequest createRequest(@NotNull Editor var1, int var2, @NotNull CompletionType var3);
-
-    @RequiresBackgroundThread
-    public boolean fetchCompletions(@NotNull EditorRequest var1, @Nullable GitHubCopilotToken var2, @Nullable Integer var3, boolean var4, boolean var5, @NotNull Flow.Subscriber<List<CopilotInlayList>> var6);
+        public EditorRequest createRequest(Editor var1, int var2, CompletionType var3);
 
     @RequiresBackgroundThread
-    default public boolean fetchCompletions(@NotNull EditorRequest request, @Nullable GitHubCopilotToken proxyToken, @Nullable Integer maxCompletions, @NotNull Flow.Subscriber<List<CopilotInlayList>> subscriber) {
+    public boolean fetchCompletions(EditorRequest var1, GitHubCopilotToken var2, Integer var3, boolean var4, boolean var5, Flow.Subscriber<List<CopilotInlayList>> var6);
+
+    @RequiresBackgroundThread
+    default public boolean fetchCompletions(EditorRequest request, GitHubCopilotToken proxyToken, Integer maxCompletions, Flow.Subscriber<List<CopilotInlayList>> subscriber) {
         if (request == null) {
             CopilotCompletionService.$$$reportNull$$$0(0);
         }
@@ -52,21 +51,20 @@ public interface CopilotCompletionService {
     }
 
     @RequiresEdt
-    @Nullable
-    public List<CopilotInlayList> fetchCachedCompletions(@NotNull EditorRequest var1);
+        public List<CopilotInlayList> fetchCachedCompletions(EditorRequest var1);
 
     public void reset();
 
     @RequiresEdt
-    public boolean isSupportingOnDemandCycling(@NotNull Editor var1);
+    public boolean isSupportingOnDemandCycling(Editor var1);
 
     public boolean isCyclingReplacingCompletions();
 
-    public void sendShownTelemetry(@NotNull CopilotCompletion var1);
+    public void sendShownTelemetry(CopilotCompletion var1);
 
-    public void sendAcceptedTelemetry(@NotNull CopilotCompletion var1, @NotNull CompletionType var2);
+    public void sendAcceptedTelemetry(CopilotCompletion var1, CompletionType var2);
 
-    public void sendRejectedTelemetry(@NotNull List<CopilotCompletion> var1);
+    public void sendRejectedTelemetry(List<CopilotCompletion> var1);
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
         Object[] objectArray;
@@ -85,7 +83,7 @@ public interface CopilotCompletionService {
         }
         objectArray[1] = "com/github/copilot/completions/CopilotCompletionService";
         objectArray[2] = "fetchCompletions";
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

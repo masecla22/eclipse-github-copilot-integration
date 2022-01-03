@@ -43,23 +43,20 @@ public interface GitHubService {
     public boolean isSignedIn();
 
     @RequiresEdt
-    public void loginInteractive(@NotNull Project var1);
+    public void loginInteractive(Project var1);
 
-    @Nullable
-    public GitHubCopilotToken fetchCopilotTokenInteractive(@NotNull Project var1, @Nullable GitHubSession var2, boolean var3, @NotNull UnauthorizedTokenCallback var4, @NotNull Consumer<Project> var5);
+        public GitHubCopilotToken fetchCopilotTokenInteractive(Project var1, GitHubSession var2, boolean var3, UnauthorizedTokenCallback var4, Consumer<Project> var5);
 
     public void logout();
 
-    @Nullable
-    public GitHubCopilotToken getCopilotToken(boolean var1, long var2, @NotNull TimeUnit var4);
+        public GitHubCopilotToken getCopilotToken(boolean var1, long var2, TimeUnit var4);
 
-    @Nullable
-    default public GitHubCopilotToken getCopilotToken() {
+        default public GitHubCopilotToken getCopilotToken() {
         return this.getCopilotToken(false, 0L, TimeUnit.MILLISECONDS);
     }
 
     @RequiresEdt
-    default public void showLoginNotification(@NotNull Project project, boolean force) {
+    default public void showLoginNotification(Project project, boolean force) {
         if (project == null) {
             GitHubService.$$$reportNull$$$0(0);
         }
@@ -73,7 +70,7 @@ public interface GitHubService {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "project", "com/github/copilot/github/GitHubService", "showLoginNotification"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "project", "com/github/copilot/github/GitHubService", "showLoginNotification"));
     }
 }
 

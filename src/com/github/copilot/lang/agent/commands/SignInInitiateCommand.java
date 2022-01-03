@@ -13,14 +13,12 @@ import org.jetbrains.annotations.NotNull;
 public class SignInInitiateCommand
 implements JsonRpcCommand<SignInInitiateResult> {
     @Override
-    @NotNull
-    public String getCommandName() {
+        public String getCommandName() {
         return "signInInitiate";
     }
 
     @Override
-    @NotNull
-    public Class<SignInInitiateResult> getResponseType() {
+        public Class<SignInInitiateResult> getResponseType() {
         return SignInInitiateResult.class;
     }
 }

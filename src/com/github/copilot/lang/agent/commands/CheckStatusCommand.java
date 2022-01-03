@@ -18,14 +18,12 @@ implements JsonRpcCommand<AuthStatusResult> {
     private final boolean localChecksOnly = false;
 
     @Override
-    @NotNull
-    public String getCommandName() {
+        public String getCommandName() {
         return "checkStatus";
     }
 
     @Override
-    @NotNull
-    public Class<AuthStatusResult> getResponseType() {
+        public Class<AuthStatusResult> getResponseType() {
         return AuthStatusResult.class;
     }
 

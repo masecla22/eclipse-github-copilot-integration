@@ -17,8 +17,7 @@ import org.jetbrains.annotations.Nullable;
 
 public interface APIChoice
 extends CopilotCompletion {
-    @NotNull
-    public CompletionResponseInfo getResponseInfo();
+        public CompletionResponseInfo getResponseInfo();
 
     default public int getCompletionTextLength() {
         int sum = 0;
@@ -28,8 +27,7 @@ extends CopilotCompletion {
         return sum;
     }
 
-    @NotNull
-    default public String getCompletionText() {
+        default public String getCompletionText() {
         String string = StringUtil.join(this.getCompletion(), (String)"\n");
         if (string == null) {
             APIChoice.$$$reportNull$$$0(0);
@@ -43,21 +41,18 @@ extends CopilotCompletion {
 
     public int getRequestID();
 
-    @NotNull
-    public String getCompletionId();
+        public String getCompletionId();
 
     public int getCreatedTimestamp();
 
-    @Nullable
-    public Double getMeanLogProb();
+        public Double getMeanLogProb();
 
-    @NotNull
-    public TelemetryData getTelemetryData();
+        public TelemetryData getTelemetryData();
 
     public boolean isCached();
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", "com/github/copilot/openai/APIChoice", "getCompletionText"));
+        throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/openai/APIChoice", "getCompletionText"));
     }
 }
 

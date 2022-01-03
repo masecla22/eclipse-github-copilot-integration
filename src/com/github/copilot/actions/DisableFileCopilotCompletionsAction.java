@@ -23,7 +23,7 @@ extends AbstractDisableCopilotCompletionsAction {
     }
 
     @Override
-    public void update(@NotNull AnActionEvent e) {
+    public void update(AnActionEvent e) {
         PsiFile file;
         if (e == null) {
             DisableFileCopilotCompletionsAction.$$$reportNull$$$0(0);
@@ -36,7 +36,7 @@ extends AbstractDisableCopilotCompletionsAction {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "e", "com/github/copilot/actions/DisableFileCopilotCompletionsAction", "update"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "e", "com/github/copilot/actions/DisableFileCopilotCompletionsAction", "update"));
     }
 }
 

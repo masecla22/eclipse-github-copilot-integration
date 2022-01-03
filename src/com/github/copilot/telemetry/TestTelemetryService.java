@@ -27,8 +27,7 @@ implements TelemetryService {
     private final List<TelemetryMessage> recordedMessages = new CopyOnWriteArrayList<TelemetryMessage>();
     private final List<TelemetryMessage> recordedSecureMessages = new CopyOnWriteArrayList<TelemetryMessage>();
 
-    @NotNull
-    public static TestTelemetryService getInstance() {
+        public static TestTelemetryService getInstance() {
         TestTelemetryService testTelemetryService = (TestTelemetryService)ApplicationManager.getApplication().getService(TelemetryService.class);
         if (testTelemetryService == null) {
             TestTelemetryService.$$$reportNull$$$0(0);
@@ -43,12 +42,12 @@ implements TelemetryService {
     }
 
     @Override
-    public void setTrackingId(@Nullable String id) {
+    public void setTrackingId(String id) {
         this.trackingId = id;
     }
 
     @Override
-    public void trackException(@NotNull Throwable original, @NotNull Map<String, String> properties) {
+    public void trackException(Throwable original, Map<String, String> properties) {
         if (original == null) {
             TestTelemetryService.$$$reportNull$$$0(1);
         }
@@ -58,7 +57,7 @@ implements TelemetryService {
     }
 
     @Override
-    public void track(@NotNull String name, @NotNull TelemetryData data) {
+    public void track(String name, TelemetryData data) {
         if (name == null) {
             TestTelemetryService.$$$reportNull$$$0(3);
         }
@@ -69,7 +68,7 @@ implements TelemetryService {
     }
 
     @Override
-    public void track(@NotNull String name, @NotNull Map<String, String> properties, @NotNull Map<String, Double> metrics) {
+    public void track(String name, Map<String, String> properties, Map<String, Double> metrics) {
         if (name == null) {
             TestTelemetryService.$$$reportNull$$$0(5);
         }
@@ -83,7 +82,7 @@ implements TelemetryService {
     }
 
     @Override
-    public void trackSecure(@NotNull String name, @NotNull TelemetryData data) {
+    public void trackSecure(String name, TelemetryData data) {
         if (name == null) {
             TestTelemetryService.$$$reportNull$$$0(8);
         }
@@ -94,7 +93,7 @@ implements TelemetryService {
     }
 
     @Override
-    public void trackSecure(@NotNull String name, @NotNull Map<String, String> properties, @NotNull Map<String, Double> metrics) {
+    public void trackSecure(String name, Map<String, String> properties, Map<String, Double> metrics) {
         if (name == null) {
             TestTelemetryService.$$$reportNull$$$0(10);
         }
@@ -108,8 +107,7 @@ implements TelemetryService {
     }
 
     @TestOnly
-    @NotNull
-    public List<TelemetryMessage> findRecordedMessages(@NotNull String name) {
+        public List<TelemetryMessage> findRecordedMessages(String name) {
         if (name == null) {
             TestTelemetryService.$$$reportNull$$$0(13);
         }
@@ -121,8 +119,7 @@ implements TelemetryService {
     }
 
     @TestOnly
-    @NotNull
-    public List<TelemetryMessage> findRecordedSecureMessages(@NotNull String name) {
+        public List<TelemetryMessage> findRecordedSecureMessages(String name) {
         if (name == null) {
             TestTelemetryService.$$$reportNull$$$0(15);
         }
@@ -149,7 +146,7 @@ implements TelemetryService {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: 
@@ -166,7 +163,7 @@ implements TelemetryService {
             case 12: 
             case 13: 
             case 15: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

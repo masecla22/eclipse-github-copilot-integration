@@ -15,23 +15,19 @@ import org.jetbrains.annotations.NotNull;
 public final class NotifyRejectedCommand
 implements JsonRpcCommand<String> {
     @SerializedName(value="uuids")
-    @NotNull
-    private final List<String> uuids;
+        private final List<String> uuids;
 
     @Override
-    @NotNull
-    public String getCommandName() {
+        public String getCommandName() {
         return "notifyRejected";
     }
 
     @Override
-    @NotNull
-    public Class<String> getResponseType() {
+        public Class<String> getResponseType() {
         return String.class;
     }
 
-    @NotNull
-    public List<String> getUuids() {
+        public List<String> getUuids() {
         List<String> list = this.uuids;
         if (list == null) {
             NotifyRejectedCommand.$$$reportNull$$$0(0);
@@ -64,7 +60,7 @@ implements JsonRpcCommand<String> {
         return "NotifyRejectedCommand(uuids=" + this.getUuids() + ")";
     }
 
-    public NotifyRejectedCommand(@NotNull List<String> uuids) {
+    public NotifyRejectedCommand(List<String> uuids) {
         if (uuids == null) {
             NotifyRejectedCommand.$$$reportNull$$$0(1);
         }
@@ -82,11 +78,11 @@ implements JsonRpcCommand<String> {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

@@ -37,7 +37,7 @@ implements StartupActivity {
     private static final String EARLY_BIRD_CHANNEL = "https://plugins.jetbrains.com/plugins/super-early-bird/list";
     private final AtomicBoolean hasRun = new AtomicBoolean(false);
 
-    public void runActivity(@NotNull Project project) {
+    public void runActivity(Project project) {
         if (project == null) {
             CopilotEarlyBirdChannelStartupActivity.$$$reportNull$$$0(0);
         }
@@ -66,7 +66,7 @@ implements StartupActivity {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "project", "com/github/copilot/update/CopilotEarlyBirdChannelStartupActivity", "runActivity"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "project", "com/github/copilot/update/CopilotEarlyBirdChannelStartupActivity", "runActivity"));
     }
 }
 

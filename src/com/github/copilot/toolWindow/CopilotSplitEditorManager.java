@@ -37,8 +37,7 @@ import org.jetbrains.annotations.NotNull;
 public class CopilotSplitEditorManager {
     private static final Logger LOG = Logger.getInstance(CopilotSplitEditorManager.class);
 
-    @NotNull
-    public static CopilotSplitEditorManager getInstance() {
+        public static CopilotSplitEditorManager getInstance() {
         CopilotSplitEditorManager copilotSplitEditorManager = (CopilotSplitEditorManager)ApplicationManager.getApplication().getService(CopilotSplitEditorManager.class);
         if (copilotSplitEditorManager == null) {
             CopilotSplitEditorManager.$$$reportNull$$$0(0);
@@ -47,7 +46,7 @@ public class CopilotSplitEditorManager {
     }
 
     @RequiresEdt
-    public void openCopilot(@NotNull Editor editor, boolean force) {
+    public void openCopilot(Editor editor, boolean force) {
         OpenCopilotHandler handler;
         if (editor == null) {
             CopilotSplitEditorManager.$$$reportNull$$$0(1);
@@ -95,11 +94,11 @@ public class CopilotSplitEditorManager {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

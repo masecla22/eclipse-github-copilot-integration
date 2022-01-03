@@ -31,8 +31,7 @@ public final class CopilotStringUtil {
     private CopilotStringUtil() {
     }
 
-    @NotNull
-    public static String trailingWhitespace(@NotNull String text) {
+        public static String trailingWhitespace(String text) {
         char ch;
         int endOffset;
         if (text == null) {
@@ -50,7 +49,7 @@ public final class CopilotStringUtil {
         return string;
     }
 
-    public static int trailingWhitespaceLength(@NotNull String text) {
+    public static int trailingWhitespaceLength(String text) {
         int length;
         char ch;
         int endOffset;
@@ -65,8 +64,7 @@ public final class CopilotStringUtil {
         return length - endOffset;
     }
 
-    @NotNull
-    public static String leadingWhitespace(@NotNull String text) {
+        public static String leadingWhitespace(String text) {
         if (text == null) {
             CopilotStringUtil.$$$reportNull$$$0(3);
         }
@@ -80,7 +78,7 @@ public final class CopilotStringUtil {
         return string;
     }
 
-    public static int leadingWhitespaceLength(@NotNull String text) {
+    public static int leadingWhitespaceLength(String text) {
         char ch;
         int offset;
         if (text == null) {
@@ -92,8 +90,7 @@ public final class CopilotStringUtil {
         return offset;
     }
 
-    @NotNull
-    public static String stripLeading(@NotNull String text) {
+        public static String stripLeading(String text) {
         if (text == null) {
             CopilotStringUtil.$$$reportNull$$$0(6);
         }
@@ -108,7 +105,7 @@ public final class CopilotStringUtil {
         return string;
     }
 
-    public static int findOverlapLength(@NotNull String withTrailing, @NotNull String withLeading) {
+    public static int findOverlapLength(String withTrailing, String withLeading) {
         if (withTrailing == null) {
             CopilotStringUtil.$$$reportNull$$$0(8);
         }
@@ -126,7 +123,7 @@ public final class CopilotStringUtil {
         return 0;
     }
 
-    public static int findOverlappingLines(@NotNull List<String> withTrailing, @NotNull List<String> withLeading) {
+    public static int findOverlappingLines(List<String> withTrailing, List<String> withLeading) {
         if (withTrailing == null) {
             CopilotStringUtil.$$$reportNull$$$0(10);
         }
@@ -151,8 +148,7 @@ public final class CopilotStringUtil {
         return overlapping;
     }
 
-    @Nullable
-    public static List<Pair<Integer, String>> createDiffInlays(@NotNull String editor, @NotNull String completion) {
+        public static List<Pair<Integer, String>> createDiffInlays(String editor, String completion) {
         if (editor == null) {
             CopilotStringUtil.$$$reportNull$$$0(12);
         }
@@ -184,7 +180,7 @@ public final class CopilotStringUtil {
         }
     }
 
-    private static String findCommonPrefix(@NotNull String data, @NotNull String reference) {
+    private static String findCommonPrefix(String data, String reference) {
         if (data == null) {
             CopilotStringUtil.$$$reportNull$$$0(14);
         }
@@ -199,7 +195,7 @@ public final class CopilotStringUtil {
         return data.substring(0, first);
     }
 
-    public static List<String> getNextLines(@NotNull String text, int offset, int maxLines) {
+    public static List<String> getNextLines(String text, int offset, int maxLines) {
         if (text == null) {
             CopilotStringUtil.$$$reportNull$$$0(16);
         }
@@ -231,7 +227,7 @@ public final class CopilotStringUtil {
         return true;
     }
 
-    public static boolean linesMatch(@NotNull Iterable<String> a, @NotNull Iterable<String> b, boolean trimEnd) {
+    public static boolean linesMatch(Iterable<String> a, Iterable<String> b, boolean trimEnd) {
         if (a == null) {
             CopilotStringUtil.$$$reportNull$$$0(17);
         }
@@ -370,13 +366,13 @@ public final class CopilotStringUtil {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 1: 
             case 4: 
             case 7: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

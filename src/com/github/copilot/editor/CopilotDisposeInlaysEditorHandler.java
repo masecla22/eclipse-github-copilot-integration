@@ -24,14 +24,13 @@ import org.jetbrains.annotations.Nullable;
 
 public class CopilotDisposeInlaysEditorHandler
 extends EditorActionHandler {
-    @Nullable
-    private final EditorActionHandler baseHandler;
+        private final EditorActionHandler baseHandler;
 
-    public CopilotDisposeInlaysEditorHandler(@Nullable EditorActionHandler baseHandler) {
+    public CopilotDisposeInlaysEditorHandler(EditorActionHandler baseHandler) {
         this.baseHandler = baseHandler;
     }
 
-    protected boolean isEnabledForCaret(@NotNull Editor editor, @NotNull Caret caret, DataContext dataContext) {
+    protected boolean isEnabledForCaret(Editor editor, Caret caret, DataContext dataContext) {
         CopilotEditorManager manager;
         if (editor == null) {
             CopilotDisposeInlaysEditorHandler.$$$reportNull$$$0(0);
@@ -42,14 +41,14 @@ extends EditorActionHandler {
         return (manager = CopilotEditorManager.getInstance()).isAvailable(editor) && manager.hasCompletionInlays(editor) && LookupManager.getActiveLookup((Editor)editor) == null || this.baseHandler != null && this.baseHandler.isEnabled(editor, caret, dataContext);
     }
 
-    public boolean executeInCommand(@NotNull Editor editor, DataContext dataContext) {
+    public boolean executeInCommand(Editor editor, DataContext dataContext) {
         if (editor == null) {
             CopilotDisposeInlaysEditorHandler.$$$reportNull$$$0(2);
         }
         return this.baseHandler != null && this.baseHandler.executeInCommand(editor, dataContext);
     }
 
-    protected void doExecute(@NotNull Editor editor, @Nullable Caret caret, DataContext dataContext) {
+    protected void doExecute(Editor editor, Caret caret, DataContext dataContext) {
         if (editor == null) {
             CopilotDisposeInlaysEditorHandler.$$$reportNull$$$0(3);
         }
@@ -95,7 +94,7 @@ extends EditorActionHandler {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

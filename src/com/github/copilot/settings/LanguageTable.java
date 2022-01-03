@@ -34,7 +34,7 @@ import org.jetbrains.annotations.Nullable;
 
 class LanguageTable
 extends ListTableWithButtons<LanguageChoice> {
-    void initItems(@NotNull Set<String> disabledLanguageIds) {
+    void initItems(Set<String> disabledLanguageIds) {
         if (disabledLanguageIds == null) {
             LanguageTable.$$$reportNull$$$0(0);
         }
@@ -42,7 +42,7 @@ extends ListTableWithButtons<LanguageChoice> {
         this.setValues(items);
     }
 
-    void setDisabledLanguages(@NotNull Set<String> ids) {
+    void setDisabledLanguages(Set<String> ids) {
         if (ids == null) {
             LanguageTable.$$$reportNull$$$0(1);
         }
@@ -63,13 +63,11 @@ extends ListTableWithButtons<LanguageChoice> {
         return ids;
     }
 
-    @Nullable
-    protected AnActionButtonRunnable createAddAction() {
+        protected AnActionButtonRunnable createAddAction() {
         return null;
     }
 
-    @Nullable
-    protected AnActionButtonRunnable createRemoveAction() {
+        protected AnActionButtonRunnable createRemoveAction() {
         return null;
     }
 
@@ -130,7 +128,7 @@ extends ListTableWithButtons<LanguageChoice> {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 
     private static class LanguageNameColumn
@@ -139,18 +137,15 @@ extends ListTableWithButtons<LanguageChoice> {
             super(CopilotBundle.get("applicationConfigurable.languages.columnName"));
         }
 
-        @Nullable
-        public Comparator<LanguageChoice> getComparator() {
+                public Comparator<LanguageChoice> getComparator() {
             return Comparator.comparing(lang -> this.getLabel((LanguageChoice)lang).toLowerCase());
         }
 
-        @Nullable
-        public String valueOf(LanguageChoice languageChoice) {
+                public String valueOf(LanguageChoice languageChoice) {
             return this.getLabel(languageChoice);
         }
 
-        @NotNull
-        private String getLabel(LanguageChoice languageChoice) {
+                private String getLabel(LanguageChoice languageChoice) {
             Language lang = languageChoice.getLanguage();
             String string = StringUtil.defaultIfEmpty((String)lang.getDisplayName(), (String)lang.getID());
             if (string == null) {
@@ -160,7 +155,7 @@ extends ListTableWithButtons<LanguageChoice> {
         }
 
         private static /* synthetic */ void $$$reportNull$$$0(int n) {
-            throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", "com/github/copilot/settings/LanguageTable$LanguageNameColumn", "getLabel"));
+            throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/settings/LanguageTable$LanguageNameColumn", "getLabel"));
         }
     }
 
@@ -184,8 +179,7 @@ extends ListTableWithButtons<LanguageChoice> {
             return true;
         }
 
-        @Nullable
-        public Boolean valueOf(LanguageChoice languageChoice) {
+                public Boolean valueOf(LanguageChoice languageChoice) {
             return languageChoice.isSelected();
         }
 
@@ -193,8 +187,7 @@ extends ListTableWithButtons<LanguageChoice> {
             languageChoice.setSelected(value);
         }
 
-        @Nullable
-        public Comparator<LanguageChoice> getComparator() {
+                public Comparator<LanguageChoice> getComparator() {
             return Comparator.comparing(LanguageChoice::isSelected);
         }
     }

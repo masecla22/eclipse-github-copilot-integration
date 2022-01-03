@@ -26,7 +26,7 @@ public class CopilotLookupListener
 implements LookupManagerListener {
     private static final Logger LOG = Logger.getInstance(CopilotLookupListener.class);
 
-    public void activeLookupChanged(@Nullable Lookup oldLookup, @Nullable Lookup newLookup) {
+    public void activeLookupChanged(Lookup oldLookup, Lookup newLookup) {
         PsiFile psiFile;
         LOG.debug("activeLookupChanged");
         Lookup validLookup = newLookup != null ? newLookup : oldLookup;

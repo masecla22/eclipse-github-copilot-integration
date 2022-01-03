@@ -28,8 +28,7 @@ implements CopilotCompletion {
     }
 
     @Override
-    @NotNull
-    public CopilotCompletion asCached() {
+        public CopilotCompletion asCached() {
         AgentCompletion agentCompletion = this.withCached(true);
         if (agentCompletion == null) {
             AgentCompletion.$$$reportNull$$$0(0);
@@ -38,8 +37,7 @@ implements CopilotCompletion {
     }
 
     @Override
-    @Nullable
-    public CopilotCompletion withoutPrefix(@NotNull String prefix) {
+        public CopilotCompletion withoutPrefix(String prefix) {
         if (prefix == null) {
             AgentCompletion.$$$reportNull$$$0(1);
         }
@@ -83,11 +81,11 @@ implements CopilotCompletion {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

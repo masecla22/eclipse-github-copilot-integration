@@ -38,11 +38,9 @@ public class CopilotCompletionTestService
 extends DelegatingCompletionService {
     private static final Topic<RequestNotification> REQUEST_TOPIC = Topic.create((String)"copilot.completions", RequestNotification.class);
     private final AtomicInteger requestCounter = new AtomicInteger();
-    @Nullable
-    private volatile List<CopilotCompletion> mockCompletions = null;
+        private volatile List<CopilotCompletion> mockCompletions = null;
 
-    @NotNull
-    public static CopilotCompletionTestService getInstance() {
+        public static CopilotCompletionTestService getInstance() {
         CopilotCompletionTestService copilotCompletionTestService = (CopilotCompletionTestService)ApplicationManager.getApplication().getService(CopilotCompletionService.class);
         if (copilotCompletionTestService == null) {
             CopilotCompletionTestService.$$$reportNull$$$0(0);
@@ -50,7 +48,7 @@ extends DelegatingCompletionService {
         return copilotCompletionTestService;
     }
 
-    public void withMockCompletions(@NotNull List<CopilotCompletion> completions, @NotNull ThrowableRunnable<Exception> action) throws Exception {
+    public void withMockCompletions(List<CopilotCompletion> completions, ThrowableRunnable<Exception> action) throws Exception {
         if (completions == null) {
             CopilotCompletionTestService.$$$reportNull$$$0(1);
         }
@@ -70,7 +68,7 @@ extends DelegatingCompletionService {
      * WARNING - Removed try catching itself - possible behaviour change.
      */
     @Override
-    public boolean fetchCompletions(@NotNull EditorRequest request, @Nullable GitHubCopilotToken token, @Nullable Integer maxCompletions, boolean enableCaching, boolean cycling, @NotNull Flow.Subscriber<List<CopilotInlayList>> subscriber) {
+    public boolean fetchCompletions(EditorRequest request, GitHubCopilotToken token, Integer maxCompletions, boolean enableCaching, boolean cycling, Flow.Subscriber<List<CopilotInlayList>> subscriber) {
         if (request == null) {
             CopilotCompletionTestService.$$$reportNull$$$0(3);
         }
@@ -93,8 +91,7 @@ extends DelegatingCompletionService {
     }
 
     @Override
-    @Nullable
-    public List<CopilotInlayList> fetchCachedCompletions(@NotNull EditorRequest request) {
+        public List<CopilotInlayList> fetchCachedCompletions(EditorRequest request) {
         if (request == null) {
             CopilotCompletionTestService.$$$reportNull$$$0(5);
         }
@@ -112,7 +109,7 @@ extends DelegatingCompletionService {
         this.requestCounter.set(0);
     }
 
-    public RequestLatch newCompletionLatch(int expectedRequests, @NotNull Disposable parent) {
+    public RequestLatch newCompletionLatch(int expectedRequests, Disposable parent) {
         if (parent == null) {
             CopilotCompletionTestService.$$$reportNull$$$0(6);
         }
@@ -127,7 +124,7 @@ extends DelegatingCompletionService {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: 
@@ -136,7 +133,7 @@ extends DelegatingCompletionService {
             case 4: 
             case 5: 
             case 6: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }
@@ -255,7 +252,7 @@ extends DelegatingCompletionService {
     public static class RequestLatch {
         private volatile CountDownLatch latch;
 
-        public RequestLatch(int expectedRequests, @NotNull Disposable parent) {
+        public RequestLatch(int expectedRequests, Disposable parent) {
             if (parent == null) {
                 RequestLatch.$$$reportNull$$$0(0);
             }
@@ -272,7 +269,7 @@ extends DelegatingCompletionService {
         }
 
         private static /* synthetic */ void $$$reportNull$$$0(int n) {
-            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "parent", "com/github/copilot/completions/CopilotCompletionTestService$RequestLatch", "<init>"));
+            throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "parent", "com/github/copilot/completions/CopilotCompletionTestService$RequestLatch", "<init>"));
         }
     }
 

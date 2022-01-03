@@ -124,8 +124,7 @@ class OpenCopilotHandler {
     private final ToolWindow toolWindow;
     private final FileType fileType;
     private final Editor editor;
-    @NotNull
-    private final EditorRequest editorRequest;
+        private final EditorRequest editorRequest;
     private final AtomicInteger solutionIndex;
     private final Set<List<CopilotEditorInlay>> allCompletions;
     private final List<JButton> allButtons;
@@ -133,8 +132,7 @@ class OpenCopilotHandler {
     private final DataProviderPanel contentPanel;
     private volatile Content toolWindowContent;
 
-    @Nullable
-    static OpenCopilotHandler create(@NotNull Project project, @NotNull FileType fileType, @NotNull Editor editor, @NotNull EditorRequest request) {
+        static OpenCopilotHandler create(Project project, FileType fileType, Editor editor, EditorRequest request) {
         ToolWindow toolWindow;
         if (project == null) {
             OpenCopilotHandler.$$$reportNull$$$0(0);
@@ -154,14 +152,14 @@ class OpenCopilotHandler {
         return new OpenCopilotHandler(project, toolWindow, fileType, editor, request);
     }
 
-    static boolean isCopilotSnippetFile(@NotNull VirtualFile virtualFile) {
+    static boolean isCopilotSnippetFile(VirtualFile virtualFile) {
         if (virtualFile == null) {
             OpenCopilotHandler.$$$reportNull$$$0(4);
         }
         return COPILOT_PREVIEW_EDITOR.isIn((UserDataHolder)virtualFile);
     }
 
-    OpenCopilotHandler(@NotNull Project project, @NotNull ToolWindow toolWindow, @NotNull FileType fileType, @NotNull Editor editor, @NotNull EditorRequest editorRequest) {
+    OpenCopilotHandler(Project project, ToolWindow toolWindow, FileType fileType, Editor editor, EditorRequest editorRequest) {
         if (project == null) {
             OpenCopilotHandler.$$$reportNull$$$0(5);
         }
@@ -261,7 +259,7 @@ class OpenCopilotHandler {
     }
 
     @RequiresBackgroundThread
-    private void addCompletion(final @NotNull JPanel contentPanel, @NotNull CopilotInlayList completion) {
+    private void addCompletion(final JPanel contentPanel, CopilotInlayList completion) {
         if (contentPanel == null) {
             OpenCopilotHandler.$$$reportNull$$$0(10);
         }
@@ -328,8 +326,7 @@ class OpenCopilotHandler {
         });
     }
 
-    @Nullable
-    private EditorTextField createSnippetEditor(@NotNull LightVirtualFile snippetFile) {
+        private EditorTextField createSnippetEditor(LightVirtualFile snippetFile) {
         Language language;
         if (snippetFile == null) {
             OpenCopilotHandler.$$$reportNull$$$0(12);
@@ -370,7 +367,7 @@ class OpenCopilotHandler {
         return editor;
     }
 
-    private void acceptSolution(@NotNull Project project, @NotNull EditorRequest editorRequest, @NotNull CopilotInlayList completion) {
+    private void acceptSolution(Project project, EditorRequest editorRequest, CopilotInlayList completion) {
         if (project == null) {
             OpenCopilotHandler.$$$reportNull$$$0(13);
         }
@@ -399,7 +396,7 @@ class OpenCopilotHandler {
         }
     }
 
-    private void setContentEmptyText(@NotNull String text, @Nullable SimpleTextAttributes attrs) {
+    private void setContentEmptyText(String text, SimpleTextAttributes attrs) {
         if (text == null) {
             OpenCopilotHandler.$$$reportNull$$$0(16);
         }
@@ -523,7 +520,7 @@ class OpenCopilotHandler {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

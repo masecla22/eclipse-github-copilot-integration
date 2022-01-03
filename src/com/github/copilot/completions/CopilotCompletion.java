@@ -12,16 +12,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public interface CopilotCompletion {
-    @NotNull
-    public List<String> getCompletion();
+        public List<String> getCompletion();
 
-    @NotNull
-    public CopilotCompletion asCached();
+        public CopilotCompletion asCached();
 
-    @Nullable
-    public CopilotCompletion withoutPrefix(@NotNull String var1);
+        public CopilotCompletion withoutPrefix(String var1);
 
-    @NotNull
-    public CopilotCompletion withCompletion(@NotNull List<String> var1);
+        public CopilotCompletion withCompletion(List<String> var1);
 }
 

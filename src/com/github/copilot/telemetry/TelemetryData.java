@@ -15,27 +15,24 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class TelemetryData {
-    @Nullable
-    private final TelemetryData wrapped;
-    @NotNull
-    private final Map<String, String> properties;
-    @NotNull
-    private final Object2DoubleMap<String> metrics;
+        private final TelemetryData wrapped;
+        private final Map<String, String> properties;
+        private final Object2DoubleMap<String> metrics;
     private volatile long issuedTimestamp;
     private volatile long displayedTimestamp;
 
-    public static TelemetryData extend(@Nullable TelemetryData data, Map<String, String> properties, Object2DoubleMap<String> metrics) {
+    public static TelemetryData extend(TelemetryData data, Map<String, String> properties, Object2DoubleMap<String> metrics) {
         return new TelemetryData(data, properties, metrics);
     }
 
-    public static TelemetryData createIssued(@NotNull Map<String, String> properties) {
+    public static TelemetryData createIssued(Map<String, String> properties) {
         if (properties == null) {
             TelemetryData.$$$reportNull$$$0(0);
         }
         return TelemetryData.createIssued(properties, String2DoubleMap.EMPTY);
     }
 
-    public static TelemetryData createIssued(@NotNull Map<String, String> properties, @NotNull Object2DoubleMap<String> metrics) {
+    public static TelemetryData createIssued(Map<String, String> properties, Object2DoubleMap<String> metrics) {
         if (properties == null) {
             TelemetryData.$$$reportNull$$$0(1);
         }
@@ -51,7 +48,7 @@ public class TelemetryData {
         return TelemetryData.create(properties, String2DoubleMap.EMPTY);
     }
 
-    public static TelemetryData create(@NotNull Map<String, String> properties, @NotNull Object2DoubleMap<String> metrics) {
+    public static TelemetryData create(Map<String, String> properties, Object2DoubleMap<String> metrics) {
         if (properties == null) {
             TelemetryData.$$$reportNull$$$0(3);
         }
@@ -83,7 +80,7 @@ public class TelemetryData {
         this.displayedTimestamp = System.currentTimeMillis();
     }
 
-    void addProperties(@NotNull Map<String, String> target) {
+    void addProperties(Map<String, String> target) {
         if (target == null) {
             TelemetryData.$$$reportNull$$$0(5);
         }
@@ -93,7 +90,7 @@ public class TelemetryData {
         target.putAll(this.properties);
     }
 
-    void addMetrics(@NotNull Object2DoubleMap<String> target) {
+    void addMetrics(Object2DoubleMap<String> target) {
         if (target == null) {
             TelemetryData.$$$reportNull$$$0(6);
         }
@@ -103,13 +100,11 @@ public class TelemetryData {
         target.putAll(this.metrics);
     }
 
-    @Nullable
-    public TelemetryData getWrapped() {
+        public TelemetryData getWrapped() {
         return this.wrapped;
     }
 
-    @NotNull
-    public Map<String, String> getProperties() {
+        public Map<String, String> getProperties() {
         Map<String, String> map = this.properties;
         if (map == null) {
             TelemetryData.$$$reportNull$$$0(7);
@@ -117,8 +112,7 @@ public class TelemetryData {
         return map;
     }
 
-    @NotNull
-    public Object2DoubleMap<String> getMetrics() {
+        public Object2DoubleMap<String> getMetrics() {
         Object2DoubleMap<String> object2DoubleMap = this.metrics;
         if (object2DoubleMap == null) {
             TelemetryData.$$$reportNull$$$0(8);
@@ -185,7 +179,7 @@ public class TelemetryData {
     /*
      * WARNING - void declaration
      */
-    private TelemetryData(@Nullable TelemetryData wrapped, @NotNull Map<String, String> properties, @NotNull Object2DoubleMap<String> metrics, long issuedTimestamp, long l) {
+    private TelemetryData(TelemetryData wrapped, Map<String, String> properties, Object2DoubleMap<String> metrics, long issuedTimestamp, long l) {
         void displayedTimestamp;
         if (properties == null) {
             TelemetryData.$$$reportNull$$$0(9);
@@ -206,7 +200,7 @@ public class TelemetryData {
         this.displayedTimestamp = displayedTimestamp;
     }
 
-    private TelemetryData(@Nullable TelemetryData wrapped, @NotNull Map<String, String> properties, @NotNull Object2DoubleMap<String> metrics) {
+    private TelemetryData(TelemetryData wrapped, Map<String, String> properties, Object2DoubleMap<String> metrics) {
         if (properties == null) {
             TelemetryData.$$$reportNull$$$0(11);
         }
@@ -240,12 +234,12 @@ public class TelemetryData {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 7: 
             case 8: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

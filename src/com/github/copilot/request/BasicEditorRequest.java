@@ -48,19 +48,16 @@ Disposable {
     private final int tabWidth;
     private final int requestId;
     private final Language fileLanguage;
-    @NotNull
-    private final String relativeFilePath;
+        private final String relativeFilePath;
     private final String documentContent;
     private final int offset;
-    @NotNull
-    private final LineInfo lineInfo;
+        private final LineInfo lineInfo;
     private final long requestTimestamp;
-    @Nullable
-    private final Integer documentModificationSequence;
+        private final Integer documentModificationSequence;
     private volatile boolean isCancelled;
 
     @TestOnly
-    public static BasicEditorRequest createEmptyGhostText(@NotNull PsiFile file, @NotNull LanguageSupport languageSupport) {
+    public static BasicEditorRequest createEmptyGhostText(PsiFile file, LanguageSupport languageSupport) {
         if (file == null) {
             BasicEditorRequest.$$$reportNull$$$0(0);
         }
@@ -71,7 +68,7 @@ Disposable {
     }
 
     @TestOnly
-    public static BasicEditorRequest createGhostText(@NotNull PsiFile file, @NotNull LanguageSupport languageSupport, @NotNull String text, int offset, @NotNull LineInfo lineInfo) {
+    public static BasicEditorRequest createGhostText(PsiFile file, LanguageSupport languageSupport, String text, int offset, LineInfo lineInfo) {
         if (file == null) {
             BasicEditorRequest.$$$reportNull$$$0(2);
         }
@@ -87,7 +84,7 @@ Disposable {
         return new BasicEditorRequest(file.getProject(), languageSupport, CompletionType.GhostText, file.getLanguage(), file.getName(), text, offset, lineInfo, true, 4, 0);
     }
 
-    public BasicEditorRequest(@NotNull Project project, @NotNull LanguageSupport language, @NotNull CompletionType completionType, @NotNull Language fileLanguage, @NotNull String relativeFilePath, @NotNull String documentContent, int offset, @NotNull LineInfo lineInfo, boolean useTabIndents, int tabWidth, @Nullable Integer documentModificationSequence) {
+    public BasicEditorRequest(Project project, LanguageSupport language, CompletionType completionType, Language fileLanguage, String relativeFilePath, String documentContent, int offset, LineInfo lineInfo, boolean useTabIndents, int tabWidth, Integer documentModificationSequence) {
         if (project == null) {
             BasicEditorRequest.$$$reportNull$$$0(6);
         }
@@ -125,8 +122,7 @@ Disposable {
     }
 
     @Override
-    @Nullable
-    public PsiFile createFile() {
+        public PsiFile createFile() {
         if (this.isCancelled()) {
             return null;
         }
@@ -150,7 +146,7 @@ Disposable {
     }
 
     @Override
-    public boolean equalsRequest(@NotNull EditorRequest o) {
+    public boolean equalsRequest(EditorRequest o) {
         if (o == null) {
             BasicEditorRequest.$$$reportNull$$$0(13);
         }
@@ -193,8 +189,7 @@ Disposable {
     }
 
     @Override
-    @NotNull
-    public String getRelativeFilePath() {
+        public String getRelativeFilePath() {
         String string = this.relativeFilePath;
         if (string == null) {
             BasicEditorRequest.$$$reportNull$$$0(14);
@@ -213,8 +208,7 @@ Disposable {
     }
 
     @Override
-    @NotNull
-    public LineInfo getLineInfo() {
+        public LineInfo getLineInfo() {
         LineInfo lineInfo = this.lineInfo;
         if (lineInfo == null) {
             BasicEditorRequest.$$$reportNull$$$0(15);
@@ -228,8 +222,7 @@ Disposable {
     }
 
     @Override
-    @Nullable
-    public Integer getDocumentModificationSequence() {
+        public Integer getDocumentModificationSequence() {
         return this.documentModificationSequence;
     }
 
@@ -341,7 +334,7 @@ Disposable {
         return "BasicEditorRequest(language=" + this.getLanguage() + ", completionType=" + this.getCompletionType() + ", useTabIndents=" + this.isUseTabIndents() + ", tabWidth=" + this.getTabWidth() + ", requestId=" + this.getRequestId() + ", fileLanguage=" + this.getFileLanguage() + ", relativeFilePath=" + this.getRelativeFilePath() + ", documentContent=" + this.getDocumentContent() + ", offset=" + this.getOffset() + ", lineInfo=" + this.getLineInfo() + ", requestTimestamp=" + this.getRequestTimestamp() + ", documentModificationSequence=" + this.getDocumentModificationSequence() + ", isCancelled=" + this.isCancelled() + ")";
     }
 
-    public BasicEditorRequest(Project project, LanguageSupport language, CompletionType completionType, boolean useTabIndents, int tabWidth, int requestId, Language fileLanguage, @NotNull String relativeFilePath, String documentContent, int offset, @NotNull LineInfo lineInfo, @Nullable Integer documentModificationSequence, boolean isCancelled) {
+    public BasicEditorRequest(Project project, LanguageSupport language, CompletionType completionType, boolean useTabIndents, int tabWidth, int requestId, Language fileLanguage, String relativeFilePath, String documentContent, int offset, LineInfo lineInfo, Integer documentModificationSequence, boolean isCancelled) {
         if (relativeFilePath == null) {
             BasicEditorRequest.$$$reportNull$$$0(16);
         }
@@ -370,7 +363,7 @@ Disposable {
         this.isCancelled = isCancelled;
     }
 
-    public BasicEditorRequest(Project project, LanguageSupport language, CompletionType completionType, boolean useTabIndents, int tabWidth, int requestId, Language fileLanguage, @NotNull String relativeFilePath, String documentContent, int offset, @NotNull LineInfo lineInfo, @Nullable Integer documentModificationSequence) {
+    public BasicEditorRequest(Project project, LanguageSupport language, CompletionType completionType, boolean useTabIndents, int tabWidth, int requestId, Language fileLanguage, String relativeFilePath, String documentContent, int offset, LineInfo lineInfo, Integer documentModificationSequence) {
         if (relativeFilePath == null) {
             BasicEditorRequest.$$$reportNull$$$0(18);
         }
@@ -410,12 +403,12 @@ Disposable {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 14: 
             case 15: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

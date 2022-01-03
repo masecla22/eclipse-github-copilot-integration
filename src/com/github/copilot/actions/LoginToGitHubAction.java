@@ -21,14 +21,14 @@ public class LoginToGitHubAction
 extends AnAction
 implements DumbAware,
 CopilotAction {
-    public void update(@NotNull AnActionEvent e) {
+    public void update(AnActionEvent e) {
         if (e == null) {
             LoginToGitHubAction.$$$reportNull$$$0(0);
         }
         e.getPresentation().setEnabled(e.getProject() != null);
     }
 
-    public void actionPerformed(@NotNull AnActionEvent e) {
+    public void actionPerformed(AnActionEvent e) {
         if (e == null) {
             LoginToGitHubAction.$$$reportNull$$$0(1);
         }
@@ -52,7 +52,7 @@ CopilotAction {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

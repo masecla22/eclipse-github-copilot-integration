@@ -19,14 +19,14 @@ import com.intellij.openapi.project.Project;
 import org.jetbrains.annotations.NotNull;
 
 public class EditorUtilCopy {
-    public static int indentLine(Project project, @NotNull Editor editor, int lineNumber, int indent, int caretOffset) {
+    public static int indentLine(Project project, Editor editor, int lineNumber, int indent, int caretOffset) {
         if (editor == null) {
             EditorUtilCopy.$$$reportNull$$$0(0);
         }
         return EditorUtilCopy.indentLine(project, editor, lineNumber, indent, caretOffset, EditorActionUtil.shouldUseSmartTabs((Project)project, (Editor)editor));
     }
 
-    public static int indentLine(Project project, @NotNull Editor editor, int lineNumber, int indent, int caretOffset, boolean shouldUseSmartTabs) {
+    public static int indentLine(Project project, Editor editor, int lineNumber, int indent, int caretOffset, boolean shouldUseSmartTabs) {
         int newCaretOffset;
         if (editor == null) {
             EditorUtilCopy.$$$reportNull$$$0(1);
@@ -105,7 +105,7 @@ public class EditorUtilCopy {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "editor", "com/github/copilot/util/EditorUtilCopy", "indentLine"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "editor", "com/github/copilot/util/EditorUtilCopy", "indentLine"));
     }
 }
 

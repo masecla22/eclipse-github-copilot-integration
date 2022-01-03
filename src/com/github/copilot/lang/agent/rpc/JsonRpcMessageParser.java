@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 @NotThreadSafe
 public interface JsonRpcMessageParser {
-    public void append(@NotNull String var1);
+    public void append(String var1);
 
     public void close();
 }

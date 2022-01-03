@@ -38,7 +38,7 @@ implements JsonRpcMessageHandler {
     }
 
     @Override
-    public void handleJsonMessage(@NotNull String message) {
+    public void handleJsonMessage(String message) {
         JsonRpcResponse jsonResponse;
         if (message == null) {
             DefaultJsonRpcMessageHandler.$$$reportNull$$$0(0);
@@ -79,7 +79,7 @@ implements JsonRpcMessageHandler {
         }
     }
 
-    private void handleErrorResponse(@NotNull JsonRpcErrorException e) {
+    private void handleErrorResponse(JsonRpcErrorException e) {
         if (e == null) {
             DefaultJsonRpcMessageHandler.$$$reportNull$$$0(1);
         }
@@ -126,7 +126,7 @@ implements JsonRpcMessageHandler {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 
     private static final class PendingRequest<T> {

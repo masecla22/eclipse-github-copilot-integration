@@ -39,7 +39,7 @@ extends AnAction
 implements CopilotAction {
     private final boolean forCurrentFile;
 
-    public void update(@NotNull AnActionEvent e) {
+    public void update(AnActionEvent e) {
         Project project;
         if (e == null) {
             AbstractDisableCopilotCompletionsAction.$$$reportNull$$$0(0);
@@ -54,7 +54,7 @@ implements CopilotAction {
         e.getPresentation().setEnabledAndVisible(enabledGlobally && enabledForFile);
     }
 
-    public void actionPerformed(@NotNull AnActionEvent e) {
+    public void actionPerformed(AnActionEvent e) {
         StatusBar bar;
         boolean global;
         Project project;
@@ -109,7 +109,7 @@ implements CopilotAction {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

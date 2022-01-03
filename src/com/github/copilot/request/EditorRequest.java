@@ -21,13 +21,11 @@ import org.jetbrains.annotations.Nullable;
 
 public interface EditorRequest
 extends Cancellable {
-    @NotNull
-    public LineInfo getLineInfo();
+        public LineInfo getLineInfo();
 
-    public boolean equalsRequest(@NotNull EditorRequest var1);
+    public boolean equalsRequest(EditorRequest var1);
 
-    @NotNull
-    default public String getCurrentDocumentPrefix() {
+        default public String getCurrentDocumentPrefix() {
         String string = this.getDocumentContent().substring(0, this.getOffset());
         if (string == null) {
             EditorRequest.$$$reportNull$$$0(0);
@@ -35,20 +33,15 @@ extends Cancellable {
         return string;
     }
 
-    @NotNull
-    public String getDocumentContent();
+        public String getDocumentContent();
 
-    @NotNull
-    public Language getFileLanguage();
+        public Language getFileLanguage();
 
-    @NotNull
-    public String getRelativeFilePath();
+        public String getRelativeFilePath();
 
-    @NotNull
-    public Project getProject();
+        public Project getProject();
 
-    @NotNull
-    public CompletionType getCompletionType();
+        public CompletionType getCompletionType();
 
     public int getOffset();
 
@@ -62,11 +55,10 @@ extends Cancellable {
 
     public long getRequestTimestamp();
 
-    @Nullable
-    public Integer getDocumentModificationSequence();
+        public Integer getDocumentModificationSequence();
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalStateException(String.format("@NotNull method %s.%s must not return null", "com/github/copilot/request/EditorRequest", "getCurrentDocumentPrefix"));
+        throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/request/EditorRequest", "getCurrentDocumentPrefix"));
     }
 }
 

@@ -46,19 +46,15 @@ Disposable {
     private final int tabWidth;
     private final int requestId;
     private final Language fileLanguage;
-    @NotNull
-    private final String relativeFilePath;
+        private final String relativeFilePath;
     private final String documentContent;
     private final int offset;
-    @NotNull
-    private final LineInfo lineInfo;
+        private final LineInfo lineInfo;
     private final long requestTimestamp;
-    @Nullable
-    private final Integer documentModificationSequence;
+        private final Integer documentModificationSequence;
     private volatile boolean isCancelled;
 
-    @Nullable
-    public static EditorRequest create(Editor editor, int offset, CompletionType completionType) {
+        public static EditorRequest create(Editor editor, int offset, CompletionType completionType) {
         Project project = editor.getProject();
         if (project == null) {
             return null;
@@ -86,7 +82,7 @@ Disposable {
     }
 
     @Override
-    public boolean equalsRequest(@NotNull EditorRequest o) {
+    public boolean equalsRequest(EditorRequest o) {
         if (o == null) {
             AgentEditorRequest.$$$reportNull$$$0(0);
         }
@@ -129,8 +125,7 @@ Disposable {
     }
 
     @Override
-    @NotNull
-    public String getRelativeFilePath() {
+        public String getRelativeFilePath() {
         String string = this.relativeFilePath;
         if (string == null) {
             AgentEditorRequest.$$$reportNull$$$0(1);
@@ -149,8 +144,7 @@ Disposable {
     }
 
     @Override
-    @NotNull
-    public LineInfo getLineInfo() {
+        public LineInfo getLineInfo() {
         LineInfo lineInfo = this.lineInfo;
         if (lineInfo == null) {
             AgentEditorRequest.$$$reportNull$$$0(2);
@@ -164,8 +158,7 @@ Disposable {
     }
 
     @Override
-    @Nullable
-    public Integer getDocumentModificationSequence() {
+        public Integer getDocumentModificationSequence() {
         return this.documentModificationSequence;
     }
 
@@ -277,7 +270,7 @@ Disposable {
         return "AgentEditorRequest(completionType=" + this.getCompletionType() + ", useTabIndents=" + this.isUseTabIndents() + ", tabWidth=" + this.getTabWidth() + ", requestId=" + this.getRequestId() + ", fileLanguage=" + this.getFileLanguage() + ", relativeFilePath=" + this.getRelativeFilePath() + ", documentContent=" + this.getDocumentContent() + ", offset=" + this.getOffset() + ", lineInfo=" + this.getLineInfo() + ", requestTimestamp=" + this.getRequestTimestamp() + ", documentModificationSequence=" + this.getDocumentModificationSequence() + ", isCancelled=" + this.isCancelled() + ")";
     }
 
-    public AgentEditorRequest(Project project, CompletionType completionType, boolean useTabIndents, int tabWidth, int requestId, Language fileLanguage, @NotNull String relativeFilePath, String documentContent, int offset, @NotNull LineInfo lineInfo, @Nullable Integer documentModificationSequence) {
+    public AgentEditorRequest(Project project, CompletionType completionType, boolean useTabIndents, int tabWidth, int requestId, Language fileLanguage, String relativeFilePath, String documentContent, int offset, LineInfo lineInfo, Integer documentModificationSequence) {
         if (relativeFilePath == null) {
             AgentEditorRequest.$$$reportNull$$$0(3);
         }
@@ -312,12 +305,12 @@ Disposable {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 1: 
             case 2: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

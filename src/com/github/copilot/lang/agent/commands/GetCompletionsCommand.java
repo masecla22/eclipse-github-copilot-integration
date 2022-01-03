@@ -19,25 +19,21 @@ import org.jetbrains.annotations.Nullable;
 public class GetCompletionsCommand
 implements JsonRpcCommand<GetCompletionsResult> {
     @SerializedName(value="doc")
-    @NotNull
-    private final Document doc;
+        private final Document doc;
     @SerializedName(value="options")
-    @Nullable
-    private final Map<Object, Object> options;
+        private final Map<Object, Object> options;
 
     @Override
-    @NotNull
-    public String getCommandName() {
+        public String getCommandName() {
         return "getCompletions";
     }
 
     @Override
-    @NotNull
-    public Class<GetCompletionsResult> getResponseType() {
+        public Class<GetCompletionsResult> getResponseType() {
         return GetCompletionsResult.class;
     }
 
-    public GetCompletionsCommand(@NotNull Document doc, @Nullable Map<Object, Object> options) {
+    public GetCompletionsCommand(Document doc, Map<Object, Object> options) {
         if (doc == null) {
             GetCompletionsCommand.$$$reportNull$$$0(0);
         }
@@ -48,8 +44,7 @@ implements JsonRpcCommand<GetCompletionsResult> {
         this.options = options;
     }
 
-    @NotNull
-    public Document getDoc() {
+        public Document getDoc() {
         Document document = this.doc;
         if (document == null) {
             GetCompletionsCommand.$$$reportNull$$$0(1);
@@ -57,8 +52,7 @@ implements JsonRpcCommand<GetCompletionsResult> {
         return document;
     }
 
-    @Nullable
-    public Map<Object, Object> getOptions() {
+        public Map<Object, Object> getOptions() {
         return this.options;
     }
 
@@ -109,11 +103,11 @@ implements JsonRpcCommand<GetCompletionsResult> {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 1: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

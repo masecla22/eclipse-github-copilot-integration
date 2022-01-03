@@ -36,20 +36,15 @@ import org.jetbrains.annotations.Nullable;
 class ApiChoiceToInlaySetProcessor
 implements Flow.Subscriber<APIChoice> {
     private static final Logger LOG = Logger.getInstance(ApiChoiceToInlaySetProcessor.class);
-    @NotNull
-    private final EditorRequest request;
-    @NotNull
-    private final PromptInfo prompt;
-    @NotNull
-    private final TelemetryData baseTelemetryData;
-    @NotNull
-    private final Consumer<APIChoice> onNewItem;
-    @NotNull
-    private final SubmissionPublisher<List<CopilotInlayList>> publisher;
+        private final EditorRequest request;
+        private final PromptInfo prompt;
+        private final TelemetryData baseTelemetryData;
+        private final Consumer<APIChoice> onNewItem;
+        private final SubmissionPublisher<List<CopilotInlayList>> publisher;
     private volatile Flow.Subscription subscription;
     private volatile boolean hasFirstItem;
 
-    ApiChoiceToInlaySetProcessor(@NotNull EditorRequest request, @NotNull PromptInfo prompt, @NotNull TelemetryData baseTelemetryData, @NotNull Flow.Subscriber<List<CopilotInlayList>> subscriber, @NotNull Consumer<APIChoice> onNewItem) {
+    ApiChoiceToInlaySetProcessor(EditorRequest request, PromptInfo prompt, TelemetryData baseTelemetryData, Flow.Subscriber<List<CopilotInlayList>> subscriber, Consumer<APIChoice> onNewItem) {
         if (request == null) {
             ApiChoiceToInlaySetProcessor.$$$reportNull$$$0(0);
         }
@@ -123,7 +118,7 @@ implements Flow.Subscriber<APIChoice> {
         this.publisher.close();
     }
 
-    private static void trackCompletionPerformance(@NotNull APIChoice item, @Nullable TelemetryData baseData) {
+    private static void trackCompletionPerformance(APIChoice item, TelemetryData baseData) {
         if (item == null) {
             ApiChoiceToInlaySetProcessor.$$$reportNull$$$0(5);
         }
@@ -195,7 +190,7 @@ implements Flow.Subscriber<APIChoice> {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

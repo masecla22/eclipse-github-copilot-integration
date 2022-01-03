@@ -11,11 +11,9 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
 public interface CopilotEditorInlay {
-    @NotNull
-    public CopilotCompletionType getType();
+        public CopilotCompletionType getType();
 
-    @NotNull
-    public List<String> getLines();
+        public List<String> getLines();
 
     public int getEditorOffset();
 

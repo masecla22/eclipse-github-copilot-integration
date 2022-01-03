@@ -36,18 +36,14 @@ import org.jetbrains.annotations.Nullable;
 
 class CopilotDefaultInlayRenderer
 implements CopilotInlayRenderer {
-    @NotNull
-    private final List<String> lines;
-    @NotNull
-    private final String content;
-    @NotNull
-    private final CopilotCompletionType type;
-    @Nullable
-    private Inlay<CopilotInlayRenderer> inlay;
+        private final List<String> lines;
+        private final String content;
+        private final CopilotCompletionType type;
+        private Inlay<CopilotInlayRenderer> inlay;
     private int cachedWidth;
     private int cachedHeight;
 
-    CopilotDefaultInlayRenderer(@NotNull EditorRequest request, @NotNull CopilotCompletionType type, @NotNull List<String> lines) {
+    CopilotDefaultInlayRenderer(EditorRequest request, CopilotCompletionType type, List<String> lines) {
         if (request == null) {
             CopilotDefaultInlayRenderer.$$$reportNull$$$0(0);
         }
@@ -65,8 +61,7 @@ implements CopilotInlayRenderer {
     }
 
     @Override
-    @NotNull
-    public Inlay<CopilotInlayRenderer> getInlay() {
+        public Inlay<CopilotInlayRenderer> getInlay() {
         assert (this.inlay != null);
         Inlay<CopilotInlayRenderer> inlay = this.inlay;
         if (inlay == null) {
@@ -75,7 +70,7 @@ implements CopilotInlayRenderer {
         return inlay;
     }
 
-    public void setInlay(@NotNull Inlay<CopilotInlayRenderer> inlay) {
+    public void setInlay(Inlay<CopilotInlayRenderer> inlay) {
         if (inlay == null) {
             CopilotDefaultInlayRenderer.$$$reportNull$$$0(4);
         }
@@ -83,8 +78,7 @@ implements CopilotInlayRenderer {
     }
 
     @Override
-    @NotNull
-    public CopilotCompletionType getType() {
+        public CopilotCompletionType getType() {
         CopilotCompletionType copilotCompletionType = this.type;
         if (copilotCompletionType == null) {
             CopilotDefaultInlayRenderer.$$$reportNull$$$0(5);
@@ -93,8 +87,7 @@ implements CopilotInlayRenderer {
     }
 
     @Override
-    @NotNull
-    public List<String> getContentLines() {
+        public List<String> getContentLines() {
         List<String> list = this.lines;
         if (list == null) {
             CopilotDefaultInlayRenderer.$$$reportNull$$$0(6);
@@ -102,7 +95,7 @@ implements CopilotInlayRenderer {
         return list;
     }
 
-    public int calcHeightInPixels(@NotNull Inlay inlay) {
+    public int calcHeightInPixels(Inlay inlay) {
         if (inlay == null) {
             CopilotDefaultInlayRenderer.$$$reportNull$$$0(7);
         }
@@ -113,7 +106,7 @@ implements CopilotInlayRenderer {
         return this.cachedHeight;
     }
 
-    public int calcWidthInPixels(@NotNull Inlay inlay) {
+    public int calcWidthInPixels(Inlay inlay) {
         if (inlay == null) {
             CopilotDefaultInlayRenderer.$$$reportNull$$$0(8);
         }
@@ -125,7 +118,7 @@ implements CopilotInlayRenderer {
         return this.cachedWidth;
     }
 
-    public void paint(@NotNull Inlay inlay, @NotNull Graphics2D g, @NotNull Rectangle2D region, @NotNull TextAttributes textAttributes) {
+    public void paint(Inlay inlay, Graphics2D g, Rectangle2D region, TextAttributes textAttributes) {
         Editor editor;
         if (inlay == null) {
             CopilotDefaultInlayRenderer.$$$reportNull$$$0(9);
@@ -145,7 +138,7 @@ implements CopilotInlayRenderer {
         InlayRendering.renderCodeBlock(editor, this.content, this.lines, g, region, CopilotDefaultInlayRenderer.getTextColor(editor, textAttributes));
     }
 
-    static List<String> replaceLeadingTabs(@NotNull List<String> lines, @NotNull EditorRequest request) {
+    static List<String> replaceLeadingTabs(List<String> lines, EditorRequest request) {
         if (lines == null) {
             CopilotDefaultInlayRenderer.$$$reportNull$$$0(13);
         }
@@ -162,7 +155,7 @@ implements CopilotInlayRenderer {
         }).collect(Collectors.toList());
     }
 
-    private static Color getTextColor(@NotNull Editor editor, @NotNull TextAttributes contextAttributes) {
+    private static Color getTextColor(Editor editor, TextAttributes contextAttributes) {
         Color userColor;
         if (editor == null) {
             CopilotDefaultInlayRenderer.$$$reportNull$$$0(15);
@@ -180,8 +173,7 @@ implements CopilotInlayRenderer {
         return attributes.getForegroundColor();
     }
 
-    @NotNull
-    public List<String> getLines() {
+        public List<String> getLines() {
         List<String> list = this.lines;
         if (list == null) {
             CopilotDefaultInlayRenderer.$$$reportNull$$$0(17);
@@ -189,8 +181,7 @@ implements CopilotInlayRenderer {
         return list;
     }
 
-    @NotNull
-    public String getContent() {
+        public String getContent() {
         String string = this.content;
         if (string == null) {
             CopilotDefaultInlayRenderer.$$$reportNull$$$0(18);
@@ -283,7 +274,7 @@ implements CopilotInlayRenderer {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 3: 
@@ -291,7 +282,7 @@ implements CopilotInlayRenderer {
             case 6: 
             case 17: 
             case 18: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

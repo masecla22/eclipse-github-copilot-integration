@@ -11,8 +11,7 @@ import com.intellij.openapi.application.ApplicationManager;
 import org.jetbrains.annotations.Nullable;
 
 public final class CopilotAgent {
-    @Nullable
-    public static volatile Boolean override;
+        public static volatile Boolean override;
     private static final boolean useAgentServiceTestMode = false;
 
     private CopilotAgent() {

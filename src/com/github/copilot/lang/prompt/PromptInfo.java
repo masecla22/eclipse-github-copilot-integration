@@ -15,16 +15,13 @@ import org.jetbrains.annotations.Nullable;
 
 @Immutable
 public final class PromptInfo {
-    @Nullable
-    private final String languageId;
-    @NotNull
-    private final String prompt;
-    @NotNull
-    private final String trailingWhitespace;
+        private final String languageId;
+        private final String prompt;
+        private final String trailingWhitespace;
     private final int promptLength;
     private final BlockMode blockMode;
 
-    public PromptInfo(@Nullable String languageId, @NotNull String prompt, @NotNull String trailingWhitespace, int promptLength, BlockMode blockMode) {
+    public PromptInfo(String languageId, String prompt, String trailingWhitespace, int promptLength, BlockMode blockMode) {
         if (prompt == null) {
             PromptInfo.$$$reportNull$$$0(0);
         }
@@ -44,13 +41,11 @@ public final class PromptInfo {
         this.blockMode = blockMode;
     }
 
-    @Nullable
-    public String getLanguageId() {
+        public String getLanguageId() {
         return this.languageId;
     }
 
-    @NotNull
-    public String getPrompt() {
+        public String getPrompt() {
         String string = this.prompt;
         if (string == null) {
             PromptInfo.$$$reportNull$$$0(2);
@@ -58,8 +53,7 @@ public final class PromptInfo {
         return string;
     }
 
-    @NotNull
-    public String getTrailingWhitespace() {
+        public String getTrailingWhitespace() {
         String string = this.trailingWhitespace;
         if (string == null) {
             PromptInfo.$$$reportNull$$$0(3);
@@ -133,12 +127,12 @@ public final class PromptInfo {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 2: 
             case 3: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

@@ -29,8 +29,7 @@ public class CopilotEditorTestManager
 extends CopilotEditorManagerImpl {
     private volatile boolean disabled;
 
-    @NotNull
-    public static CopilotEditorTestManager getInstance() {
+        public static CopilotEditorTestManager getInstance() {
         CopilotEditorTestManager copilotEditorTestManager = (CopilotEditorTestManager)ApplicationManager.getApplication().getService(CopilotEditorManager.class);
         if (copilotEditorTestManager == null) {
             CopilotEditorTestManager.$$$reportNull$$$0(0);
@@ -38,9 +37,8 @@ extends CopilotEditorManagerImpl {
         return copilotEditorTestManager;
     }
 
-    @NotNull
-    @RequiresEdt
-    public List<CopilotInlayRenderer> collectInlays(@NotNull Editor editor) {
+        @RequiresEdt
+    public List<CopilotInlayRenderer> collectInlays(Editor editor) {
         if (editor == null) {
             CopilotEditorTestManager.$$$reportNull$$$0(1);
         }
@@ -52,9 +50,8 @@ extends CopilotEditorManagerImpl {
         return list;
     }
 
-    @NotNull
-    @RequiresEdt
-    public List<CopilotInlayRenderer> collectCurrentLineInlays(@NotNull Editor editor) {
+        @RequiresEdt
+    public List<CopilotInlayRenderer> collectCurrentLineInlays(Editor editor) {
         if (editor == null) {
             CopilotEditorTestManager.$$$reportNull$$$0(3);
         }
@@ -69,7 +66,7 @@ extends CopilotEditorManagerImpl {
         return list;
     }
 
-    public void withDisabled(@NotNull ThrowableRunnable<Exception> action) throws Exception {
+    public void withDisabled(ThrowableRunnable<Exception> action) throws Exception {
         if (action == null) {
             CopilotEditorTestManager.$$$reportNull$$$0(5);
         }
@@ -83,7 +80,7 @@ extends CopilotEditorManagerImpl {
     }
 
     @Override
-    public boolean isAvailable(@NotNull Editor editor) {
+    public boolean isAvailable(Editor editor) {
         if (editor == null) {
             CopilotEditorTestManager.$$$reportNull$$$0(6);
         }
@@ -98,14 +95,14 @@ extends CopilotEditorManagerImpl {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: 
             case 3: 
             case 5: 
             case 6: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

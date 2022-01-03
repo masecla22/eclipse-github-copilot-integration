@@ -13,6 +13,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Immutable
 public interface InlayMessage {
-    public void inlaysUpdated(@NotNull EditorRequest var1);
+    public void inlaysUpdated(EditorRequest var1);
 }
 

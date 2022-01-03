@@ -33,14 +33,14 @@ public class EditorSelectionListener
 implements FileEditorManagerListener {
     private final Project project;
 
-    public EditorSelectionListener(@NotNull Project project) {
+    public EditorSelectionListener(Project project) {
         if (project == null) {
             EditorSelectionListener.$$$reportNull$$$0(0);
         }
         this.project = project;
     }
 
-    public void selectionChanged(@NotNull FileEditorManagerEvent event) {
+    public void selectionChanged(FileEditorManagerEvent event) {
         VirtualFile oldFile;
         if (event == null) {
             EditorSelectionListener.$$$reportNull$$$0(1);
@@ -91,7 +91,7 @@ implements FileEditorManagerListener {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

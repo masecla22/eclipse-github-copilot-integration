@@ -20,14 +20,14 @@ import org.jetbrains.annotations.NotNull;
 public class ToggleAgentServiceAction
 extends AnAction
 implements DumbAware {
-    public void update(@NotNull AnActionEvent e) {
+    public void update(AnActionEvent e) {
         if (e == null) {
             ToggleAgentServiceAction.$$$reportNull$$$0(0);
         }
         e.getPresentation().setEnabledAndVisible(ApplicationManager.getApplication().isInternal());
     }
 
-    public void actionPerformed(@NotNull AnActionEvent e) {
+    public void actionPerformed(AnActionEvent e) {
         Boolean current;
         if (e == null) {
             ToggleAgentServiceAction.$$$reportNull$$$0(1);
@@ -52,7 +52,7 @@ implements DumbAware {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

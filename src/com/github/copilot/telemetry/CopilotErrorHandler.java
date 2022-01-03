@@ -46,8 +46,7 @@ extends ErrorReportSubmitter {
     private static final Logger LOG = Logger.getInstance(CopilotErrorHandler.class);
 
     @NlsActions.ActionText
-    @NotNull
-    public String getReportActionText() {
+        public String getReportActionText() {
         String string = CopilotBundle.get("errorHandler.reportAction.text");
         if (string == null) {
             CopilotErrorHandler.$$$reportNull$$$0(0);
@@ -55,7 +54,7 @@ extends ErrorReportSubmitter {
         return string;
     }
 
-    public boolean submit(final IdeaLoggingEvent @NotNull [] events, final @Nullable String additionalInfo, @NotNull Component parentComponent, final @NotNull Consumer<? super SubmittedReportInfo> consumer) {
+    public boolean submit(final IdeaLoggingEvent [] events, final String additionalInfo, Component parentComponent, final Consumer<? super SubmittedReportInfo> consumer) {
         if (parentComponent == null) {
             CopilotErrorHandler.$$$reportNull$$$0(1);
         }
@@ -68,7 +67,7 @@ extends ErrorReportSubmitter {
         Project project = (Project)CommonDataKeys.PROJECT.getData(DataManager.getInstance().getDataContext(parentComponent));
         new Task.Backgroundable(project, CopilotBundle.get("errorHandler.reportDialog.title"), false){
 
-            public void run(@NotNull ProgressIndicator indicator) {
+            public void run(ProgressIndicator indicator) {
                 if (indicator == null) {
                     1.$$$reportNull$$$0(0);
                 }
@@ -84,7 +83,7 @@ extends ErrorReportSubmitter {
             }
 
             private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/telemetry/CopilotErrorHandler$1", "run"));
+                throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/telemetry/CopilotErrorHandler$1", "run"));
             }
         }.queue();
         return true;
@@ -98,13 +97,13 @@ extends ErrorReportSubmitter {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: 
             case 2: 
             case 3: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

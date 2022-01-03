@@ -56,8 +56,7 @@ public class ByteArray {
         return this.size;
     }
 
-    @NotNull
-    public String toString(int startOffset, int endOffset, @NotNull Charset charset) {
+        public String toString(int startOffset, int endOffset, Charset charset) {
         if (charset == null) {
             ByteArray.$$$reportNull$$$0(0);
         }
@@ -67,8 +66,7 @@ public class ByteArray {
         return new String(this.data, startOffset, endOffset - startOffset, charset);
     }
 
-    @NotNull
-    public String toString(@NotNull Charset charset) {
+        public String toString(Charset charset) {
         if (charset == null) {
             ByteArray.$$$reportNull$$$0(1);
         }
@@ -79,8 +77,7 @@ public class ByteArray {
         return string;
     }
 
-    @NotNull
-    public String toString() {
+        public String toString() {
         String string = this.toString(StandardCharsets.UTF_8);
         if (string == null) {
             ByteArray.$$$reportNull$$$0(3);
@@ -109,12 +106,12 @@ public class ByteArray {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 2: 
             case 3: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

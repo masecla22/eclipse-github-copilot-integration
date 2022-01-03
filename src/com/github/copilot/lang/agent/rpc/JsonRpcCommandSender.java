@@ -15,8 +15,8 @@ import org.jetbrains.annotations.NotNull;
 
 @ThreadSafe
 public interface JsonRpcCommandSender {
-    public void sendCommand(int var1, @NotNull JsonRpcCommand<?> var2) throws IOException;
+    public void sendCommand(int var1, JsonRpcCommand<?> var2) throws IOException;
 
-    public void sendNotification(@NotNull JsonRpcNotification var1) throws IOException;
+    public void sendNotification(JsonRpcNotification var1) throws IOException;
 }
 

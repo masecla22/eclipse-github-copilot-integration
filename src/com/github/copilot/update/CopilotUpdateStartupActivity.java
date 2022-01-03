@@ -29,7 +29,7 @@ implements StartupActivity.Background {
     private final AtomicBoolean hasRun = new AtomicBoolean(false);
 
     @RequiresBackgroundThread
-    public void runActivity(@NotNull Project project) {
+    public void runActivity(Project project) {
         if (project == null) {
             CopilotUpdateStartupActivity.$$$reportNull$$$0(0);
         }
@@ -50,7 +50,7 @@ implements StartupActivity.Background {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "project", "com/github/copilot/update/CopilotUpdateStartupActivity", "runActivity"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "project", "com/github/copilot/update/CopilotUpdateStartupActivity", "runActivity"));
     }
 }
 

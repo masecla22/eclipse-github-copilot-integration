@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class CopilotActionListener
 implements AnActionListener {
-    public void afterActionPerformed(@NotNull AnAction action, @NotNull AnActionEvent event, @NotNull AnActionResult result) {
+    public void afterActionPerformed(AnAction action, AnActionEvent event, AnActionResult result) {
         if (action == null) {
             CopilotActionListener.$$$reportNull$$$0(0);
         }
@@ -72,7 +72,7 @@ implements AnActionListener {
         }
         objectArray[1] = "com/github/copilot/telemetry/CopilotActionListener";
         objectArray[2] = "afterActionPerformed";
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

@@ -27,14 +27,14 @@ implements CommandListener {
     private static final Logger LOG = Logger.getInstance(CopilotCommandListener.class);
     private final Project project;
 
-    public CopilotCommandListener(@NotNull Project project) {
+    public CopilotCommandListener(Project project) {
         if (project == null) {
             CopilotCommandListener.$$$reportNull$$$0(0);
         }
         this.project = project;
     }
 
-    public void commandFinished(@NotNull CommandEvent event) {
+    public void commandFinished(CommandEvent event) {
         if (event == null) {
             CopilotCommandListener.$$$reportNull$$$0(1);
         }
@@ -77,7 +77,7 @@ implements CommandListener {
         }
     }
 
-    private boolean isModificationCommand(@NotNull CommandEvent command) {
+    private boolean isModificationCommand(CommandEvent command) {
         String name;
         if (command == null) {
             CopilotCommandListener.$$$reportNull$$$0(2);
@@ -88,7 +88,7 @@ implements CommandListener {
         return name.equals("Typing") || name.equals("Backspace") || name.equals("Choose Lookup Item") || name.equals("Choose Lookup Item Replace") || this.isForcedCompletionCommand(command);
     }
 
-    private boolean isForcedCompletionCommand(@NotNull CommandEvent command) {
+    private boolean isForcedCompletionCommand(CommandEvent command) {
         String name;
         if (command == null) {
             CopilotCommandListener.$$$reportNull$$$0(3);
@@ -141,7 +141,7 @@ implements CommandListener {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

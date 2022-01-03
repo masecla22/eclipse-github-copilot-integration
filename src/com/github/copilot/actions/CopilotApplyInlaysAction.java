@@ -51,7 +51,7 @@ CopilotAction {
         this.setInjectedContext(true);
     }
 
-    public void update(@NotNull AnActionEvent e) {
+    public void update(AnActionEvent e) {
         if (e == null) {
             CopilotApplyInlaysAction.$$$reportNull$$$0(0);
         }
@@ -62,7 +62,7 @@ CopilotAction {
         super.update(e);
     }
 
-    private boolean isIgnoredKeyboardEvent(@NotNull AnActionEvent e) {
+    private boolean isIgnoredKeyboardEvent(AnActionEvent e) {
         if (e == null) {
             CopilotApplyInlaysAction.$$$reportNull$$$0(1);
         }
@@ -89,7 +89,7 @@ CopilotAction {
         return editorManager.countCompletionInlays(editor, tabRange, true, false, false, false) == 0 && editorManager.countCompletionInlays(editor, tabRange, false, true, true, false) == 0;
     }
 
-    static boolean isSupported(@NotNull Editor editor) {
+    static boolean isSupported(Editor editor) {
         Project project;
         if (editor == null) {
             CopilotApplyInlaysAction.$$$reportNull$$$0(2);
@@ -131,7 +131,7 @@ CopilotAction {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 
     private static class ApplyInlaysHandler
@@ -139,7 +139,7 @@ CopilotAction {
         private ApplyInlaysHandler() {
         }
 
-        protected boolean isEnabledForCaret(@NotNull Editor editor, @NotNull Caret caret, DataContext dataContext) {
+        protected boolean isEnabledForCaret(Editor editor, Caret caret, DataContext dataContext) {
             if (editor == null) {
                 ApplyInlaysHandler.$$$reportNull$$$0(0);
             }
@@ -149,14 +149,14 @@ CopilotAction {
             return CopilotApplyInlaysAction.isSupported(editor);
         }
 
-        public boolean executeInCommand(@NotNull Editor editor, DataContext dataContext) {
+        public boolean executeInCommand(Editor editor, DataContext dataContext) {
             if (editor == null) {
                 ApplyInlaysHandler.$$$reportNull$$$0(2);
             }
             return false;
         }
 
-        protected void doExecute(@NotNull Editor editor, @Nullable Caret caret, DataContext dataContext) {
+        protected void doExecute(Editor editor, Caret caret, DataContext dataContext) {
             if (editor == null) {
                 ApplyInlaysHandler.$$$reportNull$$$0(3);
             }
@@ -197,7 +197,7 @@ CopilotAction {
                     break;
                 }
             }
-            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+            throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
         }
     }
 }

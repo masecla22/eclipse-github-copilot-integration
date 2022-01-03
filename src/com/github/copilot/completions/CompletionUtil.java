@@ -34,7 +34,7 @@ import org.jetbrains.annotations.Nullable;
 public class CompletionUtil {
     private static final Logger LOG = Logger.getInstance(CompletionUtil.class);
 
-    static List<CopilotInlayList> createEditorCompletions(@NotNull EditorRequest request, @NotNull List<CopilotCompletion> items) {
+    static List<CopilotInlayList> createEditorCompletions(EditorRequest request, List<CopilotCompletion> items) {
         if (request == null) {
             CompletionUtil.$$$reportNull$$$0(0);
         }
@@ -44,8 +44,7 @@ public class CompletionUtil {
         return items.stream().map(item -> CompletionUtil.createEditorCompletion(request, item, true)).collect(Collectors.toList());
     }
 
-    @Nullable
-    public static CopilotInlayList createEditorCompletion(@NotNull EditorRequest request, @NotNull CopilotCompletion copilotCompletion, boolean dropLinePrefix) {
+        public static CopilotInlayList createEditorCompletion(EditorRequest request, CopilotCompletion copilotCompletion, boolean dropLinePrefix) {
         boolean replaceLinePrefix;
         ArrayList<String> lines;
         if (request == null) {
@@ -70,8 +69,7 @@ public class CompletionUtil {
         return new DefaultInlayList(copilotCompletion, CompletionUtil.createReplacementRange(request, replaceLinePrefix), replacementText, CompletionUtil.createEditorInlays(request, lines));
     }
 
-    @NotNull
-    private static String createReplacementText(@NotNull LineInfo lineInfo, List<String> lines) {
+        private static String createReplacementText(LineInfo lineInfo, List<String> lines) {
         String ws;
         if (lineInfo == null) {
             CompletionUtil.$$$reportNull$$$0(4);
@@ -91,8 +89,7 @@ public class CompletionUtil {
         return string;
     }
 
-    @NotNull
-    private static TextRange createReplacementRange(@NotNull EditorRequest request, boolean replaceLinePrefix) {
+        private static TextRange createReplacementRange(EditorRequest request, boolean replaceLinePrefix) {
         if (request == null) {
             CompletionUtil.$$$reportNull$$$0(7);
         }
@@ -106,7 +103,7 @@ public class CompletionUtil {
         return textRange;
     }
 
-    private static boolean isReplaceLineSuffix(@NotNull EditorRequest request) {
+    private static boolean isReplaceLineSuffix(EditorRequest request) {
         String lineSuffix;
         if (request == null) {
             CompletionUtil.$$$reportNull$$$0(9);
@@ -114,8 +111,7 @@ public class CompletionUtil {
         return CopilotStringUtil.isSpacesOrTabs(lineSuffix = request.getLineInfo().getLineSuffix(), false) || CommonLanguageSupport.isValidMiddleOfTheLinePosition(lineSuffix);
     }
 
-    @NotNull
-    private static List<CopilotEditorInlay> createEditorInlays(@NotNull EditorRequest request, @NotNull List<String> lines) {
+        private static List<CopilotEditorInlay> createEditorInlays(EditorRequest request, List<String> lines) {
         if (request == null) {
             CompletionUtil.$$$reportNull$$$0(10);
         }
@@ -147,7 +143,7 @@ public class CompletionUtil {
         return arrayList;
     }
 
-    private static void dropOverlappingTrailingLines(@NotNull List<String> lines, @NotNull String editorContent, int offset) {
+    private static void dropOverlappingTrailingLines(List<String> lines, String editorContent, int offset) {
         if (lines == null) {
             CompletionUtil.$$$reportNull$$$0(13);
         }
@@ -167,7 +163,7 @@ public class CompletionUtil {
         }
     }
 
-    private static boolean adjustWhitespace(@NotNull List<String> completionLines, @NotNull LineInfo lineInfo) {
+    private static boolean adjustWhitespace(List<String> completionLines, LineInfo lineInfo) {
         String firstLine;
         if (completionLines == null) {
             CompletionUtil.$$$reportNull$$$0(15);
@@ -194,8 +190,7 @@ public class CompletionUtil {
         return replacePrefixInEditor;
     }
 
-    @Nullable
-    public static CopilotCompletion apiChoiceWithoutPrefix(@NotNull CopilotCompletion apiChoice, @NotNull String prefix) {
+        public static CopilotCompletion apiChoiceWithoutPrefix(CopilotCompletion apiChoice, String prefix) {
         if (apiChoice == null) {
             CompletionUtil.$$$reportNull$$$0(17);
         }
@@ -249,14 +244,14 @@ public class CompletionUtil {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 5: 
             case 6: 
             case 8: 
             case 12: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

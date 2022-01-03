@@ -17,8 +17,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class ColorConverter
 extends Converter<Color> {
-    @Nullable
-    public Color fromString(@NotNull String value) {
+        public Color fromString(String value) {
         if (value == null) {
             ColorConverter.$$$reportNull$$$0(0);
         }
@@ -30,8 +29,7 @@ extends Converter<Color> {
         }
     }
 
-    @Nullable
-    public String toString(@NotNull Color value) {
+        public String toString(Color value) {
         if (value == null) {
             ColorConverter.$$$reportNull$$$0(1);
         }
@@ -55,7 +53,7 @@ extends Converter<Color> {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

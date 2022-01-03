@@ -29,7 +29,7 @@ implements CopilotCompletionService {
     private final DefaultCopilotCompletionService defaultService = new DefaultCopilotCompletionService();
 
     @Override
-    public boolean isAvailable(@NotNull Editor editor) {
+    public boolean isAvailable(Editor editor) {
         if (editor == null) {
             DelegatingCompletionService.$$$reportNull$$$0(0);
         }
@@ -37,8 +37,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    @Nullable
-    public EditorRequest createRequest(@NotNull Editor editor, int offset, @NotNull CompletionType completionType) {
+        public EditorRequest createRequest(Editor editor, int offset, CompletionType completionType) {
         if (editor == null) {
             DelegatingCompletionService.$$$reportNull$$$0(1);
         }
@@ -49,7 +48,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    public boolean fetchCompletions(@NotNull EditorRequest request, @Nullable GitHubCopilotToken proxyToken, @Nullable Integer maxCompletions, boolean enableCaching, boolean cycling, @NotNull Flow.Subscriber<List<CopilotInlayList>> subscriber) {
+    public boolean fetchCompletions(EditorRequest request, GitHubCopilotToken proxyToken, Integer maxCompletions, boolean enableCaching, boolean cycling, Flow.Subscriber<List<CopilotInlayList>> subscriber) {
         if (request == null) {
             DelegatingCompletionService.$$$reportNull$$$0(3);
         }
@@ -60,8 +59,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    @Nullable
-    public List<CopilotInlayList> fetchCachedCompletions(@NotNull EditorRequest request) {
+        public List<CopilotInlayList> fetchCachedCompletions(EditorRequest request) {
         if (request == null) {
             DelegatingCompletionService.$$$reportNull$$$0(5);
         }
@@ -74,7 +72,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    public boolean isSupportingOnDemandCycling(@NotNull Editor editor) {
+    public boolean isSupportingOnDemandCycling(Editor editor) {
         if (editor == null) {
             DelegatingCompletionService.$$$reportNull$$$0(6);
         }
@@ -91,7 +89,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    public void sendShownTelemetry(@NotNull CopilotCompletion completion) {
+    public void sendShownTelemetry(CopilotCompletion completion) {
         if (completion == null) {
             DelegatingCompletionService.$$$reportNull$$$0(7);
         }
@@ -99,7 +97,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    public void sendAcceptedTelemetry(@NotNull CopilotCompletion completion, @NotNull CompletionType completionType) {
+    public void sendAcceptedTelemetry(CopilotCompletion completion, CompletionType completionType) {
         if (completion == null) {
             DelegatingCompletionService.$$$reportNull$$$0(8);
         }
@@ -110,7 +108,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    public void sendRejectedTelemetry(@NotNull List<CopilotCompletion> completions) {
+    public void sendRejectedTelemetry(List<CopilotCompletion> completions) {
         if (completions == null) {
             DelegatingCompletionService.$$$reportNull$$$0(10);
         }
@@ -202,7 +200,7 @@ implements CopilotCompletionService {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

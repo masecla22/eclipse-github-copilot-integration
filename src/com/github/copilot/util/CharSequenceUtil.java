@@ -9,7 +9,7 @@ package com.github.copilot.util;
 import org.jetbrains.annotations.NotNull;
 
 public final class CharSequenceUtil {
-    public static int lastIndexOf(@NotNull CharSequence text, char ch) {
+    public static int lastIndexOf(CharSequence text, char ch) {
         if (text == null) {
             CharSequenceUtil.$$$reportNull$$$0(0);
         }
@@ -24,7 +24,7 @@ public final class CharSequenceUtil {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "text", "com/github/copilot/util/CharSequenceUtil", "lastIndexOf"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "text", "com/github/copilot/util/CharSequenceUtil", "lastIndexOf"));
     }
 }
 

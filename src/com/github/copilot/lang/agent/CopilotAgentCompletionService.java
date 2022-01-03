@@ -61,7 +61,7 @@ implements CopilotCompletionService {
     protected final CompletionCache cache = new SimpleCompletionCache(32);
 
     @Override
-    public boolean isAvailable(@NotNull Editor editor) {
+    public boolean isAvailable(Editor editor) {
         if (editor == null) {
             CopilotAgentCompletionService.$$$reportNull$$$0(0);
         }
@@ -69,8 +69,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    @Nullable
-    public EditorRequest createRequest(@NotNull Editor editor, int offset, @NotNull CompletionType completionType) {
+        public EditorRequest createRequest(Editor editor, int offset, CompletionType completionType) {
         if (editor == null) {
             CopilotAgentCompletionService.$$$reportNull$$$0(1);
         }
@@ -81,8 +80,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    @Nullable
-    public List<CopilotInlayList> fetchCachedCompletions(@NotNull EditorRequest request) {
+        public List<CopilotInlayList> fetchCachedCompletions(EditorRequest request) {
         if (request == null) {
             CopilotAgentCompletionService.$$$reportNull$$$0(3);
         }
@@ -100,7 +98,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    public boolean fetchCompletions(@NotNull EditorRequest request, @Nullable GitHubCopilotToken proxyToken, @Nullable Integer maxCompletions, boolean enableCaching, boolean cycling, @NotNull Flow.Subscriber<List<CopilotInlayList>> subscriber) {
+    public boolean fetchCompletions(EditorRequest request, GitHubCopilotToken proxyToken, Integer maxCompletions, boolean enableCaching, boolean cycling, Flow.Subscriber<List<CopilotInlayList>> subscriber) {
         if (request == null) {
             CopilotAgentCompletionService.$$$reportNull$$$0(4);
         }
@@ -148,7 +146,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    public boolean isSupportingOnDemandCycling(@NotNull Editor editor) {
+    public boolean isSupportingOnDemandCycling(Editor editor) {
         if (editor == null) {
             CopilotAgentCompletionService.$$$reportNull$$$0(6);
         }
@@ -161,7 +159,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    public void sendShownTelemetry(@NotNull CopilotCompletion completion) {
+    public void sendShownTelemetry(CopilotCompletion completion) {
         if (completion == null) {
             CopilotAgentCompletionService.$$$reportNull$$$0(7);
         }
@@ -172,7 +170,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    public void sendAcceptedTelemetry(@NotNull CopilotCompletion completion, @NotNull CompletionType completionType) {
+    public void sendAcceptedTelemetry(CopilotCompletion completion, CompletionType completionType) {
         if (completion == null) {
             CopilotAgentCompletionService.$$$reportNull$$$0(8);
         }
@@ -186,7 +184,7 @@ implements CopilotCompletionService {
     }
 
     @Override
-    public void sendRejectedTelemetry(@NotNull List<CopilotCompletion> completions) {
+    public void sendRejectedTelemetry(List<CopilotCompletion> completions) {
         if (completions == null) {
             CopilotAgentCompletionService.$$$reportNull$$$0(10);
         }
@@ -284,17 +282,16 @@ implements CopilotCompletionService {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 
     private static class AgentCompletionList
     implements CopilotInlayList {
         private final CopilotInlayList inlays;
         private final AgentCompletion completion;
-        @NotNull
-        private final EditorRequest request;
+                private final EditorRequest request;
 
-        public AgentCompletionList(@Nullable CopilotInlayList inlays, @NotNull AgentCompletion completion, @NotNull EditorRequest request) {
+        public AgentCompletionList(CopilotInlayList inlays, AgentCompletion completion, EditorRequest request) {
             if (completion == null) {
                 AgentCompletionList.$$$reportNull$$$0(0);
             }
@@ -312,8 +309,7 @@ implements CopilotCompletionService {
         }
 
         @Override
-        @NotNull
-        public CopilotCompletion getCopilotCompletion() {
+                public CopilotCompletion getCopilotCompletion() {
             AgentCompletion agentCompletion = this.completion;
             if (agentCompletion == null) {
                 AgentCompletionList.$$$reportNull$$$0(2);
@@ -322,8 +318,7 @@ implements CopilotCompletionService {
         }
 
         @Override
-        @NotNull
-        public TextRange getReplacementRange() {
+                public TextRange getReplacementRange() {
             String text = this.request.getDocumentContent();
             Range range = this.completion.getAgentData().getRange();
             int startOffset = range.getStart().toOffset(text);
@@ -338,8 +333,7 @@ implements CopilotCompletionService {
         }
 
         @Override
-        @NotNull
-        public String getReplacementText() {
+                public String getReplacementText() {
             String string = this.completion.getAgentData().getText();
             if (string == null) {
                 AgentCompletionList.$$$reportNull$$$0(4);
@@ -348,8 +342,7 @@ implements CopilotCompletionService {
         }
 
         @Override
-        @NotNull
-        public List<CopilotEditorInlay> getInlays() {
+                public List<CopilotEditorInlay> getInlays() {
             List<CopilotEditorInlay> list = this.inlays == null ? Collections.emptyList() : this.inlays.getInlays();
             if (list == null) {
                 AgentCompletionList.$$$reportNull$$$0(5);
@@ -358,8 +351,7 @@ implements CopilotCompletionService {
         }
 
         @Override
-        @NotNull
-        public Iterator<CopilotEditorInlay> iterator() {
+                public Iterator<CopilotEditorInlay> iterator() {
             Iterator<CopilotEditorInlay> iterator = this.inlays != null ? this.inlays.iterator() : Collections.emptyIterator();
             if (iterator == null) {
                 AgentCompletionList.$$$reportNull$$$0(6);
@@ -375,7 +367,7 @@ implements CopilotCompletionService {
             String string;
             switch (n) {
                 default: {
-                    string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                    string = "Argument for parameter '%s' of %s.%s must not be null";
                     break;
                 }
                 case 2: 
@@ -383,7 +375,7 @@ implements CopilotCompletionService {
                 case 4: 
                 case 5: 
                 case 6: {
-                    string = "@NotNull method %s.%s must not return null";
+                    string = "method %s.%s must not return null";
                     break;
                 }
             }

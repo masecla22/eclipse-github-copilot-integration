@@ -39,8 +39,7 @@ PriorityAction {
         this.setText(CopilotBundle.get("intention.openCopilot.text"));
     }
 
-    @NotNull
-    @IntentionFamilyName
+        @IntentionFamilyName
     public String getFamilyName() {
         String string = CopilotBundle.get("intention.openCopilot.familyName");
         if (string == null) {
@@ -49,7 +48,7 @@ PriorityAction {
         return string;
     }
 
-    public boolean isAvailable(@NotNull Project project, Editor editor, PsiFile file) {
+    public boolean isAvailable(Project project, Editor editor, PsiFile file) {
         if (project == null) {
             OpenCopilotIntention.$$$reportNull$$$0(1);
         }
@@ -63,8 +62,7 @@ PriorityAction {
         return false;
     }
 
-    @NotNull
-    public PriorityAction.Priority getPriority() {
+        public PriorityAction.Priority getPriority() {
         PriorityAction.Priority priority = PriorityAction.Priority.LOW;
         if (priority == null) {
             OpenCopilotIntention.$$$reportNull$$$0(2);
@@ -72,7 +70,7 @@ PriorityAction {
         return priority;
     }
 
-    public void invoke(@NotNull Project project, Editor editor, PsiFile file) throws IncorrectOperationException {
+    public void invoke(Project project, Editor editor, PsiFile file) throws IncorrectOperationException {
         if (project == null) {
             OpenCopilotIntention.$$$reportNull$$$0(3);
         }
@@ -88,12 +86,12 @@ PriorityAction {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: 
             case 3: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

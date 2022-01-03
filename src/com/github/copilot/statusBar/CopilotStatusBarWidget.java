@@ -49,7 +49,7 @@ public class CopilotStatusBarWidget
 extends EditorBasedStatusBarPopup {
     private static final String WIDGET_ID = "com.github.copilotWidget";
 
-    public static void update(@NotNull Project project) {
+    public static void update(Project project) {
         StatusBarWidget widget;
         if (project == null) {
             CopilotStatusBarWidget.$$$reportNull$$$0(0);
@@ -59,7 +59,7 @@ extends EditorBasedStatusBarPopup {
         }
     }
 
-    public CopilotStatusBarWidget(@NotNull Project project) {
+    public CopilotStatusBarWidget(Project project) {
         if (project == null) {
             CopilotStatusBarWidget.$$$reportNull$$$0(1);
         }
@@ -67,13 +67,11 @@ extends EditorBasedStatusBarPopup {
     }
 
     @NonNls
-    @NotNull
-    public String ID() {
+        public String ID() {
         return WIDGET_ID;
     }
 
-    @NotNull
-    protected EditorBasedStatusBarPopup.WidgetState getWidgetState(@Nullable VirtualFile file) {
+        protected EditorBasedStatusBarPopup.WidgetState getWidgetState(VirtualFile file) {
         CopilotStatus status = CopilotStatusService.getCurrentStatus();
         if (status != CopilotStatus.Ready) {
             String toolTip = CopilotBundle.get("statusBar.tooltipForError", status.getPresentableText());
@@ -110,8 +108,7 @@ extends EditorBasedStatusBarPopup {
         return widgetState;
     }
 
-    @Nullable
-    protected ListPopup createPopup(DataContext context) {
+        protected ListPopup createPopup(DataContext context) {
         String groupId = CopilotStatusService.getCurrentStatus() == CopilotStatus.Ready ? "copilot.statusBarPopup" : "copilot.statusBarErrorPopup";
         AnAction group = ActionManager.getInstance().getAction(groupId);
         if (!(group instanceof ActionGroup)) {
@@ -120,16 +117,14 @@ extends EditorBasedStatusBarPopup {
         return JBPopupFactory.getInstance().createActionGroupPopup(CopilotBundle.get("statusBar.displayName"), (ActionGroup)group, context, JBPopupFactory.ActionSelectionAid.SPEEDSEARCH, false);
     }
 
-    @NotNull
-    protected StatusBarWidget createInstance(@NotNull Project project) {
+        protected StatusBarWidget createInstance(Project project) {
         if (project == null) {
             CopilotStatusBarWidget.$$$reportNull$$$0(6);
         }
         return new CopilotStatusBarWidget(project);
     }
 
-    @Nullable
-    private Boolean isCopilotEnabled(@NotNull VirtualFile file) {
+        private Boolean isCopilotEnabled(VirtualFile file) {
         PsiFile psiFile;
         if (file == null) {
             CopilotStatusBarWidget.$$$reportNull$$$0(7);
@@ -148,14 +143,14 @@ extends EditorBasedStatusBarPopup {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 2: 
             case 3: 
             case 4: 
             case 5: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

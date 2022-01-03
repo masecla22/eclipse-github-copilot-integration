@@ -17,22 +17,21 @@ public final class CommonLanguageSupport {
     private CommonLanguageSupport() {
     }
 
-    public static boolean isMiddleOfTheLine(@NotNull String lineSuffix) {
+    public static boolean isMiddleOfTheLine(String lineSuffix) {
         if (lineSuffix == null) {
             CommonLanguageSupport.$$$reportNull$$$0(0);
         }
         return !lineSuffix.trim().isEmpty();
     }
 
-    public static boolean isValidMiddleOfTheLinePosition(@NotNull String lineSuffix) {
+    public static boolean isValidMiddleOfTheLinePosition(String lineSuffix) {
         if (lineSuffix == null) {
             CommonLanguageSupport.$$$reportNull$$$0(1);
         }
         return EOL_PATTERN.matcher(lineSuffix.trim()).matches();
     }
 
-    @Nullable
-    public static Boolean isInlineSuggestion(@NotNull String lineSuffix) {
+        public static Boolean isInlineSuggestion(String lineSuffix) {
         if (lineSuffix == null) {
             CommonLanguageSupport.$$$reportNull$$$0(2);
         }
@@ -66,7 +65,7 @@ public final class CommonLanguageSupport {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

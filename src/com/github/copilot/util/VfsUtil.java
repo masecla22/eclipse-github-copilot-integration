@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 public class VfsUtil {
     private static final Logger LOG = Logger.getInstance(VfsUtil.class);
 
-    public static void safeDelete(@NotNull VirtualFile file) {
+    public static void safeDelete(VirtualFile file) {
         if (file == null) {
             VfsUtil.$$$reportNull$$$0(0);
         }
@@ -38,7 +38,7 @@ public class VfsUtil {
         }
     }
 
-    private static void doSafeDelete(@NotNull VirtualFile file) {
+    private static void doSafeDelete(VirtualFile file) {
         if (file == null) {
             VfsUtil.$$$reportNull$$$0(1);
         }
@@ -68,7 +68,7 @@ public class VfsUtil {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

@@ -26,7 +26,7 @@ class EditorRequestResultList {
     private int maxShownIndex;
     private boolean hasOnDemandCompletions;
 
-    public EditorRequestResultList(@NotNull EditorRequest request) {
+    public EditorRequestResultList(EditorRequest request) {
         if (request == null) {
             EditorRequestResultList.$$$reportNull$$$0(0);
         }
@@ -54,7 +54,7 @@ class EditorRequestResultList {
     /*
      * WARNING - Removed try catching itself - possible behaviour change.
      */
-    public void addInlays(@NotNull CopilotInlayList inlays) {
+    public void addInlays(CopilotInlayList inlays) {
         if (inlays == null) {
             EditorRequestResultList.$$$reportNull$$$0(1);
         }
@@ -68,8 +68,7 @@ class EditorRequestResultList {
     /*
      * WARNING - Removed try catching itself - possible behaviour change.
      */
-    @Nullable
-    public CopilotInlayList getCurrentCompletion() {
+        public CopilotInlayList getCurrentCompletion() {
         Object object = this.inlayLock;
         synchronized (object) {
             return EditorRequestResultList.getAtIndexLocked(this.inlayLists, this.index);
@@ -79,8 +78,7 @@ class EditorRequestResultList {
     /*
      * WARNING - Removed try catching itself - possible behaviour change.
      */
-    @Nullable
-    public List<CopilotInlayList> getAllShownCompletion() {
+        public List<CopilotInlayList> getAllShownCompletion() {
         Object object = this.inlayLock;
         synchronized (object) {
             return this.inlayLists.stream().limit(this.maxShownIndex + 1).collect(Collectors.toList());
@@ -120,8 +118,7 @@ class EditorRequestResultList {
     /*
      * WARNING - Removed try catching itself - possible behaviour change.
      */
-    @Nullable
-    public CopilotInlayList getPrevCompletion() {
+        public CopilotInlayList getPrevCompletion() {
         Object object = this.inlayLock;
         synchronized (object) {
             if (this.index <= 0) {
@@ -136,8 +133,7 @@ class EditorRequestResultList {
     /*
      * WARNING - Removed try catching itself - possible behaviour change.
      */
-    @Nullable
-    public CopilotInlayList getNextCompletion() {
+        public CopilotInlayList getNextCompletion() {
         Object object = this.inlayLock;
         synchronized (object) {
             if (this.index + 1 >= this.inlayLists.size()) {
@@ -170,8 +166,7 @@ class EditorRequestResultList {
         }
     }
 
-    @Nullable
-    private static CopilotInlayList getAtIndexLocked(@NotNull ObjectSortedSet<CopilotInlayList> inlays, int index) {
+        private static CopilotInlayList getAtIndexLocked(ObjectSortedSet<CopilotInlayList> inlays, int index) {
         if (inlays == null) {
             EditorRequestResultList.$$$reportNull$$$0(2);
         }
@@ -299,7 +294,7 @@ class EditorRequestResultList {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

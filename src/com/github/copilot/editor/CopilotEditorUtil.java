@@ -62,7 +62,7 @@ public final class CopilotEditorUtil {
     private CopilotEditorUtil() {
     }
 
-    public static boolean isFocusedEditor(@NotNull Editor editor) {
+    public static boolean isFocusedEditor(Editor editor) {
         if (editor == null) {
             CopilotEditorUtil.$$$reportNull$$$0(0);
         }
@@ -72,7 +72,7 @@ public final class CopilotEditorUtil {
         return editor.getContentComponent().isFocusOwner();
     }
 
-    public static boolean isSelectedEditor(@NotNull Editor editor) {
+    public static boolean isSelectedEditor(Editor editor) {
         Project project;
         if (editor == null) {
             CopilotEditorUtil.$$$reportNull$$$0(1);
@@ -93,8 +93,7 @@ public final class CopilotEditorUtil {
     }
 
     @RequiresEdt
-    @Nullable
-    public static BasicEditorRequest createEditorRequest(@NotNull Editor editor, int offset, @NotNull CompletionType completionType) {
+        public static BasicEditorRequest createEditorRequest(Editor editor, int offset, CompletionType completionType) {
         Project project;
         if (editor == null) {
             CopilotEditorUtil.$$$reportNull$$$0(2);
@@ -121,7 +120,7 @@ public final class CopilotEditorUtil {
         return new BasicEditorRequest(project, language, completionType, file.getLanguage(), relativePath, document.getText(), offset, lineInfo, useTabs, tabWidth, document instanceof DocumentEx ? Integer.valueOf(((DocumentEx)document).getModificationSequence()) : null);
     }
 
-    public static int whitespacePrefixLength(@NotNull String lineContent) {
+    public static int whitespacePrefixLength(String lineContent) {
         int i;
         if (lineContent == null) {
             CopilotEditorUtil.$$$reportNull$$$0(4);
@@ -135,8 +134,7 @@ public final class CopilotEditorUtil {
         return i;
     }
 
-    @NotNull
-    public static String getRelativeFilePath(@NotNull Project project, @NotNull PsiFile file) {
+        public static String getRelativeFilePath(Project project, PsiFile file) {
         String path;
         VirtualFile root;
         if (project == null) {
@@ -157,8 +155,7 @@ public final class CopilotEditorUtil {
         return string;
     }
 
-    @Nullable
-    public static LanguageSupport findLanguageSupport(@NotNull Editor editor) {
+        public static LanguageSupport findLanguageSupport(Editor editor) {
         Project project;
         if (editor == null) {
             CopilotEditorUtil.$$$reportNull$$$0(8);
@@ -176,7 +173,7 @@ public final class CopilotEditorUtil {
         return LanguageSupport.find(psiFile);
     }
 
-    public static void addEditorRequest(@NotNull Editor editor, @NotNull EditorRequest request) {
+    public static void addEditorRequest(Editor editor, EditorRequest request) {
         if (editor == null) {
             CopilotEditorUtil.$$$reportNull$$$0(9);
         }
@@ -198,11 +195,11 @@ public final class CopilotEditorUtil {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 7: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

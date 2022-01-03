@@ -20,11 +20,10 @@ import org.jetbrains.annotations.NotNull;
 public class VSCodeJsonRpcCommandSender
 implements JsonRpcCommandSender {
     private static final Logger LOG = Logger.getInstance(VSCodeJsonRpcCommandSender.class);
-    @NotNull
-    private final OutputStream target;
+        private final OutputStream target;
 
     @Override
-    public void sendCommand(int id, @NotNull JsonRpcCommand<?> command) throws IOException {
+    public void sendCommand(int id, JsonRpcCommand<?> command) throws IOException {
         if (command == null) {
             VSCodeJsonRpcCommandSender.$$$reportNull$$$0(0);
         }
@@ -39,7 +38,7 @@ implements JsonRpcCommandSender {
     }
 
     @Override
-    public void sendNotification(@NotNull JsonRpcNotification notification) throws IOException {
+    public void sendNotification(JsonRpcNotification notification) throws IOException {
         if (notification == null) {
             VSCodeJsonRpcCommandSender.$$$reportNull$$$0(1);
         }
@@ -64,7 +63,7 @@ implements JsonRpcCommandSender {
         this.target.flush();
     }
 
-    public VSCodeJsonRpcCommandSender(@NotNull OutputStream target) {
+    public VSCodeJsonRpcCommandSender(OutputStream target) {
         if (target == null) {
             VSCodeJsonRpcCommandSender.$$$reportNull$$$0(2);
         }
@@ -113,7 +112,7 @@ implements JsonRpcCommandSender {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

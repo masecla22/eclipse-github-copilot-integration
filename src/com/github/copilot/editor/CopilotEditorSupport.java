@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 public interface CopilotEditorSupport {
     public static final ExtensionPointName<CopilotEditorSupport> EP = ExtensionPointName.create((String)"com.github.copilot.editorSupport");
 
-    public static boolean isEditorCompletionsSupported(@NotNull Editor editor) {
+    public static boolean isEditorCompletionsSupported(Editor editor) {
         if (editor == null) {
             CopilotEditorSupport.$$$reportNull$$$0(0);
         }
@@ -25,10 +25,10 @@ public interface CopilotEditorSupport {
         return EP.findFirstSafe(editorSupport -> !editorSupport.isCompletionsEnabled(editor)) == null;
     }
 
-    public boolean isCompletionsEnabled(@NotNull Editor var1);
+    public boolean isCompletionsEnabled(Editor var1);
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "editor", "com/github/copilot/editor/CopilotEditorSupport", "isEditorCompletionsSupported"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "editor", "com/github/copilot/editor/CopilotEditorSupport", "isEditorCompletionsSupported"));
     }
 }
 

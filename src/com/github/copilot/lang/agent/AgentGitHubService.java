@@ -72,8 +72,7 @@ implements GitHubService {
     private static final int SIGN_IN_TIMEOUT_MILLIS = (int)TimeUnit.SECONDS.toMillis(120L);
     private final Object sessionLock = new Object();
     @GuardedBy(value="sessionLock")
-    @Nullable
-    private AuthStatusResult status;
+        private AuthStatusResult status;
 
     /*
      * WARNING - Removed try catching itself - possible behaviour change.
@@ -106,7 +105,7 @@ implements GitHubService {
     }
 
     @Override
-    public void loginInteractive(@NotNull Project project) {
+    public void loginInteractive(Project project) {
         SignInInitiateResult initiateSignInResponse;
         if (project == null) {
             AgentGitHubService.$$$reportNull$$$0(0);
@@ -154,8 +153,7 @@ implements GitHubService {
     }
 
     @Override
-    @Nullable
-    public GitHubCopilotToken fetchCopilotTokenInteractive(@NotNull Project project, @Nullable GitHubSession sessionOverride, boolean storeToken, @NotNull UnauthorizedTokenCallback onUnauthorized, @NotNull Consumer<Project> onNewTokenExpired) {
+        public GitHubCopilotToken fetchCopilotTokenInteractive(Project project, GitHubSession sessionOverride, boolean storeToken, UnauthorizedTokenCallback onUnauthorized, Consumer<Project> onNewTokenExpired) {
         if (project == null) {
             AgentGitHubService.$$$reportNull$$$0(1);
         }
@@ -182,23 +180,21 @@ implements GitHubService {
     }
 
     @Override
-    @Nullable
-    public GitHubCopilotToken getCopilotToken(boolean requestIfMissing, long minimumValidity, @NotNull TimeUnit timeUnit) {
+        public GitHubCopilotToken getCopilotToken(boolean requestIfMissing, long minimumValidity, TimeUnit timeUnit) {
         if (timeUnit == null) {
             AgentGitHubService.$$$reportNull$$$0(4);
         }
         return null;
     }
 
-    @Nullable
-    private SignInInitiateResult initiateSignIn(@NotNull Project project) {
+        private SignInInitiateResult initiateSignIn(Project project) {
         if (project == null) {
             AgentGitHubService.$$$reportNull$$$0(5);
         }
         try {
             return (SignInInitiateResult)ProgressManager.getInstance().run((Task.WithResult)new Task.WithResult<SignInInitiateResult, Exception>(project, "Retrieving GitHub Device Code", true){
 
-                protected SignInInitiateResult compute(@NotNull ProgressIndicator indicator) throws Exception {
+                protected SignInInitiateResult compute(ProgressIndicator indicator) throws Exception {
                     if (indicator == null) {
                         1.$$$reportNull$$$0(0);
                     }
@@ -207,7 +203,7 @@ implements GitHubService {
                 }
 
                 private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                    throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/lang/agent/AgentGitHubService$1", "compute"));
+                    throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/lang/agent/AgentGitHubService$1", "compute"));
                 }
             });
         }
@@ -217,15 +213,14 @@ implements GitHubService {
         }
     }
 
-    private DeviceCodeResponse asCodeResponse(@NotNull SignInInitiateNotSignedInResult r) {
+    private DeviceCodeResponse asCodeResponse(SignInInitiateNotSignedInResult r) {
         if (r == null) {
             AgentGitHubService.$$$reportNull$$$0(6);
         }
         return new DeviceCodeResponse("", r.getUserCode(), r.getVerificationUri(), r.getExpiresInSeconds(), r.getIntervalSeconds());
     }
 
-    @Nullable
-    private AuthStatusResult confirmSignIn(@Nullable Project project, @NotNull SignInInitiateNotSignedInResult code) {
+        private AuthStatusResult confirmSignIn(Project project, SignInInitiateNotSignedInResult code) {
         if (code == null) {
             AgentGitHubService.$$$reportNull$$$0(7);
         }
@@ -233,7 +228,7 @@ implements GitHubService {
             String title = CopilotBundle.get("deviceAuth.progressTitle");
             return (AuthStatusResult)ProgressManager.getInstance().run((Task.WithResult)new Task.WithResult<AuthStatusResult, Exception>(project, title, true){
 
-                protected AuthStatusResult compute(@NotNull ProgressIndicator indicator) {
+                protected AuthStatusResult compute(ProgressIndicator indicator) {
                     if (indicator == null) {
                         2.$$$reportNull$$$0(0);
                     }
@@ -243,7 +238,7 @@ implements GitHubService {
                 }
 
                 private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                    throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/lang/agent/AgentGitHubService$2", "compute"));
+                    throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/lang/agent/AgentGitHubService$2", "compute"));
                 }
             });
         }
@@ -255,8 +250,7 @@ implements GitHubService {
         }
     }
 
-    @Nullable
-    private AuthStatusResult recordTelemetryConsent(@NotNull Project project) {
+        private AuthStatusResult recordTelemetryConsent(Project project) {
         if (project == null) {
             AgentGitHubService.$$$reportNull$$$0(8);
         }
@@ -264,7 +258,7 @@ implements GitHubService {
             String title = CopilotBundle.get("deviceAuth.progressTitle");
             return (AuthStatusResult)ProgressManager.getInstance().run((Task.WithResult)new Task.WithResult<AuthStatusResult, Exception>(project, title, true){
 
-                protected AuthStatusResult compute(@NotNull ProgressIndicator indicator) {
+                protected AuthStatusResult compute(ProgressIndicator indicator) {
                     if (indicator == null) {
                         3.$$$reportNull$$$0(0);
                     }
@@ -280,7 +274,7 @@ implements GitHubService {
                 }
 
                 private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                    throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/lang/agent/AgentGitHubService$3", "compute"));
+                    throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/lang/agent/AgentGitHubService$3", "compute"));
                 }
             });
         }
@@ -292,7 +286,7 @@ implements GitHubService {
         }
     }
 
-    public static <T> T awaitWithCheckCanceled(@NotNull Promise<T> promise, @Nullable ProgressIndicator indicator) {
+    public static <T> T awaitWithCheckCanceled(Promise<T> promise, ProgressIndicator indicator) {
         if (promise == null) {
             AgentGitHubService.$$$reportNull$$$0(9);
         }
@@ -405,7 +399,7 @@ implements GitHubService {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

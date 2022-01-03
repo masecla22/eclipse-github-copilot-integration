@@ -25,11 +25,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class AuthStatusResult {
     @SerializedName(value="status")
-    @NotNull
-    public Status status;
+        public Status status;
     @SerializedName(value="status")
-    @Nullable
-    public String user;
+        public String user;
 
     public boolean isSignedIn() {
         return this.status == Status.Ok || this.status == Status.MaybeOk;
@@ -47,8 +45,7 @@ public class AuthStatusResult {
         return this.status == Status.FailedToGetToken || this.status == Status.TokenInvalid;
     }
 
-    @NotNull
-    public Status getStatus() {
+        public Status getStatus() {
         Status status = this.status;
         if (status == null) {
             AuthStatusResult.$$$reportNull$$$0(0);
@@ -56,12 +53,11 @@ public class AuthStatusResult {
         return status;
     }
 
-    @Nullable
-    public String getUser() {
+        public String getUser() {
         return this.user;
     }
 
-    public void setStatus(@NotNull Status status) {
+    public void setStatus(Status status) {
         if (status == null) {
             AuthStatusResult.$$$reportNull$$$0(1);
         }
@@ -71,7 +67,7 @@ public class AuthStatusResult {
         this.status = status;
     }
 
-    public void setUser(@Nullable String user) {
+    public void setUser(String user) {
         this.user = user;
     }
 
@@ -114,7 +110,7 @@ public class AuthStatusResult {
         return "AuthStatusResult(status=" + this.getStatus() + ", user=" + this.getUser() + ")";
     }
 
-    public AuthStatusResult(@NotNull Status status, @Nullable String user) {
+    public AuthStatusResult(Status status, String user) {
         if (status == null) {
             AuthStatusResult.$$$reportNull$$$0(2);
         }
@@ -133,12 +129,12 @@ public class AuthStatusResult {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: 
             case 2: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }
@@ -239,8 +235,7 @@ public class AuthStatusResult {
             this.id = id;
         }
 
-        @Nullable
-        static Status findById(@NotNull String id) {
+                static Status findById(String id) {
             if (id == null) {
                 Status.$$$reportNull$$$0(0);
             }
@@ -252,7 +247,7 @@ public class AuthStatusResult {
         }
 
         private static /* synthetic */ void $$$reportNull$$$0(int n) {
-            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "id", "com/github/copilot/lang/agent/commands/AuthStatusResult$Status", "findById"));
+            throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "id", "com/github/copilot/lang/agent/commands/AuthStatusResult$Status", "findById"));
         }
     }
 }

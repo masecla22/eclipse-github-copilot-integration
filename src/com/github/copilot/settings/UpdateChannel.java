@@ -16,8 +16,7 @@ public enum UpdateChannel implements PresentableEnum
     Stable(null),
     Nightly("https://plugins.jetbrains.com/plugins/nightly/17718");
 
-    @Nullable
-    private final String channelUrl;
+        private final String channelUrl;
 
     public String getPresentableText() {
         switch (this) {
@@ -35,8 +34,7 @@ public enum UpdateChannel implements PresentableEnum
         this.channelUrl = channelUrl;
     }
 
-    @Nullable
-    public String getChannelUrl() {
+        public String getChannelUrl() {
         return this.channelUrl;
     }
 }

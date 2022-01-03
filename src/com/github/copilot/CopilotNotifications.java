@@ -26,7 +26,7 @@ public final class CopilotNotifications {
     private CopilotNotifications() {
     }
 
-    public static Notification createFullContentNotification(@NotNull String title, @NotNull String content, @NotNull NotificationType type, boolean expireOnLinkClick) {
+    public static Notification createFullContentNotification(String title, String content, NotificationType type, boolean expireOnLinkClick) {
         if (title == null) {
             CopilotNotifications.$$$reportNull$$$0(0);
         }
@@ -63,13 +63,13 @@ public final class CopilotNotifications {
         }
         objectArray[1] = "com/github/copilot/CopilotNotifications";
         objectArray[2] = "createFullContentNotification";
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 
     private static class FullContent
     extends Notification
     implements NotificationFullContent {
-        public FullContent(@NotNull String groupId, @NotNull @NlsContexts.NotificationTitle String title, @NotNull @NlsContexts.NotificationContent String content, @NotNull NotificationType type) {
+        public FullContent(String groupId, @NlsContexts.NotificationTitle String title, @NlsContexts.NotificationContent String content, NotificationType type) {
             if (groupId == null) {
                 FullContent.$$$reportNull$$$0(0);
             }
@@ -112,7 +112,7 @@ public final class CopilotNotifications {
             }
             objectArray[1] = "com/github/copilot/CopilotNotifications$FullContent";
             objectArray[2] = "<init>";
-            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+            throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
         }
     }
 }

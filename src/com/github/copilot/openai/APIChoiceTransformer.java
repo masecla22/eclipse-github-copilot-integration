@@ -62,20 +62,15 @@ import org.jetbrains.annotations.Nullable;
 class APIChoiceTransformer {
     private static final Logger LOG = Logger.getInstance(APIChoiceTransformer.class);
     private static final Pattern NEWLINE_PATTERN = Pattern.compile("\n");
-    @NotNull
-    private final LanguageEditorRequest request;
-    @NotNull
-    private final TelemetryData telemetryBaseData;
-    @NotNull
-    private final Consumer<APIChoice> onNewItem;
+        private final LanguageEditorRequest request;
+        private final TelemetryData telemetryBaseData;
+        private final Consumer<APIChoice> onNewItem;
     private final Int2ObjectMap<APIJsonDataStreaming> solutions;
-    @Nullable
-    private volatile String completionId;
+        private volatile String completionId;
     private volatile int completionCreatedTimestamp;
-    @Nullable
-    private volatile CompletionResponseInfo completionResponseInfo;
+        private volatile CompletionResponseInfo completionResponseInfo;
 
-    APIChoiceTransformer(@NotNull LanguageEditorRequest request, @NotNull TelemetryData telemetryBaseData, @NotNull Consumer<APIChoice> onNewItem) {
+    APIChoiceTransformer(LanguageEditorRequest request, TelemetryData telemetryBaseData, Consumer<APIChoice> onNewItem) {
         if (request == null) {
             APIChoiceTransformer.$$$reportNull$$$0(0);
         }
@@ -91,7 +86,7 @@ class APIChoiceTransformer {
         this.onNewItem = onNewItem;
     }
 
-    void process(@NotNull JsonObject json) {
+    void process(JsonObject json) {
         if (json == null) {
             APIChoiceTransformer.$$$reportNull$$$0(3);
         }
@@ -158,7 +153,7 @@ class APIChoiceTransformer {
         this.solutions.clear();
     }
 
-    private Pair<APIChoice, APILogprobs> prepareSolutionForReturn(@NotNull APIJsonDataStreaming solution, @Nullable Integer finishOffset, int index) {
+    private Pair<APIChoice, APILogprobs> prepareSolutionForReturn(APIJsonDataStreaming solution, Integer finishOffset, int index) {
         if (solution == null) {
             APIChoiceTransformer.$$$reportNull$$$0(4);
         }
@@ -174,7 +169,7 @@ class APIChoiceTransformer {
         return Pair.create((Object)apiChoice, (Object)jsonData);
     }
 
-    private APIChoice convertToAPIChoice(@NotNull String completionText, @NotNull APILogprobs logprobs, int choiceIndex) {
+    private APIChoice convertToAPIChoice(String completionText, APILogprobs logprobs, int choiceIndex) {
         if (completionText == null) {
             APIChoiceTransformer.$$$reportNull$$$0(5);
         }
@@ -190,8 +185,7 @@ class APIChoiceTransformer {
         return new DefaultAPIChoice(responseInfo, fixedLines, logprobs.getTokens() == null ? 0 : logprobs.getTokens().size(), choiceIndex, this.request.getRequestId(), id, this.completionCreatedTimestamp, logprobs.calculateMeanLogprob(), this.telemetryBaseData, false);
     }
 
-    @NotNull
-    private APILogprobs convertToAPIJsonData(@NotNull APIJsonDataStreaming data) {
+        private APILogprobs convertToAPIJsonData(APIJsonDataStreaming data) {
         if (data == null) {
             APIChoiceTransformer.$$$reportNull$$$0(7);
         }
@@ -228,7 +222,7 @@ class APIChoiceTransformer {
         return new APILogprobs((List<Integer>)flattenedOffsets, (List<Double>)flattenedLogprobs, flattenedTopLogprobs, flattenedTokens);
     }
 
-    void updateWithResponse(@NotNull HttpResponse.ResponseInfo responseInfo) {
+    void updateWithResponse(HttpResponse.ResponseInfo responseInfo) {
         if (responseInfo == null) {
             APIChoiceTransformer.$$$reportNull$$$0(8);
         }
@@ -236,7 +230,7 @@ class APIChoiceTransformer {
         this.completionResponseInfo = new CompletionResponseInfo(OpenAIHttpUtil.getRequestId(responseInfo), OpenAIHttpUtil.getServerExperiments(responseInfo), OpenAIHttpUtil.getProxyRole(responseInfo), OpenAIHttpUtil.getModelEndpoint(responseInfo), this.request.getRequestTimestamp(), OpenAIHttpUtil.getProcessingTime(responseInfo));
     }
 
-    private void logCompletionChoice(@NotNull APIChoice apiChoice, @NotNull APILogprobs logprobs) {
+    private void logCompletionChoice(APIChoice apiChoice, APILogprobs logprobs) {
         if (apiChoice == null) {
             APIChoiceTransformer.$$$reportNull$$$0(9);
         }
@@ -344,7 +338,7 @@ class APIChoiceTransformer {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

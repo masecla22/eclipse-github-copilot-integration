@@ -31,16 +31,14 @@ public final class OpenAiRequestBody {
     @SerializedName(value="stop")
     public String[] stops;
     @SerializedName(value="feature_flags")
-    @Nullable
-    public String[] experimentalFeatures;
+        public String[] experimentalFeatures;
     @SerializedName(value="extra")
-    @Nullable
-    public Extra extra;
+        public Extra extra;
 
     /*
      * WARNING - void declaration
      */
-    public OpenAiRequestBody(@NotNull String prompt, int maxTokens, double temperature, int topP, int completionCount, int logprobs, boolean stream, String[] stops, boolean useServerSideIndentation, int n) {
+    public OpenAiRequestBody(String prompt, int maxTokens, double temperature, int topP, int completionCount, int logprobs, boolean stream, String[] stops, boolean useServerSideIndentation, int n) {
         void nextLineIndent;
         if (prompt == null) {
             OpenAiRequestBody.$$$reportNull$$$0(0);
@@ -91,13 +89,11 @@ public final class OpenAiRequestBody {
         return this.stops;
     }
 
-    @Nullable
-    public String[] getExperimentalFeatures() {
+        public String[] getExperimentalFeatures() {
         return this.experimentalFeatures;
     }
 
-    @Nullable
-    public Extra getExtra() {
+        public Extra getExtra() {
         return this.extra;
     }
 
@@ -133,11 +129,11 @@ public final class OpenAiRequestBody {
         this.stops = stops;
     }
 
-    public void setExperimentalFeatures(@Nullable String[] experimentalFeatures) {
+    public void setExperimentalFeatures(String[] experimentalFeatures) {
         this.experimentalFeatures = experimentalFeatures;
     }
 
-    public void setExtra(@Nullable Extra extra) {
+    public void setExtra(Extra extra) {
         this.extra = extra;
     }
 
@@ -207,7 +203,7 @@ public final class OpenAiRequestBody {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "prompt", "com/github/copilot/openai/OpenAiRequestBody", "<init>"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "prompt", "com/github/copilot/openai/OpenAiRequestBody", "<init>"));
     }
 
     public static final class Extra {

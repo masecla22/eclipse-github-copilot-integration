@@ -13,14 +13,12 @@ import org.jetbrains.annotations.NotNull;
 public class RecordTelemetryConsentCommand
 implements JsonRpcCommand<AuthStatusResult> {
     @Override
-    @NotNull
-    public String getCommandName() {
+        public String getCommandName() {
         return "recordTelemetryConsent";
     }
 
     @Override
-    @NotNull
-    public Class<AuthStatusResult> getResponseType() {
+        public Class<AuthStatusResult> getResponseType() {
         return AuthStatusResult.class;
     }
 }

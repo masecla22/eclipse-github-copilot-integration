@@ -45,7 +45,7 @@ public class CopilotEditorListener
 implements EditorFactoryListener {
     private static final Set<String> REJECTED_COMMANDS = Set.of("Typing", "Backspace", "Choose Lookup Item", "Choose Lookup Item Replace");
 
-    public void editorCreated(@NotNull EditorFactoryEvent event) {
+    public void editorCreated(EditorFactoryEvent event) {
         Editor editor;
         Project project;
         if (event == null) {
@@ -61,22 +61,21 @@ implements EditorFactoryListener {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "event", "com/github/copilot/editor/CopilotEditorListener", "editorCreated"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "event", "com/github/copilot/editor/CopilotEditorListener", "editorCreated"));
     }
 
     private static final class CopilotDocumentListener
     implements BulkAwareDocumentListener {
-        @NotNull
-        private final Editor editor;
+                private final Editor editor;
 
-        public CopilotDocumentListener(@NotNull Editor editor) {
+        public CopilotDocumentListener(Editor editor) {
             if (editor == null) {
                 CopilotDocumentListener.$$$reportNull$$$0(0);
             }
             this.editor = editor;
         }
 
-        public void documentChangedNonBulk(@NotNull DocumentEvent event) {
+        public void documentChangedNonBulk(DocumentEvent event) {
             Project project;
             if (event == null) {
                 CopilotDocumentListener.$$$reportNull$$$0(1);
@@ -139,23 +138,22 @@ implements EditorFactoryListener {
                     break;
                 }
             }
-            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+            throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
         }
     }
 
     private static final class CopilotCaretListener
     implements CaretListener {
-        @NotNull
-        private final Editor editor;
+                private final Editor editor;
 
-        public CopilotCaretListener(@NotNull Editor editor) {
+        public CopilotCaretListener(Editor editor) {
             if (editor == null) {
                 CopilotCaretListener.$$$reportNull$$$0(0);
             }
             this.editor = editor;
         }
 
-        public void caretPositionChanged(@NotNull CaretEvent event) {
+        public void caretPositionChanged(CaretEvent event) {
             Project project;
             if (event == null) {
                 CopilotCaretListener.$$$reportNull$$$0(1);
@@ -201,7 +199,7 @@ implements EditorFactoryListener {
                     break;
                 }
             }
-            throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+            throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
         }
     }
 }

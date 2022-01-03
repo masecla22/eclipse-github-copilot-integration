@@ -16,13 +16,11 @@ import org.jetbrains.annotations.NotNull;
 @Immutable
 final class DefaultCopilotEditorInlay
 implements CopilotEditorInlay {
-    @NotNull
-    private final CopilotCompletionType type;
+        private final CopilotCompletionType type;
     private final int editorOffset;
-    @NotNull
-    private final List<String> completionLines;
+        private final List<String> completionLines;
 
-    public DefaultCopilotEditorInlay(@NotNull CopilotCompletionType type, int editorOffset, @NotNull List<String> completionLines) {
+    public DefaultCopilotEditorInlay(CopilotCompletionType type, int editorOffset, List<String> completionLines) {
         if (type == null) {
             DefaultCopilotEditorInlay.$$$reportNull$$$0(0);
         }
@@ -35,8 +33,7 @@ implements CopilotEditorInlay {
     }
 
     @Override
-    @NotNull
-    public CopilotCompletionType getType() {
+        public CopilotCompletionType getType() {
         CopilotCompletionType copilotCompletionType = this.type;
         if (copilotCompletionType == null) {
             DefaultCopilotEditorInlay.$$$reportNull$$$0(2);
@@ -45,8 +42,7 @@ implements CopilotEditorInlay {
     }
 
     @Override
-    @NotNull
-    public List<String> getLines() {
+        public List<String> getLines() {
         List<String> list = this.completionLines;
         if (list == null) {
             DefaultCopilotEditorInlay.$$$reportNull$$$0(3);
@@ -59,8 +55,7 @@ implements CopilotEditorInlay {
         return this.editorOffset;
     }
 
-    @NotNull
-    public List<String> getCompletionLines() {
+        public List<String> getCompletionLines() {
         List<String> list = this.completionLines;
         if (list == null) {
             DefaultCopilotEditorInlay.$$$reportNull$$$0(4);
@@ -112,13 +107,13 @@ implements CopilotEditorInlay {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 2: 
             case 3: 
             case 4: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

@@ -13,8 +13,7 @@ public enum CopilotLanguage {
     Java,
     Unknown;
 
-    @NotNull
-    private final String enginePath;
+        private final String enginePath;
 
     private CopilotLanguage() {
         this("/v1/engines/copilot-codex");
@@ -33,8 +32,7 @@ public enum CopilotLanguage {
         return index == -1 ? path : path.substring(index + 1);
     }
 
-    @NotNull
-    public String getEnginePath() {
+        public String getEnginePath() {
         String string = this.enginePath;
         if (string == null) {
             CopilotLanguage.$$$reportNull$$$0(1);
@@ -50,11 +48,11 @@ public enum CopilotLanguage {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 1: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

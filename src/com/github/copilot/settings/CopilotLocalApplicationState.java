@@ -14,13 +14,11 @@ import javax.annotation.Nullable;
 
 public class CopilotLocalApplicationState {
     @OptionTag(value="lastUpdateCheck", converter=ZonedDateTimeConverter.class)
-    @Nullable
-    public ZonedDateTime lastUpdateCheck = null;
+        public ZonedDateTime lastUpdateCheck = null;
     @OptionTag(value="checkEarlyBirdChannel")
     public boolean checkEarlyBirdChannel = true;
     @OptionTag(value="githubToken")
-    @Nullable
-    public volatile String githubToken;
+        public volatile String githubToken;
     @OptionTag(value="githubTokenMigration")
     public volatile boolean githubTokenMigration;
 

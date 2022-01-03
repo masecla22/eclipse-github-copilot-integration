@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class CopilotTestExceptionAction
 extends AnAction {
-    public void update(@NotNull AnActionEvent e) {
+    public void update(AnActionEvent e) {
         if (e == null) {
             CopilotTestExceptionAction.$$$reportNull$$$0(0);
         }
@@ -28,7 +28,7 @@ extends AnAction {
         return true;
     }
 
-    public void actionPerformed(@NotNull AnActionEvent e) {
+    public void actionPerformed(AnActionEvent e) {
         if (e == null) {
             CopilotTestExceptionAction.$$$reportNull$$$0(1);
         }
@@ -52,7 +52,7 @@ extends AnAction {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

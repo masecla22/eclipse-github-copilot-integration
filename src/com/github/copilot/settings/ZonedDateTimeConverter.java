@@ -21,8 +21,7 @@ public final class ZonedDateTimeConverter
 extends Converter<ZonedDateTime> {
     private static final Logger LOG = Logger.getInstance(ZonedDateTimeConverter.class);
 
-    @Nullable
-    public ZonedDateTime fromString(@NotNull String value) {
+        public ZonedDateTime fromString(String value) {
         if (value == null) {
             ZonedDateTimeConverter.$$$reportNull$$$0(0);
         }
@@ -35,7 +34,7 @@ extends Converter<ZonedDateTime> {
         }
     }
 
-    public String toString(@NotNull ZonedDateTime value) {
+    public String toString(ZonedDateTime value) {
         if (value == null) {
             ZonedDateTimeConverter.$$$reportNull$$$0(1);
         }
@@ -59,7 +58,7 @@ extends Converter<ZonedDateTime> {
                 break;
             }
         }
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", objectArray));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
     }
 }
 

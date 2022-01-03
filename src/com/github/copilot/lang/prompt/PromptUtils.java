@@ -28,9 +28,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class PromptUtils {
-    @Nullable
-    @RequiresReadLock
-    public static PromptInfo getPrompt(@NotNull PromptLanguageSupport promptSupport, @NotNull PsiFile file, @Nullable String relativeFilePath, @NotNull String documentContent, int offset) {
+        @RequiresReadLock
+    public static PromptInfo getPrompt(PromptLanguageSupport promptSupport, PsiFile file, String relativeFilePath, String documentContent, int offset) {
         if (promptSupport == null) {
             PromptUtils.$$$reportNull$$$0(0);
         }
@@ -43,8 +42,7 @@ public class PromptUtils {
         return PromptUtils.getPrompt(promptSupport, file, relativeFilePath, documentContent, offset, 1500, LanguageMarker.Top, PathMarker.Top, SiblingOption.ContextOverSiblings, LocalImportContext.NoContext);
     }
 
-    @Nullable
-    public static PromptInfo getPrompt(@NotNull PromptLanguageSupport promptSupport, @NotNull PsiFile file, @Nullable String relativeFilePath, @NotNull String documentContent, int documentOffset, int maxPromptLength, @NotNull LanguageMarker languageMarker, @NotNull PathMarker pathMarker, @NotNull SiblingOption siblingOption, @NotNull LocalImportContext importContext) {
+        public static PromptInfo getPrompt(PromptLanguageSupport promptSupport, PsiFile file, String relativeFilePath, String documentContent, int documentOffset, int maxPromptLength, LanguageMarker languageMarker, PathMarker pathMarker, SiblingOption siblingOption, LocalImportContext importContext) {
         int lastLinefeed;
         Object prompt;
         String marker;
@@ -125,7 +123,7 @@ public class PromptUtils {
         return new PromptInfo(languageId, trimmed, trailingWS, PromptUtils.tokenLength(trimmed), promptSupport.getBlockMode());
     }
 
-    private static int insertSiblingFunctions(@NotNull PromptLanguageSupport promptSupport, @NotNull StringBuilder doc, int offset, @NotNull PsiFile file, int tokenLimit) {
+    private static int insertSiblingFunctions(PromptLanguageSupport promptSupport, StringBuilder doc, int offset, PsiFile file, int tokenLimit) {
         if (promptSupport == null) {
             PromptUtils.$$$reportNull$$$0(10);
         }
@@ -162,8 +160,7 @@ public class PromptUtils {
         return textToInsert.length();
     }
 
-    @NotNull
-    static String findIndent(@NotNull CharSequence doc, int offset) {
+        static String findIndent(CharSequence doc, int offset) {
         char c;
         int index;
         if (doc == null) {
@@ -185,8 +182,7 @@ public class PromptUtils {
         return string;
     }
 
-    @NotNull
-    static String takeLastLinesTokens(@NotNull String text, int budget) {
+        static String takeLastLinesTokens(String text, int budget) {
         String suffix;
         if (text == null) {
             PromptUtils.$$$reportNull$$$0(15);
@@ -205,8 +201,7 @@ public class PromptUtils {
         return string;
     }
 
-    @NotNull
-    static String takeLastTokens(@NotNull String text, int n) {
+        static String takeLastTokens(String text, int n) {
         if (text == null) {
             PromptUtils.$$$reportNull$$$0(18);
         }
@@ -219,22 +214,21 @@ public class PromptUtils {
         return string;
     }
 
-    public static int tokenLength(@NotNull CharSequence text) {
+    public static int tokenLength(CharSequence text) {
         if (text == null) {
             PromptUtils.$$$reportNull$$$0(20);
         }
         return (int)Math.ceil((double)text.length() / 2.5);
     }
 
-    static boolean hasLanguageMarker(@NotNull String source) {
+    static boolean hasLanguageMarker(String source) {
         if (source == null) {
             PromptUtils.$$$reportNull$$$0(21);
         }
         return source.startsWith("#!") || source.startsWith("<!DOCTYPE");
     }
 
-    @NotNull
-    static String withLinefeed(@NotNull String text) {
+        static String withLinefeed(String text) {
         if (text == null) {
             PromptUtils.$$$reportNull$$$0(22);
         }
@@ -252,8 +246,7 @@ public class PromptUtils {
         return string;
     }
 
-    @NotNull
-    static String withLinefeed(@NotNull CharSequence text) {
+        static String withLinefeed(CharSequence text) {
         int length;
         if (text == null) {
             PromptUtils.$$$reportNull$$$0(25);
@@ -280,7 +273,7 @@ public class PromptUtils {
         String string;
         switch (n) {
             default: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
             case 14: 
@@ -291,7 +284,7 @@ public class PromptUtils {
             case 24: 
             case 26: 
             case 27: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
         }

@@ -17,7 +17,7 @@ implements JsonRpcMessageHandler {
     private final List<String> messages = Lists.newArrayList();
 
     @Override
-    public void handleJsonMessage(@NotNull String message) {
+    public void handleJsonMessage(String message) {
         if (message == null) {
             StoringJsonRpcMessageHandler.$$$reportNull$$$0(0);
         }
@@ -29,7 +29,7 @@ implements JsonRpcMessageHandler {
     }
 
     private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for @NotNull parameter '%s' of %s.%s must not be null", "message", "com/github/copilot/lang/agent/rpc/StoringJsonRpcMessageHandler", "handleJsonMessage"));
+        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "message", "com/github/copilot/lang/agent/rpc/StoringJsonRpcMessageHandler", "handleJsonMessage"));
     }
 }
 

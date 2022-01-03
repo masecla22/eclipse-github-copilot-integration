@@ -47,8 +47,7 @@ public class CopilotApplicationState {
     public boolean enableCompletions = true;
     @XCollection(style=XCollection.Style.v2, propertyElementName="disabledLanguages", elementTypes={String.class})
     private final Set<String> disabledLanguageIds = new HashSet<String>();
-    @Nullable
-    @OptionTag(value="inlayTextColor", converter=ColorConverter.class)
+        @OptionTag(value="inlayTextColor", converter=ColorConverter.class)
     public Color inlayTextColor = null;
     @OptionTag(value="showIdeCompletions")
     private boolean showIdeCompletions = false;
@@ -57,8 +56,7 @@ public class CopilotApplicationState {
     @OptionTag(value="checkForUpdate")
     public boolean checkForUpdate = true;
     @OptionTag(value="telemetryTermsAcceptedDate", converter=ZonedDateTimeConverter.class)
-    @Nullable
-    public ZonedDateTime telemetryAcceptedDate = null;
+        public ZonedDateTime telemetryAcceptedDate = null;
 
     @Transient
     public boolean isTelemetryTermsAccepted() {
@@ -83,8 +81,7 @@ public class CopilotApplicationState {
         }
     }
 
-    @NotNull
-    public Set<String> getDisabledLanguageIds() {
+        public Set<String> getDisabledLanguageIds() {
         Set<String> set = Collections.unmodifiableSet(this.disabledLanguageIds);
         if (set == null) {
             CopilotApplicationState.$$$reportNull$$$0(0);
@@ -92,14 +89,14 @@ public class CopilotApplicationState {
         return set;
     }
 
-    public boolean isEnabled(@NotNull Language language) {
+    public boolean isEnabled(Language language) {
         if (language == null) {
             CopilotApplicationState.$$$reportNull$$$0(1);
         }
         return !this.disabledLanguageIds.contains(language.getID());
     }
 
-    public void setDisabledLanguageIds(@NotNull Set<String> languageIds) {
+    public void setDisabledLanguageIds(Set<String> languageIds) {
         if (languageIds == null) {
             CopilotApplicationState.$$$reportNull$$$0(2);
         }
@@ -107,14 +104,14 @@ public class CopilotApplicationState {
         this.disabledLanguageIds.addAll(languageIds);
     }
 
-    public void enableLanguage(@NotNull Language language) {
+    public void enableLanguage(Language language) {
         if (language == null) {
             CopilotApplicationState.$$$reportNull$$$0(3);
         }
         this.disabledLanguageIds.remove(language.getID());
     }
 
-    public void disableLanguage(@NotNull Language language) {
+    public void disableLanguage(Language language) {
         if (language == null) {
             CopilotApplicationState.$$$reportNull$$$0(4);
         }
@@ -211,14 +208,14 @@ public class CopilotApplicationState {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: 
             case 2: 
             case 3: 
             case 4: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

@@ -13,14 +13,11 @@ import org.jetbrains.annotations.NotNull;
 
 public class Document {
     @SerializedName(value="source")
-    @NotNull
-    String source;
+        String source;
     @SerializedName(value="languageId")
-    @NotNull
-    String languageId;
+        String languageId;
     @SerializedName(value="position")
-    @NotNull
-    Position position;
+        Position position;
     @SerializedName(value="insertSpaces")
     boolean useSpaces;
     @SerializedName(value="tabSize")
@@ -30,8 +27,7 @@ public class Document {
     @SerializedName(value="relativePath")
     String relativePath;
 
-    @NotNull
-    public String getSource() {
+        public String getSource() {
         String string = this.source;
         if (string == null) {
             Document.$$$reportNull$$$0(0);
@@ -39,8 +35,7 @@ public class Document {
         return string;
     }
 
-    @NotNull
-    public String getLanguageId() {
+        public String getLanguageId() {
         String string = this.languageId;
         if (string == null) {
             Document.$$$reportNull$$$0(1);
@@ -48,8 +43,7 @@ public class Document {
         return string;
     }
 
-    @NotNull
-    public Position getPosition() {
+        public Position getPosition() {
         Position position = this.position;
         if (position == null) {
             Document.$$$reportNull$$$0(2);
@@ -73,7 +67,7 @@ public class Document {
         return this.relativePath;
     }
 
-    public void setSource(@NotNull String source) {
+    public void setSource(String source) {
         if (source == null) {
             Document.$$$reportNull$$$0(3);
         }
@@ -83,7 +77,7 @@ public class Document {
         this.source = source;
     }
 
-    public void setLanguageId(@NotNull String languageId) {
+    public void setLanguageId(String languageId) {
         if (languageId == null) {
             Document.$$$reportNull$$$0(4);
         }
@@ -93,7 +87,7 @@ public class Document {
         this.languageId = languageId;
     }
 
-    public void setPosition(@NotNull Position position) {
+    public void setPosition(Position position) {
         if (position == null) {
             Document.$$$reportNull$$$0(5);
         }
@@ -187,7 +181,7 @@ public class Document {
         return "Document(source=" + this.getSource() + ", languageId=" + this.getLanguageId() + ", position=" + this.getPosition() + ", useSpaces=" + this.isUseSpaces() + ", tabSize=" + this.getTabSize() + ", path=" + this.getPath() + ", relativePath=" + this.getRelativePath() + ")";
     }
 
-    public Document(@NotNull String source, @NotNull String languageId, @NotNull Position position, boolean useSpaces, int tabSize, String path, String relativePath) {
+    public Document(String source, String languageId, Position position, boolean useSpaces, int tabSize, String path, String relativePath) {
         if (source == null) {
             Document.$$$reportNull$$$0(6);
         }
@@ -223,7 +217,7 @@ public class Document {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 3: 
@@ -232,7 +226,7 @@ public class Document {
             case 6: 
             case 7: 
             case 8: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }

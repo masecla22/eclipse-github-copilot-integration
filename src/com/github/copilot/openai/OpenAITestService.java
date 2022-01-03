@@ -24,8 +24,7 @@ extends OpenAIServiceImpl {
     private final AtomicInteger completionRequestCount = new AtomicInteger();
     public volatile String TEST_COMPLETION_URL;
 
-    @NotNull
-    public static OpenAITestService getInstance() {
+        public static OpenAITestService getInstance() {
         OpenAITestService openAITestService = (OpenAITestService)ApplicationManager.getApplication().getService(OpenAIService.class);
         if (openAITestService == null) {
             OpenAITestService.$$$reportNull$$$0(0);
@@ -37,7 +36,7 @@ extends OpenAIServiceImpl {
      * WARNING - void declaration
      */
     @Override
-    public void fetchCompletions(@NotNull String apiToken, @NotNull LanguageEditorRequest request, @NotNull String prompt, int completionCount, double temperature, int maxTokens, int topP, @NotNull BlockMode blockMode, boolean multilineCompletions, @NotNull TelemetryData telemetryBaseData,  @NotNull Flow.Subscriber<APIChoice> subscriber) {
+    public void fetchCompletions(String apiToken, LanguageEditorRequest request, String prompt, int completionCount, double temperature, int maxTokens, int topP, BlockMode blockMode, boolean multilineCompletions, TelemetryData telemetryBaseData,  Flow.Subscriber<APIChoice> subscriber) {
         void subscriber2;
         if (apiToken == null) {
             OpenAITestService.$$$reportNull$$$0(1);
@@ -62,8 +61,7 @@ extends OpenAIServiceImpl {
     }
 
     @Override
-    @NotNull
-    protected String getCompletionURL(@NotNull LanguageSupport lang) {
+        protected String getCompletionURL(LanguageSupport lang) {
         String override;
         if (lang == null) {
             OpenAITestService.$$$reportNull$$$0(7);
@@ -98,7 +96,7 @@ extends OpenAIServiceImpl {
         String string;
         switch (n) {
             default: {
-                string = "@NotNull method %s.%s must not return null";
+                string = "method %s.%s must not return null";
                 break;
             }
             case 1: 
@@ -108,7 +106,7 @@ extends OpenAIServiceImpl {
             case 5: 
             case 6: 
             case 7: {
-                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                string = "Argument for parameter '%s' of %s.%s must not be null";
                 break;
             }
         }
