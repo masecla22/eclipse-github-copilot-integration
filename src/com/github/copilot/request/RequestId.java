@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package com.github.copilot.request;
 
 import java.util.concurrent.atomic.AtomicInteger;

@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- */
 package com.github.copilot.openai;
 
 import java.util.Map;
