@@ -1,0 +1,18 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  javax.annotation.concurrent.Immutable
+ *  org.jetbrains.annotations.NotNull
+ */
+package com.github.copilot.editor;
+
+import com.github.copilot.request.EditorRequest;
+import javax.annotation.concurrent.Immutable;
+import org.jetbrains.annotations.NotNull;
+
+@Immutable
+public interface InlayMessage {
+    public void inlaysUpdated(@NotNull EditorRequest var1);
+}
+

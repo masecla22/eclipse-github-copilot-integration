@@ -1,0 +1,557 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  com.intellij.openapi.util.Pair
+ *  com.intellij.openapi.util.ProperTextRange
+ *  com.intellij.openapi.util.TextRange
+ *  com.intellij.util.diff.Diff
+ *  com.intellij.util.diff.Diff$Change
+ *  com.intellij.util.diff.FilesTooBigForDiffException
+ *  com.intellij.util.text.TextRanges
+ *  org.jetbrains.annotations.NotNull
+ *  org.jetbrains.annotations.Nullable
+ */
+package com.github.copilot.util;
+
+import com.intellij.openapi.util.Pair;
+import com.intellij.openapi.util.ProperTextRange;
+import com.intellij.openapi.util.TextRange;
+import com.intellij.util.diff.Diff;
+import com.intellij.util.diff.FilesTooBigForDiffException;
+import com.intellij.util.text.TextRanges;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+public final class CopilotStringUtil {
+    private CopilotStringUtil() {
+    }
+
+    @NotNull
+    public static String trailingWhitespace(@NotNull String text) {
+        char ch;
+        int endOffset;
+        if (text == null) {
+            CopilotStringUtil.$$$reportNull$$$0(0);
+        }
+        if (text.isEmpty()) {
+            return "";
+        }
+        for (endOffset = text.length(); endOffset > 0 && (ch = text.charAt(endOffset - 1)) != '\n' && Character.isWhitespace(ch); --endOffset) {
+        }
+        String string = text.substring(endOffset);
+        if (string == null) {
+            CopilotStringUtil.$$$reportNull$$$0(1);
+        }
+        return string;
+    }
+
+    public static int trailingWhitespaceLength(@NotNull String text) {
+        int length;
+        char ch;
+        int endOffset;
+        if (text == null) {
+            CopilotStringUtil.$$$reportNull$$$0(2);
+        }
+        if (text.isEmpty()) {
+            return 0;
+        }
+        for (endOffset = length = text.length(); endOffset > 0 && ((ch = text.charAt(endOffset - 1)) == ' ' || ch == '\t'); --endOffset) {
+        }
+        return length - endOffset;
+    }
+
+    @NotNull
+    public static String leadingWhitespace(@NotNull String text) {
+        if (text == null) {
+            CopilotStringUtil.$$$reportNull$$$0(3);
+        }
+        if (text.isEmpty()) {
+            return "";
+        }
+        String string = text.substring(0, CopilotStringUtil.leadingWhitespaceLength(text));
+        if (string == null) {
+            CopilotStringUtil.$$$reportNull$$$0(4);
+        }
+        return string;
+    }
+
+    public static int leadingWhitespaceLength(@NotNull String text) {
+        char ch;
+        int offset;
+        if (text == null) {
+            CopilotStringUtil.$$$reportNull$$$0(5);
+        }
+        int length = text.length();
+        for (offset = 0; offset < length && (ch = text.charAt(offset)) != '\n' && Character.isWhitespace(ch); ++offset) {
+        }
+        return offset;
+    }
+
+    @NotNull
+    public static String stripLeading(@NotNull String text) {
+        if (text == null) {
+            CopilotStringUtil.$$$reportNull$$$0(6);
+        }
+        if (text.isEmpty()) {
+            return "";
+        }
+        int length = CopilotStringUtil.leadingWhitespaceLength(text);
+        String string = length == 0 ? text : text.substring(length);
+        if (string == null) {
+            CopilotStringUtil.$$$reportNull$$$0(7);
+        }
+        return string;
+    }
+
+    public static int findOverlapLength(@NotNull String withTrailing, @NotNull String withLeading) {
+        if (withTrailing == null) {
+            CopilotStringUtil.$$$reportNull$$$0(8);
+        }
+        if (withLeading == null) {
+            CopilotStringUtil.$$$reportNull$$$0(9);
+        }
+        if (withTrailing.isEmpty() || withLeading.isEmpty()) {
+            return 0;
+        }
+        int trailingLength = withTrailing.length();
+        for (int i = 0; i <= trailingLength; ++i) {
+            if (!withLeading.startsWith(withTrailing.substring(i))) continue;
+            return trailingLength - i;
+        }
+        return 0;
+    }
+
+    public static int findOverlappingLines(@NotNull List<String> withTrailing, @NotNull List<String> withLeading) {
+        if (withTrailing == null) {
+            CopilotStringUtil.$$$reportNull$$$0(10);
+        }
+        if (withLeading == null) {
+            CopilotStringUtil.$$$reportNull$$$0(11);
+        }
+        if (withTrailing.isEmpty() || withLeading.isEmpty()) {
+            return 0;
+        }
+        int trailingSize = withTrailing.size();
+        int leadingSize = withLeading.size();
+        int maxLines = Math.min(trailingSize, leadingSize);
+        int overlapping = 0;
+        for (int i = 1; i <= maxLines; ++i) {
+            List<String> lines = withTrailing.subList(trailingSize - i, trailingSize);
+            if (CopilotStringUtil.linesMatch(withLeading.subList(0, i), lines, true)) {
+                overlapping = i;
+                continue;
+            }
+            if (overlapping > 0) break;
+        }
+        return overlapping;
+    }
+
+    @Nullable
+    public static List<Pair<Integer, String>> createDiffInlays(@NotNull String editor, @NotNull String completion) {
+        if (editor == null) {
+            CopilotStringUtil.$$$reportNull$$$0(12);
+        }
+        if (completion == null) {
+            CopilotStringUtil.$$$reportNull$$$0(13);
+        }
+        String commonPrefix = CopilotStringUtil.findCommonPrefix(completion, editor);
+        String editorAdjusted = editor.substring(commonPrefix.length());
+        String completionAdjusted = completion.substring(commonPrefix.length());
+        int[] editorChars = editorAdjusted.chars().toArray();
+        int[] completionChars = completionAdjusted.chars().toArray();
+        CopilotStringUtil.patchCharPairs(completionChars);
+        int patchDelta = commonPrefix.length();
+        try {
+            Diff.Change changelist = Diff.buildChanges((int[])editorChars, (int[])completionChars);
+            if (changelist == null) {
+                return null;
+            }
+            LinkedList<Pair<Integer, String>> result = new LinkedList<Pair<Integer, String>>();
+            ArrayList changes = changelist.toList();
+            for (Diff.Change change : changes) {
+                if (change.inserted <= 0) continue;
+                result.add((Pair<Integer, String>)Pair.create((Object)(change.line0 + patchDelta), (Object)CopilotStringUtil.unpatchCharPairs(completionChars, change.line1, change.inserted)));
+            }
+            return result;
+        }
+        catch (FilesTooBigForDiffException e) {
+            return null;
+        }
+    }
+
+    private static String findCommonPrefix(@NotNull String data, @NotNull String reference) {
+        if (data == null) {
+            CopilotStringUtil.$$$reportNull$$$0(14);
+        }
+        if (reference == null) {
+            CopilotStringUtil.$$$reportNull$$$0(15);
+        }
+        int maxSize = Math.min(data.length(), reference.length());
+        int first = 0;
+        for (int i = 0; i < maxSize && data.charAt(i) == reference.charAt(i); ++i) {
+            ++first;
+        }
+        return data.substring(0, first);
+    }
+
+    public static List<String> getNextLines(@NotNull String text, int offset, int maxLines) {
+        if (text == null) {
+            CopilotStringUtil.$$$reportNull$$$0(16);
+        }
+        LinkedList<String> lines = new LinkedList<String>();
+        int last = offset;
+        for (int done = 0; done < maxLines; ++done) {
+            int next = text.indexOf(10, last);
+            if (next == -1) {
+                if (text.length() <= last) break;
+                lines.add(text.substring(last));
+                break;
+            }
+            lines.add(text.substring(last, next));
+            last = next + 1;
+        }
+        return lines;
+    }
+
+    public static boolean isSpaceOrTab(char c, boolean withNewline) {
+        return c == ' ' || c == '\t' || withNewline && c == '\n';
+    }
+
+    public static boolean isSpacesOrTabs(CharSequence text, boolean withNewlines) {
+        for (int i = 0; i < text.length(); ++i) {
+            char c = text.charAt(i);
+            if (CopilotStringUtil.isSpaceOrTab(c, withNewlines)) continue;
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean linesMatch(@NotNull Iterable<String> a, @NotNull Iterable<String> b, boolean trimEnd) {
+        if (a == null) {
+            CopilotStringUtil.$$$reportNull$$$0(17);
+        }
+        if (b == null) {
+            CopilotStringUtil.$$$reportNull$$$0(18);
+        }
+        Iterator<String> itA = a.iterator();
+        Iterator<String> itB = b.iterator();
+        while (itA.hasNext() && itB.hasNext()) {
+            String itemA = itA.next();
+            String itemB = itB.next();
+            boolean match = trimEnd ? itemA.stripTrailing().equals(itemB.stripTrailing()) : itemA.equals(itemB);
+            if (match) continue;
+            return false;
+        }
+        return !itA.hasNext() && !itB.hasNext();
+    }
+
+    static int[] patchCharPairs(int[] chars) {
+        int parenChar = 65536;
+        TextRanges stringRanges = CopilotStringUtil.findStringRanges(chars);
+        for (int i = 0; i < chars.length; ++i) {
+            int closeIndex;
+            int c = chars[i];
+            if ((c == 40 || c == 41) && CopilotStringUtil.isInRange(stringRanges, i)) {
+                chars[i] = 65536 + (c == 41 ? 1 : 0);
+                continue;
+            }
+            if (c != 40 || (closeIndex = CopilotStringUtil.firstMatchingPair(chars, i + 1, ')', '(', stringRanges)) == -1) continue;
+            chars[i] = 65536;
+            chars[closeIndex] = 65537;
+        }
+        return chars;
+    }
+
+    private static int firstMatchingPair(int[] chars, int startIndex, char pairClose, char pairOpen, TextRanges excludedRanges) {
+        int openCount = 0;
+        for (int i = startIndex; i < chars.length; ++i) {
+            if (CopilotStringUtil.isInRange(excludedRanges, i)) continue;
+            int c = chars[i];
+            if (c == pairOpen) {
+                ++openCount;
+                continue;
+            }
+            if (c != pairClose) continue;
+            if (openCount == 0) {
+                return i;
+            }
+            --openCount;
+        }
+        return -1;
+    }
+
+    private static boolean isInRange(TextRanges ranges, int i) {
+        for (TextRange range : ranges) {
+            if (range.contains(i)) {
+                return true;
+            }
+            if (i <= range.getEndOffset()) continue;
+            break;
+        }
+        return false;
+    }
+
+    private static TextRanges findStringRanges(int[] chars) {
+        TextRanges ranges = new TextRanges();
+        int singleQuotedStart = -1;
+        int doubleQuotedStart = -1;
+        for (int i = 0; i < chars.length; ++i) {
+            int c = chars[i];
+            if (c == 34 && singleQuotedStart == -1) {
+                if (doubleQuotedStart == -1) {
+                    doubleQuotedStart = i;
+                    continue;
+                }
+                ranges.union((TextRange)new ProperTextRange(doubleQuotedStart, i));
+                doubleQuotedStart = -1;
+                continue;
+            }
+            if (c != 39 || doubleQuotedStart != -1) continue;
+            if (singleQuotedStart == -1) {
+                singleQuotedStart = i;
+                continue;
+            }
+            ranges.union((TextRange)new ProperTextRange(singleQuotedStart, i));
+            singleQuotedStart = -1;
+        }
+        return ranges;
+    }
+
+    static String unpatchCharPairs(int[] patchedData, int offset, int count) {
+        int parenChar = 65536;
+        int braceChar = 65538;
+        int bracketChar = 65540;
+        int[] result = new int[count];
+        block8: for (int i = 0; i < count; ++i) {
+            int c = patchedData[offset + i];
+            switch (c) {
+                case 65536: {
+                    result[i] = 40;
+                    continue block8;
+                }
+                case 65537: {
+                    result[i] = 41;
+                    continue block8;
+                }
+                case 65538: {
+                    result[i] = 123;
+                    continue block8;
+                }
+                case 65539: {
+                    result[i] = 125;
+                    continue block8;
+                }
+                case 65540: {
+                    result[i] = 91;
+                    continue block8;
+                }
+                case 65541: {
+                    result[i] = 93;
+                    continue block8;
+                }
+                default: {
+                    result[i] = c;
+                }
+            }
+        }
+        return new String(result, 0, count);
+    }
+
+    private static /* synthetic */ void $$$reportNull$$$0(int n) {
+        RuntimeException runtimeException;
+        Object[] objectArray;
+        Object[] objectArray2;
+        int n2;
+        String string;
+        switch (n) {
+            default: {
+                string = "Argument for @NotNull parameter '%s' of %s.%s must not be null";
+                break;
+            }
+            case 1: 
+            case 4: 
+            case 7: {
+                string = "@NotNull method %s.%s must not return null";
+                break;
+            }
+        }
+        switch (n) {
+            default: {
+                n2 = 3;
+                break;
+            }
+            case 1: 
+            case 4: 
+            case 7: {
+                n2 = 2;
+                break;
+            }
+        }
+        Object[] objectArray3 = new Object[n2];
+        switch (n) {
+            default: {
+                objectArray2 = objectArray3;
+                objectArray3[0] = "text";
+                break;
+            }
+            case 1: 
+            case 4: 
+            case 7: {
+                objectArray2 = objectArray3;
+                objectArray3[0] = "com/github/copilot/util/CopilotStringUtil";
+                break;
+            }
+            case 8: 
+            case 10: {
+                objectArray2 = objectArray3;
+                objectArray3[0] = "withTrailing";
+                break;
+            }
+            case 9: 
+            case 11: {
+                objectArray2 = objectArray3;
+                objectArray3[0] = "withLeading";
+                break;
+            }
+            case 12: {
+                objectArray2 = objectArray3;
+                objectArray3[0] = "editor";
+                break;
+            }
+            case 13: {
+                objectArray2 = objectArray3;
+                objectArray3[0] = "completion";
+                break;
+            }
+            case 14: {
+                objectArray2 = objectArray3;
+                objectArray3[0] = "data";
+                break;
+            }
+            case 15: {
+                objectArray2 = objectArray3;
+                objectArray3[0] = "reference";
+                break;
+            }
+            case 17: {
+                objectArray2 = objectArray3;
+                objectArray3[0] = "a";
+                break;
+            }
+            case 18: {
+                objectArray2 = objectArray3;
+                objectArray3[0] = "b";
+                break;
+            }
+        }
+        switch (n) {
+            default: {
+                objectArray = objectArray2;
+                objectArray2[1] = "com/github/copilot/util/CopilotStringUtil";
+                break;
+            }
+            case 1: {
+                objectArray = objectArray2;
+                objectArray2[1] = "trailingWhitespace";
+                break;
+            }
+            case 4: {
+                objectArray = objectArray2;
+                objectArray2[1] = "leadingWhitespace";
+                break;
+            }
+            case 7: {
+                objectArray = objectArray2;
+                objectArray2[1] = "stripLeading";
+                break;
+            }
+        }
+        switch (n) {
+            default: {
+                objectArray = objectArray;
+                objectArray[2] = "trailingWhitespace";
+                break;
+            }
+            case 1: 
+            case 4: 
+            case 7: {
+                break;
+            }
+            case 2: {
+                objectArray = objectArray;
+                objectArray[2] = "trailingWhitespaceLength";
+                break;
+            }
+            case 3: {
+                objectArray = objectArray;
+                objectArray[2] = "leadingWhitespace";
+                break;
+            }
+            case 5: {
+                objectArray = objectArray;
+                objectArray[2] = "leadingWhitespaceLength";
+                break;
+            }
+            case 6: {
+                objectArray = objectArray;
+                objectArray[2] = "stripLeading";
+                break;
+            }
+            case 8: 
+            case 9: {
+                objectArray = objectArray;
+                objectArray[2] = "findOverlapLength";
+                break;
+            }
+            case 10: 
+            case 11: {
+                objectArray = objectArray;
+                objectArray[2] = "findOverlappingLines";
+                break;
+            }
+            case 12: 
+            case 13: {
+                objectArray = objectArray;
+                objectArray[2] = "createDiffInlays";
+                break;
+            }
+            case 14: 
+            case 15: {
+                objectArray = objectArray;
+                objectArray[2] = "findCommonPrefix";
+                break;
+            }
+            case 16: {
+                objectArray = objectArray;
+                objectArray[2] = "getNextLines";
+                break;
+            }
+            case 17: 
+            case 18: {
+                objectArray = objectArray;
+                objectArray[2] = "linesMatch";
+                break;
+            }
+        }
+        String string2 = String.format(string, objectArray);
+        switch (n) {
+            default: {
+                runtimeException = new IllegalArgumentException(string2);
+                break;
+            }
+            case 1: 
+            case 4: 
+            case 7: {
+                runtimeException = new IllegalStateException(string2);
+                break;
+            }
+        }
+        throw runtimeException;
+    }
+}
+
