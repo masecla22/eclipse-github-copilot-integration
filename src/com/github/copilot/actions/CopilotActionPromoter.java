@@ -32,10 +32,10 @@ implements ActionPromoter {
     public List<AnAction> promote(List<? extends AnAction> actions, DataContext context) {
         Editor editor;
         if (actions == null) {
-            CopilotActionPromoter.$$$reportNull$$$0(0);
+            throw new IllegalStateException("actions cannot be null!");
         }
         if (context == null) {
-            CopilotActionPromoter.$$$reportNull$$$0(1);
+            throw new IllegalStateException("context cannot be null!");
         }
         if ((editor = (Editor)CommonDataKeys.EDITOR.getData(context)) == null || !CopilotApplyInlaysAction.isSupported(editor) && !CopilotDisposeInlaysAction.isSupported(editor)) {
             return null;
@@ -72,7 +72,7 @@ implements ActionPromoter {
 
     private static boolean isIdeaVimAction(AnAction action) {
         if (action == null) {
-            CopilotActionPromoter.$$$reportNull$$$0(2);
+            throw new IllegalStateException("action cannot be null!");
         }
         String packagePrefix = "com.maddyhome.idea.vim";
         if (action.getClass().getName().startsWith(packagePrefix)) {

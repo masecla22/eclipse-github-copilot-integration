@@ -19,21 +19,21 @@ public final class CommonLanguageSupport {
 
     public static boolean isMiddleOfTheLine(String lineSuffix) {
         if (lineSuffix == null) {
-            CommonLanguageSupport.$$$reportNull$$$0(0);
+            throw new IllegalStateException("lineSuffix cannot be null!");
         }
         return !lineSuffix.trim().isEmpty();
     }
 
     public static boolean isValidMiddleOfTheLinePosition(String lineSuffix) {
         if (lineSuffix == null) {
-            CommonLanguageSupport.$$$reportNull$$$0(1);
+            throw new IllegalStateException("lineSuffix cannot be null!");
         }
         return EOL_PATTERN.matcher(lineSuffix.trim()).matches();
     }
 
         public static Boolean isInlineSuggestion(String lineSuffix) {
         if (lineSuffix == null) {
-            CommonLanguageSupport.$$$reportNull$$$0(2);
+            throw new IllegalStateException("lineSuffix cannot be null!");
         }
         boolean isMiddleOfLine = CommonLanguageSupport.isMiddleOfTheLine(lineSuffix);
         boolean isValidMiddleOfLine = CommonLanguageSupport.isValidMiddleOfTheLinePosition(lineSuffix);

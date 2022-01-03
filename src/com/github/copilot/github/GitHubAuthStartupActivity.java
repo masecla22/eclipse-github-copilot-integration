@@ -44,7 +44,7 @@ implements StartupActivity.Background {
     @RequiresBackgroundThread
     public void runActivity(Project project) {
         if (project == null) {
-            GitHubAuthStartupActivity.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (!this.hasRun.compareAndSet(false, true) || ApplicationManager.getApplication().isUnitTestMode()) {
             return;
@@ -65,10 +65,10 @@ implements StartupActivity.Background {
 
     private void notifyUnauthorized(Project project, String url) {
         if (project == null) {
-            GitHubAuthStartupActivity.$$$reportNull$$$0(1);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (url == null) {
-            GitHubAuthStartupActivity.$$$reportNull$$$0(2);
+            throw new IllegalStateException("url cannot be null!");
         }
         CopilotStatusService.notifyApplication(CopilotStatus.NotSignedIn);
         Notification notification = CopilotNotifications.createFullContentNotification(CopilotBundle.get("github.login.copilotUnauthorized.title"), CopilotBundle.get("github.login.copilotUnauthorized.message", url), NotificationType.WARNING, true);
@@ -78,7 +78,7 @@ implements StartupActivity.Background {
 
     private void notifyTokenExpired(Project project) {
         if (project == null) {
-            GitHubAuthStartupActivity.$$$reportNull$$$0(3);
+            throw new IllegalStateException("project cannot be null!");
         }
         CopilotStatusService.notifyApplication(CopilotStatus.UnknownError);
         Notification notification = CopilotNotifications.createFullContentNotification(CopilotBundle.get("github.login.copilotToken.unknownError.title"), CopilotBundle.get("github.login.copilotToken.unknownError.message"), NotificationType.ERROR, true);
@@ -87,7 +87,7 @@ implements StartupActivity.Background {
 
     private void promptTelemetryTerms(Project project) {
         if (project == null) {
-            GitHubAuthStartupActivity.$$$reportNull$$$0(4);
+            throw new IllegalStateException("project cannot be null!");
         }
         Notification notification = CopilotNotifications.createFullContentNotification(CopilotBundle.get("github.login.telemetryConsent.title"), CopilotBundle.get("github.login.telemetryConsent.message"), NotificationType.WARNING, false);
         notification.addAction((AnAction)NotificationAction.createSimpleExpiring((String)CopilotBundle.get("github.login.telemetryConsent.yes"), () -> {
@@ -101,10 +101,10 @@ implements StartupActivity.Background {
 
     private static void afterInit(Project project, Runnable action) {
         if (project == null) {
-            GitHubAuthStartupActivity.$$$reportNull$$$0(5);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (action == null) {
-            GitHubAuthStartupActivity.$$$reportNull$$$0(6);
+            throw new IllegalStateException("action cannot be null!");
         }
         StartupManager.getInstance((Project)project).runWhenProjectIsInitialized(action);
     }

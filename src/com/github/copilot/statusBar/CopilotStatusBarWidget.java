@@ -52,7 +52,7 @@ extends EditorBasedStatusBarPopup {
     public static void update(Project project) {
         StatusBarWidget widget;
         if (project == null) {
-            CopilotStatusBarWidget.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         if ((widget = WindowManager.getInstance().getStatusBar(project).getWidget(WIDGET_ID)) instanceof CopilotStatusBarWidget) {
             ((CopilotStatusBarWidget)widget).update(() -> WindowManager.getInstance().getStatusBar(project).updateWidget(WIDGET_ID));
@@ -61,7 +61,7 @@ extends EditorBasedStatusBarPopup {
 
     public CopilotStatusBarWidget(Project project) {
         if (project == null) {
-            CopilotStatusBarWidget.$$$reportNull$$$0(1);
+            throw new IllegalStateException("project cannot be null!");
         }
         super(project, false);
     }
@@ -79,14 +79,14 @@ extends EditorBasedStatusBarPopup {
             state.setIcon(CopilotIcons.StatusBarIconError);
             EditorBasedStatusBarPopup.WidgetState widgetState = state;
             if (widgetState == null) {
-                CopilotStatusBarWidget.$$$reportNull$$$0(2);
+                throw new IllegalStateException("widgetState cannot be null!");
             }
             return widgetState;
         }
         if (file == null) {
             EditorBasedStatusBarPopup.WidgetState widgetState = EditorBasedStatusBarPopup.WidgetState.HIDDEN;
             if (widgetState == null) {
-                CopilotStatusBarWidget.$$$reportNull$$$0(3);
+                throw new IllegalStateException("widgetState cannot be null!");
             }
             return widgetState;
         }
@@ -94,7 +94,7 @@ extends EditorBasedStatusBarPopup {
         if (enabled == null) {
             EditorBasedStatusBarPopup.WidgetState widgetState = EditorBasedStatusBarPopup.WidgetState.HIDDEN;
             if (widgetState == null) {
-                CopilotStatusBarWidget.$$$reportNull$$$0(4);
+                throw new IllegalStateException("widgetState cannot be null!");
             }
             return widgetState;
         }
@@ -103,7 +103,7 @@ extends EditorBasedStatusBarPopup {
         state.setIcon(enabled != false ? CopilotIcons.StatusBarIcon : CopilotIcons.StatusBarIconDisabled);
         EditorBasedStatusBarPopup.WidgetState widgetState = state;
         if (widgetState == null) {
-            CopilotStatusBarWidget.$$$reportNull$$$0(5);
+            throw new IllegalStateException("widgetState cannot be null!");
         }
         return widgetState;
     }
@@ -119,7 +119,7 @@ extends EditorBasedStatusBarPopup {
 
         protected StatusBarWidget createInstance(Project project) {
         if (project == null) {
-            CopilotStatusBarWidget.$$$reportNull$$$0(6);
+            throw new IllegalStateException("project cannot be null!");
         }
         return new CopilotStatusBarWidget(project);
     }
@@ -127,7 +127,7 @@ extends EditorBasedStatusBarPopup {
         private Boolean isCopilotEnabled(VirtualFile file) {
         PsiFile psiFile;
         if (file == null) {
-            CopilotStatusBarWidget.$$$reportNull$$$0(7);
+            throw new IllegalStateException("file cannot be null!");
         }
         if ((psiFile = PsiManager.getInstance((Project)this.myProject).findFile(file)) == null) {
             return null;

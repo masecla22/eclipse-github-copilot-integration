@@ -23,7 +23,7 @@ extends Converter<ZonedDateTime> {
 
         public ZonedDateTime fromString(String value) {
         if (value == null) {
-            ZonedDateTimeConverter.$$$reportNull$$$0(0);
+            throw new IllegalStateException("value cannot be null!");
         }
         try {
             return ZonedDateTime.parse(value, DateTimeFormatter.ISO_ZONED_DATE_TIME);
@@ -36,7 +36,7 @@ extends Converter<ZonedDateTime> {
 
     public String toString(ZonedDateTime value) {
         if (value == null) {
-            ZonedDateTimeConverter.$$$reportNull$$$0(1);
+            throw new IllegalStateException("value cannot be null!");
         }
         return value.format(DateTimeFormatter.ISO_ZONED_DATE_TIME);
     }

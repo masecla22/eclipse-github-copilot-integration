@@ -44,13 +44,13 @@ final class InlayRendering {
 
     static int calculateWidth(Editor editor, String text, List<String> textLines) {
         if (editor == null) {
-            InlayRendering.$$$reportNull$$$0(0);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (text == null) {
-            InlayRendering.$$$reportNull$$$0(1);
+            throw new IllegalStateException("text cannot be null!");
         }
         if (textLines == null) {
-            InlayRendering.$$$reportNull$$$0(2);
+            throw new IllegalStateException("textLines cannot be null!");
         }
         FontMetrics metrics = InlayRendering.fontMetrics(editor, InlayRendering.getFont(editor, text));
         int maxWidth = 0;
@@ -62,22 +62,22 @@ final class InlayRendering {
 
     static void renderCodeBlock(Editor editor, String content, List<String> contentLines, Graphics2D g, Rectangle2D region, Color textColor) {
         if (editor == null) {
-            InlayRendering.$$$reportNull$$$0(3);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (content == null) {
-            InlayRendering.$$$reportNull$$$0(4);
+            throw new IllegalStateException("content cannot be null!");
         }
         if (contentLines == null) {
-            InlayRendering.$$$reportNull$$$0(5);
+            throw new IllegalStateException("contentLines cannot be null!");
         }
         if (g == null) {
-            InlayRendering.$$$reportNull$$$0(6);
+            throw new IllegalStateException("g cannot be null!");
         }
         if (region == null) {
-            InlayRendering.$$$reportNull$$$0(7);
+            throw new IllegalStateException("region cannot be null!");
         }
         if (textColor == null) {
-            InlayRendering.$$$reportNull$$$0(8);
+            throw new IllegalStateException("textColor cannot be null!");
         }
         if (content.isEmpty() || contentLines.isEmpty()) {
             return;
@@ -102,10 +102,10 @@ final class InlayRendering {
 
     private static FontMetrics fontMetrics(Editor editor, Font font) {
         if (editor == null) {
-            InlayRendering.$$$reportNull$$$0(9);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (font == null) {
-            InlayRendering.$$$reportNull$$$0(10);
+            throw new IllegalStateException("font cannot be null!");
         }
         FontRenderContext editorContext = FontInfo.getFontRenderContext((Component)editor.getContentComponent());
         FontRenderContext context = new FontRenderContext(editorContext.getTransform(), AntialiasingType.getKeyForCurrentScope((boolean)false), UISettings.getEditorFractionalMetricsHint());
@@ -120,10 +120,10 @@ final class InlayRendering {
 
         private static Font getFont(Editor editor, String text) {
         if (editor == null) {
-            InlayRendering.$$$reportNull$$$0(11);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (text == null) {
-            InlayRendering.$$$reportNull$$$0(12);
+            throw new IllegalStateException("text cannot be null!");
         }
         Font font = editor.getColorsScheme().getFont(EditorFontType.PLAIN).deriveFont(2);
         Font fallbackFont = UIUtil.getFontWithFallbackIfNeeded((Font)font, (String)text);
@@ -136,7 +136,7 @@ final class InlayRendering {
 
     private static int fontSize(Editor editor) {
         if (editor == null) {
-            InlayRendering.$$$reportNull$$$0(14);
+            throw new IllegalStateException("editor cannot be null!");
         }
         return editor.getColorsScheme().getEditorFontSize();
     }

@@ -39,7 +39,7 @@ implements StartupActivity {
 
     public void runActivity(Project project) {
         if (project == null) {
-            CopilotEarlyBirdChannelStartupActivity.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (!this.hasRun.compareAndSet(false, true) || ApplicationManager.getApplication().isUnitTestMode()) {
             return;
@@ -65,8 +65,6 @@ implements StartupActivity {
         notification.notify(project);
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "project", "com/github/copilot/update/CopilotEarlyBirdChannelStartupActivity", "runActivity"));
-    }
+    
 }
 

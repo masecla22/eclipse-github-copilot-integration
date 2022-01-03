@@ -22,7 +22,7 @@ public class VfsUtil {
 
     public static void safeDelete(VirtualFile file) {
         if (file == null) {
-            VfsUtil.$$$reportNull$$$0(0);
+            throw new IllegalStateException("file cannot be null!");
         }
         if (file instanceof LightVirtualFile) {
             ((LightVirtualFile)file).setValid(false);
@@ -40,7 +40,7 @@ public class VfsUtil {
 
     private static void doSafeDelete(VirtualFile file) {
         if (file == null) {
-            VfsUtil.$$$reportNull$$$0(1);
+            throw new IllegalStateException("file cannot be null!");
         }
         ApplicationManager.getApplication().assertWriteAccessAllowed();
         try {

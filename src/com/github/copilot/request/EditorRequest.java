@@ -28,7 +28,7 @@ extends Cancellable {
         default public String getCurrentDocumentPrefix() {
         String string = this.getDocumentContent().substring(0, this.getOffset());
         if (string == null) {
-            EditorRequest.$$$reportNull$$$0(0);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -57,8 +57,6 @@ extends Cancellable {
 
         public Integer getDocumentModificationSequence();
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/request/EditorRequest", "getCurrentDocumentPrefix"));
-    }
+    
 }
 

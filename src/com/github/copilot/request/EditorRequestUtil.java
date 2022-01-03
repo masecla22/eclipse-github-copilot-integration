@@ -20,7 +20,7 @@ public final class EditorRequestUtil {
 
     public static List<String> fixIndentation(List<String> lines, boolean useTabIndents, int tabWidth) {
         if (lines == null) {
-            EditorRequestUtil.$$$reportNull$$$0(0);
+            throw new IllegalStateException("lines cannot be null!");
         }
         if (useTabIndents) {
             return lines.stream().map(line -> {
@@ -36,8 +36,6 @@ public final class EditorRequestUtil {
         }).collect(Collectors.toList());
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "lines", "com/github/copilot/request/EditorRequestUtil", "fixIndentation"));
-    }
+    
 }
 

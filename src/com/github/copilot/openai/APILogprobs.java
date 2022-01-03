@@ -27,7 +27,7 @@ final class APILogprobs {
         String fallback = "unset";
         Map<String, String> map = Map.of("logprobs_text_offset", this.textOffset == null ? fallback : gson.toJson(this.textOffset), "logprobs_token_logprobs", this.tokenLogprobs == null ? fallback : gson.toJson(this.tokenLogprobs), "logprobs_top_logprobs", this.topLogprobs == null ? fallback : gson.toJson(this.topLogprobs), "logprobs_tokens", this.tokens == null ? fallback : gson.toJson(this.tokens));
         if (map == null) {
-            APILogprobs.$$$reportNull$$$0(0);
+            throw new IllegalStateException("map cannot be null!");
         }
         return map;
     }
@@ -117,8 +117,6 @@ final class APILogprobs {
         return "APILogprobs(textOffset=" + this.getTextOffset() + ", tokenLogprobs=" + this.getTokenLogprobs() + ", topLogprobs=" + this.getTopLogprobs() + ", tokens=" + this.getTokens() + ")";
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/openai/APILogprobs", "createTelemetryJson"));
-    }
+    
 }
 

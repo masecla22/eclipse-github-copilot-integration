@@ -41,10 +41,10 @@ public interface CopilotCompletionService {
     @RequiresBackgroundThread
     default public boolean fetchCompletions(EditorRequest request, GitHubCopilotToken proxyToken, Integer maxCompletions, Flow.Subscriber<List<CopilotInlayList>> subscriber) {
         if (request == null) {
-            CopilotCompletionService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (subscriber == null) {
-            CopilotCompletionService.$$$reportNull$$$0(1);
+            throw new IllegalStateException("subscriber cannot be null!");
         }
         boolean enableCaching = !CopilotApplicationSettings.settings().internalDisableHttpCache;
         return this.fetchCompletions(request, proxyToken, maxCompletions, enableCaching, false, subscriber);

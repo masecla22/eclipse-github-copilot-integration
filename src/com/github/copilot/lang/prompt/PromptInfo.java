@@ -23,10 +23,10 @@ public final class PromptInfo {
 
     public PromptInfo(String languageId, String prompt, String trailingWhitespace, int promptLength, BlockMode blockMode) {
         if (prompt == null) {
-            PromptInfo.$$$reportNull$$$0(0);
+            throw new IllegalStateException("prompt cannot be null!");
         }
         if (trailingWhitespace == null) {
-            PromptInfo.$$$reportNull$$$0(1);
+            throw new IllegalStateException("trailingWhitespace cannot be null!");
         }
         if (prompt == null) {
             throw new NullPointerException("prompt is marked non-null but is null");
@@ -48,7 +48,7 @@ public final class PromptInfo {
         public String getPrompt() {
         String string = this.prompt;
         if (string == null) {
-            PromptInfo.$$$reportNull$$$0(2);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -56,7 +56,7 @@ public final class PromptInfo {
         public String getTrailingWhitespace() {
         String string = this.trailingWhitespace;
         if (string == null) {
-            PromptInfo.$$$reportNull$$$0(3);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }

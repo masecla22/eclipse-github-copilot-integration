@@ -27,7 +27,7 @@ implements DumbAware,
 CopilotAction {
     public void update(AnActionEvent e) {
         if (e == null) {
-            CopilotRequestCompletionsAction.$$$reportNull$$$0(0);
+            throw new IllegalStateException("e cannot be null!");
         }
         Editor editor = (Editor)e.getData(CommonDataKeys.EDITOR);
         e.getPresentation().setEnabled(editor != null && CopilotEditorUtil.isSelectedEditor(editor));
@@ -35,7 +35,7 @@ CopilotAction {
 
     public void actionPerformed(AnActionEvent e) {
         if (e == null) {
-            CopilotRequestCompletionsAction.$$$reportNull$$$0(1);
+            throw new IllegalStateException("e cannot be null!");
         }
         CopilotEditorManager editorManager = CopilotEditorManager.getInstance();
         Editor editor = (Editor)e.getData(CommonDataKeys.EDITOR);

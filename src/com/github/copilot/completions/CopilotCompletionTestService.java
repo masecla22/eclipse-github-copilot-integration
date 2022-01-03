@@ -43,17 +43,17 @@ extends DelegatingCompletionService {
         public static CopilotCompletionTestService getInstance() {
         CopilotCompletionTestService copilotCompletionTestService = (CopilotCompletionTestService)ApplicationManager.getApplication().getService(CopilotCompletionService.class);
         if (copilotCompletionTestService == null) {
-            CopilotCompletionTestService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("copilotCompletionTestService cannot be null!");
         }
         return copilotCompletionTestService;
     }
 
     public void withMockCompletions(List<CopilotCompletion> completions, ThrowableRunnable<Exception> action) throws Exception {
         if (completions == null) {
-            CopilotCompletionTestService.$$$reportNull$$$0(1);
+            throw new IllegalStateException("completions cannot be null!");
         }
         if (action == null) {
-            CopilotCompletionTestService.$$$reportNull$$$0(2);
+            throw new IllegalStateException("action cannot be null!");
         }
         try {
             this.mockCompletions = completions;
@@ -70,10 +70,10 @@ extends DelegatingCompletionService {
     @Override
     public boolean fetchCompletions(EditorRequest request, GitHubCopilotToken token, Integer maxCompletions, boolean enableCaching, boolean cycling, Flow.Subscriber<List<CopilotInlayList>> subscriber) {
         if (request == null) {
-            CopilotCompletionTestService.$$$reportNull$$$0(3);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (subscriber == null) {
-            CopilotCompletionTestService.$$$reportNull$$$0(4);
+            throw new IllegalStateException("subscriber cannot be null!");
         }
         this.requestCounter.incrementAndGet();
         List<CopilotCompletion> mockCompletions = this.mockCompletions;
@@ -93,7 +93,7 @@ extends DelegatingCompletionService {
     @Override
         public List<CopilotInlayList> fetchCachedCompletions(EditorRequest request) {
         if (request == null) {
-            CopilotCompletionTestService.$$$reportNull$$$0(5);
+            throw new IllegalStateException("request cannot be null!");
         }
         return super.fetchCachedCompletions(request);
     }
@@ -111,7 +111,7 @@ extends DelegatingCompletionService {
 
     public RequestLatch newCompletionLatch(int expectedRequests, Disposable parent) {
         if (parent == null) {
-            CopilotCompletionTestService.$$$reportNull$$$0(6);
+            throw new IllegalStateException("parent cannot be null!");
         }
         return new RequestLatch(expectedRequests, parent);
     }
@@ -254,7 +254,7 @@ extends DelegatingCompletionService {
 
         public RequestLatch(int expectedRequests, Disposable parent) {
             if (parent == null) {
-                RequestLatch.$$$reportNull$$$0(0);
+                throw new IllegalStateException("parent cannot be null!");
             }
             this.latch = new CountDownLatch(expectedRequests);
             ApplicationManager.getApplication().getMessageBus().connect(parent).subscribe(REQUEST_TOPIC, () -> ApplicationManager.getApplication().executeOnPooledThread(() -> this.latch.countDown()));

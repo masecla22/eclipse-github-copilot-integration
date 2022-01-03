@@ -108,7 +108,7 @@ implements GitHubService {
     public void loginInteractive(Project project) {
         SignInInitiateResult initiateSignInResponse;
         if (project == null) {
-            AgentGitHubService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         if ((initiateSignInResponse = this.initiateSignIn(project)) == null) {
             CopilotNotifications.createFullContentNotification(CopilotBundle.get("deviceAuth.deviceCodeFetchFailed.title"), CopilotBundle.get("deviceAuth.deviceCodeFetchFailed.description"), NotificationType.ERROR, true);
@@ -155,13 +155,13 @@ implements GitHubService {
     @Override
         public GitHubCopilotToken fetchCopilotTokenInteractive(Project project, GitHubSession sessionOverride, boolean storeToken, UnauthorizedTokenCallback onUnauthorized, Consumer<Project> onNewTokenExpired) {
         if (project == null) {
-            AgentGitHubService.$$$reportNull$$$0(1);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (onUnauthorized == null) {
-            AgentGitHubService.$$$reportNull$$$0(2);
+            throw new IllegalStateException("onUnauthorized cannot be null!");
         }
         if (onNewTokenExpired == null) {
-            AgentGitHubService.$$$reportNull$$$0(3);
+            throw new IllegalStateException("onNewTokenExpired cannot be null!");
         }
         return null;
     }
@@ -182,14 +182,14 @@ implements GitHubService {
     @Override
         public GitHubCopilotToken getCopilotToken(boolean requestIfMissing, long minimumValidity, TimeUnit timeUnit) {
         if (timeUnit == null) {
-            AgentGitHubService.$$$reportNull$$$0(4);
+            throw new IllegalStateException("timeUnit cannot be null!");
         }
         return null;
     }
 
         private SignInInitiateResult initiateSignIn(Project project) {
         if (project == null) {
-            AgentGitHubService.$$$reportNull$$$0(5);
+            throw new IllegalStateException("project cannot be null!");
         }
         try {
             return (SignInInitiateResult)ProgressManager.getInstance().run((Task.WithResult)new Task.WithResult<SignInInitiateResult, Exception>(project, "Retrieving GitHub Device Code", true){
@@ -215,14 +215,14 @@ implements GitHubService {
 
     private DeviceCodeResponse asCodeResponse(SignInInitiateNotSignedInResult r) {
         if (r == null) {
-            AgentGitHubService.$$$reportNull$$$0(6);
+            throw new IllegalStateException("r cannot be null!");
         }
         return new DeviceCodeResponse("", r.getUserCode(), r.getVerificationUri(), r.getExpiresInSeconds(), r.getIntervalSeconds());
     }
 
         private AuthStatusResult confirmSignIn(Project project, SignInInitiateNotSignedInResult code) {
         if (code == null) {
-            AgentGitHubService.$$$reportNull$$$0(7);
+            throw new IllegalStateException("code cannot be null!");
         }
         try {
             String title = CopilotBundle.get("deviceAuth.progressTitle");
@@ -252,7 +252,7 @@ implements GitHubService {
 
         private AuthStatusResult recordTelemetryConsent(Project project) {
         if (project == null) {
-            AgentGitHubService.$$$reportNull$$$0(8);
+            throw new IllegalStateException("project cannot be null!");
         }
         try {
             String title = CopilotBundle.get("deviceAuth.progressTitle");
@@ -288,7 +288,7 @@ implements GitHubService {
 
     public static <T> T awaitWithCheckCanceled(Promise<T> promise, ProgressIndicator indicator) {
         if (promise == null) {
-            AgentGitHubService.$$$reportNull$$$0(9);
+            throw new IllegalStateException("promise cannot be null!");
         }
         while (true) {
             ProgressIndicatorUtils.checkCancelledEvenWithPCEDisabled((ProgressIndicator)indicator);

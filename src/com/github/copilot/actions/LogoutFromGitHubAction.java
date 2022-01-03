@@ -29,14 +29,14 @@ implements DumbAware,
 CopilotAction {
     public void update(AnActionEvent e) {
         if (e == null) {
-            LogoutFromGitHubAction.$$$reportNull$$$0(0);
+            throw new IllegalStateException("e cannot be null!");
         }
         e.getPresentation().setEnabled(GitHubService.getInstance().isSignedIn());
     }
 
     public void actionPerformed(AnActionEvent e) {
         if (e == null) {
-            LogoutFromGitHubAction.$$$reportNull$$$0(1);
+            throw new IllegalStateException("e cannot be null!");
         }
         GitHubService.getInstance().logout();
         CopilotStatusService.notifyApplication(CopilotStatus.NotSignedIn);

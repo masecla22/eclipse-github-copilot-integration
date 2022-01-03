@@ -45,13 +45,13 @@ implements CopilotInlayRenderer {
 
     CopilotDefaultInlayRenderer(EditorRequest request, CopilotCompletionType type, List<String> lines) {
         if (request == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(0);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (type == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(1);
+            throw new IllegalStateException("type cannot be null!");
         }
         if (lines == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(2);
+            throw new IllegalStateException("lines cannot be null!");
         }
         this.cachedWidth = -1;
         this.cachedHeight = -1;
@@ -65,14 +65,14 @@ implements CopilotInlayRenderer {
         assert (this.inlay != null);
         Inlay<CopilotInlayRenderer> inlay = this.inlay;
         if (inlay == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(3);
+            throw new IllegalStateException("inlay cannot be null!");
         }
         return inlay;
     }
 
     public void setInlay(Inlay<CopilotInlayRenderer> inlay) {
         if (inlay == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(4);
+            throw new IllegalStateException("inlay cannot be null!");
         }
         this.inlay = inlay;
     }
@@ -81,7 +81,7 @@ implements CopilotInlayRenderer {
         public CopilotCompletionType getType() {
         CopilotCompletionType copilotCompletionType = this.type;
         if (copilotCompletionType == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(5);
+            throw new IllegalStateException("copilotCompletionType cannot be null!");
         }
         return copilotCompletionType;
     }
@@ -90,14 +90,14 @@ implements CopilotInlayRenderer {
         public List<String> getContentLines() {
         List<String> list = this.lines;
         if (list == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(6);
+            throw new IllegalStateException("list cannot be null!");
         }
         return list;
     }
 
     public int calcHeightInPixels(Inlay inlay) {
         if (inlay == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(7);
+            throw new IllegalStateException("inlay cannot be null!");
         }
         if (this.cachedHeight < 0) {
             this.cachedHeight = inlay.getEditor().getLineHeight() * this.lines.size();
@@ -108,7 +108,7 @@ implements CopilotInlayRenderer {
 
     public int calcWidthInPixels(Inlay inlay) {
         if (inlay == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(8);
+            throw new IllegalStateException("inlay cannot be null!");
         }
         if (this.cachedWidth < 0) {
             int width = InlayRendering.calculateWidth(inlay.getEditor(), this.content, this.lines);
@@ -121,16 +121,16 @@ implements CopilotInlayRenderer {
     public void paint(Inlay inlay, Graphics2D g, Rectangle2D region, TextAttributes textAttributes) {
         Editor editor;
         if (inlay == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(9);
+            throw new IllegalStateException("inlay cannot be null!");
         }
         if (g == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(10);
+            throw new IllegalStateException("g cannot be null!");
         }
         if (region == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(11);
+            throw new IllegalStateException("region cannot be null!");
         }
         if (textAttributes == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(12);
+            throw new IllegalStateException("textAttributes cannot be null!");
         }
         if ((editor = inlay.getEditor()).isDisposed()) {
             return;
@@ -140,10 +140,10 @@ implements CopilotInlayRenderer {
 
     static List<String> replaceLeadingTabs(List<String> lines, EditorRequest request) {
         if (lines == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(13);
+            throw new IllegalStateException("lines cannot be null!");
         }
         if (request == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(14);
+            throw new IllegalStateException("request cannot be null!");
         }
         return lines.stream().map(line -> {
             int tabCount = Strings.countChars((CharSequence)line, (char)'\t', (int)0, (boolean)true);
@@ -158,10 +158,10 @@ implements CopilotInlayRenderer {
     private static Color getTextColor(Editor editor, TextAttributes contextAttributes) {
         Color userColor;
         if (editor == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(15);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (contextAttributes == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(16);
+            throw new IllegalStateException("contextAttributes cannot be null!");
         }
         if ((userColor = CopilotApplicationSettings.settings().inlayTextColor) != null) {
             return userColor;
@@ -176,7 +176,7 @@ implements CopilotInlayRenderer {
         public List<String> getLines() {
         List<String> list = this.lines;
         if (list == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(17);
+            throw new IllegalStateException("list cannot be null!");
         }
         return list;
     }
@@ -184,7 +184,7 @@ implements CopilotInlayRenderer {
         public String getContent() {
         String string = this.content;
         if (string == null) {
-            CopilotDefaultInlayRenderer.$$$reportNull$$$0(18);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }

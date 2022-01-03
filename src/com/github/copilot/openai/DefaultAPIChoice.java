@@ -34,7 +34,7 @@ implements APIChoice {
         public APIChoice asCached() {
         DefaultAPIChoice defaultAPIChoice = this.withCached(true);
         if (defaultAPIChoice == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(0);
+            throw new IllegalStateException("defaultAPIChoice cannot be null!");
         }
         return defaultAPIChoice;
     }
@@ -46,7 +46,7 @@ implements APIChoice {
         }
         TelemetryData telemetryData = this.telemetryData;
         if (telemetryData == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(1);
+            throw new IllegalStateException("telemetryData cannot be null!");
         }
         return telemetryData;
     }
@@ -54,7 +54,7 @@ implements APIChoice {
     @Override
         public DefaultAPIChoice withoutPrefix(String prefix) {
         if (prefix == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(2);
+            throw new IllegalStateException("prefix cannot be null!");
         }
         return (DefaultAPIChoice)CompletionUtil.apiChoiceWithoutPrefix(this, prefix);
     }
@@ -63,7 +63,7 @@ implements APIChoice {
         public CompletionResponseInfo getResponseInfo() {
         CompletionResponseInfo completionResponseInfo = this.responseInfo;
         if (completionResponseInfo == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(3);
+            throw new IllegalStateException("completionResponseInfo cannot be null!");
         }
         return completionResponseInfo;
     }
@@ -72,7 +72,7 @@ implements APIChoice {
         public List<String> getCompletion() {
         List<String> list = this.completion;
         if (list == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(4);
+            throw new IllegalStateException("list cannot be null!");
         }
         return list;
     }
@@ -96,7 +96,7 @@ implements APIChoice {
         public String getCompletionId() {
         String string = this.completionId;
         if (string == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(5);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -114,7 +114,7 @@ implements APIChoice {
         public TelemetryData getBaseTelemetryData() {
         TelemetryData telemetryData = this.baseTelemetryData;
         if (telemetryData == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(6);
+            throw new IllegalStateException("telemetryData cannot be null!");
         }
         return telemetryData;
     }
@@ -201,16 +201,16 @@ implements APIChoice {
 
     public DefaultAPIChoice(CompletionResponseInfo responseInfo, List<String> completion, int numTokens, int choiceIndex, int requestID, String completionId, int createdTimestamp, Double meanLogProb, TelemetryData baseTelemetryData, boolean isCached) {
         if (responseInfo == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(7);
+            throw new IllegalStateException("responseInfo cannot be null!");
         }
         if (completion == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(8);
+            throw new IllegalStateException("completion cannot be null!");
         }
         if (completionId == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(9);
+            throw new IllegalStateException("completionId cannot be null!");
         }
         if (baseTelemetryData == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(10);
+            throw new IllegalStateException("baseTelemetryData cannot be null!");
         }
         if (responseInfo == null) {
             throw new NullPointerException("responseInfo is marked non-null but is null");
@@ -238,16 +238,16 @@ implements APIChoice {
 
     public DefaultAPIChoice(CompletionResponseInfo responseInfo, List<String> completion, int numTokens, int choiceIndex, int requestID, String completionId, int createdTimestamp, Double meanLogProb, TelemetryData baseTelemetryData, boolean isCached, TelemetryData telemetryData) {
         if (responseInfo == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(11);
+            throw new IllegalStateException("responseInfo cannot be null!");
         }
         if (completion == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(12);
+            throw new IllegalStateException("completion cannot be null!");
         }
         if (completionId == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(13);
+            throw new IllegalStateException("completionId cannot be null!");
         }
         if (baseTelemetryData == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(14);
+            throw new IllegalStateException("baseTelemetryData cannot be null!");
         }
         if (responseInfo == null) {
             throw new NullPointerException("responseInfo is marked non-null but is null");
@@ -277,7 +277,7 @@ implements APIChoice {
     @Override
     public DefaultAPIChoice withCompletion(List<String> completion) {
         if (completion == null) {
-            DefaultAPIChoice.$$$reportNull$$$0(15);
+            throw new IllegalStateException("completion cannot be null!");
         }
         if (completion == null) {
             throw new NullPointerException("completion is marked non-null but is null");

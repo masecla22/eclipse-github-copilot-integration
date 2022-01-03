@@ -48,7 +48,7 @@ public class AuthStatusResult {
         public Status getStatus() {
         Status status = this.status;
         if (status == null) {
-            AuthStatusResult.$$$reportNull$$$0(0);
+            throw new IllegalStateException("status cannot be null!");
         }
         return status;
     }
@@ -59,7 +59,7 @@ public class AuthStatusResult {
 
     public void setStatus(Status status) {
         if (status == null) {
-            AuthStatusResult.$$$reportNull$$$0(1);
+            throw new IllegalStateException("status cannot be null!");
         }
         if (status == null) {
             throw new NullPointerException("status is marked non-null but is null");
@@ -112,7 +112,7 @@ public class AuthStatusResult {
 
     public AuthStatusResult(Status status, String user) {
         if (status == null) {
-            AuthStatusResult.$$$reportNull$$$0(2);
+            throw new IllegalStateException("status cannot be null!");
         }
         if (status == null) {
             throw new NullPointerException("status is marked non-null but is null");
@@ -237,7 +237,7 @@ public class AuthStatusResult {
 
                 static Status findById(String id) {
             if (id == null) {
-                Status.$$$reportNull$$$0(0);
+                throw new IllegalStateException("id cannot be null!");
             }
             for (Status value : Status.values()) {
                 if (!value.id.equals(id)) continue;

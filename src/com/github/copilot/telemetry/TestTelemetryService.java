@@ -30,7 +30,7 @@ implements TelemetryService {
         public static TestTelemetryService getInstance() {
         TestTelemetryService testTelemetryService = (TestTelemetryService)ApplicationManager.getApplication().getService(TelemetryService.class);
         if (testTelemetryService == null) {
-            TestTelemetryService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("testTelemetryService cannot be null!");
         }
         return testTelemetryService;
     }
@@ -49,20 +49,20 @@ implements TelemetryService {
     @Override
     public void trackException(Throwable original, Map<String, String> properties) {
         if (original == null) {
-            TestTelemetryService.$$$reportNull$$$0(1);
+            throw new IllegalStateException("original cannot be null!");
         }
         if (properties == null) {
-            TestTelemetryService.$$$reportNull$$$0(2);
+            throw new IllegalStateException("properties cannot be null!");
         }
     }
 
     @Override
     public void track(String name, TelemetryData data) {
         if (name == null) {
-            TestTelemetryService.$$$reportNull$$$0(3);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (data == null) {
-            TestTelemetryService.$$$reportNull$$$0(4);
+            throw new IllegalStateException("data cannot be null!");
         }
         this.track(name, data.getProperties(), (Map<String, Double>)data.getMetrics());
     }
@@ -70,13 +70,13 @@ implements TelemetryService {
     @Override
     public void track(String name, Map<String, String> properties, Map<String, Double> metrics) {
         if (name == null) {
-            TestTelemetryService.$$$reportNull$$$0(5);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (properties == null) {
-            TestTelemetryService.$$$reportNull$$$0(6);
+            throw new IllegalStateException("properties cannot be null!");
         }
         if (metrics == null) {
-            TestTelemetryService.$$$reportNull$$$0(7);
+            throw new IllegalStateException("metrics cannot be null!");
         }
         this.recordedMessages.add(new TelemetryMessage(name, Map.copyOf(properties), Map.copyOf(metrics)));
     }
@@ -84,10 +84,10 @@ implements TelemetryService {
     @Override
     public void trackSecure(String name, TelemetryData data) {
         if (name == null) {
-            TestTelemetryService.$$$reportNull$$$0(8);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (data == null) {
-            TestTelemetryService.$$$reportNull$$$0(9);
+            throw new IllegalStateException("data cannot be null!");
         }
         this.trackSecure(name, data.getProperties(), (Map<String, Double>)data.getMetrics());
     }
@@ -95,13 +95,13 @@ implements TelemetryService {
     @Override
     public void trackSecure(String name, Map<String, String> properties, Map<String, Double> metrics) {
         if (name == null) {
-            TestTelemetryService.$$$reportNull$$$0(10);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (properties == null) {
-            TestTelemetryService.$$$reportNull$$$0(11);
+            throw new IllegalStateException("properties cannot be null!");
         }
         if (metrics == null) {
-            TestTelemetryService.$$$reportNull$$$0(12);
+            throw new IllegalStateException("metrics cannot be null!");
         }
         this.recordedSecureMessages.add(new TelemetryMessage(name, Map.copyOf(properties), Map.copyOf(metrics)));
     }
@@ -109,11 +109,11 @@ implements TelemetryService {
     @TestOnly
         public List<TelemetryMessage> findRecordedMessages(String name) {
         if (name == null) {
-            TestTelemetryService.$$$reportNull$$$0(13);
+            throw new IllegalStateException("name cannot be null!");
         }
         List<TelemetryMessage> list = this.recordedMessages.stream().filter(m -> name.equals(m.name)).collect(Collectors.toList());
         if (list == null) {
-            TestTelemetryService.$$$reportNull$$$0(14);
+            throw new IllegalStateException("list cannot be null!");
         }
         return list;
     }
@@ -121,11 +121,11 @@ implements TelemetryService {
     @TestOnly
         public List<TelemetryMessage> findRecordedSecureMessages(String name) {
         if (name == null) {
-            TestTelemetryService.$$$reportNull$$$0(15);
+            throw new IllegalStateException("name cannot be null!");
         }
         List<TelemetryMessage> list = this.recordedSecureMessages.stream().filter(m -> name.equals(m.name)).collect(Collectors.toList());
         if (list == null) {
-            TestTelemetryService.$$$reportNull$$$0(16);
+            throw new IllegalStateException("list cannot be null!");
         }
         return list;
     }

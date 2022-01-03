@@ -58,7 +58,7 @@ public class ByteArray {
 
         public String toString(int startOffset, int endOffset, Charset charset) {
         if (charset == null) {
-            ByteArray.$$$reportNull$$$0(0);
+            throw new IllegalStateException("charset cannot be null!");
         }
         assert (startOffset >= 0);
         assert (startOffset <= endOffset);
@@ -68,11 +68,11 @@ public class ByteArray {
 
         public String toString(Charset charset) {
         if (charset == null) {
-            ByteArray.$$$reportNull$$$0(1);
+            throw new IllegalStateException("charset cannot be null!");
         }
         String string = this.toString(0, this.size, charset);
         if (string == null) {
-            ByteArray.$$$reportNull$$$0(2);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -80,7 +80,7 @@ public class ByteArray {
         public String toString() {
         String string = this.toString(StandardCharsets.UTF_8);
         if (string == null) {
-            ByteArray.$$$reportNull$$$0(3);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }

@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 public class EditorUtilCopy {
     public static int indentLine(Project project, Editor editor, int lineNumber, int indent, int caretOffset) {
         if (editor == null) {
-            EditorUtilCopy.$$$reportNull$$$0(0);
+            throw new IllegalStateException("editor cannot be null!");
         }
         return EditorUtilCopy.indentLine(project, editor, lineNumber, indent, caretOffset, EditorActionUtil.shouldUseSmartTabs((Project)project, (Editor)editor));
     }
@@ -29,7 +29,7 @@ public class EditorUtilCopy {
     public static int indentLine(Project project, Editor editor, int lineNumber, int indent, int caretOffset, boolean shouldUseSmartTabs) {
         int newCaretOffset;
         if (editor == null) {
-            EditorUtilCopy.$$$reportNull$$$0(1);
+            throw new IllegalStateException("editor cannot be null!");
         }
         EditorSettings editorSettings = editor.getSettings();
         int tabSize = editorSettings.getTabSize(project);
@@ -102,10 +102,6 @@ public class EditorUtilCopy {
             ++result;
         }
         return result;
-    }
-
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "editor", "com/github/copilot/util/EditorUtilCopy", "indentLine"));
     }
 }
 

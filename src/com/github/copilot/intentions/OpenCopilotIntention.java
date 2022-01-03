@@ -43,14 +43,14 @@ PriorityAction {
     public String getFamilyName() {
         String string = CopilotBundle.get("intention.openCopilot.familyName");
         if (string == null) {
-            OpenCopilotIntention.$$$reportNull$$$0(0);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
 
     public boolean isAvailable(Project project, Editor editor, PsiFile file) {
         if (project == null) {
-            OpenCopilotIntention.$$$reportNull$$$0(1);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (!CopilotEditorUtil.isSelectedEditor(editor)) {
             return false;
@@ -65,14 +65,14 @@ PriorityAction {
         public PriorityAction.Priority getPriority() {
         PriorityAction.Priority priority = PriorityAction.Priority.LOW;
         if (priority == null) {
-            OpenCopilotIntention.$$$reportNull$$$0(2);
+            throw new IllegalStateException("priority cannot be null!");
         }
         return priority;
     }
 
     public void invoke(Project project, Editor editor, PsiFile file) throws IncorrectOperationException {
         if (project == null) {
-            OpenCopilotIntention.$$$reportNull$$$0(3);
+            throw new IllegalStateException("project cannot be null!");
         }
         CopilotSplitEditorManager.getInstance().openCopilot(editor, true);
         TelemetryService.getInstance().track("command.executed", Map.of("command", "intention.openCopilot"));

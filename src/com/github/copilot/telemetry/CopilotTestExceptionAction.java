@@ -19,7 +19,7 @@ public class CopilotTestExceptionAction
 extends AnAction {
     public void update(AnActionEvent e) {
         if (e == null) {
-            CopilotTestExceptionAction.$$$reportNull$$$0(0);
+            throw new IllegalStateException("e cannot be null!");
         }
         e.getPresentation().setEnabledAndVisible(ApplicationManager.getApplication().isInternal());
     }
@@ -30,7 +30,7 @@ extends AnAction {
 
     public void actionPerformed(AnActionEvent e) {
         if (e == null) {
-            CopilotTestExceptionAction.$$$reportNull$$$0(1);
+            throw new IllegalStateException("e cannot be null!");
         }
         throw new RuntimeException("Test exception by GitHub Copilot plugin, " + UUID.randomUUID());
     }

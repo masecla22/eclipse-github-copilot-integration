@@ -35,13 +35,13 @@ Cancellable {
 
     JsonToApiChoiceProcessor(LanguageEditorRequest request, TelemetryData telemetryBaseData, Flow.Subscriber<APIChoice> subscriber) {
         if (request == null) {
-            JsonToApiChoiceProcessor.$$$reportNull$$$0(0);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (telemetryBaseData == null) {
-            JsonToApiChoiceProcessor.$$$reportNull$$$0(1);
+            throw new IllegalStateException("telemetryBaseData cannot be null!");
         }
         if (subscriber == null) {
-            JsonToApiChoiceProcessor.$$$reportNull$$$0(2);
+            throw new IllegalStateException("subscriber cannot be null!");
         }
         this.request = request;
         this.apiChoicePublisher = new SubmissionPublisher(CopilotExecutors.getExecutor(), Flow.defaultBufferSize());
@@ -51,7 +51,7 @@ Cancellable {
 
     void updateWithResponse(HttpResponse.ResponseInfo responseInfo) {
         if (responseInfo == null) {
-            JsonToApiChoiceProcessor.$$$reportNull$$$0(3);
+            throw new IllegalStateException("responseInfo cannot be null!");
         }
         this.choiceTransformer.updateWithResponse(responseInfo);
     }

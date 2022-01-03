@@ -31,7 +31,7 @@ implements StartupActivity.Background {
     @RequiresBackgroundThread
     public void runActivity(Project project) {
         if (project == null) {
-            CopilotUpdateStartupActivity.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (!this.hasRun.compareAndSet(false, true) || ApplicationManager.getApplication().isUnitTestMode()) {
             return;
@@ -49,8 +49,6 @@ implements StartupActivity.Background {
         new CopilotPluginUpdater.CheckUpdatesTask(project).queue();
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "project", "com/github/copilot/update/CopilotUpdateStartupActivity", "runActivity"));
-    }
+    
 }
 

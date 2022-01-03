@@ -107,7 +107,7 @@ implements GitHubService {
     public void loginInteractive(Project project) {
         DeviceCodeResponse codeResponse;
         if (project == null) {
-            GitHubDeviceAuthService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         if ((codeResponse = this.retrieveDeviceCode(project)) == null) {
             CopilotNotifications.createFullContentNotification(CopilotBundle.get("deviceAuth.deviceCodeFetchFailed.title"), CopilotBundle.get("deviceAuth.deviceCodeFetchFailed.description"), NotificationType.ERROR, true);
@@ -156,13 +156,13 @@ implements GitHubService {
         GitHubCopilotToken newToken;
         GitHubSession session;
         if (project == null) {
-            GitHubDeviceAuthService.$$$reportNull$$$0(1);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (onUnauthorized == null) {
-            GitHubDeviceAuthService.$$$reportNull$$$0(2);
+            throw new IllegalStateException("onUnauthorized cannot be null!");
         }
         if (onNewTokenExpired == null) {
-            GitHubDeviceAuthService.$$$reportNull$$$0(3);
+            throw new IllegalStateException("onNewTokenExpired cannot be null!");
         }
         if ((session = sessionOverride) == null) {
             Object object = this.sessionLock;
@@ -199,7 +199,7 @@ implements GitHubService {
     public GitHubCopilotToken getCopilotToken(boolean requestIfMissing, long minimumValidity, TimeUnit timeUnit) {
         GitHubSession currentSession;
         if (timeUnit == null) {
-            GitHubDeviceAuthService.$$$reportNull$$$0(4);
+            throw new IllegalStateException("timeUnit cannot be null!");
         }
         Object object = this.sessionLock;
         synchronized (object) {
@@ -256,7 +256,7 @@ implements GitHubService {
 
         private DeviceCodeResponse retrieveDeviceCode(Project project) {
         if (project == null) {
-            GitHubDeviceAuthService.$$$reportNull$$$0(5);
+            throw new IllegalStateException("project cannot be null!");
         }
         try {
             return (DeviceCodeResponse)ProgressManager.getInstance().run((Task.WithResult)new Task.WithResult<DeviceCodeResponse, Exception>(project, "Retrieving GitHub Device Code", true){
@@ -283,7 +283,7 @@ implements GitHubService {
 
         private DeviceTokenResponse retrieveToken(Project project, final DeviceCodeResponse codeResponse) {
         if (codeResponse == null) {
-            GitHubDeviceAuthService.$$$reportNull$$$0(6);
+            throw new IllegalStateException("codeResponse cannot be null!");
         }
         try {
             String title = CopilotBundle.get("deviceAuth.progressTitle");
@@ -334,7 +334,7 @@ implements GitHubService {
 
     private void waitForGitHub(ProgressIndicator indicator, long intervalMillis) {
         if (indicator == null) {
-            GitHubDeviceAuthService.$$$reportNull$$$0(7);
+            throw new IllegalStateException("indicator cannot be null!");
         }
         ScheduledExecutorService service = AppExecutorUtil.getAppScheduledExecutorService();
         ScheduledFuture<?> future = service.schedule(() -> LOG.debug("Ready to poll GitHub device status"), intervalMillis, TimeUnit.MILLISECONDS);
@@ -384,7 +384,7 @@ implements GitHubService {
 
         private static GitHubCopilotToken retrieveCopilotTokenInBackground(Project project, final GitHubSession session) {
         if (session == null) {
-            GitHubDeviceAuthService.$$$reportNull$$$0(8);
+            throw new IllegalStateException("session cannot be null!");
         }
         try {
             String title = CopilotBundle.get("github.auth.fetchingToken");
@@ -415,7 +415,7 @@ implements GitHubService {
     @RequiresBackgroundThread
         private static GitHubCopilotToken retrieveCopilotToken(GitHubSession session) {
         if (session == null) {
-            GitHubDeviceAuthService.$$$reportNull$$$0(9);
+            throw new IllegalStateException("session cannot be null!");
         }
         LOG.debug("Retrieving new GitHub Copilot proxy token");
         try {

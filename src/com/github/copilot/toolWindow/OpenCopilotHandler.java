@@ -135,16 +135,16 @@ class OpenCopilotHandler {
         static OpenCopilotHandler create(Project project, FileType fileType, Editor editor, EditorRequest request) {
         ToolWindow toolWindow;
         if (project == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (fileType == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(1);
+            throw new IllegalStateException("fileType cannot be null!");
         }
         if (editor == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(2);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (request == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(3);
+            throw new IllegalStateException("request cannot be null!");
         }
         if ((toolWindow = ToolWindowManager.getInstance((Project)project).getToolWindow("github.copilotToolWindow")) == null) {
             return null;
@@ -154,26 +154,26 @@ class OpenCopilotHandler {
 
     static boolean isCopilotSnippetFile(VirtualFile virtualFile) {
         if (virtualFile == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(4);
+            throw new IllegalStateException("virtualFile cannot be null!");
         }
         return COPILOT_PREVIEW_EDITOR.isIn((UserDataHolder)virtualFile);
     }
 
     OpenCopilotHandler(Project project, ToolWindow toolWindow, FileType fileType, Editor editor, EditorRequest editorRequest) {
         if (project == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(5);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (toolWindow == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(6);
+            throw new IllegalStateException("toolWindow cannot be null!");
         }
         if (fileType == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(7);
+            throw new IllegalStateException("fileType cannot be null!");
         }
         if (editor == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(8);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (editorRequest == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(9);
+            throw new IllegalStateException("editorRequest cannot be null!");
         }
         this.solutionIndex = new AtomicInteger(1);
         this.allCompletions = ContainerUtil.newConcurrentSet();
@@ -261,10 +261,10 @@ class OpenCopilotHandler {
     @RequiresBackgroundThread
     private void addCompletion(final JPanel contentPanel, CopilotInlayList completion) {
         if (contentPanel == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(10);
+            throw new IllegalStateException("contentPanel cannot be null!");
         }
         if (completion == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(11);
+            throw new IllegalStateException("completion cannot be null!");
         }
         StringBuilder content = new StringBuilder();
         for (CopilotEditorInlay inlay : completion) {
@@ -329,7 +329,7 @@ class OpenCopilotHandler {
         private EditorTextField createSnippetEditor(LightVirtualFile snippetFile) {
         Language language;
         if (snippetFile == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(12);
+            throw new IllegalStateException("snippetFile cannot be null!");
         }
         if ((language = snippetFile.getLanguage()) == null && snippetFile.getFileType() instanceof LanguageFileType) {
             language = ((LanguageFileType)snippetFile.getFileType()).getLanguage();
@@ -369,13 +369,13 @@ class OpenCopilotHandler {
 
     private void acceptSolution(Project project, EditorRequest editorRequest, CopilotInlayList completion) {
         if (project == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(13);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (editorRequest == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(14);
+            throw new IllegalStateException("editorRequest cannot be null!");
         }
         if (completion == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(15);
+            throw new IllegalStateException("completion cannot be null!");
         }
         if (this.toolWindowContent != null) {
             this.toolWindow.getContentManager().removeContent(this.toolWindowContent, true);
@@ -398,7 +398,7 @@ class OpenCopilotHandler {
 
     private void setContentEmptyText(String text, SimpleTextAttributes attrs) {
         if (text == null) {
-            OpenCopilotHandler.$$$reportNull$$$0(16);
+            throw new IllegalStateException("text cannot be null!");
         }
         this.contentPanel.removeAll();
         this.contentPanel.getEmptyText().clear();

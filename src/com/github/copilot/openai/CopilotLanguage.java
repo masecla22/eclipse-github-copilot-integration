@@ -21,7 +21,7 @@ public enum CopilotLanguage {
 
     private CopilotLanguage(String enginePath) {
         if (enginePath == null) {
-            CopilotLanguage.$$$reportNull$$$0(0);
+            throw new IllegalStateException("enginePath cannot be null!");
         }
         this.enginePath = enginePath;
     }
@@ -35,7 +35,7 @@ public enum CopilotLanguage {
         public String getEnginePath() {
         String string = this.enginePath;
         if (string == null) {
-            CopilotLanguage.$$$reportNull$$$0(1);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }

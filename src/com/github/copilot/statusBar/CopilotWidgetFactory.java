@@ -31,21 +31,21 @@ extends StatusBarEditorBasedWidgetFactory {
         public String getDisplayName() {
         String string = CopilotBundle.get("statusBar.displayName");
         if (string == null) {
-            CopilotWidgetFactory.$$$reportNull$$$0(0);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
 
         public StatusBarWidget createWidget(Project project) {
         if (project == null) {
-            CopilotWidgetFactory.$$$reportNull$$$0(1);
+            throw new IllegalStateException("project cannot be null!");
         }
         return new CopilotStatusBarWidget(project);
     }
 
     public void disposeWidget(StatusBarWidget widget) {
         if (widget == null) {
-            CopilotWidgetFactory.$$$reportNull$$$0(2);
+            throw new IllegalStateException("widget cannot be null!");
         }
     }
 

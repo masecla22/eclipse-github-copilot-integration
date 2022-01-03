@@ -17,7 +17,7 @@ class LanguageChoice {
         public Language getLanguage() {
         Language language = this.language;
         if (language == null) {
-            LanguageChoice.$$$reportNull$$$0(0);
+            throw new IllegalStateException("language cannot be null!");
         }
         return language;
     }
@@ -68,7 +68,7 @@ class LanguageChoice {
 
     public LanguageChoice(Language language, boolean selected) {
         if (language == null) {
-            LanguageChoice.$$$reportNull$$$0(1);
+            throw new IllegalStateException("language cannot be null!");
         }
         if (language == null) {
             throw new NullPointerException("language is marked non-null but is null");

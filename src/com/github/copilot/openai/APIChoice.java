@@ -30,7 +30,7 @@ extends CopilotCompletion {
         default public String getCompletionText() {
         String string = StringUtil.join(this.getCompletion(), (String)"\n");
         if (string == null) {
-            APIChoice.$$$reportNull$$$0(0);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -51,8 +51,6 @@ extends CopilotCompletion {
 
     public boolean isCached();
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/openai/APIChoice", "getCompletionText"));
-    }
+    
 }
 

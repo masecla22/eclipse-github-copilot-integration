@@ -42,7 +42,7 @@ implements CopilotAction {
     public void update(AnActionEvent e) {
         Project project;
         if (e == null) {
-            AbstractDisableCopilotCompletionsAction.$$$reportNull$$$0(0);
+            throw new IllegalStateException("e cannot be null!");
         }
         if ((project = e.getProject()) == null) {
             e.getPresentation().setEnabledAndVisible(false);
@@ -59,7 +59,7 @@ implements CopilotAction {
         boolean global;
         Project project;
         if (e == null) {
-            AbstractDisableCopilotCompletionsAction.$$$reportNull$$$0(1);
+            throw new IllegalStateException("e cannot be null!");
         }
         if ((project = e.getProject()) == null || project.isDisposed()) {
             return;

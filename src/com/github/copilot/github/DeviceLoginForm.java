@@ -67,7 +67,7 @@ class DeviceLoginForm {
 
     public void update(DeviceCodeResponse codeResponse) {
         if (codeResponse == null) {
-            DeviceLoginForm.$$$reportNull$$$0(0);
+            throw new IllegalStateException("codeResponse cannot be null!");
         }
         String uri = codeResponse.getVerificationUri();
         String code = codeResponse.getUserCode();
@@ -149,8 +149,6 @@ class DeviceLoginForm {
         }
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "codeResponse", "com/github/copilot/github/DeviceLoginForm", "update"));
-    }
+    
 }
 

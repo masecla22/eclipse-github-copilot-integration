@@ -19,7 +19,7 @@ public class GetCompletionsResult {
 
     public GetCompletionsResult(List<Completion> completions) {
         if (completions == null) {
-            GetCompletionsResult.$$$reportNull$$$0(0);
+            throw new IllegalStateException("completions cannot be null!");
         }
         if (completions == null) {
             throw new NullPointerException("completions is marked non-null but is null");
@@ -30,14 +30,14 @@ public class GetCompletionsResult {
         public List<Completion> getCompletions() {
         List<Completion> list = this.completions;
         if (list == null) {
-            GetCompletionsResult.$$$reportNull$$$0(1);
+            throw new IllegalStateException("list cannot be null!");
         }
         return list;
     }
 
     public void setCompletions(List<Completion> completions) {
         if (completions == null) {
-            GetCompletionsResult.$$$reportNull$$$0(2);
+            throw new IllegalStateException("completions cannot be null!");
         }
         if (completions == null) {
             throw new NullPointerException("completions is marked non-null but is null");
@@ -171,19 +171,19 @@ public class GetCompletionsResult {
 
         public Completion(String uuid, String text, Range range, String displayText, Position position) {
             if (uuid == null) {
-                Completion.$$$reportNull$$$0(0);
+                throw new IllegalStateException("uuid cannot be null!");
             }
             if (text == null) {
-                Completion.$$$reportNull$$$0(1);
+                throw new IllegalStateException("text cannot be null!");
             }
             if (range == null) {
-                Completion.$$$reportNull$$$0(2);
+                throw new IllegalStateException("range cannot be null!");
             }
             if (displayText == null) {
-                Completion.$$$reportNull$$$0(3);
+                throw new IllegalStateException("displayText cannot be null!");
             }
             if (position == null) {
-                Completion.$$$reportNull$$$0(4);
+                throw new IllegalStateException("position cannot be null!");
             }
             if (uuid == null) {
                 throw new NullPointerException("uuid is marked non-null but is null");
@@ -210,7 +210,7 @@ public class GetCompletionsResult {
                 public String getUuid() {
             String string = this.uuid;
             if (string == null) {
-                Completion.$$$reportNull$$$0(5);
+                throw new IllegalStateException("string cannot be null!");
             }
             return string;
         }
@@ -218,7 +218,7 @@ public class GetCompletionsResult {
                 public String getText() {
             String string = this.text;
             if (string == null) {
-                Completion.$$$reportNull$$$0(6);
+                throw new IllegalStateException("string cannot be null!");
             }
             return string;
         }
@@ -226,7 +226,7 @@ public class GetCompletionsResult {
                 public Range getRange() {
             Range range = this.range;
             if (range == null) {
-                Completion.$$$reportNull$$$0(7);
+                throw new IllegalStateException("range cannot be null!");
             }
             return range;
         }
@@ -234,7 +234,7 @@ public class GetCompletionsResult {
                 public String getDisplayText() {
             String string = this.displayText;
             if (string == null) {
-                Completion.$$$reportNull$$$0(8);
+                throw new IllegalStateException("string cannot be null!");
             }
             return string;
         }
@@ -242,7 +242,7 @@ public class GetCompletionsResult {
                 public Position getPosition() {
             Position position = this.position;
             if (position == null) {
-                Completion.$$$reportNull$$$0(9);
+                throw new IllegalStateException("position cannot be null!");
             }
             return position;
         }

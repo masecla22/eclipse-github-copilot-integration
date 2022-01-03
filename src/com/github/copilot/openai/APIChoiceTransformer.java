@@ -72,13 +72,13 @@ class APIChoiceTransformer {
 
     APIChoiceTransformer(LanguageEditorRequest request, TelemetryData telemetryBaseData, Consumer<APIChoice> onNewItem) {
         if (request == null) {
-            APIChoiceTransformer.$$$reportNull$$$0(0);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (telemetryBaseData == null) {
-            APIChoiceTransformer.$$$reportNull$$$0(1);
+            throw new IllegalStateException("telemetryBaseData cannot be null!");
         }
         if (onNewItem == null) {
-            APIChoiceTransformer.$$$reportNull$$$0(2);
+            throw new IllegalStateException("onNewItem cannot be null!");
         }
         this.solutions = Int2ObjectMaps.synchronize((Int2ObjectMap)new Int2ObjectOpenHashMap());
         this.request = request;
@@ -88,7 +88,7 @@ class APIChoiceTransformer {
 
     void process(JsonObject json) {
         if (json == null) {
-            APIChoiceTransformer.$$$reportNull$$$0(3);
+            throw new IllegalStateException("json cannot be null!");
         }
         if (this.request.isCancelled()) {
             return;
@@ -155,7 +155,7 @@ class APIChoiceTransformer {
 
     private Pair<APIChoice, APILogprobs> prepareSolutionForReturn(APIJsonDataStreaming solution, Integer finishOffset, int index) {
         if (solution == null) {
-            APIChoiceTransformer.$$$reportNull$$$0(4);
+            throw new IllegalStateException("solution cannot be null!");
         }
         String completionText = solution.getJoinedText();
         if (finishOffset != null) {
@@ -171,10 +171,10 @@ class APIChoiceTransformer {
 
     private APIChoice convertToAPIChoice(String completionText, APILogprobs logprobs, int choiceIndex) {
         if (completionText == null) {
-            APIChoiceTransformer.$$$reportNull$$$0(5);
+            throw new IllegalStateException("completionText cannot be null!");
         }
         if (logprobs == null) {
-            APIChoiceTransformer.$$$reportNull$$$0(6);
+            throw new IllegalStateException("logprobs cannot be null!");
         }
         CompletionResponseInfo responseInfo = this.completionResponseInfo;
         assert (responseInfo != null);
@@ -187,7 +187,7 @@ class APIChoiceTransformer {
 
         private APILogprobs convertToAPIJsonData(APIJsonDataStreaming data) {
         if (data == null) {
-            APIChoiceTransformer.$$$reportNull$$$0(7);
+            throw new IllegalStateException("data cannot be null!");
         }
         int numText = data.getText().size();
         int numTokens = data.tokens.size();
@@ -224,7 +224,7 @@ class APIChoiceTransformer {
 
     void updateWithResponse(HttpResponse.ResponseInfo responseInfo) {
         if (responseInfo == null) {
-            APIChoiceTransformer.$$$reportNull$$$0(8);
+            throw new IllegalStateException("responseInfo cannot be null!");
         }
         assert (this.completionResponseInfo == null);
         this.completionResponseInfo = new CompletionResponseInfo(OpenAIHttpUtil.getRequestId(responseInfo), OpenAIHttpUtil.getServerExperiments(responseInfo), OpenAIHttpUtil.getProxyRole(responseInfo), OpenAIHttpUtil.getModelEndpoint(responseInfo), this.request.getRequestTimestamp(), OpenAIHttpUtil.getProcessingTime(responseInfo));
@@ -232,10 +232,10 @@ class APIChoiceTransformer {
 
     private void logCompletionChoice(APIChoice apiChoice, APILogprobs logprobs) {
         if (apiChoice == null) {
-            APIChoiceTransformer.$$$reportNull$$$0(9);
+            throw new IllegalStateException("apiChoice cannot be null!");
         }
         if (logprobs == null) {
-            APIChoiceTransformer.$$$reportNull$$$0(10);
+            throw new IllegalStateException("logprobs cannot be null!");
         }
         Map<String, String> mapData = Maps.merge(apiChoice.getResponseInfo().createTelemetryData(), logprobs.createTelemetryJson(), Map.of("completionTextJson", apiChoice.getCompletionText(), "choiceIndex", String.valueOf(apiChoice.getChoiceIndex()), "completionId", StringUtil.defaultIfEmpty((String)this.completionId, (String)"")));
         TelemetryService.getInstance().trackSecure("engine.completion", TelemetryData.createIssued(mapData));

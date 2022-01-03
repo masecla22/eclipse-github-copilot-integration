@@ -55,7 +55,7 @@ implements CompletionCache {
     @Override
     public boolean isLatestPrefix(String prefix) {
         if (prefix == null) {
-            SimpleCompletionCache.$$$reportNull$$$0(0);
+            throw new IllegalStateException("prefix cannot be null!");
         }
         Lock readLock = this.lock.readLock();
         readLock.lock();
@@ -74,7 +74,7 @@ implements CompletionCache {
     @Override
         public List<CopilotCompletion> get(String prompt, boolean isMultiline) {
         if (prompt == null) {
-            SimpleCompletionCache.$$$reportNull$$$0(1);
+            throw new IllegalStateException("prompt cannot be null!");
         }
         LOG.trace("Retrieving cached api items for prompt");
         Lock readLock = this.lock.readLock();
@@ -94,7 +94,7 @@ implements CompletionCache {
     @Override
         public List<CopilotCompletion> getLatest(String prefix) {
         if (prefix == null) {
-            SimpleCompletionCache.$$$reportNull$$$0(2);
+            throw new IllegalStateException("prefix cannot be null!");
         }
         Lock readLock = this.lock.readLock();
         readLock.lock();
@@ -113,13 +113,13 @@ implements CompletionCache {
     @Override
     public void add(String prefix, String prompt, boolean isMultiline, CopilotCompletion item) {
         if (prefix == null) {
-            SimpleCompletionCache.$$$reportNull$$$0(3);
+            throw new IllegalStateException("prefix cannot be null!");
         }
         if (prompt == null) {
-            SimpleCompletionCache.$$$reportNull$$$0(4);
+            throw new IllegalStateException("prompt cannot be null!");
         }
         if (item == null) {
-            SimpleCompletionCache.$$$reportNull$$$0(5);
+            throw new IllegalStateException("item cannot be null!");
         }
         if (LOG.isTraceEnabled()) {
             LOG.trace("Caching new APIChoice for prompt: " + item);
@@ -145,10 +145,10 @@ implements CompletionCache {
     @Override
     public void updateLatest(String prefix, String prompt, boolean isMultiline) {
         if (prefix == null) {
-            SimpleCompletionCache.$$$reportNull$$$0(6);
+            throw new IllegalStateException("prefix cannot be null!");
         }
         if (prompt == null) {
-            SimpleCompletionCache.$$$reportNull$$$0(7);
+            throw new IllegalStateException("prompt cannot be null!");
         }
         Lock writeLock = this.lock.writeLock();
         writeLock.lock();
@@ -179,7 +179,7 @@ implements CompletionCache {
 
         private List<CopilotCompletion> getLatestLocked(String prefix) {
         if (prefix == null) {
-            SimpleCompletionCache.$$$reportNull$$$0(8);
+            throw new IllegalStateException("prefix cannot be null!");
         }
         if (this.lastPrefix == null || this.lastPromptHash == null || !prefix.startsWith(this.lastPrefix)) {
             return null;
@@ -198,7 +198,7 @@ implements CompletionCache {
 
     private static String promptHash(String prompt) {
         if (prompt == null) {
-            SimpleCompletionCache.$$$reportNull$$$0(9);
+            throw new IllegalStateException("prompt cannot be null!");
         }
         return DigestUtil.sha256Hex((byte[])prompt.getBytes(StandardCharsets.UTF_8));
     }

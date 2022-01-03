@@ -115,7 +115,7 @@ implements CopilotEditorManager {
     @RequiresEdt
     public boolean isAvailable(Editor editor) {
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(0);
+            throw new IllegalStateException("editor cannot be null!");
         }
         return !editor.isViewer() && !editor.isOneLineMode() && !editor.isDisposed() && (!(editor instanceof EditorEx) || !((EditorEx)editor).isEmbeddedIntoDialogWrapper()) && !(editor instanceof EditorWindow) && CopilotCompletionService.getInstance().isAvailable(editor);
     }
@@ -123,10 +123,10 @@ implements CopilotEditorManager {
     @Override
     public int countCompletionInlays(Editor editor, TextRange searchRange, boolean inlineInlays, boolean afterLineEndInlays, boolean blockInlays, boolean matchInLeadingWhitespace) {
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(1);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (searchRange == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(2);
+            throw new IllegalStateException("searchRange cannot be null!");
         }
         if (!this.isAvailable(editor)) {
             return 0;
@@ -164,7 +164,7 @@ implements CopilotEditorManager {
     public boolean hasTypingAsSuggestedData(Editor editor, char next) {
         EditorRequestResultList request;
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(3);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if ((request = (EditorRequestResultList)KEY_LAST_REQUEST.get((UserDataHolder)editor)) == null) {
             return false;
@@ -188,7 +188,7 @@ implements CopilotEditorManager {
     @RequiresEdt
     public boolean applyCompletion(Editor editor) {
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(4);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (editor.isDisposed()) {
             LOG.warn("editor already disposed");
@@ -220,16 +220,16 @@ implements CopilotEditorManager {
     @RequiresEdt
     public void applyCompletion(Project project, Editor editor, EditorRequest request, CopilotInlayList completion) {
         if (project == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(5);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(6);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (request == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(7);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (completion == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(8);
+            throw new IllegalStateException("completion cannot be null!");
         }
         TextRange range = completion.getReplacementRange();
         String text = completion.getReplacementText();
@@ -250,10 +250,10 @@ implements CopilotEditorManager {
     @RequiresEdt
     public void disposeInlays(Editor editor, InlayDisposeContext disposeContext) {
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(9);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (disposeContext == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(10);
+            throw new IllegalStateException("disposeContext cannot be null!");
         }
         if (!this.isAvailable(editor) || this.isProcessing(editor)) {
             return;
@@ -275,7 +275,7 @@ implements CopilotEditorManager {
     @Override
     public void editorModified(Editor editor) {
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(11);
+            throw new IllegalStateException("editor cannot be null!");
         }
         this.editorModified(editor, editor.getCaretModel().getOffset(), false);
     }
@@ -284,7 +284,7 @@ implements CopilotEditorManager {
     @RequiresEdt
     public void editorModified(Editor editor, int offset, boolean force) {
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(12);
+            throw new IllegalStateException("editor cannot be null!");
         }
         LOG.debug("editorModified");
         if (this.requestsDisabled.get()) {
@@ -347,7 +347,7 @@ implements CopilotEditorManager {
     public void cancelCompletionRequests(Editor editor) {
         List requests;
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(13);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if ((requests = (List)CopilotEditorUtil.KEY_REQUESTS.get((UserDataHolder)editor)) == null || requests.isEmpty()) {
             return;
@@ -368,7 +368,7 @@ implements CopilotEditorManager {
         @RequiresEdt
     public List<CopilotInlayRenderer> collectInlays(Editor editor, int startOffset, int endOffset) {
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(14);
+            throw new IllegalStateException("editor cannot be null!");
         }
         InlayModel model = editor.getInlayModel();
         ArrayList inlays = new ArrayList();
@@ -382,7 +382,7 @@ implements CopilotEditorManager {
         }
         ArrayList<CopilotInlayRenderer> arrayList = renderers;
         if (arrayList == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(15);
+            throw new IllegalStateException("arrayList cannot be null!");
         }
         return arrayList;
     }
@@ -390,7 +390,7 @@ implements CopilotEditorManager {
     @Override
     public boolean hasNextInlaySet(Editor editor) {
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(16);
+            throw new IllegalStateException("editor cannot be null!");
         }
         EditorRequestResultList request = (EditorRequestResultList)KEY_LAST_REQUEST.get((UserDataHolder)editor);
         CopilotCompletionService service = CopilotCompletionService.getInstance();
@@ -401,7 +401,7 @@ implements CopilotEditorManager {
     public boolean hasPreviousInlaySet(Editor editor) {
         EditorRequestResultList request;
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(17);
+            throw new IllegalStateException("editor cannot be null!");
         }
         return (request = (EditorRequestResultList)KEY_LAST_REQUEST.get((UserDataHolder)editor)) != null && request.hasPrev();
     }
@@ -410,7 +410,7 @@ implements CopilotEditorManager {
     public void showNextInlaySet(Editor editor) {
         EditorRequestResultList request;
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(18);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if ((request = (EditorRequestResultList)KEY_LAST_REQUEST.get((UserDataHolder)editor)) == null) {
             return;
@@ -431,7 +431,7 @@ implements CopilotEditorManager {
     public void showPreviousInlaySet(Editor editor) {
         EditorRequestResultList request;
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(19);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if ((request = (EditorRequestResultList)KEY_LAST_REQUEST.get((UserDataHolder)editor)) == null) {
             return;
@@ -445,10 +445,10 @@ implements CopilotEditorManager {
 
     private void queueCompletionRequest(Editor editor, EditorRequest contentRequest, Integer maxCompletions, boolean enableCaching, boolean cycling, Consumer<CopilotInlayList> onFirstCompletion) {
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(20);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (contentRequest == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(21);
+            throw new IllegalStateException("contentRequest cannot be null!");
         }
         this.requestAlarm.cancelAllRequests();
         this.requestAlarm.addRequest(() -> {
@@ -461,10 +461,10 @@ implements CopilotEditorManager {
     @RequiresBackgroundThread
     private void requestCopilotCompletions(final Editor editor, final EditorRequest request, Integer maxCompletions, boolean enableCaching, boolean cycling, final Consumer<CopilotInlayList> onFirstCompletion) {
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(22);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (request == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(23);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (!CopilotEditorUtil.isFocusedEditor(editor)) {
             LOG.debug("skipping completions for unfocused editor: " + editor);
@@ -528,16 +528,16 @@ implements CopilotEditorManager {
 
     private void insertInlays(CopilotInlayList inlays, EditorRequest request, Editor editor, boolean disposeExistingInlays, InlayDisposeContext disposeContext) {
         if (inlays == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(24);
+            throw new IllegalStateException("inlays cannot be null!");
         }
         if (request == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(25);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(26);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (disposeContext == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(27);
+            throw new IllegalStateException("disposeContext cannot be null!");
         }
         if (!this.isActiveRequest(request, editor)) {
             LOG.debug("skipping insertion of inlay because request was cancelled");
@@ -555,16 +555,16 @@ implements CopilotEditorManager {
 
     private void doInsertInlays(CopilotInlayList inlays, EditorRequest request, Editor editor, boolean disposeExistingInlays, InlayDisposeContext context) {
         if (inlays == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(28);
+            throw new IllegalStateException("inlays cannot be null!");
         }
         if (request == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(29);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(30);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (context == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(31);
+            throw new IllegalStateException("context cannot be null!");
         }
         if (disposeExistingInlays) {
             this.disposeInlays(editor, context);
@@ -600,7 +600,7 @@ implements CopilotEditorManager {
 
     private boolean isProcessing(Editor editor) {
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(32);
+            throw new IllegalStateException("editor cannot be null!");
         }
         return (Boolean)KEY_PROCESSING.get((UserDataHolder)editor);
     }
@@ -614,10 +614,10 @@ implements CopilotEditorManager {
 
     private void wrapProcessing(Editor editor, Runnable block) {
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(33);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (block == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(34);
+            throw new IllegalStateException("block cannot be null!");
         }
         assert (!((Boolean)KEY_PROCESSING.get((UserDataHolder)editor)).booleanValue());
         try {
@@ -631,10 +631,10 @@ implements CopilotEditorManager {
 
     private boolean isActiveRequest(EditorRequest request, Editor editor) {
         if (request == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(35);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(36);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (request.getRequestId() != RequestId.currentRequestId()) {
             return false;
@@ -646,10 +646,10 @@ implements CopilotEditorManager {
     private boolean addInlays(Editor editor, List<CopilotInlayList> inlaySets) {
         EditorRequestResultList stored;
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(37);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (inlaySets == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(38);
+            throw new IllegalStateException("inlaySets cannot be null!");
         }
         if ((stored = (EditorRequestResultList)KEY_LAST_REQUEST.get((UserDataHolder)editor)) != null) {
             for (CopilotInlayList inlays : inlaySets) {
@@ -661,7 +661,7 @@ implements CopilotEditorManager {
 
     private void showRequestsDisabledNotification(Project project) {
         if (project == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(39);
+            throw new IllegalStateException("project cannot be null!");
         }
         Notification notification = CopilotNotifications.createFullContentNotification(CopilotBundle.get("requestsDisabledNotification.title"), CopilotBundle.get("requestsDisabledNotification.text"), NotificationType.ERROR, true);
         notification.addAction((AnAction)NotificationAction.createSimpleExpiring((String)CopilotBundle.get("requestsDisabledNotification.checkUpdates"), () -> new CopilotPluginUpdater.CheckUpdatesTask(project, true).queue()));
@@ -671,10 +671,10 @@ implements CopilotEditorManager {
 
     private void fetchOnDemandCompletions(Editor editor, EditorRequestResultList request) {
         if (editor == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(40);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (request == null) {
-            CopilotEditorManagerImpl.$$$reportNull$$$0(41);
+            throw new IllegalStateException("request cannot be null!");
         }
         EditorRequest currentRequest = request.getRequest();
         LOG.debug("Fetching on-demand completions for cycling");

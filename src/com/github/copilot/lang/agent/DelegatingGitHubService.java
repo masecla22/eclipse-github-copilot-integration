@@ -42,7 +42,7 @@ implements GitHubService {
     @RequiresEdt
     public void loginInteractive(Project project) {
         if (project == null) {
-            DelegatingGitHubService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         this.getDelegate().loginInteractive(project);
     }
@@ -50,13 +50,13 @@ implements GitHubService {
     @Override
         public GitHubCopilotToken fetchCopilotTokenInteractive(Project project, GitHubSession sessionOverride, boolean storeToken, UnauthorizedTokenCallback onUnauthorized, Consumer<Project> onNewTokenExpired) {
         if (project == null) {
-            DelegatingGitHubService.$$$reportNull$$$0(1);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (onUnauthorized == null) {
-            DelegatingGitHubService.$$$reportNull$$$0(2);
+            throw new IllegalStateException("onUnauthorized cannot be null!");
         }
         if (onNewTokenExpired == null) {
-            DelegatingGitHubService.$$$reportNull$$$0(3);
+            throw new IllegalStateException("onNewTokenExpired cannot be null!");
         }
         return this.getDelegate().fetchCopilotTokenInteractive(project, sessionOverride, storeToken, onUnauthorized, onNewTokenExpired);
     }
@@ -73,7 +73,7 @@ implements GitHubService {
         public GitHubCopilotToken getCopilotToken(boolean requestIfMissing, long minimumValidity, TimeUnit timeUnit) {
         void timeUnit2;
         if (timeUnit == null) {
-            DelegatingGitHubService.$$$reportNull$$$0(4);
+            throw new IllegalStateException("timeUnit cannot be null!");
         }
         return this.getDelegate().getCopilotToken(requestIfMissing, minimumValidity, (TimeUnit)timeUnit2);
     }
@@ -87,7 +87,7 @@ implements GitHubService {
     @RequiresEdt
     public void showLoginNotification(Project project, boolean force) {
         if (project == null) {
-            DelegatingGitHubService.$$$reportNull$$$0(5);
+            throw new IllegalStateException("project cannot be null!");
         }
         this.getDelegate().showLoginNotification(project, force);
     }
@@ -95,7 +95,7 @@ implements GitHubService {
         private GitHubService getDelegate() {
         GitHubService gitHubService = CopilotAgent.isAgentSupportedAndEnabled() ? this.agentService : this.defaultService;
         if (gitHubService == null) {
-            DelegatingGitHubService.$$$reportNull$$$0(6);
+            throw new IllegalStateException("gitHubService cannot be null!");
         }
         return gitHubService;
     }

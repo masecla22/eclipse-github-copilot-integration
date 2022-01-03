@@ -21,14 +21,14 @@ public class Position {
 
     public Position(LineInfo lineInfo) {
         if (lineInfo == null) {
-            Position.$$$reportNull$$$0(0);
+            throw new IllegalStateException("lineInfo cannot be null!");
         }
         this(lineInfo.getLineNumber(), lineInfo.getColumnOffset());
     }
 
     public int toOffset(String text) {
         if (text == null) {
-            Position.$$$reportNull$$$0(1);
+            throw new IllegalStateException("text cannot be null!");
         }
         return StringUtil.lineColToOffset((CharSequence)text, (int)this.line, (int)this.character);
     }

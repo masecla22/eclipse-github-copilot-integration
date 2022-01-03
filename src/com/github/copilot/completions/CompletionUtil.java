@@ -36,10 +36,10 @@ public class CompletionUtil {
 
     static List<CopilotInlayList> createEditorCompletions(EditorRequest request, List<CopilotCompletion> items) {
         if (request == null) {
-            CompletionUtil.$$$reportNull$$$0(0);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (items == null) {
-            CompletionUtil.$$$reportNull$$$0(1);
+            throw new IllegalStateException("items cannot be null!");
         }
         return items.stream().map(item -> CompletionUtil.createEditorCompletion(request, item, true)).collect(Collectors.toList());
     }
@@ -48,10 +48,10 @@ public class CompletionUtil {
         boolean replaceLinePrefix;
         ArrayList<String> lines;
         if (request == null) {
-            CompletionUtil.$$$reportNull$$$0(2);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (copilotCompletion == null) {
-            CompletionUtil.$$$reportNull$$$0(3);
+            throw new IllegalStateException("copilotCompletion cannot be null!");
         }
         if ((lines = new ArrayList<String>(copilotCompletion.getCompletion())).isEmpty() || lines.size() == 1 && (lines.get(0).isEmpty() || lines.get(0).equals("\n"))) {
             LOG.debug("ignoring empty completion: " + request);
@@ -72,33 +72,33 @@ public class CompletionUtil {
         private static String createReplacementText(LineInfo lineInfo, List<String> lines) {
         String ws;
         if (lineInfo == null) {
-            CompletionUtil.$$$reportNull$$$0(4);
+            throw new IllegalStateException("lineInfo cannot be null!");
         }
         String text = StringUtil.join(lines, (String)"\n");
         if (!lineInfo.isBlankLine() && text.startsWith(ws = lineInfo.getWhitespaceBeforeCursor())) {
             String string = text.substring(ws.length());
             if (string == null) {
-                CompletionUtil.$$$reportNull$$$0(5);
+                throw new IllegalStateException("string cannot be null!");
             }
             return string;
         }
         String string = text;
         if (string == null) {
-            CompletionUtil.$$$reportNull$$$0(6);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
 
         private static TextRange createReplacementRange(EditorRequest request, boolean replaceLinePrefix) {
         if (request == null) {
-            CompletionUtil.$$$reportNull$$$0(7);
+            throw new IllegalStateException("request cannot be null!");
         }
         LineInfo lineInfo = request.getLineInfo();
         int startOffset = replaceLinePrefix ? lineInfo.getLineStartOffset() : request.getOffset();
         int endOffset = CompletionUtil.isReplaceLineSuffix(request) ? lineInfo.getLineEndOffset() - CopilotStringUtil.trailingWhitespaceLength(lineInfo.getLineSuffix()) : request.getOffset();
         TextRange textRange = TextRange.create((int)startOffset, (int)endOffset);
         if (textRange == null) {
-            CompletionUtil.$$$reportNull$$$0(8);
+            throw new IllegalStateException("textRange cannot be null!");
         }
         return textRange;
     }
@@ -106,17 +106,17 @@ public class CompletionUtil {
     private static boolean isReplaceLineSuffix(EditorRequest request) {
         String lineSuffix;
         if (request == null) {
-            CompletionUtil.$$$reportNull$$$0(9);
+            throw new IllegalStateException("request cannot be null!");
         }
         return CopilotStringUtil.isSpacesOrTabs(lineSuffix = request.getLineInfo().getLineSuffix(), false) || CommonLanguageSupport.isValidMiddleOfTheLinePosition(lineSuffix);
     }
 
         private static List<CopilotEditorInlay> createEditorInlays(EditorRequest request, List<String> lines) {
         if (request == null) {
-            CompletionUtil.$$$reportNull$$$0(10);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (lines == null) {
-            CompletionUtil.$$$reportNull$$$0(11);
+            throw new IllegalStateException("lines cannot be null!");
         }
         ArrayList<CopilotEditorInlay> inlays = new ArrayList<CopilotEditorInlay>();
         int offset = request.getOffset();
@@ -138,17 +138,17 @@ public class CompletionUtil {
         }
         ArrayList<CopilotEditorInlay> arrayList = inlays;
         if (arrayList == null) {
-            CompletionUtil.$$$reportNull$$$0(12);
+            throw new IllegalStateException("arrayList cannot be null!");
         }
         return arrayList;
     }
 
     private static void dropOverlappingTrailingLines(List<String> lines, String editorContent, int offset) {
         if (lines == null) {
-            CompletionUtil.$$$reportNull$$$0(13);
+            throw new IllegalStateException("lines cannot be null!");
         }
         if (editorContent == null) {
-            CompletionUtil.$$$reportNull$$$0(14);
+            throw new IllegalStateException("editorContent cannot be null!");
         }
         if (offset < editorContent.length() && editorContent.charAt(offset) == '\n') {
             ++offset;
@@ -166,10 +166,10 @@ public class CompletionUtil {
     private static boolean adjustWhitespace(List<String> completionLines, LineInfo lineInfo) {
         String firstLine;
         if (completionLines == null) {
-            CompletionUtil.$$$reportNull$$$0(15);
+            throw new IllegalStateException("completionLines cannot be null!");
         }
         if (lineInfo == null) {
-            CompletionUtil.$$$reportNull$$$0(16);
+            throw new IllegalStateException("lineInfo cannot be null!");
         }
         String editorWhitespacePrefix = lineInfo.getWhitespaceBeforeCursor();
         if (completionLines.isEmpty() || editorWhitespacePrefix.isEmpty()) {
@@ -192,10 +192,10 @@ public class CompletionUtil {
 
         public static CopilotCompletion apiChoiceWithoutPrefix(CopilotCompletion apiChoice, String prefix) {
         if (apiChoice == null) {
-            CompletionUtil.$$$reportNull$$$0(17);
+            throw new IllegalStateException("apiChoice cannot be null!");
         }
         if (prefix == null) {
-            CompletionUtil.$$$reportNull$$$0(18);
+            throw new IllegalStateException("prefix cannot be null!");
         }
         if (prefix.isEmpty()) {
             return apiChoice;

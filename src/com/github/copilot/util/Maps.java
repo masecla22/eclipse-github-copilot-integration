@@ -34,7 +34,7 @@ public final class Maps {
     @SafeVarargs
     public static <K, V> Map<K, V> merge(Map<K, V> ... maps) {
         if (maps == null) {
-            Maps.$$$reportNull$$$0(0);
+            throw new IllegalStateException("maps cannot be null!");
         }
         if (maps.length == 0) {
             return Collections.emptyMap();
@@ -51,10 +51,6 @@ public final class Maps {
             all.putAll(map);
         }
         return all == null ? Collections.emptyMap() : Collections.unmodifiableMap(all);
-    }
-
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "maps", "com/github/copilot/util/Maps", "merge"));
     }
 }
 

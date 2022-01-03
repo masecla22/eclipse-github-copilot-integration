@@ -87,10 +87,10 @@ Disposable {
     @Override
     public void trackException(Throwable original, Map<String, String> properties) {
         if (original == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("original cannot be null!");
         }
         if (properties == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(1);
+            throw new IllegalStateException("properties cannot be null!");
         }
         LOG.debug("Sending exception report: " + original.getMessage());
         ExceptionTelemetry data = new ExceptionTelemetry(original);
@@ -102,10 +102,10 @@ Disposable {
     @Override
     public void track(String name, TelemetryData data) {
         if (name == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(2);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (data == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(3);
+            throw new IllegalStateException("data cannot be null!");
         }
         this.doTrack(this.client, name, data);
     }
@@ -113,13 +113,13 @@ Disposable {
     @Override
     public void track(String name, Map<String, String> properties, Map<String, Double> metrics) {
         if (name == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(4);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (properties == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(5);
+            throw new IllegalStateException("properties cannot be null!");
         }
         if (metrics == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(6);
+            throw new IllegalStateException("metrics cannot be null!");
         }
         this.doTrack(this.client, name, properties, metrics);
     }
@@ -127,10 +127,10 @@ Disposable {
     @Override
     public void trackSecure(String name, TelemetryData data) {
         if (name == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(7);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (data == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(8);
+            throw new IllegalStateException("data cannot be null!");
         }
         this.doTrack(this.clientSecure, name, data);
     }
@@ -138,13 +138,13 @@ Disposable {
     @Override
     public void trackSecure(String name, Map<String, String> properties, Map<String, Double> metrics) {
         if (name == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(9);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (properties == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(10);
+            throw new IllegalStateException("properties cannot be null!");
         }
         if (metrics == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(11);
+            throw new IllegalStateException("metrics cannot be null!");
         }
         this.doTrack(this.clientSecure, name, properties, metrics);
     }
@@ -152,13 +152,13 @@ Disposable {
     private void doTrack(TelemetryClient client, String name, TelemetryData data) {
         long displayedTimestamp;
         if (client == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(12);
+            throw new IllegalStateException("client cannot be null!");
         }
         if (name == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(13);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (data == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(14);
+            throw new IllegalStateException("data cannot be null!");
         }
         long now = System.currentTimeMillis();
         HashMap<String, String> properties = new HashMap<String, String>();
@@ -177,16 +177,16 @@ Disposable {
 
     private void doTrack(TelemetryClient client, String name, Map<String, String> properties, Map<String, Double> metrics) {
         if (client == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(15);
+            throw new IllegalStateException("client cannot be null!");
         }
         if (name == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(16);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (properties == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(17);
+            throw new IllegalStateException("properties cannot be null!");
         }
         if (metrics == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(18);
+            throw new IllegalStateException("metrics cannot be null!");
         }
         Object prefixedName = name.startsWith("copilot/") ? name : "copilot/" + name;
         LOG.debug("Sending telemetry event: " + (String)prefixedName);
@@ -203,7 +203,7 @@ Disposable {
 
     private static TelemetryClient setupClient(String key) {
         if (key == null) {
-            AzureInsightsTelemetryService.$$$reportNull$$$0(19);
+            throw new IllegalStateException("key cannot be null!");
         }
         boolean isCI = System.getenv("CI") != null;
         boolean isUnitTestMode = ApplicationManager.getApplication().isUnitTestMode();

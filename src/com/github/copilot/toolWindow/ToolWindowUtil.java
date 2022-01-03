@@ -23,7 +23,7 @@ final class ToolWindowUtil {
         static StatusText getEmptyText(ToolWindow toolWindow) {
         Method method;
         if (toolWindow == null) {
-            ToolWindowUtil.$$$reportNull$$$0(0);
+            throw new IllegalStateException("toolWindow cannot be null!");
         }
         if ((method = ToolWindowUtil.getEmptyText(toolWindow.getClass())) == null) {
             return null;
@@ -45,8 +45,6 @@ final class ToolWindowUtil {
         }
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "toolWindow", "com/github/copilot/toolWindow/ToolWindowUtil", "getEmptyText"));
-    }
+    
 }
 

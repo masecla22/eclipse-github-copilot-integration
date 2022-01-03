@@ -35,7 +35,7 @@ implements FileEditorManagerListener {
 
     public EditorSelectionListener(Project project) {
         if (project == null) {
-            EditorSelectionListener.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         this.project = project;
     }
@@ -43,7 +43,7 @@ implements FileEditorManagerListener {
     public void selectionChanged(FileEditorManagerEvent event) {
         VirtualFile oldFile;
         if (event == null) {
-            EditorSelectionListener.$$$reportNull$$$0(1);
+            throw new IllegalStateException("event cannot be null!");
         }
         if ((oldFile = event.getOldFile()) == null || !oldFile.isValid()) {
             return;

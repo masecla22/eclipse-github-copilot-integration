@@ -33,24 +33,24 @@ extends EditorActionHandler {
     protected boolean isEnabledForCaret(Editor editor, Caret caret, DataContext dataContext) {
         CopilotEditorManager manager;
         if (editor == null) {
-            CopilotDisposeInlaysEditorHandler.$$$reportNull$$$0(0);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (caret == null) {
-            CopilotDisposeInlaysEditorHandler.$$$reportNull$$$0(1);
+            throw new IllegalStateException("caret cannot be null!");
         }
         return (manager = CopilotEditorManager.getInstance()).isAvailable(editor) && manager.hasCompletionInlays(editor) && LookupManager.getActiveLookup((Editor)editor) == null || this.baseHandler != null && this.baseHandler.isEnabled(editor, caret, dataContext);
     }
 
     public boolean executeInCommand(Editor editor, DataContext dataContext) {
         if (editor == null) {
-            CopilotDisposeInlaysEditorHandler.$$$reportNull$$$0(2);
+            throw new IllegalStateException("editor cannot be null!");
         }
         return this.baseHandler != null && this.baseHandler.executeInCommand(editor, dataContext);
     }
 
     protected void doExecute(Editor editor, Caret caret, DataContext dataContext) {
         if (editor == null) {
-            CopilotDisposeInlaysEditorHandler.$$$reportNull$$$0(3);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (LookupManager.getActiveLookup((Editor)editor) == null) {
             CopilotEditorManager.getInstance().disposeInlays(editor, InlayDisposeContext.CaretChange);

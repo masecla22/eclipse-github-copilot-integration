@@ -38,10 +38,10 @@ extends DialogWrapper {
     @RequiresEdt
     public static boolean showDeviceLogin(Project project, DeviceCodeResponse codeResponse) {
         if (project == null) {
-            DeviceLoginDialog.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (codeResponse == null) {
-            DeviceLoginDialog.$$$reportNull$$$0(1);
+            throw new IllegalStateException("codeResponse cannot be null!");
         }
         DeviceLoginDialog dialog = new DeviceLoginDialog(project, codeResponse);
         dialog.init();
@@ -50,7 +50,7 @@ extends DialogWrapper {
 
     public DeviceLoginDialog(Project project, DeviceCodeResponse codeResponse) {
         if (codeResponse == null) {
-            DeviceLoginDialog.$$$reportNull$$$0(2);
+            throw new IllegalStateException("codeResponse cannot be null!");
         }
         super(project, false, DialogWrapper.IdeModalityType.PROJECT);
         this.codeResponse = codeResponse;
@@ -74,7 +74,7 @@ extends DialogWrapper {
         this.getOKAction().putValue("Name", CopilotBundle.get("deviceAuth.copyOpenButton"));
         Action[] actionArray = new Action[]{this.getOKAction(), proceedButton, this.getCancelAction()};
         if (actionArray == null) {
-            DeviceLoginDialog.$$$reportNull$$$0(3);
+            throw new IllegalStateException("actionArray cannot be null!");
         }
         return actionArray;
     }

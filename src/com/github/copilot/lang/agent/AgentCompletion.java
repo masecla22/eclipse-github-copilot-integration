@@ -31,7 +31,7 @@ implements CopilotCompletion {
         public CopilotCompletion asCached() {
         AgentCompletion agentCompletion = this.withCached(true);
         if (agentCompletion == null) {
-            AgentCompletion.$$$reportNull$$$0(0);
+            throw new IllegalStateException("agentCompletion cannot be null!");
         }
         return agentCompletion;
     }
@@ -39,7 +39,7 @@ implements CopilotCompletion {
     @Override
         public CopilotCompletion withoutPrefix(String prefix) {
         if (prefix == null) {
-            AgentCompletion.$$$reportNull$$$0(1);
+            throw new IllegalStateException("prefix cannot be null!");
         }
         return CompletionUtil.apiChoiceWithoutPrefix(this, prefix);
     }

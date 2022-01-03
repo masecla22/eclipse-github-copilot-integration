@@ -27,7 +27,7 @@ extends OpenAIServiceImpl {
         public static OpenAITestService getInstance() {
         OpenAITestService openAITestService = (OpenAITestService)ApplicationManager.getApplication().getService(OpenAIService.class);
         if (openAITestService == null) {
-            OpenAITestService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("openAITestService cannot be null!");
         }
         return openAITestService;
     }
@@ -39,22 +39,22 @@ extends OpenAIServiceImpl {
     public void fetchCompletions(String apiToken, LanguageEditorRequest request, String prompt, int completionCount, double temperature, int maxTokens, int topP, BlockMode blockMode, boolean multilineCompletions, TelemetryData telemetryBaseData,  Flow.Subscriber<APIChoice> subscriber) {
         void subscriber2;
         if (apiToken == null) {
-            OpenAITestService.$$$reportNull$$$0(1);
+            throw new IllegalStateException("apiToken cannot be null!");
         }
         if (request == null) {
-            OpenAITestService.$$$reportNull$$$0(2);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (prompt == null) {
-            OpenAITestService.$$$reportNull$$$0(3);
+            throw new IllegalStateException("prompt cannot be null!");
         }
         if (blockMode == null) {
-            OpenAITestService.$$$reportNull$$$0(4);
+            throw new IllegalStateException("blockMode cannot be null!");
         }
         if (telemetryBaseData == null) {
-            OpenAITestService.$$$reportNull$$$0(5);
+            throw new IllegalStateException("telemetryBaseData cannot be null!");
         }
         if (subscriber == null) {
-            OpenAITestService.$$$reportNull$$$0(6);
+            throw new IllegalStateException("subscriber cannot be null!");
         }
         this.completionRequestCount.incrementAndGet();
         super.fetchCompletions(apiToken, request, prompt, completionCount, temperature, maxTokens, topP, blockMode, multilineCompletions, telemetryBaseData, (Flow.Subscriber<APIChoice>)subscriber2);
@@ -64,18 +64,18 @@ extends OpenAIServiceImpl {
         protected String getCompletionURL(LanguageSupport lang) {
         String override;
         if (lang == null) {
-            OpenAITestService.$$$reportNull$$$0(7);
+            throw new IllegalStateException("lang cannot be null!");
         }
         if ((override = this.TEST_COMPLETION_URL) != null) {
             String string = override;
             if (string == null) {
-                OpenAITestService.$$$reportNull$$$0(8);
+                throw new IllegalStateException("string cannot be null!");
             }
             return string;
         }
         String string = super.getCompletionURL(lang);
         if (string == null) {
-            OpenAITestService.$$$reportNull$$$0(9);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }

@@ -36,7 +36,7 @@ public final class CopilotPlugin {
         IdeaPluginDescriptor plugin = PluginManagerCore.getPlugin((PluginId)COPILOT_ID);
         String string = plugin == null ? "unknown" : plugin.getVersion();
         if (string == null) {
-            CopilotPlugin.$$$reportNull$$$0(0);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -46,7 +46,7 @@ public final class CopilotPlugin {
         assert (plugin != null);
         Path path = plugin.getPluginPath();
         if (path == null) {
-            CopilotPlugin.$$$reportNull$$$0(1);
+            throw new IllegalStateException("path cannot be null!");
         }
         return path;
     }
@@ -65,7 +65,7 @@ public final class CopilotPlugin {
             return "JetBrains-??/ERROR";
         }
         if (string == null) {
-            CopilotPlugin.$$$reportNull$$$0(2);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -79,7 +79,7 @@ public final class CopilotPlugin {
             return "copilot-intellij/ERROR";
         }
         if (string == null) {
-            CopilotPlugin.$$$reportNull$$$0(3);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }

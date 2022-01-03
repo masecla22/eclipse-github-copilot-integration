@@ -97,21 +97,21 @@ public class SettingsForm {
         public UpdateChannel getUpdateChannel() {
         UpdateChannel updateChannel = (UpdateChannel)((Object)this.updateChannelBox.getItem());
         if (updateChannel == null) {
-            SettingsForm.$$$reportNull$$$0(0);
+            throw new IllegalStateException("updateChannel cannot be null!");
         }
         return updateChannel;
     }
 
     public void setUpdateChannel(UpdateChannel channel) {
         if (channel == null) {
-            SettingsForm.$$$reportNull$$$0(1);
+            throw new IllegalStateException("channel cannot be null!");
         }
         this.updateChannelBox.setSelectedItem((Object)channel);
     }
 
     public void setDisabledLanguages(Set<String> languageIds) {
         if (languageIds == null) {
-            SettingsForm.$$$reportNull$$$0(2);
+            throw new IllegalStateException("languageIds cannot be null!");
         }
         this.languageTable.setDisabledLanguages(languageIds);
     }

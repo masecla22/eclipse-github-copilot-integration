@@ -31,7 +31,7 @@ public interface LanguageSupport {
 
         public static LanguageSupport find(PsiFile file) {
         if (file == null) {
-            LanguageSupport.$$$reportNull$$$0(0);
+            throw new IllegalStateException("file cannot be null!");
         }
         return (LanguageSupport)EP.findFirstSafe(e -> e.isAvailable(file));
     }

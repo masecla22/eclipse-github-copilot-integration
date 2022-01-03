@@ -27,17 +27,17 @@ public class TelemetryData {
 
     public static TelemetryData createIssued(Map<String, String> properties) {
         if (properties == null) {
-            TelemetryData.$$$reportNull$$$0(0);
+            throw new IllegalStateException("properties cannot be null!");
         }
         return TelemetryData.createIssued(properties, String2DoubleMap.EMPTY);
     }
 
     public static TelemetryData createIssued(Map<String, String> properties, Object2DoubleMap<String> metrics) {
         if (properties == null) {
-            TelemetryData.$$$reportNull$$$0(1);
+            throw new IllegalStateException("properties cannot be null!");
         }
         if (metrics == null) {
-            TelemetryData.$$$reportNull$$$0(2);
+            throw new IllegalStateException("metrics cannot be null!");
         }
         TelemetryData data = TelemetryData.create(properties, metrics);
         data.issueNow();
@@ -50,10 +50,10 @@ public class TelemetryData {
 
     public static TelemetryData create(Map<String, String> properties, Object2DoubleMap<String> metrics) {
         if (properties == null) {
-            TelemetryData.$$$reportNull$$$0(3);
+            throw new IllegalStateException("properties cannot be null!");
         }
         if (metrics == null) {
-            TelemetryData.$$$reportNull$$$0(4);
+            throw new IllegalStateException("metrics cannot be null!");
         }
         return new TelemetryData(null, properties, metrics);
     }
@@ -82,7 +82,7 @@ public class TelemetryData {
 
     void addProperties(Map<String, String> target) {
         if (target == null) {
-            TelemetryData.$$$reportNull$$$0(5);
+            throw new IllegalStateException("target cannot be null!");
         }
         if (this.wrapped != null) {
             this.wrapped.addProperties(target);
@@ -92,7 +92,7 @@ public class TelemetryData {
 
     void addMetrics(Object2DoubleMap<String> target) {
         if (target == null) {
-            TelemetryData.$$$reportNull$$$0(6);
+            throw new IllegalStateException("target cannot be null!");
         }
         if (this.wrapped != null) {
             this.wrapped.addMetrics(target);
@@ -107,7 +107,7 @@ public class TelemetryData {
         public Map<String, String> getProperties() {
         Map<String, String> map = this.properties;
         if (map == null) {
-            TelemetryData.$$$reportNull$$$0(7);
+            throw new IllegalStateException("map cannot be null!");
         }
         return map;
     }
@@ -182,10 +182,10 @@ public class TelemetryData {
     private TelemetryData(TelemetryData wrapped, Map<String, String> properties, Object2DoubleMap<String> metrics, long issuedTimestamp, long l) {
         void displayedTimestamp;
         if (properties == null) {
-            TelemetryData.$$$reportNull$$$0(9);
+            throw new IllegalStateException("properties cannot be null!");
         }
         if (metrics == null) {
-            TelemetryData.$$$reportNull$$$0(10);
+            throw new IllegalStateException("metrics cannot be null!");
         }
         if (properties == null) {
             throw new NullPointerException("properties is marked non-null but is null");
@@ -202,10 +202,10 @@ public class TelemetryData {
 
     private TelemetryData(TelemetryData wrapped, Map<String, String> properties, Object2DoubleMap<String> metrics) {
         if (properties == null) {
-            TelemetryData.$$$reportNull$$$0(11);
+            throw new IllegalStateException("properties cannot be null!");
         }
         if (metrics == null) {
-            TelemetryData.$$$reportNull$$$0(12);
+            throw new IllegalStateException("metrics cannot be null!");
         }
         if (properties == null) {
             throw new NullPointerException("properties is marked non-null but is null");

@@ -39,14 +39,12 @@ CopilotAction {
     static boolean isSupported(Editor editor) {
         CopilotEditorManager manager;
         if (editor == null) {
-            CopilotDisposeInlaysAction.$$$reportNull$$$0(0);
+            throw new IllegalStateException("editor cannot be null!");
         }
         return (manager = CopilotEditorManager.getInstance()).isAvailable(editor) && manager.hasCompletionInlays(editor) && LookupManager.getActiveLookup((Editor)editor) == null;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "editor", "com/github/copilot/actions/CopilotDisposeInlaysAction", "isSupported"));
-    }
+    
 
     private static class DisposeInlaysHandler
     extends EditorActionHandler {
@@ -55,24 +53,24 @@ CopilotAction {
 
         protected boolean isEnabledForCaret(Editor editor, Caret caret, DataContext dataContext) {
             if (editor == null) {
-                DisposeInlaysHandler.$$$reportNull$$$0(0);
+                throw new IllegalStateException("editor cannot be null!");
             }
             if (caret == null) {
-                DisposeInlaysHandler.$$$reportNull$$$0(1);
+                throw new IllegalStateException("caret cannot be null!");
             }
             return CopilotDisposeInlaysAction.isSupported(editor);
         }
 
         public boolean executeInCommand(Editor editor, DataContext dataContext) {
             if (editor == null) {
-                DisposeInlaysHandler.$$$reportNull$$$0(2);
+                throw new IllegalStateException("editor cannot be null!");
             }
             return false;
         }
 
         protected void doExecute(Editor editor, Caret caret, DataContext dataContext) {
             if (editor == null) {
-                DisposeInlaysHandler.$$$reportNull$$$0(3);
+                throw new IllegalStateException("editor cannot be null!");
             }
             if (LookupManager.getActiveLookup((Editor)editor) == null) {
                 CopilotEditorManager.getInstance().disposeInlays(editor, InlayDisposeContext.UserAction);

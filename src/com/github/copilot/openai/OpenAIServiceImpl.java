@@ -60,22 +60,22 @@ implements OpenAIService {
     public void fetchCompletions(String apiToken, LanguageEditorRequest request, String prompt, int completionCount, double temperature, int maxTokens, int topP, BlockMode blockMode, boolean multilineCompletions, TelemetryData telemetryBaseData, Flow.Subscriber<APIChoice> subscriber) {
         void subscriber2;
         if (apiToken == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(0);
+            throw new IllegalStateException("apiToken cannot be null!");
         }
         if (request == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(1);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (prompt == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(2);
+            throw new IllegalStateException("prompt cannot be null!");
         }
         if (blockMode == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(3);
+            throw new IllegalStateException("blockMode cannot be null!");
         }
         if (telemetryBaseData == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(4);
+            throw new IllegalStateException("telemetryBaseData cannot be null!");
         }
         if (subscriber == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(5);
+            throw new IllegalStateException("subscriber cannot be null!");
         }
         LanguageSupport lang = request.getLanguage();
         String url = this.getCompletionURL(lang);
@@ -104,23 +104,23 @@ implements OpenAIService {
         protected String getCompletionURL(LanguageSupport lang) {
         String string = "https://copilot-proxy.githubusercontent.com" + lang.getCopilotLanguage().getEnginePath() + "/completions";
         if (string == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(6);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
 
     private CompletableFuture<HttpResponse<Object>> postStreaming(String url, String secretKey, String requestBody, EditorRequest editorRequest, JsonToApiChoiceProcessor jsonProcessor) {
         if (url == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(7);
+            throw new IllegalStateException("url cannot be null!");
         }
         if (secretKey == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(8);
+            throw new IllegalStateException("secretKey cannot be null!");
         }
         if (editorRequest == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(9);
+            throw new IllegalStateException("editorRequest cannot be null!");
         }
         if (jsonProcessor == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(10);
+            throw new IllegalStateException("jsonProcessor cannot be null!");
         }
         LOG.debug(String.format("%d: New HTTP request", editorRequest.getRequestId()));
         long start = System.currentTimeMillis();
@@ -156,18 +156,18 @@ implements OpenAIService {
         private String createCompletionBody(String prompt, int count, double temperature, int maxTokens, int topP, String[] stopMarkers, BlockMode blockMode, int n) {
         void nextLineIndent;
         if (prompt == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(11);
+            throw new IllegalStateException("prompt cannot be null!");
         }
         if (blockMode == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(12);
+            throw new IllegalStateException("blockMode cannot be null!");
         }
         if (stopMarkers == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(13);
+            throw new IllegalStateException("stopMarkers cannot be null!");
         }
         OpenAiRequestBody request = new OpenAiRequestBody(prompt, maxTokens, temperature, topP, count, 2, true, stopMarkers, blockMode == BlockMode.ServerSideIndentation, (int)nextLineIndent);
         String string = GSON.toJson((Object)request);
         if (string == null) {
-            OpenAIServiceImpl.$$$reportNull$$$0(14);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }

@@ -28,13 +28,13 @@ public final class CopilotNotifications {
 
     public static Notification createFullContentNotification(String title, String content, NotificationType type, boolean expireOnLinkClick) {
         if (title == null) {
-            CopilotNotifications.$$$reportNull$$$0(0);
+            throw new IllegalStateException("title cannot be null!");
         }
         if (content == null) {
-            CopilotNotifications.$$$reportNull$$$0(1);
+            throw new IllegalStateException("content cannot be null!");
         }
         if (type == null) {
-            CopilotNotifications.$$$reportNull$$$0(2);
+            throw new IllegalStateException("type cannot be null!");
         }
         FullContent notification = new FullContent(GROUP_ID, title, content, type);
         notification.setListener((NotificationListener)new NotificationListener.UrlOpeningListener(expireOnLinkClick));
@@ -71,16 +71,16 @@ public final class CopilotNotifications {
     implements NotificationFullContent {
         public FullContent(String groupId, @NlsContexts.NotificationTitle String title, @NlsContexts.NotificationContent String content, NotificationType type) {
             if (groupId == null) {
-                FullContent.$$$reportNull$$$0(0);
+                throw new IllegalStateException("groupId cannot be null!");
             }
             if (title == null) {
-                FullContent.$$$reportNull$$$0(1);
+                throw new IllegalStateException("title cannot be null!");
             }
             if (content == null) {
-                FullContent.$$$reportNull$$$0(2);
+                throw new IllegalStateException("content cannot be null!");
             }
             if (type == null) {
-                FullContent.$$$reportNull$$$0(3);
+                throw new IllegalStateException("type cannot be null!");
             }
             super(groupId, title, content, type);
         }

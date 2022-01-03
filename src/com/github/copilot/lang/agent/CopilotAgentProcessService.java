@@ -18,7 +18,7 @@ public interface CopilotAgentProcessService {
         public static CopilotAgentProcessService getInstance() {
         CopilotAgentProcessService copilotAgentProcessService = (CopilotAgentProcessService)ApplicationManager.getApplication().getService(CopilotAgentProcessService.class);
         if (copilotAgentProcessService == null) {
-            CopilotAgentProcessService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("copilotAgentProcessService cannot be null!");
         }
         return copilotAgentProcessService;
     }
@@ -29,8 +29,6 @@ public interface CopilotAgentProcessService {
 
     public void executeNotification(JsonRpcNotification var1);
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/lang/agent/CopilotAgentProcessService", "getInstance"));
-    }
+    
 }
 

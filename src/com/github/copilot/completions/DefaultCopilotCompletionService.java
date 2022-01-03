@@ -71,7 +71,7 @@ implements CopilotCompletionService {
     public boolean isAvailable(Editor editor) {
         Project project;
         if (editor == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if ((project = editor.getProject()) == null) {
             return false;
@@ -83,10 +83,10 @@ implements CopilotCompletionService {
     @Override
         public EditorRequest createRequest(Editor editor, int offset, CompletionType completionType) {
         if (editor == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(1);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (completionType == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(2);
+            throw new IllegalStateException("completionType cannot be null!");
         }
         return CopilotEditorUtil.createEditorRequest(editor, offset, completionType);
     }
@@ -98,10 +98,10 @@ implements CopilotCompletionService {
         boolean isMultilineCompletion;
         String apiKey;
         if (request == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(3);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (subscriber == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(4);
+            throw new IllegalStateException("subscriber cannot be null!");
         }
         if (LOG.isTraceEnabled()) {
             LOG.trace("fetchCompletions: " + request);
@@ -201,7 +201,7 @@ implements CopilotCompletionService {
     @Override
         public List<CopilotInlayList> fetchCachedCompletions(EditorRequest request) {
         if (request == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(5);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (CopilotApplicationSettings.settings().internalDisableHttpCache) {
             return null;
@@ -218,29 +218,29 @@ implements CopilotCompletionService {
 
         private static TelemetryData createChoiceBaseTelemetryData(EditorRequest request, PromptInfo prompt, boolean isMultilineRequest) {
         if (request == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(6);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (prompt == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(7);
+            throw new IllegalStateException("prompt cannot be null!");
         }
         TelemetryData telemetryData = TelemetryData.createIssued(Map.of("languageId", StringUtil.defaultIfEmpty((String)prompt.getLanguageId(), (String)""), "beforeCursorWhitespace", String.valueOf(request.getLineInfo().getLinePrefix().isBlank()), "afterCursorWhitespace", String.valueOf(request.getLineInfo().getLineSuffix().isBlank()), "isMultiline", String.valueOf(isMultilineRequest), "blockMode", prompt.getBlockMode().getTelemetryValue()), String2DoubleMap.of("promptCharLen", prompt.getPrompt().length(), "promptEndPos", request.getOffset(), "documentLength", request.getDocumentContent().length()));
         if (telemetryData == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(8);
+            throw new IllegalStateException("telemetryData cannot be null!");
         }
         return telemetryData;
     }
 
         private TelemetryData createBaseTelemetryData(LanguageEditorRequest request, PromptInfo prompt, Float temperature, int completionCount, boolean isMultilineCompletion) {
         if (request == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(9);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (prompt == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(10);
+            throw new IllegalStateException("prompt cannot be null!");
         }
         String[] stopTokens = isMultilineCompletion ? request.getLanguage().getMultiLineStops() : request.getLanguage().getSingleLineStops();
         TelemetryData telemetryData = TelemetryData.createIssued(Map.of("endpoint", "completions", "engineName", request.getLanguage().getCopilotLanguage().getEngineName(), "uiKind", request.getCompletionType().getTelemetryPropertyValue(), "temperature", String.valueOf(temperature), "n", String.valueOf(completionCount), "stop", "[" + StringUtil.join((String[])stopTokens, (String)", ") + "]"), String2DoubleMap.of("promptCharLen", prompt.getPrompt().length()));
         if (telemetryData == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(11);
+            throw new IllegalStateException("telemetryData cannot be null!");
         }
         return telemetryData;
     }
@@ -254,7 +254,7 @@ implements CopilotCompletionService {
     public boolean isSupportingOnDemandCycling(Editor editor) {
         LanguageSupport languageSupport;
         if (editor == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(12);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if ((languageSupport = CopilotEditorUtil.findLanguageSupport(editor)) == null) {
             return false;
@@ -271,7 +271,7 @@ implements CopilotCompletionService {
     @Override
     public void sendShownTelemetry(CopilotCompletion completion) {
         if (completion == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(13);
+            throw new IllegalStateException("completion cannot be null!");
         }
         APIChoice apiChoice = (APIChoice)completion;
         TelemetryData data = apiChoice.getTelemetryData();
@@ -283,10 +283,10 @@ implements CopilotCompletionService {
     @Override
     public void sendAcceptedTelemetry(CopilotCompletion completion, CompletionType completionType) {
         if (completion == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(14);
+            throw new IllegalStateException("completion cannot be null!");
         }
         if (completionType == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(15);
+            throw new IllegalStateException("completionType cannot be null!");
         }
         APIChoice apiChoice = (APIChoice)completion;
         TelemetryData data = apiChoice.getTelemetryData();
@@ -296,7 +296,7 @@ implements CopilotCompletionService {
     @Override
     public void sendRejectedTelemetry(List<CopilotCompletion> completions) {
         if (completions == null) {
-            DefaultCopilotCompletionService.$$$reportNull$$$0(16);
+            throw new IllegalStateException("completions cannot be null!");
         }
         if (completions.isEmpty()) {
             return;

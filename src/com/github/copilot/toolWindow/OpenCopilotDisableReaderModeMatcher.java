@@ -25,13 +25,13 @@ public class OpenCopilotDisableReaderModeMatcher
 implements ReaderModeMatcher {
         public Boolean matches(Project project, VirtualFile virtualFile, Editor editor, ReaderModeProvider.ReaderMode readerMode) {
         if (project == null) {
-            OpenCopilotDisableReaderModeMatcher.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (virtualFile == null) {
-            OpenCopilotDisableReaderModeMatcher.$$$reportNull$$$0(1);
+            throw new IllegalStateException("virtualFile cannot be null!");
         }
         if (readerMode == null) {
-            OpenCopilotDisableReaderModeMatcher.$$$reportNull$$$0(2);
+            throw new IllegalStateException("readerMode cannot be null!");
         }
         if (OpenCopilotHandler.isCopilotSnippetFile(virtualFile)) {
             return false;

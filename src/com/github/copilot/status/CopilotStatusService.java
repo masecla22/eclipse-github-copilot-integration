@@ -33,7 +33,7 @@ Disposable {
         public static CopilotStatus getCurrentStatus() {
         CopilotStatus copilotStatus = ((CopilotStatusService)ApplicationManager.getApplication().getService(CopilotStatusService.class)).status;
         if (copilotStatus == null) {
-            CopilotStatusService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("copilotStatus cannot be null!");
         }
         return copilotStatus;
     }
@@ -44,7 +44,7 @@ Disposable {
 
     public static void notifyApplication(CopilotStatus status) {
         if (status == null) {
-            CopilotStatusService.$$$reportNull$$$0(1);
+            throw new IllegalStateException("status cannot be null!");
         }
         ((CopilotStatusListener)ApplicationManager.getApplication().getMessageBus().syncPublisher(CopilotStatusListener.TOPIC)).onCopilotStatus(status);
     }
@@ -55,7 +55,7 @@ Disposable {
     @Override
     public void onCopilotStatus(CopilotStatus status) {
         if (status == null) {
-            CopilotStatusService.$$$reportNull$$$0(2);
+            throw new IllegalStateException("status cannot be null!");
         }
         boolean notify = false;
         Object object = this.lock;

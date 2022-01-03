@@ -25,16 +25,16 @@ implements CopilotInlayList {
 
     DefaultInlayList(CopilotCompletion copilotCompletion, TextRange replacementRange, String replacementText, Collection<CopilotEditorInlay> inlays) {
         if (copilotCompletion == null) {
-            DefaultInlayList.$$$reportNull$$$0(0);
+            throw new IllegalStateException("copilotCompletion cannot be null!");
         }
         if (replacementRange == null) {
-            DefaultInlayList.$$$reportNull$$$0(1);
+            throw new IllegalStateException("replacementRange cannot be null!");
         }
         if (replacementText == null) {
-            DefaultInlayList.$$$reportNull$$$0(2);
+            throw new IllegalStateException("replacementText cannot be null!");
         }
         if (inlays == null) {
-            DefaultInlayList.$$$reportNull$$$0(3);
+            throw new IllegalStateException("inlays cannot be null!");
         }
         this.copilotCompletion = copilotCompletion;
         this.replacementRange = replacementRange;
@@ -51,7 +51,7 @@ implements CopilotInlayList {
         public Iterator<CopilotEditorInlay> iterator() {
         Iterator<CopilotEditorInlay> iterator = this.inlays.iterator();
         if (iterator == null) {
-            DefaultInlayList.$$$reportNull$$$0(4);
+            throw new IllegalStateException("iterator cannot be null!");
         }
         return iterator;
     }
@@ -118,7 +118,7 @@ implements CopilotInlayList {
         public CopilotCompletion getCopilotCompletion() {
         CopilotCompletion copilotCompletion = this.copilotCompletion;
         if (copilotCompletion == null) {
-            DefaultInlayList.$$$reportNull$$$0(5);
+            throw new IllegalStateException("copilotCompletion cannot be null!");
         }
         return copilotCompletion;
     }
@@ -127,7 +127,7 @@ implements CopilotInlayList {
         public TextRange getReplacementRange() {
         TextRange textRange = this.replacementRange;
         if (textRange == null) {
-            DefaultInlayList.$$$reportNull$$$0(6);
+            throw new IllegalStateException("textRange cannot be null!");
         }
         return textRange;
     }
@@ -136,7 +136,7 @@ implements CopilotInlayList {
         public String getReplacementText() {
         String string = this.replacementText;
         if (string == null) {
-            DefaultInlayList.$$$reportNull$$$0(7);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }

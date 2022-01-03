@@ -21,14 +21,14 @@ extends AnAction
 implements CopilotAction {
     public void actionPerformed(AnActionEvent e) {
         if (e == null) {
-            CopilotToggleCacheAction.$$$reportNull$$$0(0);
+            throw new IllegalStateException("e cannot be null!");
         }
         CopilotApplicationSettings.settings().internalDisableHttpCache = !CopilotApplicationSettings.settings().internalDisableHttpCache;
     }
 
     public void update(AnActionEvent e) {
         if (e == null) {
-            CopilotToggleCacheAction.$$$reportNull$$$0(1);
+            throw new IllegalStateException("e cannot be null!");
         }
         e.getPresentation().setEnabledAndVisible(ApplicationManager.getApplication().isInternal());
         if (CopilotApplicationSettings.settings().internalDisableHttpCache) {

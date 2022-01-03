@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 public final class CharSequenceUtil {
     public static int lastIndexOf(CharSequence text, char ch) {
         if (text == null) {
-            CharSequenceUtil.$$$reportNull$$$0(0);
+            throw new IllegalStateException("text cannot be null!");
         }
         if (text instanceof String) {
             return ((String)text).lastIndexOf(ch);
@@ -23,8 +23,6 @@ public final class CharSequenceUtil {
         return -1;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "text", "com/github/copilot/util/CharSequenceUtil", "lastIndexOf"));
-    }
+    
 }
 

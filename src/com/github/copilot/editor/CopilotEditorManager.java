@@ -35,7 +35,7 @@ extends Disposable {
         public static CopilotEditorManager getInstance() {
         CopilotEditorManager copilotEditorManager = (CopilotEditorManager)ApplicationManager.getApplication().getService(CopilotEditorManager.class);
         if (copilotEditorManager == null) {
-            CopilotEditorManager.$$$reportNull$$$0(0);
+            throw new IllegalStateException("copilotEditorManager cannot be null!");
         }
         return copilotEditorManager;
     }
@@ -46,7 +46,7 @@ extends Disposable {
     @RequiresEdt
     default public boolean hasCompletionInlays(Editor editor) {
         if (editor == null) {
-            CopilotEditorManager.$$$reportNull$$$0(1);
+            throw new IllegalStateException("editor cannot be null!");
         }
         return this.countCompletionInlays(editor, TextRange.from((int)0, (int)editor.getDocument().getTextLength()), true, true, true, true) > 0;
     }
@@ -70,7 +70,7 @@ extends Disposable {
 
     default public void editorModified(Editor editor, boolean force) {
         if (editor == null) {
-            CopilotEditorManager.$$$reportNull$$$0(2);
+            throw new IllegalStateException("editor cannot be null!");
         }
         this.editorModified(editor, editor.getCaretModel().getOffset(), force);
     }
@@ -78,7 +78,7 @@ extends Disposable {
     @RequiresEdt
     default public void editorModified(Editor editor, int offset) {
         if (editor == null) {
-            CopilotEditorManager.$$$reportNull$$$0(3);
+            throw new IllegalStateException("editor cannot be null!");
         }
         this.editorModified(editor, offset, false);
     }

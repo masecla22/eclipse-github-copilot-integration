@@ -41,7 +41,7 @@ implements DataProvider {
 
         public Object getData(@NonNls String dataId) {
         if (dataId == null) {
-            DataProviderPanel.$$$reportNull$$$0(0);
+            throw new IllegalStateException("dataId cannot be null!");
         }
         if (PlatformDataKeys.UI_DISPOSABLE.is(dataId)) {
             return this.parentDisposable;
@@ -49,8 +49,6 @@ implements DataProvider {
         return null;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "dataId", "com/github/copilot/toolWindow/DataProviderPanel", "getData"));
-    }
+    
 }
 

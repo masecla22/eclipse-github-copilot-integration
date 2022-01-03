@@ -26,7 +26,7 @@ extends AbstractDisableCopilotCompletionsAction {
     public void update(AnActionEvent e) {
         PsiFile file;
         if (e == null) {
-            DisableFileCopilotCompletionsAction.$$$reportNull$$$0(0);
+            throw new IllegalStateException("e cannot be null!");
         }
         super.update(e);
         if (e.getPresentation().isEnabledAndVisible() && (file = (PsiFile)e.getData(CommonDataKeys.PSI_FILE)) != null) {
@@ -35,8 +35,6 @@ extends AbstractDisableCopilotCompletionsAction {
         }
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "e", "com/github/copilot/actions/DisableFileCopilotCompletionsAction", "update"));
-    }
+    
 }
 

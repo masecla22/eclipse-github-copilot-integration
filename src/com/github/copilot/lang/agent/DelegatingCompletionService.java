@@ -31,7 +31,7 @@ implements CopilotCompletionService {
     @Override
     public boolean isAvailable(Editor editor) {
         if (editor == null) {
-            DelegatingCompletionService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("editor cannot be null!");
         }
         return this.getDelegate().isAvailable(editor);
     }
@@ -39,10 +39,10 @@ implements CopilotCompletionService {
     @Override
         public EditorRequest createRequest(Editor editor, int offset, CompletionType completionType) {
         if (editor == null) {
-            DelegatingCompletionService.$$$reportNull$$$0(1);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (completionType == null) {
-            DelegatingCompletionService.$$$reportNull$$$0(2);
+            throw new IllegalStateException("completionType cannot be null!");
         }
         return this.getDelegate().createRequest(editor, offset, completionType);
     }
@@ -50,10 +50,10 @@ implements CopilotCompletionService {
     @Override
     public boolean fetchCompletions(EditorRequest request, GitHubCopilotToken proxyToken, Integer maxCompletions, boolean enableCaching, boolean cycling, Flow.Subscriber<List<CopilotInlayList>> subscriber) {
         if (request == null) {
-            DelegatingCompletionService.$$$reportNull$$$0(3);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (subscriber == null) {
-            DelegatingCompletionService.$$$reportNull$$$0(4);
+            throw new IllegalStateException("subscriber cannot be null!");
         }
         return this.getDelegate().fetchCompletions(request, proxyToken, maxCompletions, enableCaching, cycling, subscriber);
     }
@@ -61,7 +61,7 @@ implements CopilotCompletionService {
     @Override
         public List<CopilotInlayList> fetchCachedCompletions(EditorRequest request) {
         if (request == null) {
-            DelegatingCompletionService.$$$reportNull$$$0(5);
+            throw new IllegalStateException("request cannot be null!");
         }
         return this.getDelegate().fetchCachedCompletions(request);
     }
@@ -74,7 +74,7 @@ implements CopilotCompletionService {
     @Override
     public boolean isSupportingOnDemandCycling(Editor editor) {
         if (editor == null) {
-            DelegatingCompletionService.$$$reportNull$$$0(6);
+            throw new IllegalStateException("editor cannot be null!");
         }
         return this.getDelegate().isSupportingOnDemandCycling(editor);
     }
@@ -91,7 +91,7 @@ implements CopilotCompletionService {
     @Override
     public void sendShownTelemetry(CopilotCompletion completion) {
         if (completion == null) {
-            DelegatingCompletionService.$$$reportNull$$$0(7);
+            throw new IllegalStateException("completion cannot be null!");
         }
         this.getDelegate().sendShownTelemetry(completion);
     }
@@ -99,10 +99,10 @@ implements CopilotCompletionService {
     @Override
     public void sendAcceptedTelemetry(CopilotCompletion completion, CompletionType completionType) {
         if (completion == null) {
-            DelegatingCompletionService.$$$reportNull$$$0(8);
+            throw new IllegalStateException("completion cannot be null!");
         }
         if (completionType == null) {
-            DelegatingCompletionService.$$$reportNull$$$0(9);
+            throw new IllegalStateException("completionType cannot be null!");
         }
         this.getDelegate().sendAcceptedTelemetry(completion, completionType);
     }
@@ -110,7 +110,7 @@ implements CopilotCompletionService {
     @Override
     public void sendRejectedTelemetry(List<CopilotCompletion> completions) {
         if (completions == null) {
-            DelegatingCompletionService.$$$reportNull$$$0(10);
+            throw new IllegalStateException("completions cannot be null!");
         }
         this.getDelegate().sendRejectedTelemetry(completions);
     }

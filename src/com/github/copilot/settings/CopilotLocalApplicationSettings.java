@@ -31,7 +31,7 @@ implements PersistentStateComponent<CopilotLocalApplicationState> {
         assert (state != null);
         CopilotLocalApplicationState copilotLocalApplicationState = state;
         if (copilotLocalApplicationState == null) {
-            CopilotLocalApplicationSettings.$$$reportNull$$$0(0);
+            throw new IllegalStateException("copilotLocalApplicationState cannot be null!");
         }
         return copilotLocalApplicationState;
     }
@@ -48,7 +48,7 @@ implements PersistentStateComponent<CopilotLocalApplicationState> {
 
     public synchronized void loadState(CopilotLocalApplicationState state) {
         if (state == null) {
-            CopilotLocalApplicationSettings.$$$reportNull$$$0(1);
+            throw new IllegalStateException("state cannot be null!");
         }
         this.state = state;
     }

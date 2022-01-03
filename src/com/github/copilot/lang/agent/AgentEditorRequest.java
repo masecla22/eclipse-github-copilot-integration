@@ -84,7 +84,7 @@ Disposable {
     @Override
     public boolean equalsRequest(EditorRequest o) {
         if (o == null) {
-            AgentEditorRequest.$$$reportNull$$$0(0);
+            throw new IllegalStateException("o cannot be null!");
         }
         return this.requestId == o.getRequestId();
     }
@@ -128,7 +128,7 @@ Disposable {
         public String getRelativeFilePath() {
         String string = this.relativeFilePath;
         if (string == null) {
-            AgentEditorRequest.$$$reportNull$$$0(1);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -147,7 +147,7 @@ Disposable {
         public LineInfo getLineInfo() {
         LineInfo lineInfo = this.lineInfo;
         if (lineInfo == null) {
-            AgentEditorRequest.$$$reportNull$$$0(2);
+            throw new IllegalStateException("lineInfo cannot be null!");
         }
         return lineInfo;
     }
@@ -272,10 +272,10 @@ Disposable {
 
     public AgentEditorRequest(Project project, CompletionType completionType, boolean useTabIndents, int tabWidth, int requestId, Language fileLanguage, String relativeFilePath, String documentContent, int offset, LineInfo lineInfo, Integer documentModificationSequence) {
         if (relativeFilePath == null) {
-            AgentEditorRequest.$$$reportNull$$$0(3);
+            throw new IllegalStateException("relativeFilePath cannot be null!");
         }
         if (lineInfo == null) {
-            AgentEditorRequest.$$$reportNull$$$0(4);
+            throw new IllegalStateException("lineInfo cannot be null!");
         }
         this.requestTimestamp = System.currentTimeMillis();
         if (relativeFilePath == null) {

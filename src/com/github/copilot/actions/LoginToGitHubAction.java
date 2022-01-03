@@ -23,14 +23,14 @@ implements DumbAware,
 CopilotAction {
     public void update(AnActionEvent e) {
         if (e == null) {
-            LoginToGitHubAction.$$$reportNull$$$0(0);
+            throw new IllegalStateException("e cannot be null!");
         }
         e.getPresentation().setEnabled(e.getProject() != null);
     }
 
     public void actionPerformed(AnActionEvent e) {
         if (e == null) {
-            LoginToGitHubAction.$$$reportNull$$$0(1);
+            throw new IllegalStateException("e cannot be null!");
         }
         GitHubService.getInstance().loginInteractive(Objects.requireNonNull(e.getProject()));
     }

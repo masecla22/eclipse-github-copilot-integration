@@ -58,7 +58,7 @@ public interface GitHubService {
     @RequiresEdt
     default public void showLoginNotification(Project project, boolean force) {
         if (project == null) {
-            GitHubService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         boolean shown = CopilotApplicationSettings.settings().signinNotificationShown;
         if (force || !shown) {
@@ -69,8 +69,6 @@ public interface GitHubService {
         }
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "project", "com/github/copilot/github/GitHubService", "showLoginNotification"));
-    }
+    
 }
 

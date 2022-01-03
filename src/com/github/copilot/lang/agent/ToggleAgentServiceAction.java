@@ -22,7 +22,7 @@ extends AnAction
 implements DumbAware {
     public void update(AnActionEvent e) {
         if (e == null) {
-            ToggleAgentServiceAction.$$$reportNull$$$0(0);
+            throw new IllegalStateException("e cannot be null!");
         }
         e.getPresentation().setEnabledAndVisible(ApplicationManager.getApplication().isInternal());
     }
@@ -30,7 +30,7 @@ implements DumbAware {
     public void actionPerformed(AnActionEvent e) {
         Boolean current;
         if (e == null) {
-            ToggleAgentServiceAction.$$$reportNull$$$0(1);
+            throw new IllegalStateException("e cannot be null!");
         }
         CopilotAgent.override = (current = CopilotAgent.override) == null ? Boolean.valueOf(true) : null;
     }

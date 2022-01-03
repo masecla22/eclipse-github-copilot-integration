@@ -35,7 +35,7 @@ public final class CopilotStringUtil {
         char ch;
         int endOffset;
         if (text == null) {
-            CopilotStringUtil.$$$reportNull$$$0(0);
+            throw new IllegalStateException("text cannot be null!");
         }
         if (text.isEmpty()) {
             return "";
@@ -44,7 +44,7 @@ public final class CopilotStringUtil {
         }
         String string = text.substring(endOffset);
         if (string == null) {
-            CopilotStringUtil.$$$reportNull$$$0(1);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -54,7 +54,7 @@ public final class CopilotStringUtil {
         char ch;
         int endOffset;
         if (text == null) {
-            CopilotStringUtil.$$$reportNull$$$0(2);
+            throw new IllegalStateException("text cannot be null!");
         }
         if (text.isEmpty()) {
             return 0;
@@ -66,14 +66,14 @@ public final class CopilotStringUtil {
 
         public static String leadingWhitespace(String text) {
         if (text == null) {
-            CopilotStringUtil.$$$reportNull$$$0(3);
+            throw new IllegalStateException("text cannot be null!");
         }
         if (text.isEmpty()) {
             return "";
         }
         String string = text.substring(0, CopilotStringUtil.leadingWhitespaceLength(text));
         if (string == null) {
-            CopilotStringUtil.$$$reportNull$$$0(4);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -82,7 +82,7 @@ public final class CopilotStringUtil {
         char ch;
         int offset;
         if (text == null) {
-            CopilotStringUtil.$$$reportNull$$$0(5);
+            throw new IllegalStateException("text cannot be null!");
         }
         int length = text.length();
         for (offset = 0; offset < length && (ch = text.charAt(offset)) != '\n' && Character.isWhitespace(ch); ++offset) {
@@ -92,7 +92,7 @@ public final class CopilotStringUtil {
 
         public static String stripLeading(String text) {
         if (text == null) {
-            CopilotStringUtil.$$$reportNull$$$0(6);
+            throw new IllegalStateException("text cannot be null!");
         }
         if (text.isEmpty()) {
             return "";
@@ -100,17 +100,17 @@ public final class CopilotStringUtil {
         int length = CopilotStringUtil.leadingWhitespaceLength(text);
         String string = length == 0 ? text : text.substring(length);
         if (string == null) {
-            CopilotStringUtil.$$$reportNull$$$0(7);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
 
     public static int findOverlapLength(String withTrailing, String withLeading) {
         if (withTrailing == null) {
-            CopilotStringUtil.$$$reportNull$$$0(8);
+            throw new IllegalStateException("withTrailing cannot be null!");
         }
         if (withLeading == null) {
-            CopilotStringUtil.$$$reportNull$$$0(9);
+            throw new IllegalStateException("withLeading cannot be null!");
         }
         if (withTrailing.isEmpty() || withLeading.isEmpty()) {
             return 0;
@@ -125,10 +125,10 @@ public final class CopilotStringUtil {
 
     public static int findOverlappingLines(List<String> withTrailing, List<String> withLeading) {
         if (withTrailing == null) {
-            CopilotStringUtil.$$$reportNull$$$0(10);
+            throw new IllegalStateException("withTrailing cannot be null!");
         }
         if (withLeading == null) {
-            CopilotStringUtil.$$$reportNull$$$0(11);
+            throw new IllegalStateException("withLeading cannot be null!");
         }
         if (withTrailing.isEmpty() || withLeading.isEmpty()) {
             return 0;
@@ -150,10 +150,10 @@ public final class CopilotStringUtil {
 
         public static List<Pair<Integer, String>> createDiffInlays(String editor, String completion) {
         if (editor == null) {
-            CopilotStringUtil.$$$reportNull$$$0(12);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (completion == null) {
-            CopilotStringUtil.$$$reportNull$$$0(13);
+            throw new IllegalStateException("completion cannot be null!");
         }
         String commonPrefix = CopilotStringUtil.findCommonPrefix(completion, editor);
         String editorAdjusted = editor.substring(commonPrefix.length());
@@ -182,10 +182,10 @@ public final class CopilotStringUtil {
 
     private static String findCommonPrefix(String data, String reference) {
         if (data == null) {
-            CopilotStringUtil.$$$reportNull$$$0(14);
+            throw new IllegalStateException("data cannot be null!");
         }
         if (reference == null) {
-            CopilotStringUtil.$$$reportNull$$$0(15);
+            throw new IllegalStateException("reference cannot be null!");
         }
         int maxSize = Math.min(data.length(), reference.length());
         int first = 0;
@@ -197,7 +197,7 @@ public final class CopilotStringUtil {
 
     public static List<String> getNextLines(String text, int offset, int maxLines) {
         if (text == null) {
-            CopilotStringUtil.$$$reportNull$$$0(16);
+            throw new IllegalStateException("text cannot be null!");
         }
         LinkedList<String> lines = new LinkedList<String>();
         int last = offset;
@@ -229,10 +229,10 @@ public final class CopilotStringUtil {
 
     public static boolean linesMatch(Iterable<String> a, Iterable<String> b, boolean trimEnd) {
         if (a == null) {
-            CopilotStringUtil.$$$reportNull$$$0(17);
+            throw new IllegalStateException("a cannot be null!");
         }
         if (b == null) {
-            CopilotStringUtil.$$$reportNull$$$0(18);
+            throw new IllegalStateException("b cannot be null!");
         }
         Iterator<String> itA = a.iterator();
         Iterator<String> itB = b.iterator();

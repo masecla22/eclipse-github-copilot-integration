@@ -42,7 +42,7 @@ public interface SignInInitiateResult {
 
         private SignInInitiateResult readAuthRequired(JsonObject o) {
             if (o == null) {
-                TypeAdapter.$$$reportNull$$$0(0);
+                throw new IllegalStateException("o cannot be null!");
             }
             String userCode = o.getAsJsonPrimitive("userCode").getAsString();
             String uri = o.getAsJsonPrimitive("verificationUri").getAsString();

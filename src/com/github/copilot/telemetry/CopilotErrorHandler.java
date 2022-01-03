@@ -49,20 +49,20 @@ extends ErrorReportSubmitter {
         public String getReportActionText() {
         String string = CopilotBundle.get("errorHandler.reportAction.text");
         if (string == null) {
-            CopilotErrorHandler.$$$reportNull$$$0(0);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
 
     public boolean submit(final IdeaLoggingEvent [] events, final String additionalInfo, Component parentComponent, final Consumer<? super SubmittedReportInfo> consumer) {
         if (parentComponent == null) {
-            CopilotErrorHandler.$$$reportNull$$$0(1);
+            throw new IllegalStateException("parentComponent cannot be null!");
         }
         if (consumer == null) {
-            CopilotErrorHandler.$$$reportNull$$$0(2);
+            throw new IllegalStateException("consumer cannot be null!");
         }
         if (events == null) {
-            CopilotErrorHandler.$$$reportNull$$$0(3);
+            throw new IllegalStateException("events cannot be null!");
         }
         Project project = (Project)CommonDataKeys.PROJECT.getData(DataManager.getInstance().getDataContext(parentComponent));
         new Task.Backgroundable(project, CopilotBundle.get("errorHandler.reportDialog.title"), false){

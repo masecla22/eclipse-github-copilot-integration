@@ -28,25 +28,25 @@ extends TypedHandlerDelegate {
         public TypedHandlerDelegate.Result checkAutoPopup(char charTyped, Project project, Editor editor, PsiFile file) {
         boolean showIdeCompletions;
         if (project == null) {
-            CompletionPopupInhibitor.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (editor == null) {
-            CompletionPopupInhibitor.$$$reportNull$$$0(1);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (file == null) {
-            CompletionPopupInhibitor.$$$reportNull$$$0(2);
+            throw new IllegalStateException("file cannot be null!");
         }
         if (!(showIdeCompletions = CopilotApplicationSettings.settings().isShowIdeCompletions()) && CopilotEditorManager.getInstance().hasTypingAsSuggestedData(editor, charTyped)) {
             LOG.debug("inhibiting IDE completion popup because typing-as-suggested is available");
             TypedHandlerDelegate.Result result = TypedHandlerDelegate.Result.STOP;
             if (result == null) {
-                CompletionPopupInhibitor.$$$reportNull$$$0(3);
+                throw new IllegalStateException("result cannot be null!");
             }
             return result;
         }
         TypedHandlerDelegate.Result result = super.checkAutoPopup(charTyped, project, editor, file);
         if (result == null) {
-            CompletionPopupInhibitor.$$$reportNull$$$0(4);
+            throw new IllegalStateException("result cannot be null!");
         }
         return result;
     }

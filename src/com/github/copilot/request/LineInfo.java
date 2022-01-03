@@ -24,7 +24,7 @@ public final class LineInfo {
 
         public static LineInfo create(Document document, int offset) {
         if (document == null) {
-            LineInfo.$$$reportNull$$$0(0);
+            throw new IllegalStateException("document cannot be null!");
         }
         int line = document.getLineNumber(offset);
         TextRange lineRange = TextRange.create((int)document.getLineStartOffset(line), (int)document.getLineEndOffset(line));
@@ -34,7 +34,7 @@ public final class LineInfo {
         public String getLinePrefix() {
         String string = this.line.substring(0, this.columnOffset);
         if (string == null) {
-            LineInfo.$$$reportNull$$$0(1);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -42,7 +42,7 @@ public final class LineInfo {
         public String getLineSuffix() {
         String string = this.line.substring(this.columnOffset);
         if (string == null) {
-            LineInfo.$$$reportNull$$$0(2);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -54,7 +54,7 @@ public final class LineInfo {
         public String getWhitespaceBeforeCursor() {
         String string = CopilotStringUtil.trailingWhitespace(this.getLinePrefix());
         if (string == null) {
-            LineInfo.$$$reportNull$$$0(3);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -65,7 +65,7 @@ public final class LineInfo {
 
     private static int calculateNextLineIndent(Document document, int offset) {
         if (document == null) {
-            LineInfo.$$$reportNull$$$0(4);
+            throw new IllegalStateException("document cannot be null!");
         }
         int maxLines = document.getLineCount();
         for (int line = document.getLineNumber(offset) + 1; line < maxLines; ++line) {
@@ -80,7 +80,7 @@ public final class LineInfo {
 
     public LineInfo(int lineCount, int lineNumber, int lineStartOffset, int columnOffset, String line, int nextLineIndent) {
         if (line == null) {
-            LineInfo.$$$reportNull$$$0(5);
+            throw new IllegalStateException("line cannot be null!");
         }
         if (line == null) {
             throw new NullPointerException("line is marked non-null but is null");
@@ -112,7 +112,7 @@ public final class LineInfo {
         public String getLine() {
         String string = this.line;
         if (string == null) {
-            LineInfo.$$$reportNull$$$0(6);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }

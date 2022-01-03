@@ -27,13 +27,13 @@ public class CopilotActionListener
 implements AnActionListener {
     public void afterActionPerformed(AnAction action, AnActionEvent event, AnActionResult result) {
         if (action == null) {
-            CopilotActionListener.$$$reportNull$$$0(0);
+            throw new IllegalStateException("action cannot be null!");
         }
         if (event == null) {
-            CopilotActionListener.$$$reportNull$$$0(1);
+            throw new IllegalStateException("event cannot be null!");
         }
         if (result == null) {
-            CopilotActionListener.$$$reportNull$$$0(2);
+            throw new IllegalStateException("result cannot be null!");
         }
         if (!(action instanceof CopilotAction)) {
             return;

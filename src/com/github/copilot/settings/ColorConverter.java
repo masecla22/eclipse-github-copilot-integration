@@ -19,7 +19,7 @@ public class ColorConverter
 extends Converter<Color> {
         public Color fromString(String value) {
         if (value == null) {
-            ColorConverter.$$$reportNull$$$0(0);
+            throw new IllegalStateException("value cannot be null!");
         }
         try {
             return ColorUtil.fromHex((String)value);
@@ -31,7 +31,7 @@ extends Converter<Color> {
 
         public String toString(Color value) {
         if (value == null) {
-            ColorConverter.$$$reportNull$$$0(1);
+            throw new IllegalStateException("value cannot be null!");
         }
         return ColorUtil.toHtmlColor((Color)value);
     }

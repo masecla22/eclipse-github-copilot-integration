@@ -36,7 +36,7 @@ extends AnAction {
 
     public void update(AnActionEvent e) {
         if (e == null) {
-            RefreshCopilotToolWindowAction.$$$reportNull$$$0(0);
+            throw new IllegalStateException("e cannot be null!");
         }
         e.getPresentation().setEnabledAndVisible(e.getProject() != null);
     }
@@ -44,7 +44,7 @@ extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         Project project;
         if (e == null) {
-            RefreshCopilotToolWindowAction.$$$reportNull$$$0(1);
+            throw new IllegalStateException("e cannot be null!");
         }
         if ((project = e.getProject()) == null) {
             return;

@@ -32,10 +32,10 @@ public final class JsonRPC {
 
     public static String serializeCommand(int requestId, String name, Object command) {
         if (name == null) {
-            JsonRPC.$$$reportNull$$$0(0);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (command == null) {
-            JsonRPC.$$$reportNull$$$0(1);
+            throw new IllegalStateException("command cannot be null!");
         }
         JsonObject json = new JsonObject();
         json.addProperty("jsonrpc", "2.0");
@@ -47,10 +47,10 @@ public final class JsonRPC {
 
     public static String serializeNotification(String name, Object command) {
         if (name == null) {
-            JsonRPC.$$$reportNull$$$0(2);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (command == null) {
-            JsonRPC.$$$reportNull$$$0(3);
+            throw new IllegalStateException("command cannot be null!");
         }
         JsonObject json = new JsonObject();
         json.addProperty("jsonrpc", "2.0");
@@ -62,7 +62,7 @@ public final class JsonRPC {
     public static JsonRpcResponse parseResponse(String responseContent) throws JsonRpcErrorException, JsonParseException {
         JsonObject response;
         if (responseContent == null) {
-            JsonRPC.$$$reportNull$$$0(4);
+            throw new IllegalStateException("responseContent cannot be null!");
         }
         if ((response = (JsonObject)GSON.fromJson(responseContent, JsonObject.class)).has("error")) {
             int id = response.getAsJsonPrimitive("id").getAsInt();
@@ -77,11 +77,11 @@ public final class JsonRPC {
 
         public static <T> T parseResponse(JsonElement json, Class<T> responseType) throws JsonSyntaxException {
         if (json == null) {
-            JsonRPC.$$$reportNull$$$0(5);
+            throw new IllegalStateException("json cannot be null!");
         }
         Object object = GSON.fromJson(json, responseType);
         if (object == null) {
-            JsonRPC.$$$reportNull$$$0(6);
+            throw new IllegalStateException("object cannot be null!");
         }
         return (T)object;
     }

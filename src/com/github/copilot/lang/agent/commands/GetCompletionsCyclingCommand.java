@@ -17,7 +17,7 @@ public class GetCompletionsCyclingCommand
 extends GetCompletionsCommand {
     public GetCompletionsCyclingCommand(Document doc, Map<Object, Object> options) {
         if (doc == null) {
-            GetCompletionsCyclingCommand.$$$reportNull$$$0(0);
+            throw new IllegalStateException("doc cannot be null!");
         }
         super(doc, options);
     }

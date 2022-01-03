@@ -27,7 +27,7 @@ public interface PromptLanguageSupport {
 
         public static PromptLanguageSupport find(CopilotLanguage language) {
         if (language == null) {
-            PromptLanguageSupport.$$$reportNull$$$0(0);
+            throw new IllegalStateException("language cannot be null!");
         }
         return (PromptLanguageSupport)EP.findFirstSafe(e -> e.isAvailable(language));
     }
@@ -51,7 +51,7 @@ public interface PromptLanguageSupport {
         default public BlockMode getBlockMode() {
         BlockMode blockMode = BlockMode.Client;
         if (blockMode == null) {
-            PromptLanguageSupport.$$$reportNull$$$0(1);
+            throw new IllegalStateException("blockMode cannot be null!");
         }
         return blockMode;
     }

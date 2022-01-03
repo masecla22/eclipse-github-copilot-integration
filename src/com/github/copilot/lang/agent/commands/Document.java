@@ -30,7 +30,7 @@ public class Document {
         public String getSource() {
         String string = this.source;
         if (string == null) {
-            Document.$$$reportNull$$$0(0);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -38,7 +38,7 @@ public class Document {
         public String getLanguageId() {
         String string = this.languageId;
         if (string == null) {
-            Document.$$$reportNull$$$0(1);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -46,7 +46,7 @@ public class Document {
         public Position getPosition() {
         Position position = this.position;
         if (position == null) {
-            Document.$$$reportNull$$$0(2);
+            throw new IllegalStateException("position cannot be null!");
         }
         return position;
     }
@@ -69,7 +69,7 @@ public class Document {
 
     public void setSource(String source) {
         if (source == null) {
-            Document.$$$reportNull$$$0(3);
+            throw new IllegalStateException("source cannot be null!");
         }
         if (source == null) {
             throw new NullPointerException("source is marked non-null but is null");
@@ -79,7 +79,7 @@ public class Document {
 
     public void setLanguageId(String languageId) {
         if (languageId == null) {
-            Document.$$$reportNull$$$0(4);
+            throw new IllegalStateException("languageId cannot be null!");
         }
         if (languageId == null) {
             throw new NullPointerException("languageId is marked non-null but is null");
@@ -89,7 +89,7 @@ public class Document {
 
     public void setPosition(Position position) {
         if (position == null) {
-            Document.$$$reportNull$$$0(5);
+            throw new IllegalStateException("position cannot be null!");
         }
         if (position == null) {
             throw new NullPointerException("position is marked non-null but is null");
@@ -183,13 +183,13 @@ public class Document {
 
     public Document(String source, String languageId, Position position, boolean useSpaces, int tabSize, String path, String relativePath) {
         if (source == null) {
-            Document.$$$reportNull$$$0(6);
+            throw new IllegalStateException("source cannot be null!");
         }
         if (languageId == null) {
-            Document.$$$reportNull$$$0(7);
+            throw new IllegalStateException("languageId cannot be null!");
         }
         if (position == null) {
-            Document.$$$reportNull$$$0(8);
+            throw new IllegalStateException("position cannot be null!");
         }
         if (source == null) {
             throw new NullPointerException("source is marked non-null but is null");

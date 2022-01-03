@@ -17,7 +17,7 @@ public interface CopilotEditorSupport {
 
     public static boolean isEditorCompletionsSupported(Editor editor) {
         if (editor == null) {
-            CopilotEditorSupport.$$$reportNull$$$0(0);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (!EP.hasAnyExtensions()) {
             return true;
@@ -27,8 +27,6 @@ public interface CopilotEditorSupport {
 
     public boolean isCompletionsEnabled(Editor var1);
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "editor", "com/github/copilot/editor/CopilotEditorSupport", "isEditorCompletionsSupported"));
-    }
+    
 }
 

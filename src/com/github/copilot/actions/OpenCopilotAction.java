@@ -24,7 +24,7 @@ extends AnAction
 implements CopilotAction {
     public void update(AnActionEvent e) {
         if (e == null) {
-            OpenCopilotAction.$$$reportNull$$$0(0);
+            throw new IllegalStateException("e cannot be null!");
         }
         Editor editor = (Editor)e.getData(CommonDataKeys.EDITOR);
         e.getPresentation().setEnabled(editor != null && CopilotEditorManager.getInstance().isAvailable(editor));
@@ -37,7 +37,7 @@ implements CopilotAction {
     public void actionPerformed(AnActionEvent e) {
         Editor editor;
         if (e == null) {
-            OpenCopilotAction.$$$reportNull$$$0(1);
+            throw new IllegalStateException("e cannot be null!");
         }
         if ((editor = (Editor)e.getData(CommonDataKeys.EDITOR)) == null || !CopilotEditorManager.getInstance().isAvailable(editor)) {
             return;

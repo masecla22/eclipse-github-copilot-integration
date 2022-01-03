@@ -97,13 +97,11 @@ implements Configurable {
         }
         UpdateChannel updateChannel = currentChannel;
         if (updateChannel == null) {
-            ApplicationConfigurable.$$$reportNull$$$0(0);
+            throw new IllegalStateException("updateChannel cannot be null!");
         }
         return updateChannel;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/settings/ApplicationConfigurable", "findConfiguredChannel"));
-    }
+    
 }
 

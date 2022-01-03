@@ -29,7 +29,7 @@ implements JsonRpcCommand<String> {
         public String getUuid() {
         String string = this.uuid;
         if (string == null) {
-            NotifyAcceptedCommand.$$$reportNull$$$0(0);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -61,7 +61,7 @@ implements JsonRpcCommand<String> {
 
     public NotifyAcceptedCommand(String uuid) {
         if (uuid == null) {
-            NotifyAcceptedCommand.$$$reportNull$$$0(1);
+            throw new IllegalStateException("uuid cannot be null!");
         }
         if (uuid == null) {
             throw new NullPointerException("uuid is marked non-null but is null");

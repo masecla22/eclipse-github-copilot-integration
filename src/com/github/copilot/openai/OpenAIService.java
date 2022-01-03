@@ -19,15 +19,13 @@ public interface OpenAIService {
         public static OpenAIService getInstance() {
         OpenAIService openAIService = (OpenAIService)ApplicationManager.getApplication().getService(OpenAIService.class);
         if (openAIService == null) {
-            OpenAIService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("openAIService cannot be null!");
         }
         return openAIService;
     }
 
     public void fetchCompletions(String var1, LanguageEditorRequest var2, String var3, int var4, double var5, int var7, int var8, BlockMode var9, boolean var10, TelemetryData var11, Flow.Subscriber<APIChoice> var12);
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/openai/OpenAIService", "getInstance"));
-    }
+    
 }
 

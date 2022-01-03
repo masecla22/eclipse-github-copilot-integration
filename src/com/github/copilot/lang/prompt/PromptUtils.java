@@ -31,13 +31,13 @@ public class PromptUtils {
         @RequiresReadLock
     public static PromptInfo getPrompt(PromptLanguageSupport promptSupport, PsiFile file, String relativeFilePath, String documentContent, int offset) {
         if (promptSupport == null) {
-            PromptUtils.$$$reportNull$$$0(0);
+            throw new IllegalStateException("promptSupport cannot be null!");
         }
         if (file == null) {
-            PromptUtils.$$$reportNull$$$0(1);
+            throw new IllegalStateException("file cannot be null!");
         }
         if (documentContent == null) {
-            PromptUtils.$$$reportNull$$$0(2);
+            throw new IllegalStateException("documentContent cannot be null!");
         }
         return PromptUtils.getPrompt(promptSupport, file, relativeFilePath, documentContent, offset, 1500, LanguageMarker.Top, PathMarker.Top, SiblingOption.ContextOverSiblings, LocalImportContext.NoContext);
     }
@@ -47,25 +47,25 @@ public class PromptUtils {
         Object prompt;
         String marker;
         if (promptSupport == null) {
-            PromptUtils.$$$reportNull$$$0(3);
+            throw new IllegalStateException("promptSupport cannot be null!");
         }
         if (file == null) {
-            PromptUtils.$$$reportNull$$$0(4);
+            throw new IllegalStateException("file cannot be null!");
         }
         if (documentContent == null) {
-            PromptUtils.$$$reportNull$$$0(5);
+            throw new IllegalStateException("documentContent cannot be null!");
         }
         if (languageMarker == null) {
-            PromptUtils.$$$reportNull$$$0(6);
+            throw new IllegalStateException("languageMarker cannot be null!");
         }
         if (pathMarker == null) {
-            PromptUtils.$$$reportNull$$$0(7);
+            throw new IllegalStateException("pathMarker cannot be null!");
         }
         if (siblingOption == null) {
-            PromptUtils.$$$reportNull$$$0(8);
+            throw new IllegalStateException("siblingOption cannot be null!");
         }
         if (importContext == null) {
-            PromptUtils.$$$reportNull$$$0(9);
+            throw new IllegalStateException("importContext cannot be null!");
         }
         assert (documentOffset <= documentContent.length());
         assert (documentOffset <= file.getTextLength());
@@ -125,13 +125,13 @@ public class PromptUtils {
 
     private static int insertSiblingFunctions(PromptLanguageSupport promptSupport, StringBuilder doc, int offset, PsiFile file, int tokenLimit) {
         if (promptSupport == null) {
-            PromptUtils.$$$reportNull$$$0(10);
+            throw new IllegalStateException("promptSupport cannot be null!");
         }
         if (doc == null) {
-            PromptUtils.$$$reportNull$$$0(11);
+            throw new IllegalStateException("doc cannot be null!");
         }
         if (file == null) {
-            PromptUtils.$$$reportNull$$$0(12);
+            throw new IllegalStateException("file cannot be null!");
         }
         if (tokenLimit <= 0 || file.getTextLength() == 0) {
             return 0;
@@ -164,7 +164,7 @@ public class PromptUtils {
         char c;
         int index;
         if (doc == null) {
-            PromptUtils.$$$reportNull$$$0(13);
+            throw new IllegalStateException("doc cannot be null!");
         }
         if ((index = offset) <= 0) {
             return "";
@@ -177,7 +177,7 @@ public class PromptUtils {
         }
         String string = doc.subSequence(index, offset).toString();
         if (string == null) {
-            PromptUtils.$$$reportNull$$$0(14);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -185,63 +185,63 @@ public class PromptUtils {
         static String takeLastLinesTokens(String text, int budget) {
         String suffix;
         if (text == null) {
-            PromptUtils.$$$reportNull$$$0(15);
+            throw new IllegalStateException("text cannot be null!");
         }
         if ((suffix = PromptUtils.takeLastTokens(text, budget)).length() == text.length() || text.charAt(text.length() - suffix.length() - 1) == '\n') {
             String string = suffix;
             if (string == null) {
-                PromptUtils.$$$reportNull$$$0(16);
+                throw new IllegalStateException("string cannot be null!");
             }
             return string;
         }
         String string = suffix.substring(suffix.indexOf(10) + 1);
         if (string == null) {
-            PromptUtils.$$$reportNull$$$0(17);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
 
         static String takeLastTokens(String text, int n) {
         if (text == null) {
-            PromptUtils.$$$reportNull$$$0(18);
+            throw new IllegalStateException("text cannot be null!");
         }
         int nChars = (int)Math.floor((double)n * 2.5);
         int textLength = text.length();
         String string = textLength < nChars ? text : text.substring(textLength - nChars, textLength);
         if (string == null) {
-            PromptUtils.$$$reportNull$$$0(19);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
 
     public static int tokenLength(CharSequence text) {
         if (text == null) {
-            PromptUtils.$$$reportNull$$$0(20);
+            throw new IllegalStateException("text cannot be null!");
         }
         return (int)Math.ceil((double)text.length() / 2.5);
     }
 
     static boolean hasLanguageMarker(String source) {
         if (source == null) {
-            PromptUtils.$$$reportNull$$$0(21);
+            throw new IllegalStateException("source cannot be null!");
         }
         return source.startsWith("#!") || source.startsWith("<!DOCTYPE");
     }
 
         static String withLinefeed(String text) {
         if (text == null) {
-            PromptUtils.$$$reportNull$$$0(22);
+            throw new IllegalStateException("text cannot be null!");
         }
         if (text.isEmpty() || text.endsWith("\n")) {
             String string = text;
             if (string == null) {
-                PromptUtils.$$$reportNull$$$0(23);
+                throw new IllegalStateException("string cannot be null!");
             }
             return string;
         }
         String string = text + "\n";
         if (string == null) {
-            PromptUtils.$$$reportNull$$$0(24);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -249,18 +249,18 @@ public class PromptUtils {
         static String withLinefeed(CharSequence text) {
         int length;
         if (text == null) {
-            PromptUtils.$$$reportNull$$$0(25);
+            throw new IllegalStateException("text cannot be null!");
         }
         if ((length = text.length()) == 0 || text.charAt(length - 1) == '\n') {
             String string = text.toString();
             if (string == null) {
-                PromptUtils.$$$reportNull$$$0(26);
+                throw new IllegalStateException("string cannot be null!");
             }
             return string;
         }
         String string = text + "\n";
         if (string == null) {
-            PromptUtils.$$$reportNull$$$0(27);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }

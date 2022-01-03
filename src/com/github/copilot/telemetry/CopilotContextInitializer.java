@@ -52,13 +52,11 @@ implements ContextInitializer {
         }
         String string = SystemInfoRt.OS_NAME;
         if (string == null) {
-            CopilotContextInitializer.$$$reportNull$$$0(0);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/telemetry/CopilotContextInitializer", "vscodeOSName"));
-    }
+    
 }
 

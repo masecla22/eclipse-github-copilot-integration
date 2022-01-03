@@ -19,7 +19,7 @@ public interface TelemetryService {
         public static TelemetryService getInstance() {
         TelemetryService telemetryService = (TelemetryService)ApplicationManager.getApplication().getService(TelemetryService.class);
         if (telemetryService == null) {
-            TelemetryService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("telemetryService cannot be null!");
         }
         return telemetryService;
     }
@@ -32,17 +32,17 @@ public interface TelemetryService {
 
     default public void track(String name) {
         if (name == null) {
-            TelemetryService.$$$reportNull$$$0(1);
+            throw new IllegalStateException("name cannot be null!");
         }
         this.track(name, Collections.emptyMap(), Collections.emptyMap());
     }
 
     default public void track(String name, Map<String, String> properties) {
         if (name == null) {
-            TelemetryService.$$$reportNull$$$0(2);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (properties == null) {
-            TelemetryService.$$$reportNull$$$0(3);
+            throw new IllegalStateException("properties cannot be null!");
         }
         this.track(name, properties, Collections.emptyMap());
     }
@@ -53,7 +53,7 @@ public interface TelemetryService {
 
     default public void trackSecure(String name) {
         if (name == null) {
-            TelemetryService.$$$reportNull$$$0(4);
+            throw new IllegalStateException("name cannot be null!");
         }
         this.trackSecure(name, Collections.emptyMap(), Collections.emptyMap());
     }
@@ -62,10 +62,10 @@ public interface TelemetryService {
 
     default public void trackSecure(String name, Map<String, String> properties) {
         if (name == null) {
-            TelemetryService.$$$reportNull$$$0(5);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (properties == null) {
-            TelemetryService.$$$reportNull$$$0(6);
+            throw new IllegalStateException("properties cannot be null!");
         }
         this.trackSecure(name, properties, Collections.emptyMap());
     }

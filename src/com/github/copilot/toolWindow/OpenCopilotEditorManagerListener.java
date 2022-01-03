@@ -25,7 +25,7 @@ implements FileEditorManagerListener {
 
     public OpenCopilotEditorManagerListener(Project project) {
         if (project == null) {
-            OpenCopilotEditorManagerListener.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         this.project = project;
     }
@@ -33,7 +33,7 @@ implements FileEditorManagerListener {
     public void selectionChanged(FileEditorManagerEvent event) {
         FileEditor newEditor;
         if (event == null) {
-            OpenCopilotEditorManagerListener.$$$reportNull$$$0(1);
+            throw new IllegalStateException("event cannot be null!");
         }
         if ((newEditor = event.getNewEditor()) instanceof TextEditor) {
             OpenCopilotToolWindowFactory.editorSelectionChanged(this.project, ((TextEditor)newEditor).getEditor());

@@ -49,7 +49,7 @@ implements EditorFactoryListener {
         Editor editor;
         Project project;
         if (event == null) {
-            CopilotEditorListener.$$$reportNull$$$0(0);
+            throw new IllegalStateException("event cannot be null!");
         }
         if ((project = (editor = event.getEditor()).getProject()) == null || project.isDisposed() || !CopilotEditorManager.getInstance().isAvailable(editor)) {
             return;
@@ -60,9 +60,7 @@ implements EditorFactoryListener {
         editor.getDocument().addDocumentListener((DocumentListener)new CopilotDocumentListener(editor), editorDisposable);
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "event", "com/github/copilot/editor/CopilotEditorListener", "editorCreated"));
-    }
+    
 
     private static final class CopilotDocumentListener
     implements BulkAwareDocumentListener {
@@ -70,7 +68,7 @@ implements EditorFactoryListener {
 
         public CopilotDocumentListener(Editor editor) {
             if (editor == null) {
-                CopilotDocumentListener.$$$reportNull$$$0(0);
+                throw new IllegalStateException("editor cannot be null!");
             }
             this.editor = editor;
         }
@@ -78,7 +76,7 @@ implements EditorFactoryListener {
         public void documentChangedNonBulk(DocumentEvent event) {
             Project project;
             if (event == null) {
-                CopilotDocumentListener.$$$reportNull$$$0(1);
+                throw new IllegalStateException("event cannot be null!");
             }
             if ((project = this.editor.getProject()) == null || project.isDisposed()) {
                 return;
@@ -148,7 +146,7 @@ implements EditorFactoryListener {
 
         public CopilotCaretListener(Editor editor) {
             if (editor == null) {
-                CopilotCaretListener.$$$reportNull$$$0(0);
+                throw new IllegalStateException("editor cannot be null!");
             }
             this.editor = editor;
         }
@@ -156,7 +154,7 @@ implements EditorFactoryListener {
         public void caretPositionChanged(CaretEvent event) {
             Project project;
             if (event == null) {
-                CopilotCaretListener.$$$reportNull$$$0(1);
+                throw new IllegalStateException("event cannot be null!");
             }
             if ((project = this.editor.getProject()) == null || project.isDisposed()) {
                 return;

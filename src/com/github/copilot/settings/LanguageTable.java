@@ -36,7 +36,7 @@ class LanguageTable
 extends ListTableWithButtons<LanguageChoice> {
     void initItems(Set<String> disabledLanguageIds) {
         if (disabledLanguageIds == null) {
-            LanguageTable.$$$reportNull$$$0(0);
+            throw new IllegalStateException("disabledLanguageIds cannot be null!");
         }
         List items = Language.getRegisteredLanguages().stream().filter(lang -> !lang.is(Language.ANY)).map(lang -> new LanguageChoice((Language)lang, disabledLanguageIds.contains(lang.getID()))).sorted(Comparator.comparing(value -> value.getLanguage().getDisplayName(), String::compareToIgnoreCase)).sorted(Comparator.comparingInt(value -> value.isSelected() ? -1 : 1)).collect(Collectors.toList());
         this.setValues(items);
@@ -44,7 +44,7 @@ extends ListTableWithButtons<LanguageChoice> {
 
     void setDisabledLanguages(Set<String> ids) {
         if (ids == null) {
-            LanguageTable.$$$reportNull$$$0(1);
+            throw new IllegalStateException("ids cannot be null!");
         }
         List items = this.getElements();
         for (LanguageChoice item : items) {
@@ -149,7 +149,7 @@ extends ListTableWithButtons<LanguageChoice> {
             Language lang = languageChoice.getLanguage();
             String string = StringUtil.defaultIfEmpty((String)lang.getDisplayName(), (String)lang.getID());
             if (string == null) {
-                LanguageNameColumn.$$$reportNull$$$0(0);
+                throw new IllegalStateException("string cannot be null!");
             }
             return string;
         }

@@ -41,7 +41,7 @@ public final class OpenAiRequestBody {
     public OpenAiRequestBody(String prompt, int maxTokens, double temperature, int topP, int completionCount, int logprobs, boolean stream, String[] stops, boolean useServerSideIndentation, int n) {
         void nextLineIndent;
         if (prompt == null) {
-            OpenAiRequestBody.$$$reportNull$$$0(0);
+            throw new IllegalStateException("prompt cannot be null!");
         }
         this.prompt = prompt;
         this.maxTokens = maxTokens;

@@ -19,7 +19,7 @@ implements JsonRpcMessageHandler {
     @Override
     public void handleJsonMessage(String message) {
         if (message == null) {
-            StoringJsonRpcMessageHandler.$$$reportNull$$$0(0);
+            throw new IllegalStateException("message cannot be null!");
         }
         this.messages.add(message);
     }
@@ -28,8 +28,6 @@ implements JsonRpcMessageHandler {
         return this.messages;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "message", "com/github/copilot/lang/agent/rpc/StoringJsonRpcMessageHandler", "handleJsonMessage"));
-    }
+    
 }
 

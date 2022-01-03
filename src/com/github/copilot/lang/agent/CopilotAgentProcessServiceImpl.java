@@ -111,12 +111,12 @@ Disposable {
         public <T> Promise<T> executeCommand(JsonRpcCommand<T> command) {
         AsyncPromise<T> asyncPromise;
         if (command == null) {
-            CopilotAgentProcessServiceImpl.$$$reportNull$$$0(0);
+            throw new IllegalStateException("command cannot be null!");
         }
         if (this.agentProcess == null) {
             Promise promise = Promises.rejectedPromise((String)"agent process unavailable");
             if (promise == null) {
-                CopilotAgentProcessServiceImpl.$$$reportNull$$$0(1);
+                throw new IllegalStateException("promise cannot be null!");
             }
             return promise;
         }
@@ -133,13 +133,13 @@ Disposable {
                 Promise promise = Promises.rejectedPromise((String)e.getMessage());
                 // MONITOREXIT @DISABLED, blocks:[3, 4] lbl20 : MonitorExitStatement: MONITOREXIT : var2_2
                 if (promise == null) {
-                    CopilotAgentProcessServiceImpl.$$$reportNull$$$0(3);
+                    throw new IllegalStateException("promise cannot be null!");
                 }
                 return promise;
             }
         }
         if (asyncPromise == null) {
-            CopilotAgentProcessServiceImpl.$$$reportNull$$$0(2);
+            throw new IllegalStateException("asyncPromise cannot be null!");
         }
         return asyncPromise;
     }
@@ -150,7 +150,7 @@ Disposable {
     @Override
     public void executeNotification(JsonRpcNotification notification) {
         if (notification == null) {
-            CopilotAgentProcessServiceImpl.$$$reportNull$$$0(4);
+            throw new IllegalStateException("notification cannot be null!");
         }
         if (this.agentProcess == null) {
             return;
@@ -169,10 +169,10 @@ Disposable {
 
     private KillableProcessHandler launchAgent(String nodePath, String agentFilePath) throws ExecutionException {
         if (nodePath == null) {
-            CopilotAgentProcessServiceImpl.$$$reportNull$$$0(5);
+            throw new IllegalStateException("nodePath cannot be null!");
         }
         if (agentFilePath == null) {
-            CopilotAgentProcessServiceImpl.$$$reportNull$$$0(6);
+            throw new IllegalStateException("agentFilePath cannot be null!");
         }
         GeneralCommandLine cmdline = new GeneralCommandLine(new String[]{nodePath, agentFilePath, "jsonrpc"});
         KillableProcessHandler process = new KillableProcessHandler(cmdline){

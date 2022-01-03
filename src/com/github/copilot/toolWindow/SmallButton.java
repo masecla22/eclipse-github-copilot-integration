@@ -18,7 +18,7 @@ class SmallButton
 extends JButton {
     public SmallButton(String label) {
         if (label == null) {
-            SmallButton.$$$reportNull$$$0(0);
+            throw new IllegalStateException("label cannot be null!");
         }
         super(label);
         this.setFont((Font)JBUI.Fonts.smallFont());

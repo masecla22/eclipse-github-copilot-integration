@@ -40,7 +40,7 @@ public class CopilotSplitEditorManager {
         public static CopilotSplitEditorManager getInstance() {
         CopilotSplitEditorManager copilotSplitEditorManager = (CopilotSplitEditorManager)ApplicationManager.getApplication().getService(CopilotSplitEditorManager.class);
         if (copilotSplitEditorManager == null) {
-            CopilotSplitEditorManager.$$$reportNull$$$0(0);
+            throw new IllegalStateException("copilotSplitEditorManager cannot be null!");
         }
         return copilotSplitEditorManager;
     }
@@ -49,7 +49,7 @@ public class CopilotSplitEditorManager {
     public void openCopilot(Editor editor, boolean force) {
         OpenCopilotHandler handler;
         if (editor == null) {
-            CopilotSplitEditorManager.$$$reportNull$$$0(1);
+            throw new IllegalStateException("editor cannot be null!");
         }
         LOG.debug("openCopilot");
         if (!force && !CopilotEditorUtil.isFocusedEditor(editor)) {

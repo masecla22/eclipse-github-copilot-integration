@@ -64,41 +64,41 @@ public final class CopilotPsiUtil {
 
     public static boolean isWhitespace(PsiElement element) {
         if (element == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(0);
+            throw new IllegalStateException("element cannot be null!");
         }
         return element instanceof PsiWhiteSpace || TokenType.WHITE_SPACE.equals(PsiUtilCore.getElementType((PsiElement)element));
     }
 
     public static boolean isMatching(PsiElement element, TokenSet types) {
         if (element == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(1);
+            throw new IllegalStateException("element cannot be null!");
         }
         if (types == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(2);
+            throw new IllegalStateException("types cannot be null!");
         }
         return types.contains(PsiUtilCore.getElementType((PsiElement)element));
     }
 
     public static boolean isMatching(PsiElement element, IElementType type) {
         if (element == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(3);
+            throw new IllegalStateException("element cannot be null!");
         }
         if (type == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(4);
+            throw new IllegalStateException("type cannot be null!");
         }
         return type.equals(PsiUtilCore.getElementType((PsiElement)element));
     }
 
         public static PsiElement prevNonWhitespaceLeaf(PsiElement element) {
         if (element == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(5);
+            throw new IllegalStateException("element cannot be null!");
         }
         return CopilotPsiUtil.prevNonWhitespaceLeaf(element, false);
     }
 
         public static PsiElement prevNonWhitespaceLeaf(PsiElement element, boolean withNewlines) {
         if (element == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(6);
+            throw new IllegalStateException("element cannot be null!");
         }
         if (CopilotPsiUtil.isWhitespace(element) && !CopilotStringUtil.isSpacesOrTabs(element.getText(), withNewlines)) {
             return null;
@@ -115,14 +115,14 @@ public final class CopilotPsiUtil {
 
         public static PsiElement nextNonWhitespaceLeaf(PsiElement element) {
         if (element == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(7);
+            throw new IllegalStateException("element cannot be null!");
         }
         return CopilotPsiUtil.nextNonWhitespaceLeaf(element, false);
     }
 
         public static PsiElement nextNonWhitespaceLeaf(PsiElement element, boolean withNewlines) {
         if (element == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(8);
+            throw new IllegalStateException("element cannot be null!");
         }
         if (CopilotPsiUtil.isWhitespace(element) && !CopilotStringUtil.isSpacesOrTabs(element.getText(), withNewlines)) {
             return null;
@@ -139,7 +139,7 @@ public final class CopilotPsiUtil {
 
     public static boolean isAtEndOfLineLeaf(PsiElement element, int relativeOffset, boolean allowTrailingWhitespace) {
         if (element == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(9);
+            throw new IllegalStateException("element cannot be null!");
         }
         if (!(element instanceof LeafPsiElement)) {
             return false;
@@ -163,10 +163,10 @@ public final class CopilotPsiUtil {
         public static PsiElement leafsSkipBackwardsUntil(PsiElement element, boolean strict, boolean skipEmpty, boolean skipErrors, Condition<? super PsiElement> condition) {
         PsiElement leaf;
         if (element == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(10);
+            throw new IllegalStateException("element cannot be null!");
         }
         if (condition == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(11);
+            throw new IllegalStateException("condition cannot be null!");
         }
         PsiElement psiElement = leaf = strict ? PsiTreeUtil.prevLeaf((PsiElement)element) : element;
         while (leaf != null) {
@@ -184,22 +184,22 @@ public final class CopilotPsiUtil {
         @RequiresBackgroundThread
     public static Integer findBlockEnd(Project project, Cancellable request, FileType fileType, String prefix, int prefixOffset, String completion, boolean isEndOfStream, IsValidBlockFunction isValidBlock, ObjectToIntFunction<PsiElement> patchResult) {
         if (project == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(12);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (request == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(13);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (fileType == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(14);
+            throw new IllegalStateException("fileType cannot be null!");
         }
         if (prefix == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(15);
+            throw new IllegalStateException("prefix cannot be null!");
         }
         if (completion == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(16);
+            throw new IllegalStateException("completion cannot be null!");
         }
         if (isValidBlock == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(17);
+            throw new IllegalStateException("isValidBlock cannot be null!");
         }
         ProgressManager progressManager = ProgressManager.getInstance();
         long start = System.currentTimeMillis();
@@ -232,22 +232,22 @@ public final class CopilotPsiUtil {
         @RequiresReadLock
     private static Integer doFindBlockEnd(Project project, Cancellable request, FileType fileType, String prefix, int prefixOffset, String completion, boolean isEndOfStream, IsValidBlockFunction isValidBlock, ObjectToIntFunction<PsiElement> patchResult) {
         if (project == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(18);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (request == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(19);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (fileType == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(20);
+            throw new IllegalStateException("fileType cannot be null!");
         }
         if (prefix == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(21);
+            throw new IllegalStateException("prefix cannot be null!");
         }
         if (completion == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(22);
+            throw new IllegalStateException("completion cannot be null!");
         }
         if (isValidBlock == null) {
-            CopilotPsiUtil.$$$reportNull$$$0(23);
+            throw new IllegalStateException("isValidBlock cannot be null!");
         }
         assert (prefixOffset <= prefix.length());
         assert (!completion.isEmpty());

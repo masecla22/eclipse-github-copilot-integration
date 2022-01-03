@@ -48,7 +48,7 @@ DumbAware {
     public void init(ToolWindow toolWindow) {
         Project project;
         if (toolWindow == null) {
-            OpenCopilotToolWindowFactory.$$$reportNull$$$0(0);
+            throw new IllegalStateException("toolWindow cannot be null!");
         }
         RefreshCopilotToolWindowAction action = new RefreshCopilotToolWindowAction();
         toolWindow.setTitleActions(Collections.singletonList(action));
@@ -74,17 +74,17 @@ DumbAware {
 
     public void createToolWindowContent(Project project, ToolWindow toolWindow) {
         if (project == null) {
-            OpenCopilotToolWindowFactory.$$$reportNull$$$0(1);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (toolWindow == null) {
-            OpenCopilotToolWindowFactory.$$$reportNull$$$0(2);
+            throw new IllegalStateException("toolWindow cannot be null!");
         }
     }
 
     public static void editorSelectionChanged(Project project, Editor newEditor) {
         ToolWindow toolWindow;
         if (project == null) {
-            OpenCopilotToolWindowFactory.$$$reportNull$$$0(3);
+            throw new IllegalStateException("project cannot be null!");
         }
         if ((toolWindow = ToolWindowManager.getInstance((Project)project).getToolWindow(ID)) == null) {
             return;
@@ -96,7 +96,7 @@ DumbAware {
     static void refreshEmptyText(Project project, Editor editor) {
         ToolWindow toolWindow;
         if (project == null) {
-            OpenCopilotToolWindowFactory.$$$reportNull$$$0(4);
+            throw new IllegalStateException("project cannot be null!");
         }
         if ((toolWindow = ToolWindowManager.getInstance((Project)project).getToolWindow(ID)) == null) {
             return;
@@ -121,10 +121,10 @@ DumbAware {
 
     static void appendRefreshLine(StatusText emptyText, Editor editor) {
         if (emptyText == null) {
-            OpenCopilotToolWindowFactory.$$$reportNull$$$0(5);
+            throw new IllegalStateException("emptyText cannot be null!");
         }
         if (editor == null) {
-            OpenCopilotToolWindowFactory.$$$reportNull$$$0(6);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (editor.isDisposed()) {
             return;

@@ -17,14 +17,14 @@ implements JsonRpcCommandSender {
     @Override
     public void sendCommand(int id, JsonRpcCommand<?> command) throws IOException {
         if (command == null) {
-            NullCommandSender.$$$reportNull$$$0(0);
+            throw new IllegalStateException("command cannot be null!");
         }
     }
 
     @Override
     public void sendNotification(JsonRpcNotification notification) throws IOException {
         if (notification == null) {
-            NullCommandSender.$$$reportNull$$$0(1);
+            throw new IllegalStateException("notification cannot be null!");
         }
     }
 

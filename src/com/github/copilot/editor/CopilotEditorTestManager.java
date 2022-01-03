@@ -32,7 +32,7 @@ extends CopilotEditorManagerImpl {
         public static CopilotEditorTestManager getInstance() {
         CopilotEditorTestManager copilotEditorTestManager = (CopilotEditorTestManager)ApplicationManager.getApplication().getService(CopilotEditorManager.class);
         if (copilotEditorTestManager == null) {
-            CopilotEditorTestManager.$$$reportNull$$$0(0);
+            throw new IllegalStateException("copilotEditorTestManager cannot be null!");
         }
         return copilotEditorTestManager;
     }
@@ -40,12 +40,12 @@ extends CopilotEditorManagerImpl {
         @RequiresEdt
     public List<CopilotInlayRenderer> collectInlays(Editor editor) {
         if (editor == null) {
-            CopilotEditorTestManager.$$$reportNull$$$0(1);
+            throw new IllegalStateException("editor cannot be null!");
         }
         Document document = editor.getDocument();
         List<CopilotInlayRenderer> list = this.collectInlays(editor, 0, document.getTextLength());
         if (list == null) {
-            CopilotEditorTestManager.$$$reportNull$$$0(2);
+            throw new IllegalStateException("list cannot be null!");
         }
         return list;
     }
@@ -53,7 +53,7 @@ extends CopilotEditorManagerImpl {
         @RequiresEdt
     public List<CopilotInlayRenderer> collectCurrentLineInlays(Editor editor) {
         if (editor == null) {
-            CopilotEditorTestManager.$$$reportNull$$$0(3);
+            throw new IllegalStateException("editor cannot be null!");
         }
         Document document = editor.getDocument();
         int line = document.getLineNumber(editor.getCaretModel().getOffset());
@@ -61,14 +61,14 @@ extends CopilotEditorManagerImpl {
         int lineEnd = document.getLineEndOffset(line);
         List<CopilotInlayRenderer> list = this.collectInlays(editor, lineStart, lineEnd);
         if (list == null) {
-            CopilotEditorTestManager.$$$reportNull$$$0(4);
+            throw new IllegalStateException("list cannot be null!");
         }
         return list;
     }
 
     public void withDisabled(ThrowableRunnable<Exception> action) throws Exception {
         if (action == null) {
-            CopilotEditorTestManager.$$$reportNull$$$0(5);
+            throw new IllegalStateException("action cannot be null!");
         }
         try {
             this.disabled = true;
@@ -82,7 +82,7 @@ extends CopilotEditorManagerImpl {
     @Override
     public boolean isAvailable(Editor editor) {
         if (editor == null) {
-            CopilotEditorTestManager.$$$reportNull$$$0(6);
+            throw new IllegalStateException("editor cannot be null!");
         }
         return !this.disabled && super.isAvailable(editor);
     }

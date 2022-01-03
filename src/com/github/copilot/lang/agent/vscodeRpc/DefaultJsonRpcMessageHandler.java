@@ -41,7 +41,7 @@ implements JsonRpcMessageHandler {
     public void handleJsonMessage(String message) {
         JsonRpcResponse jsonResponse;
         if (message == null) {
-            DefaultJsonRpcMessageHandler.$$$reportNull$$$0(0);
+            throw new IllegalStateException("message cannot be null!");
         }
         if (LOG.isTraceEnabled()) {
             LOG.trace(String.format("JSON message received: %s", message));
@@ -81,7 +81,7 @@ implements JsonRpcMessageHandler {
 
     private void handleErrorResponse(JsonRpcErrorException e) {
         if (e == null) {
-            DefaultJsonRpcMessageHandler.$$$reportNull$$$0(1);
+            throw new IllegalStateException("e cannot be null!");
         }
         int id = e.getRequestId();
         String message = e.getMessage();

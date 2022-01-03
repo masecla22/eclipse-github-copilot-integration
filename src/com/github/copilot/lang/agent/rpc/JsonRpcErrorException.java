@@ -14,7 +14,7 @@ extends RuntimeException {
 
     public JsonRpcErrorException(int requestId, String message) {
         if (message == null) {
-            JsonRpcErrorException.$$$reportNull$$$0(0);
+            throw new IllegalStateException("message cannot be null!");
         }
         super(message);
         this.requestId = requestId;

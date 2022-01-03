@@ -20,10 +20,10 @@ class TelemetryUtil {
 
         static TelemetryData createChoiceTelemetry(APIChoice choice, TelemetryData base) {
         if (choice == null) {
-            TelemetryUtil.$$$reportNull$$$0(0);
+            throw new IllegalStateException("choice cannot be null!");
         }
         if (base == null) {
-            TelemetryUtil.$$$reportNull$$$0(1);
+            throw new IllegalStateException("base cannot be null!");
         }
         Object2DoubleMap<String> metrics = String2DoubleMap.of("numTokens", choice.getNumTokens(), "compCharLen", choice.getCompletionTextLength(), "numLines", choice.getCompletion().size());
         Double meanLogProb = choice.getMeanLogProb();
@@ -32,7 +32,7 @@ class TelemetryUtil {
         }
         TelemetryData telemetryData = TelemetryData.extend(base, Map.of("headerRequestId", choice.getResponseInfo().getHeaderRequestId(), "completionId", choice.getCompletionId(), "choiceIndex", String.valueOf(choice.getChoiceIndex()), "created", String.valueOf(choice.getCreatedTimestamp()), "serverExperiments", choice.getResponseInfo().getServerExperiments()), metrics);
         if (telemetryData == null) {
-            TelemetryUtil.$$$reportNull$$$0(2);
+            throw new IllegalStateException("telemetryData cannot be null!");
         }
         return telemetryData;
     }

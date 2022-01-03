@@ -29,14 +29,14 @@ implements CommandListener {
 
     public CopilotCommandListener(Project project) {
         if (project == null) {
-            CopilotCommandListener.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         this.project = project;
     }
 
     public void commandFinished(CommandEvent event) {
         if (event == null) {
-            CopilotCommandListener.$$$reportNull$$$0(1);
+            throw new IllegalStateException("event cannot be null!");
         }
         if (!this.isModificationCommand(event)) {
             LOG.debug("Skipping editor modification for command: " + event.getCommandName());
@@ -80,7 +80,7 @@ implements CommandListener {
     private boolean isModificationCommand(CommandEvent command) {
         String name;
         if (command == null) {
-            CopilotCommandListener.$$$reportNull$$$0(2);
+            throw new IllegalStateException("command cannot be null!");
         }
         if ((name = command.getCommandName()) == null || command.getDocument() == null) {
             return false;
@@ -91,7 +91,7 @@ implements CommandListener {
     private boolean isForcedCompletionCommand(CommandEvent command) {
         String name;
         if (command == null) {
-            CopilotCommandListener.$$$reportNull$$$0(3);
+            throw new IllegalStateException("command cannot be null!");
         }
         return (name = command.getCommandName()).equals("Undo") || name.startsWith("Undo ");
     }

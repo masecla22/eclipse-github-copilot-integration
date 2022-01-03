@@ -35,10 +35,10 @@ implements HttpResponse.BodyHandler<Object> {
 
     OpenAIBodyHandler(EditorRequest editorRequest, JsonToApiChoiceProcessor jsonSubscriber) {
         if (editorRequest == null) {
-            OpenAIBodyHandler.$$$reportNull$$$0(0);
+            throw new IllegalStateException("editorRequest cannot be null!");
         }
         if (jsonSubscriber == null) {
-            OpenAIBodyHandler.$$$reportNull$$$0(1);
+            throw new IllegalStateException("jsonSubscriber cannot be null!");
         }
         this.lock = new Object();
         this.editorRequest = editorRequest;
@@ -51,7 +51,7 @@ implements HttpResponse.BodyHandler<Object> {
     @Override
         public HttpResponse.BodySubscriber<Object> apply(HttpResponse.ResponseInfo responseInfo) {
         if (responseInfo == null) {
-            OpenAIBodyHandler.$$$reportNull$$$0(2);
+            throw new IllegalStateException("responseInfo cannot be null!");
         }
         this.jsonSubscriber.updateWithResponse(responseInfo);
         int statusCode = responseInfo.statusCode();
@@ -59,7 +59,7 @@ implements HttpResponse.BodyHandler<Object> {
             this.jsonSubscriber.onError(new IncompatibleCopilotClientException(statusCode));
             HttpResponse.BodySubscriber<Object> bodySubscriber = HttpResponse.BodySubscribers.replacing(null);
             if (bodySubscriber == null) {
-                OpenAIBodyHandler.$$$reportNull$$$0(3);
+                throw new IllegalStateException("bodySubscriber cannot be null!");
             }
             return bodySubscriber;
         }
@@ -67,7 +67,7 @@ implements HttpResponse.BodyHandler<Object> {
             this.jsonSubscriber.onComplete();
             HttpResponse.BodySubscriber<Object> bodySubscriber = HttpResponse.BodySubscribers.replacing(null);
             if (bodySubscriber == null) {
-                OpenAIBodyHandler.$$$reportNull$$$0(4);
+                throw new IllegalStateException("bodySubscriber cannot be null!");
             }
             return bodySubscriber;
         }
@@ -80,7 +80,7 @@ implements HttpResponse.BodyHandler<Object> {
             jsonStreamProcessor.close();
             HttpResponse.BodySubscriber<Object> bodySubscriber = HttpResponse.BodySubscribers.replacing(null);
             if (bodySubscriber == null) {
-                OpenAIBodyHandler.$$$reportNull$$$0(5);
+                throw new IllegalStateException("bodySubscriber cannot be null!");
             }
             return bodySubscriber;
         }
@@ -90,7 +90,7 @@ implements HttpResponse.BodyHandler<Object> {
             return null;
         }, StandardCharsets.UTF_8, "\n\n");
         if (bodySubscriber == null) {
-            OpenAIBodyHandler.$$$reportNull$$$0(6);
+            throw new IllegalStateException("bodySubscriber cannot be null!");
         }
         return bodySubscriber;
     }

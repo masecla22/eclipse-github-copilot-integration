@@ -59,7 +59,7 @@ public class CopilotPluginUpdater {
     @RequiresEdt
     private static void notifyUpdateAvailable(Project project) {
         if (project == null) {
-            CopilotPluginUpdater.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         Notification notification = CopilotNotifications.createFullContentNotification(CopilotBundle.get("pluginUpdate.updateNotification.title"), CopilotBundle.get("pluginUpdate.updateNotification.message"), NotificationType.IDE_UPDATE, true);
         notification.addAction((AnAction)NotificationAction.createSimpleExpiring((String)CopilotBundle.get("pluginUpdate.updateNotification.installButton"), () -> ApplicationManager.getApplication().executeOnPooledThread(() -> CopilotPluginUpdater.installCopilotUpdate(project))));
@@ -72,7 +72,7 @@ public class CopilotPluginUpdater {
     @RequiresEdt
     private static void notifyUpdateUnavailable(Project project) {
         if (project == null) {
-            CopilotPluginUpdater.$$$reportNull$$$0(1);
+            throw new IllegalStateException("project cannot be null!");
         }
         Notification notification = CopilotNotifications.createFullContentNotification(CopilotBundle.get("pluginUpdate.noUpdateNotification.title"), CopilotBundle.get("pluginUpdate.noUpdateNotification.message"), NotificationType.IDE_UPDATE, true);
         notification.addAction((AnAction)NotificationAction.createSimpleExpiring((String)CopilotBundle.get("pluginUpdate.noNotification.hideButton"), (Runnable)EmptyRunnable.INSTANCE));
@@ -82,7 +82,7 @@ public class CopilotPluginUpdater {
     @RequiresBackgroundThread
     private static void installCopilotUpdate(final Project project) {
         if (project == null) {
-            CopilotPluginUpdater.$$$reportNull$$$0(2);
+            throw new IllegalStateException("project cannot be null!");
         }
         new Task.Backgroundable(project, CopilotBundle.get("pluginUpdate.updatingTask.title"), true, PerformInBackgroundOption.ALWAYS_BACKGROUND){
 
@@ -131,7 +131,7 @@ public class CopilotPluginUpdater {
     @RequiresEdt
     private static void notifyRequiredRestart(Project project) {
         if (project == null) {
-            CopilotPluginUpdater.$$$reportNull$$$0(3);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (!ApplicationManager.getApplication().isRestartCapable()) {
             return;
@@ -179,14 +179,14 @@ public class CopilotPluginUpdater {
 
         public CheckUpdatesTask(Project project) {
             if (project == null) {
-                CheckUpdatesTask.$$$reportNull$$$0(0);
+                throw new IllegalStateException("project cannot be null!");
             }
             this(project, false);
         }
 
         public CheckUpdatesTask(Project project, boolean notifyNoUpdate) {
             if (project == null) {
-                CheckUpdatesTask.$$$reportNull$$$0(1);
+                throw new IllegalStateException("project cannot be null!");
             }
             super(project, CopilotBundle.get("pluginUpdate.checkUpdateTask.title"), true);
             this.project = project;
@@ -195,7 +195,7 @@ public class CopilotPluginUpdater {
 
         public void run(ProgressIndicator indicator) {
             if (indicator == null) {
-                CheckUpdatesTask.$$$reportNull$$$0(2);
+                throw new IllegalStateException("indicator cannot be null!");
             }
             try {
                 InternalPluginResults availableUpdates = UpdateChecker.getInternalPluginUpdates();

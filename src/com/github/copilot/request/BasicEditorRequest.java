@@ -59,10 +59,10 @@ Disposable {
     @TestOnly
     public static BasicEditorRequest createEmptyGhostText(PsiFile file, LanguageSupport languageSupport) {
         if (file == null) {
-            BasicEditorRequest.$$$reportNull$$$0(0);
+            throw new IllegalStateException("file cannot be null!");
         }
         if (languageSupport == null) {
-            BasicEditorRequest.$$$reportNull$$$0(1);
+            throw new IllegalStateException("languageSupport cannot be null!");
         }
         return BasicEditorRequest.createGhostText(file, languageSupport, "", 0, new LineInfo(1, 0, 0, 0, "", 0));
     }
@@ -70,41 +70,41 @@ Disposable {
     @TestOnly
     public static BasicEditorRequest createGhostText(PsiFile file, LanguageSupport languageSupport, String text, int offset, LineInfo lineInfo) {
         if (file == null) {
-            BasicEditorRequest.$$$reportNull$$$0(2);
+            throw new IllegalStateException("file cannot be null!");
         }
         if (languageSupport == null) {
-            BasicEditorRequest.$$$reportNull$$$0(3);
+            throw new IllegalStateException("languageSupport cannot be null!");
         }
         if (text == null) {
-            BasicEditorRequest.$$$reportNull$$$0(4);
+            throw new IllegalStateException("text cannot be null!");
         }
         if (lineInfo == null) {
-            BasicEditorRequest.$$$reportNull$$$0(5);
+            throw new IllegalStateException("lineInfo cannot be null!");
         }
         return new BasicEditorRequest(file.getProject(), languageSupport, CompletionType.GhostText, file.getLanguage(), file.getName(), text, offset, lineInfo, true, 4, 0);
     }
 
     public BasicEditorRequest(Project project, LanguageSupport language, CompletionType completionType, Language fileLanguage, String relativeFilePath, String documentContent, int offset, LineInfo lineInfo, boolean useTabIndents, int tabWidth, Integer documentModificationSequence) {
         if (project == null) {
-            BasicEditorRequest.$$$reportNull$$$0(6);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (language == null) {
-            BasicEditorRequest.$$$reportNull$$$0(7);
+            throw new IllegalStateException("language cannot be null!");
         }
         if (completionType == null) {
-            BasicEditorRequest.$$$reportNull$$$0(8);
+            throw new IllegalStateException("completionType cannot be null!");
         }
         if (fileLanguage == null) {
-            BasicEditorRequest.$$$reportNull$$$0(9);
+            throw new IllegalStateException("fileLanguage cannot be null!");
         }
         if (relativeFilePath == null) {
-            BasicEditorRequest.$$$reportNull$$$0(10);
+            throw new IllegalStateException("relativeFilePath cannot be null!");
         }
         if (documentContent == null) {
-            BasicEditorRequest.$$$reportNull$$$0(11);
+            throw new IllegalStateException("documentContent cannot be null!");
         }
         if (lineInfo == null) {
-            BasicEditorRequest.$$$reportNull$$$0(12);
+            throw new IllegalStateException("lineInfo cannot be null!");
         }
         this.requestTimestamp = System.currentTimeMillis();
         this.project = project;
@@ -148,7 +148,7 @@ Disposable {
     @Override
     public boolean equalsRequest(EditorRequest o) {
         if (o == null) {
-            BasicEditorRequest.$$$reportNull$$$0(13);
+            throw new IllegalStateException("o cannot be null!");
         }
         return this.requestId == o.getRequestId();
     }
@@ -192,7 +192,7 @@ Disposable {
         public String getRelativeFilePath() {
         String string = this.relativeFilePath;
         if (string == null) {
-            BasicEditorRequest.$$$reportNull$$$0(14);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -211,7 +211,7 @@ Disposable {
         public LineInfo getLineInfo() {
         LineInfo lineInfo = this.lineInfo;
         if (lineInfo == null) {
-            BasicEditorRequest.$$$reportNull$$$0(15);
+            throw new IllegalStateException("lineInfo cannot be null!");
         }
         return lineInfo;
     }
@@ -336,10 +336,10 @@ Disposable {
 
     public BasicEditorRequest(Project project, LanguageSupport language, CompletionType completionType, boolean useTabIndents, int tabWidth, int requestId, Language fileLanguage, String relativeFilePath, String documentContent, int offset, LineInfo lineInfo, Integer documentModificationSequence, boolean isCancelled) {
         if (relativeFilePath == null) {
-            BasicEditorRequest.$$$reportNull$$$0(16);
+            throw new IllegalStateException("relativeFilePath cannot be null!");
         }
         if (lineInfo == null) {
-            BasicEditorRequest.$$$reportNull$$$0(17);
+            throw new IllegalStateException("lineInfo cannot be null!");
         }
         this.requestTimestamp = System.currentTimeMillis();
         if (relativeFilePath == null) {
@@ -365,10 +365,10 @@ Disposable {
 
     public BasicEditorRequest(Project project, LanguageSupport language, CompletionType completionType, boolean useTabIndents, int tabWidth, int requestId, Language fileLanguage, String relativeFilePath, String documentContent, int offset, LineInfo lineInfo, Integer documentModificationSequence) {
         if (relativeFilePath == null) {
-            BasicEditorRequest.$$$reportNull$$$0(18);
+            throw new IllegalStateException("relativeFilePath cannot be null!");
         }
         if (lineInfo == null) {
-            BasicEditorRequest.$$$reportNull$$$0(19);
+            throw new IllegalStateException("lineInfo cannot be null!");
         }
         this.requestTimestamp = System.currentTimeMillis();
         if (relativeFilePath == null) {

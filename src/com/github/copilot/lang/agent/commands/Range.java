@@ -19,10 +19,10 @@ public class Range {
 
     public Range(Position start, Position end) {
         if (start == null) {
-            Range.$$$reportNull$$$0(0);
+            throw new IllegalStateException("start cannot be null!");
         }
         if (end == null) {
-            Range.$$$reportNull$$$0(1);
+            throw new IllegalStateException("end cannot be null!");
         }
         if (start == null) {
             throw new NullPointerException("start is marked non-null but is null");
@@ -37,7 +37,7 @@ public class Range {
         public Position getStart() {
         Position position = this.start;
         if (position == null) {
-            Range.$$$reportNull$$$0(2);
+            throw new IllegalStateException("position cannot be null!");
         }
         return position;
     }
@@ -45,14 +45,14 @@ public class Range {
         public Position getEnd() {
         Position position = this.end;
         if (position == null) {
-            Range.$$$reportNull$$$0(3);
+            throw new IllegalStateException("position cannot be null!");
         }
         return position;
     }
 
     public void setStart(Position start) {
         if (start == null) {
-            Range.$$$reportNull$$$0(4);
+            throw new IllegalStateException("start cannot be null!");
         }
         if (start == null) {
             throw new NullPointerException("start is marked non-null but is null");
@@ -62,7 +62,7 @@ public class Range {
 
     public void setEnd(Position end) {
         if (end == null) {
-            Range.$$$reportNull$$$0(5);
+            throw new IllegalStateException("end cannot be null!");
         }
         if (end == null) {
             throw new NullPointerException("end is marked non-null but is null");

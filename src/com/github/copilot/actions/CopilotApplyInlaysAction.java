@@ -53,7 +53,7 @@ CopilotAction {
 
     public void update(AnActionEvent e) {
         if (e == null) {
-            CopilotApplyInlaysAction.$$$reportNull$$$0(0);
+            throw new IllegalStateException("e cannot be null!");
         }
         if (this.isIgnoredKeyboardEvent(e)) {
             e.getPresentation().setEnabled(false);
@@ -64,7 +64,7 @@ CopilotAction {
 
     private boolean isIgnoredKeyboardEvent(AnActionEvent e) {
         if (e == null) {
-            CopilotApplyInlaysAction.$$$reportNull$$$0(1);
+            throw new IllegalStateException("e cannot be null!");
         }
         if (!(e.getInputEvent() instanceof KeyEvent)) {
             return false;
@@ -92,7 +92,7 @@ CopilotAction {
     static boolean isSupported(Editor editor) {
         Project project;
         if (editor == null) {
-            CopilotApplyInlaysAction.$$$reportNull$$$0(2);
+            throw new IllegalStateException("editor cannot be null!");
         }
         return (project = editor.getProject()) != null && editor.getCaretModel().getCaretCount() == 1 && LookupManager.getActiveLookup((Editor)editor) == null && CopilotEditorManager.getInstance().hasCompletionInlays(editor) && TemplateManager.getInstance((Project)project).getActiveTemplate(editor) == null;
     }
@@ -141,24 +141,24 @@ CopilotAction {
 
         protected boolean isEnabledForCaret(Editor editor, Caret caret, DataContext dataContext) {
             if (editor == null) {
-                ApplyInlaysHandler.$$$reportNull$$$0(0);
+                throw new IllegalStateException("editor cannot be null!");
             }
             if (caret == null) {
-                ApplyInlaysHandler.$$$reportNull$$$0(1);
+                throw new IllegalStateException("caret cannot be null!");
             }
             return CopilotApplyInlaysAction.isSupported(editor);
         }
 
         public boolean executeInCommand(Editor editor, DataContext dataContext) {
             if (editor == null) {
-                ApplyInlaysHandler.$$$reportNull$$$0(2);
+                throw new IllegalStateException("editor cannot be null!");
             }
             return false;
         }
 
         protected void doExecute(Editor editor, Caret caret, DataContext dataContext) {
             if (editor == null) {
-                ApplyInlaysHandler.$$$reportNull$$$0(3);
+                throw new IllegalStateException("editor cannot be null!");
             }
             CopilotEditorManager.getInstance().applyCompletion(editor);
         }

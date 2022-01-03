@@ -22,20 +22,18 @@ extends DynamicBundle {
 
     public static String get(@PropertyKey(resourceBundle="copilot.copilot") @PropertyKey(resourceBundle="copilot.copilot") String key) {
         if (key == null) {
-            CopilotBundle.$$$reportNull$$$0(0);
+            throw new IllegalStateException("key cannot be null!");
         }
         return INSTANCE.getMessage(key, new Object[0]);
     }
 
     public static String get(@PropertyKey(resourceBundle="copilot.copilot") @PropertyKey(resourceBundle="copilot.copilot") String key, Object ... params) {
         if (key == null) {
-            CopilotBundle.$$$reportNull$$$0(1);
+            throw new IllegalStateException("key cannot be null!");
         }
         return INSTANCE.getMessage(key, params);
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "key", "com/github/copilot/CopilotBundle", "get"));
-    }
+    
 }
 

@@ -64,7 +64,7 @@ public final class CopilotEditorUtil {
 
     public static boolean isFocusedEditor(Editor editor) {
         if (editor == null) {
-            CopilotEditorUtil.$$$reportNull$$$0(0);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (ApplicationManager.getApplication().isUnitTestMode()) {
             return true;
@@ -75,7 +75,7 @@ public final class CopilotEditorUtil {
     public static boolean isSelectedEditor(Editor editor) {
         Project project;
         if (editor == null) {
-            CopilotEditorUtil.$$$reportNull$$$0(1);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if ((project = editor.getProject()) == null || project.isDisposed()) {
             return false;
@@ -96,10 +96,10 @@ public final class CopilotEditorUtil {
         public static BasicEditorRequest createEditorRequest(Editor editor, int offset, CompletionType completionType) {
         Project project;
         if (editor == null) {
-            CopilotEditorUtil.$$$reportNull$$$0(2);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (completionType == null) {
-            CopilotEditorUtil.$$$reportNull$$$0(3);
+            throw new IllegalStateException("completionType cannot be null!");
         }
         if ((project = editor.getProject()) == null) {
             return null;
@@ -123,7 +123,7 @@ public final class CopilotEditorUtil {
     public static int whitespacePrefixLength(String lineContent) {
         int i;
         if (lineContent == null) {
-            CopilotEditorUtil.$$$reportNull$$$0(4);
+            throw new IllegalStateException("lineContent cannot be null!");
         }
         int maxLength = lineContent.length();
         for (i = 0; i < maxLength; ++i) {
@@ -138,10 +138,10 @@ public final class CopilotEditorUtil {
         String path;
         VirtualFile root;
         if (project == null) {
-            CopilotEditorUtil.$$$reportNull$$$0(5);
+            throw new IllegalStateException("project cannot be null!");
         }
         if (file == null) {
-            CopilotEditorUtil.$$$reportNull$$$0(6);
+            throw new IllegalStateException("file cannot be null!");
         }
         String relativePath = file.getName();
         VirtualFile vFile = file.getVirtualFile();
@@ -150,7 +150,7 @@ public final class CopilotEditorUtil {
         }
         String string = relativePath;
         if (string == null) {
-            CopilotEditorUtil.$$$reportNull$$$0(7);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -158,7 +158,7 @@ public final class CopilotEditorUtil {
         public static LanguageSupport findLanguageSupport(Editor editor) {
         Project project;
         if (editor == null) {
-            CopilotEditorUtil.$$$reportNull$$$0(8);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if ((project = editor.getProject()) == null || project.isDisposed()) {
             return null;
@@ -175,10 +175,10 @@ public final class CopilotEditorUtil {
 
     public static void addEditorRequest(Editor editor, EditorRequest request) {
         if (editor == null) {
-            CopilotEditorUtil.$$$reportNull$$$0(9);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (request == null) {
-            CopilotEditorUtil.$$$reportNull$$$0(10);
+            throw new IllegalStateException("request cannot be null!");
         }
         EditorUtil.disposeWithEditor((Editor)editor, request::cancel);
         if (!KEY_REQUESTS.isIn((UserDataHolder)editor)) {

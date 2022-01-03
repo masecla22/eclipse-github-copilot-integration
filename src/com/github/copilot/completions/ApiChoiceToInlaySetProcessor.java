@@ -46,19 +46,19 @@ implements Flow.Subscriber<APIChoice> {
 
     ApiChoiceToInlaySetProcessor(EditorRequest request, PromptInfo prompt, TelemetryData baseTelemetryData, Flow.Subscriber<List<CopilotInlayList>> subscriber, Consumer<APIChoice> onNewItem) {
         if (request == null) {
-            ApiChoiceToInlaySetProcessor.$$$reportNull$$$0(0);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (prompt == null) {
-            ApiChoiceToInlaySetProcessor.$$$reportNull$$$0(1);
+            throw new IllegalStateException("prompt cannot be null!");
         }
         if (baseTelemetryData == null) {
-            ApiChoiceToInlaySetProcessor.$$$reportNull$$$0(2);
+            throw new IllegalStateException("baseTelemetryData cannot be null!");
         }
         if (subscriber == null) {
-            ApiChoiceToInlaySetProcessor.$$$reportNull$$$0(3);
+            throw new IllegalStateException("subscriber cannot be null!");
         }
         if (onNewItem == null) {
-            ApiChoiceToInlaySetProcessor.$$$reportNull$$$0(4);
+            throw new IllegalStateException("onNewItem cannot be null!");
         }
         this.request = request;
         this.prompt = prompt;
@@ -120,7 +120,7 @@ implements Flow.Subscriber<APIChoice> {
 
     private static void trackCompletionPerformance(APIChoice item, TelemetryData baseData) {
         if (item == null) {
-            ApiChoiceToInlaySetProcessor.$$$reportNull$$$0(5);
+            throw new IllegalStateException("item cannot be null!");
         }
         long requestTime = System.currentTimeMillis() - item.getResponseInfo().getRequestStartTimestamp();
         long processingTime = item.getResponseInfo().getProcessingTimeMillis();

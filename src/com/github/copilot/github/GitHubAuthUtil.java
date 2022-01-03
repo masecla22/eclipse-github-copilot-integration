@@ -31,7 +31,7 @@ public final class GitHubAuthUtil {
     public static void showUnauthorizedMessage(Project project, String url) {
         int clickedButton;
         if (project == null) {
-            GitHubAuthUtil.$$$reportNull$$$0(0);
+            throw new IllegalStateException("project cannot be null!");
         }
         if ((clickedButton = Messages.showDialog((Project)project, (String)CopilotBundle.get("github.login.copilotUnauthorized.message", StringUtil.defaultIfEmpty((String)url, (String)COPILOT_URL)), (String)CopilotBundle.get("github.login.copilotUnauthorized.title"), (String[])new String[]{CopilotBundle.get("github.login.copilotUnauthorized.joinButton"), CommonBundle.getCloseButtonText()}, (int)0, (Icon)Messages.getWarningIcon())) == 0) {
             BrowserUtil.open((String)StringUtil.defaultIfEmpty((String)url, (String)COPILOT_URL));
@@ -40,7 +40,7 @@ public final class GitHubAuthUtil {
 
     public static boolean showTelemetryTermsDialog(Project project) {
         if (project == null) {
-            GitHubAuthUtil.$$$reportNull$$$0(1);
+            throw new IllegalStateException("project cannot be null!");
         }
         return Messages.showYesNoDialog((Project)project, (String)CopilotBundle.get("github.login.telemetryConsent.message"), (String)CopilotBundle.get("github.login.telemetryConsent.title"), (String)CopilotBundle.get("github.login.telemetryConsent.yes"), (String)CopilotBundle.get("github.login.telemetryConsent.no"), (Icon)Messages.getWarningIcon()) == 0;
     }

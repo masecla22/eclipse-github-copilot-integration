@@ -63,7 +63,7 @@ implements CopilotCompletionService {
     @Override
     public boolean isAvailable(Editor editor) {
         if (editor == null) {
-            CopilotAgentCompletionService.$$$reportNull$$$0(0);
+            throw new IllegalStateException("editor cannot be null!");
         }
         return true;
     }
@@ -71,10 +71,10 @@ implements CopilotCompletionService {
     @Override
         public EditorRequest createRequest(Editor editor, int offset, CompletionType completionType) {
         if (editor == null) {
-            CopilotAgentCompletionService.$$$reportNull$$$0(1);
+            throw new IllegalStateException("editor cannot be null!");
         }
         if (completionType == null) {
-            CopilotAgentCompletionService.$$$reportNull$$$0(2);
+            throw new IllegalStateException("completionType cannot be null!");
         }
         return AgentEditorRequest.create(editor, offset, completionType);
     }
@@ -82,7 +82,7 @@ implements CopilotCompletionService {
     @Override
         public List<CopilotInlayList> fetchCachedCompletions(EditorRequest request) {
         if (request == null) {
-            CopilotAgentCompletionService.$$$reportNull$$$0(3);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (CopilotApplicationSettings.settings().internalDisableHttpCache) {
             return null;
@@ -100,10 +100,10 @@ implements CopilotCompletionService {
     @Override
     public boolean fetchCompletions(EditorRequest request, GitHubCopilotToken proxyToken, Integer maxCompletions, boolean enableCaching, boolean cycling, Flow.Subscriber<List<CopilotInlayList>> subscriber) {
         if (request == null) {
-            CopilotAgentCompletionService.$$$reportNull$$$0(4);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (subscriber == null) {
-            CopilotAgentCompletionService.$$$reportNull$$$0(5);
+            throw new IllegalStateException("subscriber cannot be null!");
         }
         Language language = request.getFileLanguage();
         String languageId = VSCodeLanguageMap.INTELLIJ_VSCODE_MAP.getOrDefault(language.getID(), language.getID());
@@ -148,7 +148,7 @@ implements CopilotCompletionService {
     @Override
     public boolean isSupportingOnDemandCycling(Editor editor) {
         if (editor == null) {
-            CopilotAgentCompletionService.$$$reportNull$$$0(6);
+            throw new IllegalStateException("editor cannot be null!");
         }
         return true;
     }
@@ -161,7 +161,7 @@ implements CopilotCompletionService {
     @Override
     public void sendShownTelemetry(CopilotCompletion completion) {
         if (completion == null) {
-            CopilotAgentCompletionService.$$$reportNull$$$0(7);
+            throw new IllegalStateException("completion cannot be null!");
         }
         ApplicationManager.getApplication().executeOnPooledThread(() -> {
             String uuid = ((AgentCompletion)completion).getAgentData().getUuid();
@@ -172,10 +172,10 @@ implements CopilotCompletionService {
     @Override
     public void sendAcceptedTelemetry(CopilotCompletion completion, CompletionType completionType) {
         if (completion == null) {
-            CopilotAgentCompletionService.$$$reportNull$$$0(8);
+            throw new IllegalStateException("completion cannot be null!");
         }
         if (completionType == null) {
-            CopilotAgentCompletionService.$$$reportNull$$$0(9);
+            throw new IllegalStateException("completionType cannot be null!");
         }
         ApplicationManager.getApplication().executeOnPooledThread(() -> {
             String uuid = ((AgentCompletion)completion).getAgentData().getUuid();
@@ -186,7 +186,7 @@ implements CopilotCompletionService {
     @Override
     public void sendRejectedTelemetry(List<CopilotCompletion> completions) {
         if (completions == null) {
-            CopilotAgentCompletionService.$$$reportNull$$$0(10);
+            throw new IllegalStateException("completions cannot be null!");
         }
         if (completions.isEmpty()) {
             return;
@@ -293,10 +293,10 @@ implements CopilotCompletionService {
 
         public AgentCompletionList(CopilotInlayList inlays, AgentCompletion completion, EditorRequest request) {
             if (completion == null) {
-                AgentCompletionList.$$$reportNull$$$0(0);
+                throw new IllegalStateException("completion cannot be null!");
             }
             if (request == null) {
-                AgentCompletionList.$$$reportNull$$$0(1);
+                throw new IllegalStateException("request cannot be null!");
             }
             this.inlays = inlays;
             this.completion = completion;
@@ -312,7 +312,7 @@ implements CopilotCompletionService {
                 public CopilotCompletion getCopilotCompletion() {
             AgentCompletion agentCompletion = this.completion;
             if (agentCompletion == null) {
-                AgentCompletionList.$$$reportNull$$$0(2);
+                throw new IllegalStateException("agentCompletion cannot be null!");
             }
             return agentCompletion;
         }
@@ -327,7 +327,7 @@ implements CopilotCompletionService {
             assert (endOffset >= startOffset);
             TextRange textRange = TextRange.create((int)startOffset, (int)endOffset);
             if (textRange == null) {
-                AgentCompletionList.$$$reportNull$$$0(3);
+                throw new IllegalStateException("textRange cannot be null!");
             }
             return textRange;
         }
@@ -336,7 +336,7 @@ implements CopilotCompletionService {
                 public String getReplacementText() {
             String string = this.completion.getAgentData().getText();
             if (string == null) {
-                AgentCompletionList.$$$reportNull$$$0(4);
+                throw new IllegalStateException("string cannot be null!");
             }
             return string;
         }
@@ -345,7 +345,7 @@ implements CopilotCompletionService {
                 public List<CopilotEditorInlay> getInlays() {
             List<CopilotEditorInlay> list = this.inlays == null ? Collections.emptyList() : this.inlays.getInlays();
             if (list == null) {
-                AgentCompletionList.$$$reportNull$$$0(5);
+                throw new IllegalStateException("list cannot be null!");
             }
             return list;
         }
@@ -354,7 +354,7 @@ implements CopilotCompletionService {
                 public Iterator<CopilotEditorInlay> iterator() {
             Iterator<CopilotEditorInlay> iterator = this.inlays != null ? this.inlays.iterator() : Collections.emptyIterator();
             if (iterator == null) {
-                AgentCompletionList.$$$reportNull$$$0(6);
+                throw new IllegalStateException("iterator cannot be null!");
             }
             return iterator;
         }

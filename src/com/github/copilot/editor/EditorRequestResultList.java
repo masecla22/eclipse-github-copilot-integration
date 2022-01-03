@@ -28,7 +28,7 @@ class EditorRequestResultList {
 
     public EditorRequestResultList(EditorRequest request) {
         if (request == null) {
-            EditorRequestResultList.$$$reportNull$$$0(0);
+            throw new IllegalStateException("request cannot be null!");
         }
         this.inlayLock = new Object();
         this.inlayLists = new ObjectLinkedOpenHashSet();
@@ -56,7 +56,7 @@ class EditorRequestResultList {
      */
     public void addInlays(CopilotInlayList inlays) {
         if (inlays == null) {
-            EditorRequestResultList.$$$reportNull$$$0(1);
+            throw new IllegalStateException("inlays cannot be null!");
         }
         Object object = this.inlayLock;
         synchronized (object) {
@@ -168,7 +168,7 @@ class EditorRequestResultList {
 
         private static CopilotInlayList getAtIndexLocked(ObjectSortedSet<CopilotInlayList> inlays, int index) {
         if (inlays == null) {
-            EditorRequestResultList.$$$reportNull$$$0(2);
+            throw new IllegalStateException("inlays cannot be null!");
         }
         return inlays.stream().skip(index).findFirst().orElse(null);
     }

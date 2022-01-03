@@ -27,10 +27,10 @@ implements SignInInitiateResult {
     public SignInInitiateNotSignedInResult(String userCode, String verificationUri, long expiresInSeconds, long l) {
         void intervalSeconds;
         if (userCode == null) {
-            SignInInitiateNotSignedInResult.$$$reportNull$$$0(0);
+            throw new IllegalStateException("userCode cannot be null!");
         }
         if (verificationUri == null) {
-            SignInInitiateNotSignedInResult.$$$reportNull$$$0(1);
+            throw new IllegalStateException("verificationUri cannot be null!");
         }
         if (userCode == null) {
             throw new NullPointerException("userCode is marked non-null but is null");
@@ -47,7 +47,7 @@ implements SignInInitiateResult {
         public String getUserCode() {
         String string = this.userCode;
         if (string == null) {
-            SignInInitiateNotSignedInResult.$$$reportNull$$$0(2);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
@@ -55,7 +55,7 @@ implements SignInInitiateResult {
         public String getVerificationUri() {
         String string = this.verificationUri;
         if (string == null) {
-            SignInInitiateNotSignedInResult.$$$reportNull$$$0(3);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }

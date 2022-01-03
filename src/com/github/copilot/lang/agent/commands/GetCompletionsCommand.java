@@ -35,7 +35,7 @@ implements JsonRpcCommand<GetCompletionsResult> {
 
     public GetCompletionsCommand(Document doc, Map<Object, Object> options) {
         if (doc == null) {
-            GetCompletionsCommand.$$$reportNull$$$0(0);
+            throw new IllegalStateException("doc cannot be null!");
         }
         if (doc == null) {
             throw new NullPointerException("doc is marked non-null but is null");
@@ -47,7 +47,7 @@ implements JsonRpcCommand<GetCompletionsResult> {
         public Document getDoc() {
         Document document = this.doc;
         if (document == null) {
-            GetCompletionsCommand.$$$reportNull$$$0(1);
+            throw new IllegalStateException("document cannot be null!");
         }
         return document;
     }

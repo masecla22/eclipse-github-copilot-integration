@@ -25,7 +25,7 @@ implements JsonRpcCommandSender {
     @Override
     public void sendCommand(int id, JsonRpcCommand<?> command) throws IOException {
         if (command == null) {
-            VSCodeJsonRpcCommandSender.$$$reportNull$$$0(0);
+            throw new IllegalStateException("command cannot be null!");
         }
         String name = command.getCommandName();
         String commandJSON = JsonRPC.serializeCommand(id, name, command);
@@ -40,7 +40,7 @@ implements JsonRpcCommandSender {
     @Override
     public void sendNotification(JsonRpcNotification notification) throws IOException {
         if (notification == null) {
-            VSCodeJsonRpcCommandSender.$$$reportNull$$$0(1);
+            throw new IllegalStateException("notification cannot be null!");
         }
         String name = notification.getCommandName();
         String commandJSON = JsonRPC.serializeNotification(name, notification);
@@ -65,7 +65,7 @@ implements JsonRpcCommandSender {
 
     public VSCodeJsonRpcCommandSender(OutputStream target) {
         if (target == null) {
-            VSCodeJsonRpcCommandSender.$$$reportNull$$$0(2);
+            throw new IllegalStateException("target cannot be null!");
         }
         if (target == null) {
             throw new NullPointerException("target is marked non-null but is null");

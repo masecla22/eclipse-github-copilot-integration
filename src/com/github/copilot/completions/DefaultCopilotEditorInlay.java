@@ -22,10 +22,10 @@ implements CopilotEditorInlay {
 
     public DefaultCopilotEditorInlay(CopilotCompletionType type, int editorOffset, List<String> completionLines) {
         if (type == null) {
-            DefaultCopilotEditorInlay.$$$reportNull$$$0(0);
+            throw new IllegalStateException("type cannot be null!");
         }
         if (completionLines == null) {
-            DefaultCopilotEditorInlay.$$$reportNull$$$0(1);
+            throw new IllegalStateException("completionLines cannot be null!");
         }
         this.type = type;
         this.editorOffset = editorOffset;
@@ -36,7 +36,7 @@ implements CopilotEditorInlay {
         public CopilotCompletionType getType() {
         CopilotCompletionType copilotCompletionType = this.type;
         if (copilotCompletionType == null) {
-            DefaultCopilotEditorInlay.$$$reportNull$$$0(2);
+            throw new IllegalStateException("copilotCompletionType cannot be null!");
         }
         return copilotCompletionType;
     }
@@ -45,7 +45,7 @@ implements CopilotEditorInlay {
         public List<String> getLines() {
         List<String> list = this.completionLines;
         if (list == null) {
-            DefaultCopilotEditorInlay.$$$reportNull$$$0(3);
+            throw new IllegalStateException("list cannot be null!");
         }
         return list;
     }
@@ -58,7 +58,7 @@ implements CopilotEditorInlay {
         public List<String> getCompletionLines() {
         List<String> list = this.completionLines;
         if (list == null) {
-            DefaultCopilotEditorInlay.$$$reportNull$$$0(4);
+            throw new IllegalStateException("list cannot be null!");
         }
         return list;
     }

@@ -84,21 +84,21 @@ public class CopilotApplicationState {
         public Set<String> getDisabledLanguageIds() {
         Set<String> set = Collections.unmodifiableSet(this.disabledLanguageIds);
         if (set == null) {
-            CopilotApplicationState.$$$reportNull$$$0(0);
+            throw new IllegalStateException("set cannot be null!");
         }
         return set;
     }
 
     public boolean isEnabled(Language language) {
         if (language == null) {
-            CopilotApplicationState.$$$reportNull$$$0(1);
+            throw new IllegalStateException("language cannot be null!");
         }
         return !this.disabledLanguageIds.contains(language.getID());
     }
 
     public void setDisabledLanguageIds(Set<String> languageIds) {
         if (languageIds == null) {
-            CopilotApplicationState.$$$reportNull$$$0(2);
+            throw new IllegalStateException("languageIds cannot be null!");
         }
         this.disabledLanguageIds.clear();
         this.disabledLanguageIds.addAll(languageIds);
@@ -106,14 +106,14 @@ public class CopilotApplicationState {
 
     public void enableLanguage(Language language) {
         if (language == null) {
-            CopilotApplicationState.$$$reportNull$$$0(3);
+            throw new IllegalStateException("language cannot be null!");
         }
         this.disabledLanguageIds.remove(language.getID());
     }
 
     public void disableLanguage(Language language) {
         if (language == null) {
-            CopilotApplicationState.$$$reportNull$$$0(4);
+            throw new IllegalStateException("language cannot be null!");
         }
         this.disabledLanguageIds.add(language.getID());
     }

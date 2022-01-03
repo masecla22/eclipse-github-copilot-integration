@@ -35,10 +35,10 @@ implements Flow.Subscriber<String> {
 
     ServerSideEventProcessor(EditorRequest request, Flow.Subscriber<JsonObject> jsonSubscriber) {
         if (request == null) {
-            ServerSideEventProcessor.$$$reportNull$$$0(0);
+            throw new IllegalStateException("request cannot be null!");
         }
         if (jsonSubscriber == null) {
-            ServerSideEventProcessor.$$$reportNull$$$0(1);
+            throw new IllegalStateException("jsonSubscriber cannot be null!");
         }
         this.isClosed = new AtomicBoolean();
         this.receivedDone = new AtomicBoolean();
@@ -50,7 +50,7 @@ implements Flow.Subscriber<String> {
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
         if (subscription == null) {
-            ServerSideEventProcessor.$$$reportNull$$$0(2);
+            throw new IllegalStateException("subscription cannot be null!");
         }
         assert (this.subscription == null) : "only a single subscription is supported";
         this.subscription = subscription;
@@ -60,7 +60,7 @@ implements Flow.Subscriber<String> {
     @Override
     public void onNext(String item) {
         if (item == null) {
-            ServerSideEventProcessor.$$$reportNull$$$0(3);
+            throw new IllegalStateException("item cannot be null!");
         }
         if (this.isClosed.get() || this.request.isCancelled()) {
             LOG.debug(String.format("%d: onNext already closed", this.request.getRequestId()));

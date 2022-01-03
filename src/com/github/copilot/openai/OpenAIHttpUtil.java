@@ -61,7 +61,7 @@ class OpenAIHttpUtil {
 
         private static String getHeaderOrEmptyString(HttpResponse.ResponseInfo response, String name) {
         if (name == null) {
-            OpenAIHttpUtil.$$$reportNull$$$0(0);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (response == null) {
             return "";
@@ -71,14 +71,14 @@ class OpenAIHttpUtil {
 
         private static String getHeaderOrEmptyString(HttpHeaders headers, String name) {
         if (name == null) {
-            OpenAIHttpUtil.$$$reportNull$$$0(1);
+            throw new IllegalStateException("name cannot be null!");
         }
         if (headers == null) {
             return "";
         }
         String string = headers.firstValue(name).orElse("");
         if (string == null) {
-            OpenAIHttpUtil.$$$reportNull$$$0(2);
+            throw new IllegalStateException("string cannot be null!");
         }
         return string;
     }
