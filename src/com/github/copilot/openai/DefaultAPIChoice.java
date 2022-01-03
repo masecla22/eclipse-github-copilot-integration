@@ -260,11 +260,5 @@ implements APIChoice {
     private DefaultAPIChoice withCached(boolean isCached) {
         return this.isCached == isCached ? this : new DefaultAPIChoice(this.responseInfo, this.completion, this.numTokens, this.choiceIndex, this.requestID, this.completionId, this.createdTimestamp, this.meanLogProb, this.baseTelemetryData, isCached, this.telemetryData);
     }
-
-    private void setTelemetryData(TelemetryData telemetryData) {
-        this.telemetryData = telemetryData;
-    }
-
-    
 }
 

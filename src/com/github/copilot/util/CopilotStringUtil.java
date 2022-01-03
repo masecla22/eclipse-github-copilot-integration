@@ -317,9 +317,6 @@ public final class CopilotStringUtil {
     }
 
     static String unpatchCharPairs(int[] patchedData, int offset, int count) {
-        int parenChar = 65536;
-        int braceChar = 65538;
-        int bracketChar = 65540;
         int[] result = new int[count];
         block8: for (int i = 0; i < count; ++i) {
             int c = patchedData[offset + i];

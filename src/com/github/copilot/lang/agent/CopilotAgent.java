@@ -11,8 +11,6 @@ import com.intellij.openapi.application.ApplicationManager;
 
 public final class CopilotAgent {
         public static volatile Boolean override;
-    private static final boolean useAgentServiceTestMode = false;
-
     private CopilotAgent() {
     }
 
