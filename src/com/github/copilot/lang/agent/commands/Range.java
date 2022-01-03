@@ -23,12 +23,6 @@ public class Range {
         if (end == null) {
             throw new IllegalStateException("end cannot be null!");
         }
-        if (start == null) {
-            throw new NullPointerException("start is marked non-null but is null");
-        }
-        if (end == null) {
-            throw new NullPointerException("end is marked non-null but is null");
-        }
         this.start = start;
         this.end = end;
     }
@@ -53,18 +47,12 @@ public class Range {
         if (start == null) {
             throw new IllegalStateException("start cannot be null!");
         }
-        if (start == null) {
-            throw new NullPointerException("start is marked non-null but is null");
-        }
         this.start = start;
     }
 
     public void setEnd(Position end) {
         if (end == null) {
             throw new IllegalStateException("end cannot be null!");
-        }
-        if (end == null) {
-            throw new NullPointerException("end is marked non-null but is null");
         }
         this.end = end;
     }

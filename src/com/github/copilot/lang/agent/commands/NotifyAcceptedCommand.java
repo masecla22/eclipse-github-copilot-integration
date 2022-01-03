@@ -62,9 +62,6 @@ implements JsonRpcCommand<String> {
         if (uuid == null) {
             throw new IllegalStateException("uuid cannot be null!");
         }
-        if (uuid == null) {
-            throw new NullPointerException("uuid is marked non-null but is null");
-        }
         this.uuid = uuid;
     }
 

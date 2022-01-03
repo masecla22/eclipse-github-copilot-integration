@@ -67,9 +67,6 @@ extends OpenAIServiceImpl {
         }
         if ((override = this.TEST_COMPLETION_URL) != null) {
             String string = override;
-            if (string == null) {
-                throw new IllegalStateException("string cannot be null!");
-            }
             return string;
         }
         String string = super.getCompletionURL(lang);

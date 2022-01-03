@@ -70,9 +70,6 @@ public class Document {
         if (source == null) {
             throw new IllegalStateException("source cannot be null!");
         }
-        if (source == null) {
-            throw new NullPointerException("source is marked non-null but is null");
-        }
         this.source = source;
     }
 
@@ -80,18 +77,12 @@ public class Document {
         if (languageId == null) {
             throw new IllegalStateException("languageId cannot be null!");
         }
-        if (languageId == null) {
-            throw new NullPointerException("languageId is marked non-null but is null");
-        }
         this.languageId = languageId;
     }
 
     public void setPosition(Position position) {
         if (position == null) {
             throw new IllegalStateException("position cannot be null!");
-        }
-        if (position == null) {
-            throw new NullPointerException("position is marked non-null but is null");
         }
         this.position = position;
     }
@@ -189,15 +180,6 @@ public class Document {
         }
         if (position == null) {
             throw new IllegalStateException("position cannot be null!");
-        }
-        if (source == null) {
-            throw new NullPointerException("source is marked non-null but is null");
-        }
-        if (languageId == null) {
-            throw new NullPointerException("languageId is marked non-null but is null");
-        }
-        if (position == null) {
-            throw new NullPointerException("position is marked non-null but is null");
         }
         this.source = source;
         this.languageId = languageId;

@@ -210,18 +210,6 @@ implements APIChoice {
         if (baseTelemetryData == null) {
             throw new IllegalStateException("baseTelemetryData cannot be null!");
         }
-        if (responseInfo == null) {
-            throw new NullPointerException("responseInfo is marked non-null but is null");
-        }
-        if (completion == null) {
-            throw new NullPointerException("completion is marked non-null but is null");
-        }
-        if (completionId == null) {
-            throw new NullPointerException("completionId is marked non-null but is null");
-        }
-        if (baseTelemetryData == null) {
-            throw new NullPointerException("baseTelemetryData is marked non-null but is null");
-        }
         this.responseInfo = responseInfo;
         this.completion = completion;
         this.numTokens = numTokens;
@@ -247,18 +235,6 @@ implements APIChoice {
         if (baseTelemetryData == null) {
             throw new IllegalStateException("baseTelemetryData cannot be null!");
         }
-        if (responseInfo == null) {
-            throw new NullPointerException("responseInfo is marked non-null but is null");
-        }
-        if (completion == null) {
-            throw new NullPointerException("completion is marked non-null but is null");
-        }
-        if (completionId == null) {
-            throw new NullPointerException("completionId is marked non-null but is null");
-        }
-        if (baseTelemetryData == null) {
-            throw new NullPointerException("baseTelemetryData is marked non-null but is null");
-        }
         this.responseInfo = responseInfo;
         this.completion = completion;
         this.numTokens = numTokens;
@@ -276,9 +252,6 @@ implements APIChoice {
     public DefaultAPIChoice withCompletion(List<String> completion) {
         if (completion == null) {
             throw new IllegalStateException("completion cannot be null!");
-        }
-        if (completion == null) {
-            throw new NullPointerException("completion is marked non-null but is null");
         }
         return this.completion == completion ? this : new DefaultAPIChoice(this.responseInfo, completion, this.numTokens, this.choiceIndex, this.requestID, this.completionId, this.createdTimestamp, this.meanLogProb, this.baseTelemetryData, this.isCached, this.telemetryData);
     }

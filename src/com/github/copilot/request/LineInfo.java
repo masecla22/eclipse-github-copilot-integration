@@ -81,9 +81,6 @@ public final class LineInfo {
         if (line == null) {
             throw new IllegalStateException("line cannot be null!");
         }
-        if (line == null) {
-            throw new NullPointerException("line is marked non-null but is null");
-        }
         this.lineCount = lineCount;
         this.lineNumber = lineNumber;
         this.lineStartOffset = lineStartOffset;

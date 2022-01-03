@@ -59,9 +59,6 @@ public class AuthStatusResult {
         if (status == null) {
             throw new IllegalStateException("status cannot be null!");
         }
-        if (status == null) {
-            throw new NullPointerException("status is marked non-null but is null");
-        }
         this.status = status;
     }
 
@@ -111,9 +108,6 @@ public class AuthStatusResult {
     public AuthStatusResult(Status status, String user) {
         if (status == null) {
             throw new IllegalStateException("status cannot be null!");
-        }
-        if (status == null) {
-            throw new NullPointerException("status is marked non-null but is null");
         }
         this.status = status;
         this.user = user;

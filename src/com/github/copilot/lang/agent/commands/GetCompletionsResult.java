@@ -20,9 +20,6 @@ public class GetCompletionsResult {
         if (completions == null) {
             throw new IllegalStateException("completions cannot be null!");
         }
-        if (completions == null) {
-            throw new NullPointerException("completions is marked non-null but is null");
-        }
         this.completions = completions;
     }
 
@@ -37,9 +34,6 @@ public class GetCompletionsResult {
     public void setCompletions(List<Completion> completions) {
         if (completions == null) {
             throw new IllegalStateException("completions cannot be null!");
-        }
-        if (completions == null) {
-            throw new NullPointerException("completions is marked non-null but is null");
         }
         this.completions = completions;
     }
@@ -105,21 +99,6 @@ public class GetCompletionsResult {
             }
             if (position == null) {
                 throw new IllegalStateException("position cannot be null!");
-            }
-            if (uuid == null) {
-                throw new NullPointerException("uuid is marked non-null but is null");
-            }
-            if (text == null) {
-                throw new NullPointerException("text is marked non-null but is null");
-            }
-            if (range == null) {
-                throw new NullPointerException("range is marked non-null but is null");
-            }
-            if (displayText == null) {
-                throw new NullPointerException("displayText is marked non-null but is null");
-            }
-            if (position == null) {
-                throw new NullPointerException("position is marked non-null but is null");
             }
             this.uuid = uuid;
             this.text = text;

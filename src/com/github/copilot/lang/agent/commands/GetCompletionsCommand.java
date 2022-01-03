@@ -35,9 +35,6 @@ implements JsonRpcCommand<GetCompletionsResult> {
         if (doc == null) {
             throw new IllegalStateException("doc cannot be null!");
         }
-        if (doc == null) {
-            throw new NullPointerException("doc is marked non-null but is null");
-        }
         this.doc = doc;
         this.options = options;
     }
