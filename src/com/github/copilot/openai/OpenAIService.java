@@ -13,7 +13,6 @@ import com.github.copilot.request.LanguageEditorRequest;
 import com.github.copilot.telemetry.TelemetryData;
 import com.intellij.openapi.application.ApplicationManager;
 import java.util.concurrent.Flow;
-import org.jetbrains.annotations.NotNull;
 
 public interface OpenAIService {
         public static OpenAIService getInstance() {

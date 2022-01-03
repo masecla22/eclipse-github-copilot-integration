@@ -31,8 +31,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 class CopilotDefaultInlayRenderer
 implements CopilotInlayRenderer {

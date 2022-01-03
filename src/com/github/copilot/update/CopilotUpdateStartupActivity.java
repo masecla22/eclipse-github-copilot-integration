@@ -21,7 +21,6 @@ import com.intellij.openapi.startup.StartupActivity;
 import com.intellij.util.concurrency.annotations.RequiresBackgroundThread;
 import java.time.ZonedDateTime;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.jetbrains.annotations.NotNull;
 
 public class CopilotUpdateStartupActivity
 implements StartupActivity.Background {

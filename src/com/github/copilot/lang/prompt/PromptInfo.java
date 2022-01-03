@@ -10,8 +10,6 @@ package com.github.copilot.lang.prompt;
 
 import com.github.copilot.request.BlockMode;
 import javax.annotation.concurrent.Immutable;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 @Immutable
 public final class PromptInfo {

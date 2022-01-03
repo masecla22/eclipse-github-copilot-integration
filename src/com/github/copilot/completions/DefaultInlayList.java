@@ -14,7 +14,6 @@ import com.intellij.openapi.util.TextRange;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 class DefaultInlayList
 implements CopilotInlayList {

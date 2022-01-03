@@ -11,8 +11,6 @@ package com.github.copilot.request;
 import com.github.copilot.lang.LanguageSupport;
 import com.github.copilot.request.EditorRequest;
 import com.intellij.psi.PsiFile;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public interface LanguageEditorRequest
 extends EditorRequest {

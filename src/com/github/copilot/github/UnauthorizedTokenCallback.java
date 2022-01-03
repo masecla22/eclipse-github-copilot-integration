@@ -8,7 +8,6 @@
 package com.github.copilot.github;
 
 import com.intellij.openapi.project.Project;
-import org.jetbrains.annotations.NotNull;
 
 @FunctionalInterface
 public interface UnauthorizedTokenCallback {

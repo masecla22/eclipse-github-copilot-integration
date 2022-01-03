@@ -14,8 +14,6 @@ import com.intellij.util.xmlb.Converter;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public final class ZonedDateTimeConverter
 extends Converter<ZonedDateTime> {

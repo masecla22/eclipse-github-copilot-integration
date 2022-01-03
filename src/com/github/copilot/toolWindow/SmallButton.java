@@ -12,7 +12,6 @@ import com.intellij.util.ui.JBUI;
 import java.awt.Font;
 import java.awt.Insets;
 import javax.swing.JButton;
-import org.jetbrains.annotations.NotNull;
 
 class SmallButton
 extends JButton {

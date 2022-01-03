@@ -14,7 +14,6 @@ import com.github.copilot.lang.agent.CopilotAgent;
 import com.github.copilot.lang.agent.DelegatingGitHubService;
 import com.intellij.openapi.application.ApplicationManager;
 import java.util.concurrent.TimeUnit;
-import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.TestOnly;
 
 @TestOnly

@@ -15,7 +15,6 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.DumbAware;
 import java.util.Objects;
-import org.jetbrains.annotations.NotNull;
 
 public class LoginToGitHubAction
 extends AnAction

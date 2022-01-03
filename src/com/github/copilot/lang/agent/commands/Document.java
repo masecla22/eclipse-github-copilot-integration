@@ -9,7 +9,6 @@ package com.github.copilot.lang.agent.commands;
 
 import com.github.copilot.lang.agent.commands.Position;
 import com.google.gson.annotations.SerializedName;
-import org.jetbrains.annotations.NotNull;
 
 public class Document {
     @SerializedName(value="source")

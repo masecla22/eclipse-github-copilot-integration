@@ -8,7 +8,6 @@
 package com.github.copilot.lang.agent;
 
 import com.intellij.openapi.application.ApplicationManager;
-import org.jetbrains.annotations.Nullable;
 
 public final class CopilotAgent {
         public static volatile Boolean override;

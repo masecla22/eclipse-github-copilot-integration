@@ -11,7 +11,6 @@ import com.github.copilot.util.String2DoubleMap;
 import com.google.gson.annotations.SerializedName;
 import java.util.Arrays;
 import java.util.List;
-import org.jetbrains.annotations.Nullable;
 
 public final class OpenAICompletionResponse {
     @SerializedName(value="id")

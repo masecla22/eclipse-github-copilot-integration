@@ -6,7 +6,6 @@
  */
 package com.github.copilot.request;
 
-import org.jetbrains.annotations.NotNull;
 
 public enum BlockMode {
     Client,

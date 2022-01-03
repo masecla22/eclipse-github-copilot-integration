@@ -20,8 +20,6 @@ import com.github.copilot.request.EditorRequest;
 import com.intellij.openapi.editor.Editor;
 import java.util.List;
 import java.util.concurrent.Flow;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class DelegatingCompletionService
 implements CopilotCompletionService {

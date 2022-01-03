@@ -10,8 +10,6 @@ package com.github.copilot.openai;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.Arrays;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public final class OpenAiRequestBody {
     @SerializedName(value="prompt")

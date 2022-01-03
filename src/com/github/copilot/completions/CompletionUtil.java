@@ -28,8 +28,6 @@ import com.intellij.openapi.util.text.StringUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class CompletionUtil {
     private static final Logger LOG = Logger.getInstance(CompletionUtil.class);

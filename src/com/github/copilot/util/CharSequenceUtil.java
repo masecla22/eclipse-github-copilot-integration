@@ -6,7 +6,6 @@
  */
 package com.github.copilot.util;
 
-import org.jetbrains.annotations.NotNull;
 
 public final class CharSequenceUtil {
     public static int lastIndexOf(CharSequence text, char ch) {

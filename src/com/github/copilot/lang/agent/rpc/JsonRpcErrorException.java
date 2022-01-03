@@ -6,7 +6,6 @@
  */
 package com.github.copilot.lang.agent.rpc;
 
-import org.jetbrains.annotations.NotNull;
 
 public class JsonRpcErrorException
 extends RuntimeException {

@@ -8,7 +8,6 @@
 package com.github.copilot.settings;
 
 import com.intellij.lang.Language;
-import org.jetbrains.annotations.NotNull;
 
 class LanguageChoice {
         private final Language language;

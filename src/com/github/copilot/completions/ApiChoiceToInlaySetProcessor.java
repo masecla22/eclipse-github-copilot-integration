@@ -30,8 +30,6 @@ import java.util.Map;
 import java.util.concurrent.Flow;
 import java.util.concurrent.SubmissionPublisher;
 import java.util.function.Consumer;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 class ApiChoiceToInlaySetProcessor
 implements Flow.Subscriber<APIChoice> {

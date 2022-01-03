@@ -21,7 +21,6 @@ import com.intellij.openapi.diagnostic.Logger;
 import java.net.http.HttpResponse;
 import java.util.concurrent.Flow;
 import java.util.concurrent.SubmissionPublisher;
-import org.jetbrains.annotations.NotNull;
 
 class JsonToApiChoiceProcessor
 implements Flow.Processor<JsonObject, APIChoice>,

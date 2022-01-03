@@ -34,7 +34,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 
 final class InlayRendering {
     private static final Key<Map<Font, FontMetrics>> KEY_CACHED_FONTMETRICS = Key.create((String)"copilot.editorFontMetrics");

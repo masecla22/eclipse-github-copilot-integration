@@ -13,8 +13,6 @@ import com.github.copilot.openai.CompletionResponseInfo;
 import com.github.copilot.openai.TelemetryUtil;
 import com.github.copilot.telemetry.TelemetryData;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public final class DefaultAPIChoice
 implements APIChoice {

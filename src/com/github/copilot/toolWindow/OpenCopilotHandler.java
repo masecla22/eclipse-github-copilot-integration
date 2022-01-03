@@ -113,8 +113,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 class OpenCopilotHandler {
     private static final Logger LOG = Logger.getInstance(OpenCopilotHandler.class);

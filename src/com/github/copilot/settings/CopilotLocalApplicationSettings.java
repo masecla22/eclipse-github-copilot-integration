@@ -18,8 +18,6 @@ import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.RoamingType;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 @State(name="github-copilot-local", storages={@Storage(value="github-copilot.local.xml", roamingType=RoamingType.DISABLED)})
 public class CopilotLocalApplicationSettings

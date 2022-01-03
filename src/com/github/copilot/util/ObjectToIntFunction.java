@@ -6,7 +6,6 @@
  */
 package com.github.copilot.util;
 
-import org.jetbrains.annotations.NotNull;
 
 @FunctionalInterface
 public interface ObjectToIntFunction<T> {

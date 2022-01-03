@@ -29,8 +29,6 @@ import java.util.stream.Collectors;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.SortOrder;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 class LanguageTable
 extends ListTableWithButtons<LanguageChoice> {

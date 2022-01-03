@@ -8,7 +8,6 @@ package com.github.copilot.lang.agent.commands;
 
 import com.github.copilot.lang.agent.commands.SignInInitiateResult;
 import com.github.copilot.lang.agent.rpc.JsonRpcCommand;
-import org.jetbrains.annotations.NotNull;
 
 public class SignInInitiateCommand
 implements JsonRpcCommand<SignInInitiateResult> {

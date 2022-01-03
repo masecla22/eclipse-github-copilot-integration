@@ -12,8 +12,6 @@ package com.github.copilot.settings;
 import com.intellij.ui.ColorUtil;
 import com.intellij.util.xmlb.Converter;
 import java.awt.Color;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class ColorConverter
 extends Converter<Color> {

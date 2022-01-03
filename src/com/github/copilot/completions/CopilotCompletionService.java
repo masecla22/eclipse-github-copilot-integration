@@ -23,8 +23,6 @@ import com.intellij.util.concurrency.annotations.RequiresBackgroundThread;
 import com.intellij.util.concurrency.annotations.RequiresEdt;
 import java.util.List;
 import java.util.concurrent.Flow;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public interface CopilotCompletionService {
     public static CopilotCompletionService getInstance() {

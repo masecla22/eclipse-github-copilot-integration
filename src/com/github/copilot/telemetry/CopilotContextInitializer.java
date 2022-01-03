@@ -21,7 +21,6 @@ import com.intellij.openapi.util.SystemInfoRt;
 import com.microsoft.applicationinsights.extensibility.ContextInitializer;
 import com.microsoft.applicationinsights.telemetry.TelemetryContext;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 
 class CopilotContextInitializer
 implements ContextInitializer {

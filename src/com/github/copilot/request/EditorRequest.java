@@ -16,8 +16,6 @@ import com.github.copilot.util.Cancellable;
 import com.intellij.lang.Language;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.project.Project;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public interface EditorRequest
 extends Cancellable {

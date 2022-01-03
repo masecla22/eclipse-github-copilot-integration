@@ -8,7 +8,6 @@ package com.github.copilot.completions;
 
 import com.github.copilot.completions.CopilotCompletionType;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 public interface CopilotEditorInlay {
         public CopilotCompletionType getType();

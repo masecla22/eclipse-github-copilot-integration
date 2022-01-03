@@ -22,7 +22,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import org.jetbrains.annotations.NotNull;
 
 public final class JsonRPC {
     private static final Gson GSON = new GsonBuilder().registerTypeAdapter(AuthStatusResult.class, (Object)new AuthStatusResult.TypeAdapter()).registerTypeAdapter(SignInInitiateResult.class, (Object)new SignInInitiateResult.TypeAdapter()).create();

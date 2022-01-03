@@ -12,8 +12,6 @@ import com.github.copilot.telemetry.TelemetryData;
 import com.intellij.openapi.application.ApplicationManager;
 import java.util.Collections;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public interface TelemetryService {
         public static TelemetryService getInstance() {

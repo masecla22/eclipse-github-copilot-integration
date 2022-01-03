@@ -7,7 +7,6 @@
 package com.github.copilot.lang.agent.commands;
 
 import com.github.copilot.lang.agent.commands.SignInInitiateResult;
-import org.jetbrains.annotations.NotNull;
 
 public final class SignInInitiateNotSignedInResult
 implements SignInInitiateResult {

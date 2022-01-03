@@ -23,8 +23,6 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.extensions.PluginId;
 import com.intellij.openapi.util.BuildNumber;
 import java.nio.file.Path;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public final class CopilotPlugin {
     public static final PluginId COPILOT_ID = PluginId.getId((String)"com.github.copilot");

@@ -22,8 +22,6 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionListener;
 import javax.swing.KeyStroke;
 import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 class DataProviderPanel
 extends JBPanelWithEmptyText

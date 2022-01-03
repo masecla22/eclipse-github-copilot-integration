@@ -6,7 +6,6 @@
  */
 package com.github.copilot.lang.agent.rpc;
 
-import org.jetbrains.annotations.NotNull;
 
 public interface JsonRpcMessageHandler {
     public void handleJsonMessage(String var1);

@@ -11,7 +11,6 @@ import com.github.copilot.lang.agent.commands.Position;
 import com.github.copilot.lang.agent.commands.Range;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 public class GetCompletionsResult {
     @SerializedName(value="completions")

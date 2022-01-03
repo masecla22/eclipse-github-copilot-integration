@@ -15,7 +15,6 @@ import com.intellij.openapi.diagnostic.Logger;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
-import org.jetbrains.annotations.NotNull;
 
 public class VSCodeJsonRpcCommandSender
 implements JsonRpcCommandSender {

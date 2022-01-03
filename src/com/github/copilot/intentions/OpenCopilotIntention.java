@@ -29,7 +29,6 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
 import com.intellij.util.IncorrectOperationException;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 
 public class OpenCopilotIntention
 extends BaseIntentionAction

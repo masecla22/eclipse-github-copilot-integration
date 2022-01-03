@@ -6,7 +6,6 @@
  */
 package com.github.copilot.openai;
 
-import org.jetbrains.annotations.NotNull;
 
 public enum CopilotLanguage {
     Python,

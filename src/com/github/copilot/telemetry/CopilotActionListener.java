@@ -21,7 +21,6 @@ import com.intellij.openapi.actionSystem.AnActionResult;
 import com.intellij.openapi.actionSystem.ex.AnActionListener;
 import com.intellij.openapi.application.ApplicationManager;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 
 public class CopilotActionListener
 implements AnActionListener {

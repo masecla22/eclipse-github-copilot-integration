@@ -10,7 +10,6 @@ package com.github.copilot.editor;
 
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.extensions.ExtensionPointName;
-import org.jetbrains.annotations.NotNull;
 
 public interface CopilotEditorSupport {
     public static final ExtensionPointName<CopilotEditorSupport> EP = ExtensionPointName.create((String)"com.github.copilot.editorSupport");

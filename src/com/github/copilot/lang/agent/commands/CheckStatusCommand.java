@@ -10,7 +10,6 @@ package com.github.copilot.lang.agent.commands;
 import com.github.copilot.lang.agent.commands.AuthStatusResult;
 import com.github.copilot.lang.agent.rpc.JsonRpcCommand;
 import com.google.gson.annotations.SerializedName;
-import org.jetbrains.annotations.NotNull;
 
 public final class CheckStatusCommand
 implements JsonRpcCommand<AuthStatusResult> {

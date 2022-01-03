@@ -9,7 +9,6 @@ package com.github.copilot.status;
 
 import com.github.copilot.status.CopilotStatus;
 import com.intellij.util.messages.Topic;
-import org.jetbrains.annotations.NotNull;
 
 @FunctionalInterface
 public interface CopilotStatusListener {

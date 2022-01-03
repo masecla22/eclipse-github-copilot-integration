@@ -18,7 +18,6 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.DumbAware;
-import org.jetbrains.annotations.NotNull;
 
 public class CyclePreviousEditorInlays
 extends AnAction

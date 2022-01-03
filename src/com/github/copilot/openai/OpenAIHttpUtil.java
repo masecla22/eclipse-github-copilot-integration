@@ -15,8 +15,6 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletionException;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 class OpenAIHttpUtil {
     private static final String HEADER_COPILOT_EXPERIMENT = "X-Copilot-Experiment";

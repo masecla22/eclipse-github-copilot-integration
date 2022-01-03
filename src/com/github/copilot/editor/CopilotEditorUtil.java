@@ -53,8 +53,6 @@ import com.intellij.psi.PsiFile;
 import com.intellij.util.concurrency.annotations.RequiresEdt;
 import com.intellij.util.containers.ContainerUtil;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public final class CopilotEditorUtil {
     static final Key<List<EditorRequest>> KEY_REQUESTS = Key.create((String)"copilot.editorRequests");

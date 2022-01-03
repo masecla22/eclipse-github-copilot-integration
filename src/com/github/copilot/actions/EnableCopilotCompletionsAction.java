@@ -29,7 +29,6 @@ import com.intellij.openapi.wm.StatusBar;
 import com.intellij.openapi.wm.WindowManager;
 import com.intellij.psi.PsiFile;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 
 public class EnableCopilotCompletionsAction
 extends AnAction

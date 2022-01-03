@@ -11,7 +11,6 @@ import com.github.copilot.completions.CopilotCompletion;
 import com.github.copilot.completions.CopilotEditorInlay;
 import com.intellij.openapi.util.TextRange;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 public interface CopilotInlayList
 extends Iterable<CopilotEditorInlay> {

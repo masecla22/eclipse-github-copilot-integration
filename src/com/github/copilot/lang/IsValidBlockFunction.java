@@ -8,7 +8,6 @@
 package com.github.copilot.lang;
 
 import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
 
 @FunctionalInterface
 public interface IsValidBlockFunction {

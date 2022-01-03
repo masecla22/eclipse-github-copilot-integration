@@ -38,8 +38,6 @@ import com.intellij.openapi.util.NlsActions;
 import com.intellij.util.Consumer;
 import java.awt.Component;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class CopilotErrorHandler
 extends ErrorReportSubmitter {

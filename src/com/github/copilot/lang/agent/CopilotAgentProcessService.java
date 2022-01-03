@@ -11,7 +11,6 @@ package com.github.copilot.lang.agent;
 import com.github.copilot.lang.agent.rpc.JsonRpcCommand;
 import com.github.copilot.lang.agent.rpc.JsonRpcNotification;
 import com.intellij.openapi.application.ApplicationManager;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.concurrency.Promise;
 
 public interface CopilotAgentProcessService {

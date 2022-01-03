@@ -12,8 +12,6 @@ import com.github.copilot.completions.CopilotCompletion;
 import com.github.copilot.openai.CompletionResponseInfo;
 import com.github.copilot.telemetry.TelemetryData;
 import com.intellij.openapi.util.text.StringUtil;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public interface APIChoice
 extends CopilotCompletion {

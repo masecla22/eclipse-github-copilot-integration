@@ -29,7 +29,6 @@ import com.intellij.openapi.startup.StartupActivity;
 import com.intellij.openapi.updateSettings.impl.UpdateSettings;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.jetbrains.annotations.NotNull;
 
 public class CopilotEarlyBirdChannelStartupActivity
 implements StartupActivity {

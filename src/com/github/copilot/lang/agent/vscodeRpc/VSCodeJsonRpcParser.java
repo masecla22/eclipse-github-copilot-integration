@@ -13,7 +13,6 @@ import com.github.copilot.lang.agent.rpc.JsonRpcMessageParser;
 import com.github.copilot.lang.agent.vscodeRpc.ByteArray;
 import com.intellij.openapi.diagnostic.Logger;
 import java.nio.charset.StandardCharsets;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.TestOnly;
 
 public class VSCodeJsonRpcParser

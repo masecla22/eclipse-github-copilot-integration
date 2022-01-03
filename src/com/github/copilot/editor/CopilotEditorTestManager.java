@@ -21,7 +21,6 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.util.ThrowableRunnable;
 import com.intellij.util.concurrency.annotations.RequiresEdt;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.TestOnly;
 
 @TestOnly

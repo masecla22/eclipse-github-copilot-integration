@@ -21,8 +21,6 @@ import com.intellij.openapi.diagnostic.Logger;
 import java.util.concurrent.Flow;
 import java.util.concurrent.SubmissionPublisher;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 class ServerSideEventProcessor
 implements Flow.Subscriber<String> {

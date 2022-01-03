@@ -11,7 +11,6 @@ package com.github.copilot.lang.agent.commands;
 import com.github.copilot.request.LineInfo;
 import com.google.gson.annotations.SerializedName;
 import com.intellij.openapi.util.text.StringUtil;
-import org.jetbrains.annotations.NotNull;
 
 public class Position {
     @SerializedName(value="line")

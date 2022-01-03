@@ -36,8 +36,6 @@ import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class AzureInsightsTelemetryService
 implements TelemetryService,

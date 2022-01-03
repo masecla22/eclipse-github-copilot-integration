@@ -10,7 +10,6 @@ package com.github.copilot.lang.agent.rpc;
 import com.github.copilot.lang.agent.rpc.JsonRpcMessageHandler;
 import java.util.List;
 import org.apache.commons.compress.utils.Lists;
-import org.jetbrains.annotations.NotNull;
 
 public class StoringJsonRpcMessageHandler
 implements JsonRpcMessageHandler {

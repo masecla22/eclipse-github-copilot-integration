@@ -52,8 +52,6 @@ import com.intellij.psi.util.PsiUtilCore;
 import com.intellij.util.concurrency.annotations.RequiresBackgroundThread;
 import com.intellij.util.concurrency.annotations.RequiresReadLock;
 import java.util.concurrent.atomic.AtomicReference;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public final class CopilotPsiUtil {
     private static final Logger LOG = Logger.getInstance(CopilotPsiUtil.class);

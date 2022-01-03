@@ -39,7 +39,6 @@ import com.intellij.openapi.editor.ex.util.EditorUtil;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.Disposer;
 import java.util.Set;
-import org.jetbrains.annotations.NotNull;
 
 public class CopilotEditorListener
 implements EditorFactoryListener {

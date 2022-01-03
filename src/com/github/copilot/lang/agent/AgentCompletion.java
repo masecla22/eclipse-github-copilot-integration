@@ -13,8 +13,6 @@ import com.github.copilot.completions.CopilotCompletion;
 import com.github.copilot.lang.agent.commands.GetCompletionsResult;
 import com.intellij.openapi.util.text.StringUtil;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 class AgentCompletion
 implements CopilotCompletion {

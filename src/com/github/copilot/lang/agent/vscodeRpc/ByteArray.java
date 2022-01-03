@@ -8,7 +8,6 @@ package com.github.copilot.lang.agent.vscodeRpc;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import org.jetbrains.annotations.NotNull;
 
 public class ByteArray {
     static final byte[] EMPTY_ARRAY = new byte[0];

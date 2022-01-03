@@ -15,7 +15,6 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.testFramework.LightVirtualFile;
 import java.io.IOException;
-import org.jetbrains.annotations.NotNull;
 
 public class VfsUtil {
     private static final Logger LOG = Logger.getInstance(VfsUtil.class);

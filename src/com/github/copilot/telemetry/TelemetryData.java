@@ -11,8 +11,6 @@ package com.github.copilot.telemetry;
 import com.github.copilot.util.String2DoubleMap;
 import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class TelemetryData {
         private final TelemetryData wrapped;

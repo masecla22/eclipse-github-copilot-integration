@@ -13,8 +13,6 @@ import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.util.ui.StatusText;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 final class ToolWindowUtil {
     ToolWindowUtil() {

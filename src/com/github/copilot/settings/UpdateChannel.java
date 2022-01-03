@@ -9,7 +9,6 @@ package com.github.copilot.settings;
 
 import com.github.copilot.CopilotBundle;
 import com.intellij.util.ui.PresentableEnum;
-import org.jetbrains.annotations.Nullable;
 
 public enum UpdateChannel implements PresentableEnum
 {

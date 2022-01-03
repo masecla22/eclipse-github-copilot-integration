@@ -9,7 +9,6 @@
 package com.github.copilot;
 
 import com.intellij.DynamicBundle;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.PropertyKey;
 
 public final class CopilotBundle

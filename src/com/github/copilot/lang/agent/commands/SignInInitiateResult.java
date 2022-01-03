@@ -19,7 +19,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
-import org.jetbrains.annotations.NotNull;
 
 public interface SignInInitiateResult {
     public boolean isAlreadySignedIn();

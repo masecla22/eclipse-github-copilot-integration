@@ -21,8 +21,6 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
 import com.intellij.util.concurrency.annotations.RequiresBackgroundThread;
 import com.intellij.util.concurrency.annotations.RequiresReadLock;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public interface LanguageSupport {
 	public static final ExtensionPointName<LanguageSupport> EP = new ExtensionPointName("com.github.copilot.language");

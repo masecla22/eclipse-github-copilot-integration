@@ -17,7 +17,6 @@ import com.github.copilot.telemetry.TelemetryData;
 import com.intellij.openapi.application.ApplicationManager;
 import java.util.concurrent.Flow;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.jetbrains.annotations.NotNull;
 
 public class OpenAITestService
 extends OpenAIServiceImpl {

@@ -13,8 +13,6 @@ import com.github.copilot.openai.StringDoublePair;
 import com.google.gson.Gson;
 import java.util.List;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 final class APILogprobs {
         private final List<Integer> textOffset;

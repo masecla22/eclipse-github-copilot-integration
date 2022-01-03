@@ -14,7 +14,6 @@ import com.github.copilot.actions.AbstractDisableCopilotCompletionsAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.psi.PsiFile;
-import org.jetbrains.annotations.NotNull;
 
 public class DisableFileCopilotCompletionsAction
 extends AbstractDisableCopilotCompletionsAction {

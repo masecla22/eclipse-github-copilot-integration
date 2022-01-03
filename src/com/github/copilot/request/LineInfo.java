@@ -12,7 +12,6 @@ import com.github.copilot.editor.CopilotEditorUtil;
 import com.github.copilot.util.CopilotStringUtil;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.util.TextRange;
-import org.jetbrains.annotations.NotNull;
 
 public final class LineInfo {
     private final int lineCount;

@@ -20,7 +20,6 @@ import com.intellij.codeInsight.lookup.LookupManagerListener;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.PsiFile;
-import org.jetbrains.annotations.Nullable;
 
 public class CopilotLookupListener
 implements LookupManagerListener {

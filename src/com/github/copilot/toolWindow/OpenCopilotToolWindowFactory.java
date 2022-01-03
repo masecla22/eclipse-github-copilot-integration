@@ -37,8 +37,6 @@ import com.intellij.ui.content.ContentManagerEvent;
 import com.intellij.ui.content.ContentManagerListener;
 import com.intellij.util.ui.StatusText;
 import java.util.Collections;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class OpenCopilotToolWindowFactory
 implements ToolWindowFactory,

@@ -16,7 +16,6 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.EditorSettings;
 import com.intellij.openapi.editor.actions.EditorActionUtil;
 import com.intellij.openapi.project.Project;
-import org.jetbrains.annotations.NotNull;
 
 public class EditorUtilCopy {
     public static int indentLine(Project project, Editor editor, int lineNumber, int indent, int caretOffset) {

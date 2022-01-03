@@ -21,8 +21,6 @@ import com.intellij.openapi.util.Disposer;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import javax.annotation.concurrent.GuardedBy;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 final class OpenAIBodyHandler
 implements HttpResponse.BodyHandler<Object> {

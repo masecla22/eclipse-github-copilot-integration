@@ -8,7 +8,6 @@
 package com.github.copilot.lang.agent.rpc;
 
 import javax.annotation.concurrent.NotThreadSafe;
-import org.jetbrains.annotations.NotNull;
 
 @NotThreadSafe
 public interface JsonRpcMessageParser {

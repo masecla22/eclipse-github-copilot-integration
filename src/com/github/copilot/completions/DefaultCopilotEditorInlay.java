@@ -11,7 +11,6 @@ import com.github.copilot.completions.CopilotCompletionType;
 import com.github.copilot.completions.CopilotEditorInlay;
 import java.util.List;
 import javax.annotation.concurrent.Immutable;
-import org.jetbrains.annotations.NotNull;
 
 @Immutable
 final class DefaultCopilotEditorInlay

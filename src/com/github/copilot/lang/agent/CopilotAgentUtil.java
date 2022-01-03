@@ -18,7 +18,6 @@ import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import org.jetbrains.annotations.Nullable;
 
 public class CopilotAgentUtil {
     private static final Logger LOG = Logger.getInstance(CopilotAgentUtil.class);

@@ -18,7 +18,6 @@ import com.intellij.notification.NotificationListener;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.impl.NotificationFullContent;
 import com.intellij.openapi.util.NlsContexts;
-import org.jetbrains.annotations.NotNull;
 
 public final class CopilotNotifications {
     private static final String GROUP_ID = "github.copilot.notifications";

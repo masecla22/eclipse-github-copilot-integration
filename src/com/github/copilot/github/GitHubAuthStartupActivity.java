@@ -35,7 +35,6 @@ import com.intellij.openapi.startup.StartupActivity;
 import com.intellij.openapi.startup.StartupManager;
 import com.intellij.util.concurrency.annotations.RequiresBackgroundThread;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.jetbrains.annotations.NotNull;
 
 public class GitHubAuthStartupActivity
 implements StartupActivity.Background {

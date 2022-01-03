@@ -41,7 +41,6 @@ import javax.swing.Icon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import org.jetbrains.annotations.NotNull;
 
 class DeviceLoginForm {
     private ExtendableTextField codeField;

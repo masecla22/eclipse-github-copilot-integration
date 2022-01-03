@@ -8,8 +8,6 @@
 package com.github.copilot.lang;
 
 import java.util.regex.Pattern;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public final class CommonLanguageSupport {
     private static final Pattern EOL_PATTERN = Pattern.compile("^\\s*[)}\\]\"'`]*\\s*[:{;,]?\\s*$");

@@ -12,7 +12,6 @@ import com.github.copilot.completions.CopilotCompletionType;
 import com.intellij.openapi.editor.EditorCustomElementRenderer;
 import com.intellij.openapi.editor.Inlay;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 public interface CopilotInlayRenderer
 extends EditorCustomElementRenderer {

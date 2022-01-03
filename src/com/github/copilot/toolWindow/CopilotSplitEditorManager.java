@@ -32,7 +32,6 @@ import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiFile;
 import com.intellij.util.concurrency.annotations.RequiresEdt;
-import org.jetbrains.annotations.NotNull;
 
 public class CopilotSplitEditorManager {
     private static final Logger LOG = Logger.getInstance(CopilotSplitEditorManager.class);

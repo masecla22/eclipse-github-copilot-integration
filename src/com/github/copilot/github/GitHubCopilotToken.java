@@ -11,7 +11,6 @@ package com.github.copilot.github;
 import com.google.gson.annotations.SerializedName;
 import com.intellij.openapi.util.text.StringUtil;
 import java.util.concurrent.TimeUnit;
-import org.jetbrains.annotations.Nullable;
 
 public class GitHubCopilotToken {
     @SerializedName(value="token")

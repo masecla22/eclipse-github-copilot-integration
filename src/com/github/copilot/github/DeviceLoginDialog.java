@@ -28,8 +28,6 @@ import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
 import javax.swing.Action;
 import javax.swing.JComponent;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class DeviceLoginDialog
 extends DialogWrapper {

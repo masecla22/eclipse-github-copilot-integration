@@ -8,8 +8,6 @@
 package com.github.copilot.completions;
 
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public interface CopilotCompletion {
         public List<String> getCompletion();

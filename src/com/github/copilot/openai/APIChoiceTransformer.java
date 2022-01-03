@@ -56,8 +56,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 class APIChoiceTransformer {
     private static final Logger LOG = Logger.getInstance(APIChoiceTransformer.class);

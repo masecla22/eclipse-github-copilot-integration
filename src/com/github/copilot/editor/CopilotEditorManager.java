@@ -26,7 +26,6 @@ import com.intellij.openapi.util.TextRange;
 import com.intellij.util.concurrency.annotations.RequiresEdt;
 import com.intellij.util.messages.Topic;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
 public interface CopilotEditorManager
 extends Disposable {

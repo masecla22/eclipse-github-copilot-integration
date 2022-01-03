@@ -7,8 +7,6 @@
  */
 package com.github.copilot.request;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public enum CompletionType {
     GhostText,

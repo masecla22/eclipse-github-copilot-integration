@@ -20,7 +20,6 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.Logger;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.concurrency.AsyncPromise;
 
 public class DefaultJsonRpcMessageHandler

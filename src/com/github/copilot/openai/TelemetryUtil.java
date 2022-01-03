@@ -12,7 +12,6 @@ import com.github.copilot.telemetry.TelemetryData;
 import com.github.copilot.util.String2DoubleMap;
 import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
 
 class TelemetryUtil {
     TelemetryUtil() {

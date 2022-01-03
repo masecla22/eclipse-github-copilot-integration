@@ -13,8 +13,6 @@ import com.github.copilot.lang.agent.commands.GetCompletionsResult;
 import com.github.copilot.lang.agent.rpc.JsonRpcCommand;
 import com.google.gson.annotations.SerializedName;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class GetCompletionsCommand
 implements JsonRpcCommand<GetCompletionsResult> {

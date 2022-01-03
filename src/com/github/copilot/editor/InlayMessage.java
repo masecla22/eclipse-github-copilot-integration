@@ -9,7 +9,6 @@ package com.github.copilot.editor;
 
 import com.github.copilot.request.EditorRequest;
 import javax.annotation.concurrent.Immutable;
-import org.jetbrains.annotations.NotNull;
 
 @Immutable
 public interface InlayMessage {

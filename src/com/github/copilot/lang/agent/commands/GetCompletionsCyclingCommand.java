@@ -10,8 +10,6 @@ package com.github.copilot.lang.agent.commands;
 import com.github.copilot.lang.agent.commands.Document;
 import com.github.copilot.lang.agent.commands.GetCompletionsCommand;
 import java.util.Map;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class GetCompletionsCyclingCommand
 extends GetCompletionsCommand {

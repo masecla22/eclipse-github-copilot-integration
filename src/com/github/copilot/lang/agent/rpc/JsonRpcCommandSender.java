@@ -11,7 +11,6 @@ import com.github.copilot.lang.agent.rpc.JsonRpcCommand;
 import com.github.copilot.lang.agent.rpc.JsonRpcNotification;
 import java.io.IOException;
 import javax.annotation.concurrent.ThreadSafe;
-import org.jetbrains.annotations.NotNull;
 
 @ThreadSafe
 public interface JsonRpcCommandSender {

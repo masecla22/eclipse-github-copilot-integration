@@ -19,8 +19,6 @@ import com.intellij.openapi.extensions.ExtensionPointName;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public interface PromptLanguageSupport {
     public static final ExtensionPointName<PromptLanguageSupport> EP = new ExtensionPointName("com.github.copilot.prompt");
