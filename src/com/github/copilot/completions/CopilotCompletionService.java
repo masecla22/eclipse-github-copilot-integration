@@ -66,24 +66,6 @@ public interface CopilotCompletionService {
 
     public void sendRejectedTelemetry(List<CopilotCompletion> var1);
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[0] = "request";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[0] = "subscriber";
-                break;
-            }
-        }
-        objectArray[1] = "com/github/copilot/completions/CopilotCompletionService";
-        objectArray[2] = "fetchCompletions";
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 }
 

@@ -88,7 +88,7 @@ public class CopilotPluginUpdater {
 
             public void run(ProgressIndicator indicator) {
                 if (indicator == null) {
-                    1.$$$reportNull$$$0(0);
+                	throw new IllegalStateException("indicator cannot be null");
                 }
                 indicator.setIndeterminate(true);
                 indicator.checkCanceled();
@@ -121,10 +121,6 @@ public class CopilotPluginUpdater {
                     }
                 });
             }
-
-            private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/update/CopilotPluginUpdater$1", "run"));
-            }
         }.queue();
     }
 
@@ -142,35 +138,7 @@ public class CopilotPluginUpdater {
         }
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2 = new Object[3];
-        objectArray2[0] = "project";
-        objectArray2[1] = "com/github/copilot/update/CopilotPluginUpdater";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "notifyUpdateAvailable";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[2] = "notifyUpdateUnavailable";
-                break;
-            }
-            case 2: {
-                objectArray = objectArray2;
-                objectArray2[2] = "installCopilotUpdate";
-                break;
-            }
-            case 3: {
-                objectArray = objectArray2;
-                objectArray2[2] = "notifyRequiredRestart";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 
     public static final class CheckUpdatesTask
     extends Task.Backgroundable {
@@ -209,39 +177,7 @@ public class CopilotPluginUpdater {
             catch (Exception e) {
                 LOG.warn("Failed to check for plugin updates", (Throwable)e);
             }
-        }
-
-        private static /* synthetic */ void $$$reportNull$$$0(int n) {
-            Object[] objectArray;
-            Object[] objectArray2;
-            Object[] objectArray3 = new Object[3];
-            switch (n) {
-                default: {
-                    objectArray2 = objectArray3;
-                    objectArray3[0] = "project";
-                    break;
-                }
-                case 2: {
-                    objectArray2 = objectArray3;
-                    objectArray3[0] = "indicator";
-                    break;
-                }
-            }
-            objectArray2[1] = "com/github/copilot/update/CopilotPluginUpdater$CheckUpdatesTask";
-            switch (n) {
-                default: {
-                    objectArray = objectArray2;
-                    objectArray2[2] = "<init>";
-                    break;
-                }
-                case 2: {
-                    objectArray = objectArray2;
-                    objectArray2[2] = "run";
-                    break;
-                }
-            }
-            throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-        }
+        }   
     }
 }
 

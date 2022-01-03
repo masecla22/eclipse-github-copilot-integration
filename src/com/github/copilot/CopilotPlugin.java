@@ -84,33 +84,6 @@ public final class CopilotPlugin {
         return string;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2 = new Object[2];
-        objectArray2[0] = "com/github/copilot/CopilotPlugin";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[1] = "getVersion";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[1] = "getPluginBasePath";
-                break;
-            }
-            case 2: {
-                objectArray = objectArray2;
-                objectArray2[1] = "editorVersionString";
-                break;
-            }
-            case 3: {
-                objectArray = objectArray2;
-                objectArray2[1] = "pluginVersionString";
-                break;
-            }
-        }
-        throw new IllegalStateException(String.format("method %s.%s must not return null", objectArray));
-    }
+    
 }
 

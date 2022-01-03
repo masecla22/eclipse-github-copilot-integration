@@ -184,10 +184,10 @@ Disposable {
                      */
                     public void onTextAvailable(ProcessEvent event, Key outputType) {
                         if (event == null) {
-                            1.$$$reportNull$$$0(0);
+                        	throw new IllegalStateException("event cannot be null");
                         }
                         if (outputType == null) {
-                            1.$$$reportNull$$$0(1);
+                        	throw new IllegalStateException("outputType cannot be null");
                         }
                         if (LOG.isTraceEnabled()) {
                             LOG.trace(String.format("agent onTextAvailable: %s, outputType: %s", event.getText(), outputType));
@@ -202,42 +202,12 @@ Disposable {
 
                     public void processTerminated(ProcessEvent event) {
                         if (event == null) {
-                            1.$$$reportNull$$$0(2);
+                        	throw new IllegalStateException("event cannot be null");
                         }
                         CopilotAgentProcessServiceImpl.this.jsonParser.close();
                     }
 
-                    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                        Object[] objectArray;
-                        Object[] objectArray2;
-                        Object[] objectArray3 = new Object[3];
-                        switch (n) {
-                            default: {
-                                objectArray2 = objectArray3;
-                                objectArray3[0] = "event";
-                                break;
-                            }
-                            case 1: {
-                                objectArray2 = objectArray3;
-                                objectArray3[0] = "outputType";
-                                break;
-                            }
-                        }
-                        objectArray2[1] = "com/github/copilot/lang/agent/CopilotAgentProcessServiceImpl$1$1";
-                        switch (n) {
-                            default: {
-                                objectArray = objectArray2;
-                                objectArray2[2] = "onTextAvailable";
-                                break;
-                            }
-                            case 2: {
-                                objectArray = objectArray2;
-                                objectArray2[2] = "processTerminated";
-                                break;
-                            }
-                        }
-                        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-                    }
+                    
                 });
             }
 
@@ -259,117 +229,6 @@ Disposable {
         return process;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        RuntimeException runtimeException;
-        Object[] objectArray;
-        Object[] objectArray2;
-        int n2;
-        String string;
-        switch (n) {
-            default: {
-                string = "Argument for parameter '%s' of %s.%s must not be null";
-                break;
-            }
-            case 1: 
-            case 2: 
-            case 3: {
-                string = "method %s.%s must not return null";
-                break;
-            }
-        }
-        switch (n) {
-            default: {
-                n2 = 3;
-                break;
-            }
-            case 1: 
-            case 2: 
-            case 3: {
-                n2 = 2;
-                break;
-            }
-        }
-        Object[] objectArray3 = new Object[n2];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "command";
-                break;
-            }
-            case 1: 
-            case 2: 
-            case 3: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "com/github/copilot/lang/agent/CopilotAgentProcessServiceImpl";
-                break;
-            }
-            case 4: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "notification";
-                break;
-            }
-            case 5: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "nodePath";
-                break;
-            }
-            case 6: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "agentFilePath";
-                break;
-            }
-        }
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[1] = "com/github/copilot/lang/agent/CopilotAgentProcessServiceImpl";
-                break;
-            }
-            case 1: 
-            case 2: 
-            case 3: {
-                objectArray = objectArray2;
-                objectArray2[1] = "executeCommand";
-                break;
-            }
-        }
-        switch (n) {
-            default: {
-                objectArray = objectArray;
-                objectArray[2] = "executeCommand";
-                break;
-            }
-            case 1: 
-            case 2: 
-            case 3: {
-                break;
-            }
-            case 4: {
-                objectArray = objectArray;
-                objectArray[2] = "executeNotification";
-                break;
-            }
-            case 5: 
-            case 6: {
-                objectArray = objectArray;
-                objectArray[2] = "launchAgent";
-                break;
-            }
-        }
-        String string2 = String.format(string, objectArray);
-        switch (n) {
-            default: {
-                runtimeException = new IllegalArgumentException(string2);
-                break;
-            }
-            case 1: 
-            case 2: 
-            case 3: {
-                runtimeException = new IllegalStateException(string2);
-                break;
-            }
-        }
-        throw runtimeException;
-    }
+    
 }
 

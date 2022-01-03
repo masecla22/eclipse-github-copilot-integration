@@ -41,30 +41,7 @@ public final class CopilotNotifications {
         return notification;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[0] = "title";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[0] = "content";
-                break;
-            }
-            case 2: {
-                objectArray = objectArray2;
-                objectArray2[0] = "type";
-                break;
-            }
-        }
-        objectArray[1] = "com/github/copilot/CopilotNotifications";
-        objectArray[2] = "createFullContentNotification";
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 
     private static class FullContent
     extends Notification
@@ -85,35 +62,7 @@ public final class CopilotNotifications {
             super(groupId, title, content, type);
         }
 
-        private static /* synthetic */ void $$$reportNull$$$0(int n) {
-            Object[] objectArray;
-            Object[] objectArray2 = new Object[3];
-            switch (n) {
-                default: {
-                    objectArray = objectArray2;
-                    objectArray2[0] = "groupId";
-                    break;
-                }
-                case 1: {
-                    objectArray = objectArray2;
-                    objectArray2[0] = "title";
-                    break;
-                }
-                case 2: {
-                    objectArray = objectArray2;
-                    objectArray2[0] = "content";
-                    break;
-                }
-                case 3: {
-                    objectArray = objectArray2;
-                    objectArray2[0] = "type";
-                    break;
-                }
-            }
-            objectArray[1] = "com/github/copilot/CopilotNotifications$FullContent";
-            objectArray[2] = "<init>";
-            throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-        }
+        
     }
 }
 

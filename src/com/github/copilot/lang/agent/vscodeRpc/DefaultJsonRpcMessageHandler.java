@@ -97,37 +97,7 @@ implements JsonRpcMessageHandler {
         }
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2;
-        Object[] objectArray3 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "message";
-                break;
-            }
-            case 1: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "e";
-                break;
-            }
-        }
-        objectArray2[1] = "com/github/copilot/lang/agent/vscodeRpc/DefaultJsonRpcMessageHandler";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "handleJsonMessage";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[2] = "handleErrorResponse";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 
     private static final class PendingRequest<T> {
         private final AsyncPromise<T> promise;

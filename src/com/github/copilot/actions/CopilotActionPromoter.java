@@ -84,42 +84,5 @@ implements ActionPromoter {
         }
         return false;
     }
-
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2;
-        Object[] objectArray3 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "actions";
-                break;
-            }
-            case 1: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "context";
-                break;
-            }
-            case 2: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "action";
-                break;
-            }
-        }
-        objectArray2[1] = "com/github/copilot/actions/CopilotActionPromoter";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "promote";
-                break;
-            }
-            case 2: {
-                objectArray = objectArray2;
-                objectArray2[2] = "isIdeaVimAction";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
 }
 

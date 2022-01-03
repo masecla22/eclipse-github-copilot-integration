@@ -121,90 +121,7 @@ public class AuthStatusResult {
         this.user = user;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        RuntimeException runtimeException;
-        Object[] objectArray;
-        Object[] objectArray2;
-        int n2;
-        String string;
-        switch (n) {
-            default: {
-                string = "method %s.%s must not return null";
-                break;
-            }
-            case 1: 
-            case 2: {
-                string = "Argument for parameter '%s' of %s.%s must not be null";
-                break;
-            }
-        }
-        switch (n) {
-            default: {
-                n2 = 2;
-                break;
-            }
-            case 1: 
-            case 2: {
-                n2 = 3;
-                break;
-            }
-        }
-        Object[] objectArray3 = new Object[n2];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "com/github/copilot/lang/agent/commands/AuthStatusResult";
-                break;
-            }
-            case 1: 
-            case 2: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "status";
-                break;
-            }
-        }
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[1] = "getStatus";
-                break;
-            }
-            case 1: 
-            case 2: {
-                objectArray = objectArray2;
-                objectArray2[1] = "com/github/copilot/lang/agent/commands/AuthStatusResult";
-                break;
-            }
-        }
-        switch (n) {
-            default: {
-                break;
-            }
-            case 1: {
-                objectArray = objectArray;
-                objectArray[2] = "setStatus";
-                break;
-            }
-            case 2: {
-                objectArray = objectArray;
-                objectArray[2] = "<init>";
-                break;
-            }
-        }
-        String string2 = String.format(string, objectArray);
-        switch (n) {
-            default: {
-                runtimeException = new IllegalStateException(string2);
-                break;
-            }
-            case 1: 
-            case 2: {
-                runtimeException = new IllegalArgumentException(string2);
-                break;
-            }
-        }
-        throw runtimeException;
-    }
+    
 
     public static final class TypeAdapter
     implements JsonDeserializer<AuthStatusResult> {
@@ -244,10 +161,6 @@ public class AuthStatusResult {
                 return value;
             }
             return null;
-        }
-
-        private static /* synthetic */ void $$$reportNull$$$0(int n) {
-            throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "id", "com/github/copilot/lang/agent/commands/AuthStatusResult$Status", "findById"));
         }
     }
 }

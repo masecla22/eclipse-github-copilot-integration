@@ -60,41 +60,6 @@ extends EditorActionHandler {
         }
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2;
-        Object[] objectArray3 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "editor";
-                break;
-            }
-            case 1: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "caret";
-                break;
-            }
-        }
-        objectArray2[1] = "com/github/copilot/editor/CopilotDisposeInlaysEditorHandler";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "isEnabledForCaret";
-                break;
-            }
-            case 2: {
-                objectArray = objectArray2;
-                objectArray2[2] = "executeInCommand";
-                break;
-            }
-            case 3: {
-                objectArray = objectArray2;
-                objectArray2[2] = "doExecute";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 }
 

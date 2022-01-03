@@ -45,24 +45,6 @@ public final class GitHubAuthUtil {
         return Messages.showYesNoDialog((Project)project, (String)CopilotBundle.get("github.login.telemetryConsent.message"), (String)CopilotBundle.get("github.login.telemetryConsent.title"), (String)CopilotBundle.get("github.login.telemetryConsent.yes"), (String)CopilotBundle.get("github.login.telemetryConsent.no"), (Icon)Messages.getWarningIcon()) == 0;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2 = new Object[3];
-        objectArray2[0] = "project";
-        objectArray2[1] = "com/github/copilot/github/GitHubAuthUtil";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "showUnauthorizedMessage";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[2] = "showTelemetryTermsDialog";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 }
 

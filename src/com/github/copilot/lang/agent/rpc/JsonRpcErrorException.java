@@ -28,9 +28,5 @@ extends RuntimeException {
     public int getRequestId() {
         return this.requestId;
     }
-
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "message", "com/github/copilot/lang/agent/rpc/JsonRpcErrorException", "<init>"));
-    }
 }
 

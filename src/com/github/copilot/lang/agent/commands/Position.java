@@ -87,36 +87,6 @@ public class Position {
         this.character = character;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2;
-        Object[] objectArray3 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "lineInfo";
-                break;
-            }
-            case 1: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "text";
-                break;
-            }
-        }
-        objectArray2[1] = "com/github/copilot/lang/agent/commands/Position";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "<init>";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[2] = "toOffset";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 }
 

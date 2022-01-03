@@ -59,14 +59,10 @@ DumbAware {
 
                 public void contentRemoved(ContentManagerEvent event) {
                     if (event == null) {
-                        1.$$$reportNull$$$0(0);
+                    	throw new IllegalStateException("event cannot be null");
                     }
                     Editor editor = FileEditorManager.getInstance((Project)project).getSelectedTextEditor();
                     OpenCopilotToolWindowFactory.refreshEmptyText(project, editor);
-                }
-
-                private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                    throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "event", "com/github/copilot/toolWindow/OpenCopilotToolWindowFactory$1", "contentRemoved"));
                 }
             });
         }
@@ -132,65 +128,6 @@ DumbAware {
         emptyText.appendLine(CopilotBundle.get("openCopilot.refreshLabel"), SimpleTextAttributes.LINK_ATTRIBUTES, e -> CopilotSplitEditorManager.getInstance().openCopilot(editor, true));
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2;
-        Object[] objectArray3 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "toolWindow";
-                break;
-            }
-            case 1: 
-            case 3: 
-            case 4: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "project";
-                break;
-            }
-            case 5: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "emptyText";
-                break;
-            }
-            case 6: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "editor";
-                break;
-            }
-        }
-        objectArray2[1] = "com/github/copilot/toolWindow/OpenCopilotToolWindowFactory";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "init";
-                break;
-            }
-            case 1: 
-            case 2: {
-                objectArray = objectArray2;
-                objectArray2[2] = "createToolWindowContent";
-                break;
-            }
-            case 3: {
-                objectArray = objectArray2;
-                objectArray2[2] = "editorSelectionChanged";
-                break;
-            }
-            case 4: {
-                objectArray = objectArray2;
-                objectArray2[2] = "refreshEmptyText";
-                break;
-            }
-            case 5: 
-            case 6: {
-                objectArray = objectArray2;
-                objectArray2[2] = "appendRefreshLine";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 }
 

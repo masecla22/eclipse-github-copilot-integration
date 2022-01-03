@@ -33,9 +33,5 @@ extends JButton {
     public Insets getInsets() {
         return JBUI.emptyInsets();
     }
-
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "label", "com/github/copilot/toolWindow/SmallButton", "<init>"));
-    }
 }
 

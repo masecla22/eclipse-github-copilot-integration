@@ -99,37 +99,7 @@ extends ListTableWithButtons<LanguageChoice> {
         return false;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2;
-        Object[] objectArray3 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "disabledLanguageIds";
-                break;
-            }
-            case 1: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "ids";
-                break;
-            }
-        }
-        objectArray2[1] = "com/github/copilot/settings/LanguageTable";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "initItems";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[2] = "setDisabledLanguages";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 
     private static class LanguageNameColumn
     extends ColumnInfo<LanguageChoice, String> {
@@ -152,10 +122,6 @@ extends ListTableWithButtons<LanguageChoice> {
                 throw new IllegalStateException("string cannot be null!");
             }
             return string;
-        }
-
-        private static /* synthetic */ void $$$reportNull$$$0(int n) {
-            throw new IllegalStateException(String.format("method %s.%s must not return null", "com/github/copilot/settings/LanguageTable$LanguageNameColumn", "getLabel"));
         }
     }
 

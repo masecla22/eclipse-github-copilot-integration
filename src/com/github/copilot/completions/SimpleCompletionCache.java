@@ -203,73 +203,7 @@ implements CompletionCache {
         return DigestUtil.sha256Hex((byte[])prompt.getBytes(StandardCharsets.UTF_8));
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2;
-        Object[] objectArray3 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "prefix";
-                break;
-            }
-            case 1: 
-            case 4: 
-            case 7: 
-            case 9: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "prompt";
-                break;
-            }
-            case 5: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "item";
-                break;
-            }
-        }
-        objectArray2[1] = "com/github/copilot/completions/SimpleCompletionCache";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "isLatestPrefix";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[2] = "get";
-                break;
-            }
-            case 2: {
-                objectArray = objectArray2;
-                objectArray2[2] = "getLatest";
-                break;
-            }
-            case 3: 
-            case 4: 
-            case 5: {
-                objectArray = objectArray2;
-                objectArray2[2] = "add";
-                break;
-            }
-            case 6: 
-            case 7: {
-                objectArray = objectArray2;
-                objectArray2[2] = "updateLatest";
-                break;
-            }
-            case 8: {
-                objectArray = objectArray2;
-                objectArray2[2] = "getLatestLocked";
-                break;
-            }
-            case 9: {
-                objectArray = objectArray2;
-                objectArray2[2] = "promptHash";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 
     private static final class CacheKey {
         private final String promptHash;

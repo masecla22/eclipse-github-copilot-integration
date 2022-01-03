@@ -39,29 +39,6 @@ implements ReaderModeMatcher {
         return null;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[0] = "project";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[0] = "virtualFile";
-                break;
-            }
-            case 2: {
-                objectArray = objectArray2;
-                objectArray2[0] = "readerMode";
-                break;
-            }
-        }
-        objectArray[1] = "com/github/copilot/toolWindow/OpenCopilotDisableReaderModeMatcher";
-        objectArray[2] = "matches";
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 }
 

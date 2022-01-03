@@ -141,56 +141,6 @@ implements Flow.Subscriber<APIChoice> {
         TelemetryService.getInstance().track("ghostText.performance", TelemetryData.extend(baseData, props, (Object2DoubleMap<String>)metrics));
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2;
-        Object[] objectArray3 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "request";
-                break;
-            }
-            case 1: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "prompt";
-                break;
-            }
-            case 2: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "baseTelemetryData";
-                break;
-            }
-            case 3: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "subscriber";
-                break;
-            }
-            case 4: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "onNewItem";
-                break;
-            }
-            case 5: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "item";
-                break;
-            }
-        }
-        objectArray2[1] = "com/github/copilot/completions/ApiChoiceToInlaySetProcessor";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "<init>";
-                break;
-            }
-            case 5: {
-                objectArray = objectArray2;
-                objectArray2[2] = "trackCompletionPerformance";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 }
 

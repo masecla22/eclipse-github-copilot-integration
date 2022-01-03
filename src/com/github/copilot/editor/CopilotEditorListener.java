@@ -107,37 +107,7 @@ implements EditorFactoryListener {
             editorManager.editorModified(this.editor, changeOffset, force);
         }
 
-        private static /* synthetic */ void $$$reportNull$$$0(int n) {
-            Object[] objectArray;
-            Object[] objectArray2;
-            Object[] objectArray3 = new Object[3];
-            switch (n) {
-                default: {
-                    objectArray2 = objectArray3;
-                    objectArray3[0] = "editor";
-                    break;
-                }
-                case 1: {
-                    objectArray2 = objectArray3;
-                    objectArray3[0] = "event";
-                    break;
-                }
-            }
-            objectArray2[1] = "com/github/copilot/editor/CopilotEditorListener$CopilotDocumentListener";
-            switch (n) {
-                default: {
-                    objectArray = objectArray2;
-                    objectArray2[2] = "<init>";
-                    break;
-                }
-                case 1: {
-                    objectArray = objectArray2;
-                    objectArray2[2] = "documentChangedNonBulk";
-                    break;
-                }
-            }
-            throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-        }
+        
     }
 
     private static final class CopilotCaretListener
@@ -168,37 +138,7 @@ implements EditorFactoryListener {
             CopilotEditorManager.getInstance().disposeInlays(this.editor, InlayDisposeContext.CaretChange);
         }
 
-        private static /* synthetic */ void $$$reportNull$$$0(int n) {
-            Object[] objectArray;
-            Object[] objectArray2;
-            Object[] objectArray3 = new Object[3];
-            switch (n) {
-                default: {
-                    objectArray2 = objectArray3;
-                    objectArray3[0] = "editor";
-                    break;
-                }
-                case 1: {
-                    objectArray2 = objectArray3;
-                    objectArray3[0] = "event";
-                    break;
-                }
-            }
-            objectArray2[1] = "com/github/copilot/editor/CopilotEditorListener$CopilotCaretListener";
-            switch (n) {
-                default: {
-                    objectArray = objectArray2;
-                    objectArray2[2] = "<init>";
-                    break;
-                }
-                case 1: {
-                    objectArray = objectArray2;
-                    objectArray2[2] = "caretPositionChanged";
-                    break;
-                }
-            }
-            throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-        }
+        
     }
 }
 

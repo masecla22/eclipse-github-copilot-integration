@@ -119,46 +119,6 @@ Cancellable {
         this.choiceTransformer.close();
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2;
-        Object[] objectArray3 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "request";
-                break;
-            }
-            case 1: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "telemetryBaseData";
-                break;
-            }
-            case 2: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "subscriber";
-                break;
-            }
-            case 3: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "responseInfo";
-                break;
-            }
-        }
-        objectArray2[1] = "com/github/copilot/openai/JsonToApiChoiceProcessor";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "<init>";
-                break;
-            }
-            case 3: {
-                objectArray = objectArray2;
-                objectArray2[2] = "updateWithResponse";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 }
 

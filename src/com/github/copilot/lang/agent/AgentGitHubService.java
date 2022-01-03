@@ -196,14 +196,10 @@ implements GitHubService {
 
                 protected SignInInitiateResult compute(ProgressIndicator indicator) throws Exception {
                     if (indicator == null) {
-                        1.$$$reportNull$$$0(0);
+                    	throw new IllegalStateException("indicator cannot be null");
                     }
                     Promise<SignInInitiateResult> promise = CopilotAgentProcessService.getInstance().executeCommand(new SignInInitiateCommand());
                     return (SignInInitiateResult)promise.blockingGet(SIGN_IN_TIMEOUT_MILLIS);
-                }
-
-                private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                    throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/lang/agent/AgentGitHubService$1", "compute"));
                 }
             });
         }
@@ -230,15 +226,11 @@ implements GitHubService {
 
                 protected AuthStatusResult compute(ProgressIndicator indicator) {
                     if (indicator == null) {
-                        2.$$$reportNull$$$0(0);
+                    	throw new IllegalStateException("indicator cannot be null");
                     }
                     indicator.setText2(CopilotBundle.get("deviceAuth.progressTitle2"));
                     Promise<AuthStatusResult> responsePromise = CopilotAgentProcessService.getInstance().executeCommand(new SignInConfirmCommand());
                     return AgentGitHubService.awaitWithCheckCanceled(responsePromise, indicator);
-                }
-
-                private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                    throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/lang/agent/AgentGitHubService$2", "compute"));
                 }
             });
         }
@@ -260,7 +252,7 @@ implements GitHubService {
 
                 protected AuthStatusResult compute(ProgressIndicator indicator) {
                     if (indicator == null) {
-                        3.$$$reportNull$$$0(0);
+                    	throw new IllegalStateException("indicator cannot be null");
                     }
                     indicator.setText2(CopilotBundle.get("deviceAuth.progressTitle2"));
                     Promise<AuthStatusResult> response = CopilotAgentProcessService.getInstance().executeCommand(new RecordTelemetryConsentCommand());
@@ -271,10 +263,6 @@ implements GitHubService {
                         LOG.warn((Throwable)e);
                         return null;
                     }
-                }
-
-                private static /* synthetic */ void $$$reportNull$$$0(int n) {
-                    throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "indicator", "com/github/copilot/lang/agent/AgentGitHubService$3", "compute"));
                 }
             });
         }
@@ -313,93 +301,6 @@ implements GitHubService {
         }
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2;
-        Object[] objectArray3 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "project";
-                break;
-            }
-            case 2: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "onUnauthorized";
-                break;
-            }
-            case 3: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "onNewTokenExpired";
-                break;
-            }
-            case 4: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "timeUnit";
-                break;
-            }
-            case 6: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "r";
-                break;
-            }
-            case 7: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "code";
-                break;
-            }
-            case 9: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "promise";
-                break;
-            }
-        }
-        objectArray2[1] = "com/github/copilot/lang/agent/AgentGitHubService";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "loginInteractive";
-                break;
-            }
-            case 1: 
-            case 2: 
-            case 3: {
-                objectArray = objectArray2;
-                objectArray2[2] = "fetchCopilotTokenInteractive";
-                break;
-            }
-            case 4: {
-                objectArray = objectArray2;
-                objectArray2[2] = "getCopilotToken";
-                break;
-            }
-            case 5: {
-                objectArray = objectArray2;
-                objectArray2[2] = "initiateSignIn";
-                break;
-            }
-            case 6: {
-                objectArray = objectArray2;
-                objectArray2[2] = "asCodeResponse";
-                break;
-            }
-            case 7: {
-                objectArray = objectArray2;
-                objectArray2[2] = "confirmSignIn";
-                break;
-            }
-            case 8: {
-                objectArray = objectArray2;
-                objectArray2[2] = "recordTelemetryConsent";
-                break;
-            }
-            case 9: {
-                objectArray = objectArray2;
-                objectArray2[2] = "awaitWithCheckCanceled";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 }
 

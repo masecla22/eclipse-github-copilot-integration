@@ -114,9 +114,6 @@ public class TelemetryData {
 
         public Object2DoubleMap<String> getMetrics() {
         Object2DoubleMap<String> object2DoubleMap = this.metrics;
-        if (object2DoubleMap == null) {
-            TelemetryData.$$$reportNull$$$0(8);
-        }
         return object2DoubleMap;
     }
 
@@ -226,127 +223,6 @@ public class TelemetryData {
         this.displayedTimestamp = displayedTimestamp;
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        RuntimeException runtimeException;
-        Object[] objectArray;
-        Object[] objectArray2;
-        int n2;
-        String string;
-        switch (n) {
-            default: {
-                string = "Argument for parameter '%s' of %s.%s must not be null";
-                break;
-            }
-            case 7: 
-            case 8: {
-                string = "method %s.%s must not return null";
-                break;
-            }
-        }
-        switch (n) {
-            default: {
-                n2 = 3;
-                break;
-            }
-            case 7: 
-            case 8: {
-                n2 = 2;
-                break;
-            }
-        }
-        Object[] objectArray3 = new Object[n2];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "properties";
-                break;
-            }
-            case 2: 
-            case 4: 
-            case 10: 
-            case 12: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "metrics";
-                break;
-            }
-            case 5: 
-            case 6: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "target";
-                break;
-            }
-            case 7: 
-            case 8: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "com/github/copilot/telemetry/TelemetryData";
-                break;
-            }
-        }
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[1] = "com/github/copilot/telemetry/TelemetryData";
-                break;
-            }
-            case 7: {
-                objectArray = objectArray2;
-                objectArray2[1] = "getProperties";
-                break;
-            }
-            case 8: {
-                objectArray = objectArray2;
-                objectArray2[1] = "getMetrics";
-                break;
-            }
-        }
-        switch (n) {
-            default: {
-                objectArray = objectArray;
-                objectArray[2] = "createIssued";
-                break;
-            }
-            case 3: 
-            case 4: {
-                objectArray = objectArray;
-                objectArray[2] = "create";
-                break;
-            }
-            case 5: {
-                objectArray = objectArray;
-                objectArray[2] = "addProperties";
-                break;
-            }
-            case 6: {
-                objectArray = objectArray;
-                objectArray[2] = "addMetrics";
-                break;
-            }
-            case 7: 
-            case 8: {
-                break;
-            }
-            case 9: 
-            case 10: 
-            case 11: 
-            case 12: {
-                objectArray = objectArray;
-                objectArray[2] = "<init>";
-                break;
-            }
-        }
-        String string2 = String.format(string, objectArray);
-        switch (n) {
-            default: {
-                runtimeException = new IllegalArgumentException(string2);
-                break;
-            }
-            case 7: 
-            case 8: {
-                runtimeException = new IllegalStateException(string2);
-                break;
-            }
-        }
-        throw runtimeException;
-    }
+    
 }
 

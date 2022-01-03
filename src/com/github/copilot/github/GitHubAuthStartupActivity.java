@@ -109,58 +109,6 @@ implements StartupActivity.Background {
         StartupManager.getInstance((Project)project).runWhenProjectIsInitialized(action);
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2;
-        Object[] objectArray3 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "project";
-                break;
-            }
-            case 2: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "url";
-                break;
-            }
-            case 6: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "action";
-                break;
-            }
-        }
-        objectArray2[1] = "com/github/copilot/github/GitHubAuthStartupActivity";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "runActivity";
-                break;
-            }
-            case 1: 
-            case 2: {
-                objectArray = objectArray2;
-                objectArray2[2] = "notifyUnauthorized";
-                break;
-            }
-            case 3: {
-                objectArray = objectArray2;
-                objectArray2[2] = "notifyTokenExpired";
-                break;
-            }
-            case 4: {
-                objectArray = objectArray2;
-                objectArray2[2] = "promptTelemetryTerms";
-                break;
-            }
-            case 5: 
-            case 6: {
-                objectArray = objectArray2;
-                objectArray2[2] = "afterInit";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 }
 

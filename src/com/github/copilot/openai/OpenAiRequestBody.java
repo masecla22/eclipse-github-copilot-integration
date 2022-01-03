@@ -202,10 +202,6 @@ public final class OpenAiRequestBody {
         return "OpenAiRequestBody(prompt=" + this.getPrompt() + ", maxTokens=" + this.getMaxTokens() + ", temperature=" + this.getTemperature() + ", topP=" + this.getTopP() + ", completionCount=" + this.getCompletionCount() + ", logprobs=" + this.getLogprobs() + ", stream=" + this.isStream() + ", stops=" + Arrays.deepToString(this.getStops()) + ", experimentalFeatures=" + Arrays.deepToString(this.getExperimentalFeatures()) + ", extra=" + this.getExtra() + ")";
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", "prompt", "com/github/copilot/openai/OpenAiRequestBody", "<init>"));
-    }
-
     public static final class Extra {
         @SerializedName(value="next_indent")
         public int nextLineIndent;

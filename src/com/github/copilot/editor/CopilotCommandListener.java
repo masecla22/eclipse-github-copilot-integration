@@ -96,52 +96,6 @@ implements CommandListener {
         return (name = command.getCommandName()).equals("Undo") || name.startsWith("Undo ");
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2;
-        Object[] objectArray3 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "project";
-                break;
-            }
-            case 1: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "event";
-                break;
-            }
-            case 2: 
-            case 3: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "command";
-                break;
-            }
-        }
-        objectArray2[1] = "com/github/copilot/editor/CopilotCommandListener";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "<init>";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[2] = "commandFinished";
-                break;
-            }
-            case 2: {
-                objectArray = objectArray2;
-                objectArray2[2] = "isModificationCommand";
-                break;
-            }
-            case 3: {
-                objectArray = objectArray2;
-                objectArray2[2] = "isForcedCompletionCommand";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 }
 

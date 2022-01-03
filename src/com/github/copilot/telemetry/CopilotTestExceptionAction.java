@@ -35,24 +35,6 @@ extends AnAction {
         throw new RuntimeException("Test exception by GitHub Copilot plugin, " + UUID.randomUUID());
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2 = new Object[3];
-        objectArray2[0] = "e";
-        objectArray2[1] = "com/github/copilot/telemetry/CopilotTestExceptionAction";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "update";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[2] = "actionPerformed";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 }
 

@@ -37,25 +37,5 @@ implements CopilotAction {
             e.getPresentation().setText("Copilot: Disable OpenAI caching");
         }
     }
-
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2 = new Object[3];
-        objectArray2[0] = "e";
-        objectArray2[1] = "com/github/copilot/actions/CopilotToggleCacheAction";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "actionPerformed";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[2] = "update";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
 }
 

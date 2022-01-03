@@ -50,29 +50,6 @@ implements AnActionListener {
         TelemetryService.getInstance().track("command.executed", Map.of("command", id, "isError", String.valueOf(isError)), metrics);
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[0] = "action";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[0] = "event";
-                break;
-            }
-            case 2: {
-                objectArray = objectArray2;
-                objectArray2[0] = "result";
-                break;
-            }
-        }
-        objectArray[1] = "com/github/copilot/telemetry/CopilotActionListener";
-        objectArray[2] = "afterActionPerformed";
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 }
 

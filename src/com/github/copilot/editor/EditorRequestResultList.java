@@ -259,42 +259,6 @@ class EditorRequestResultList {
         return "EditorRequestResultList(request=" + this.getRequest() + ", inlayLists=" + this.getInlayLists() + ", index=" + this.getIndex() + ", maxShownIndex=" + this.getMaxShownIndex() + ", hasOnDemandCompletions=" + this.isHasOnDemandCompletions() + ")";
     }
 
-    private static /* synthetic */ void $$$reportNull$$$0(int n) {
-        Object[] objectArray;
-        Object[] objectArray2;
-        Object[] objectArray3 = new Object[3];
-        switch (n) {
-            default: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "request";
-                break;
-            }
-            case 1: 
-            case 2: {
-                objectArray2 = objectArray3;
-                objectArray3[0] = "inlays";
-                break;
-            }
-        }
-        objectArray2[1] = "com/github/copilot/editor/EditorRequestResultList";
-        switch (n) {
-            default: {
-                objectArray = objectArray2;
-                objectArray2[2] = "<init>";
-                break;
-            }
-            case 1: {
-                objectArray = objectArray2;
-                objectArray2[2] = "addInlays";
-                break;
-            }
-            case 2: {
-                objectArray = objectArray2;
-                objectArray2[2] = "getAtIndexLocked";
-                break;
-            }
-        }
-        throw new IllegalArgumentException(String.format("Argument for parameter '%s' of %s.%s must not be null", objectArray));
-    }
+    
 }
 
