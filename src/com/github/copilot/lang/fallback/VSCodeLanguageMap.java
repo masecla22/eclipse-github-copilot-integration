@@ -6,7 +6,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public final class VSCodeLanguageMap {
     public static final Map<String, String> INTELLIJ_VSCODE_MAP = Collections.unmodifiableMap(new ConcurrentHashMap<String, String>(){
-        {
+		private static final long serialVersionUID = -6245267354191843399L;
+
+		{
             this.put("CoffeeScript", "coffeescript");
             this.put("ObjectiveC", "c");
             this.put("CSS", "css");
@@ -39,7 +41,9 @@ public final class VSCodeLanguageMap {
         }
     });
     public static final Map<String, String> SHEBANG_MAP = Collections.unmodifiableMap(new ConcurrentHashMap<String, String>(){
-        {
+		private static final long serialVersionUID = -4376366775698776171L;
+
+		{
             this.put("shellscript", "#!/bin/sh");
             this.put("python", "#!/usr/bin/env python3");
             this.put("ruby", "#!/usr/bin/env ruby");

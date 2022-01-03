@@ -15,7 +15,12 @@ import javax.swing.JButton;
 
 class SmallButton
 extends JButton {
-    public SmallButton(String label) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7243341939381218642L;
+
+	public SmallButton(String label) {
         if (label == null) {
             throw new IllegalStateException("label cannot be null!");
         }

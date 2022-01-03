@@ -9,7 +9,8 @@ package com.github.copilot.lang.agent.rpc;
 
 public class JsonRpcErrorException
 extends RuntimeException {
-    private final int requestId;
+	private static final long serialVersionUID = 2251191382389572540L;
+	private final int requestId;
 
     public JsonRpcErrorException(int requestId, String message) {
         if (message == null) {
