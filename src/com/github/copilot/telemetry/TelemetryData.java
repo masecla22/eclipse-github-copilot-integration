@@ -171,22 +171,14 @@ public class TelemetryData {
         return "TelemetryData(wrapped=" + this.getWrapped() + ", properties=" + this.getProperties() + ", metrics=" + this.getMetrics() + ", issuedTimestamp=" + this.getIssuedTimestamp() + ", displayedTimestamp=" + this.getDisplayedTimestamp() + ")";
     }
 
-    /*
-     * WARNING - void declaration
-     */
+
     private TelemetryData(TelemetryData wrapped, Map<String, String> properties, Object2DoubleMap<String> metrics, long issuedTimestamp, long l) {
-        void displayedTimestamp;
+        long displayedTimestamp;
         if (properties == null) {
             throw new IllegalStateException("properties cannot be null!");
         }
         if (metrics == null) {
             throw new IllegalStateException("metrics cannot be null!");
-        }
-        if (properties == null) {
-            throw new NullPointerException("properties is marked non-null but is null");
-        }
-        if (metrics == null) {
-            throw new NullPointerException("metrics is marked non-null but is null");
         }
         this.wrapped = wrapped;
         this.properties = properties;
@@ -201,12 +193,6 @@ public class TelemetryData {
         }
         if (metrics == null) {
             throw new IllegalStateException("metrics cannot be null!");
-        }
-        if (properties == null) {
-            throw new NullPointerException("properties is marked non-null but is null");
-        }
-        if (metrics == null) {
-            throw new NullPointerException("metrics is marked non-null but is null");
         }
         this.wrapped = wrapped;
         this.properties = properties;
