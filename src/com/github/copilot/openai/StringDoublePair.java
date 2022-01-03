@@ -46,7 +46,6 @@ final class StringDoublePair {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         long $value = Double.doubleToLongBits(this.getValue());
         result = result * 59 + (int)($value >>> 32 ^ $value);

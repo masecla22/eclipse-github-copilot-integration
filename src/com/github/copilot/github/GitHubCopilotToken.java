@@ -89,7 +89,6 @@ public class GitHubCopilotToken {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         long $expiresAtSeconds = this.getExpiresAtSeconds();
         result = result * 59 + (int)($expiresAtSeconds >>> 32 ^ $expiresAtSeconds);

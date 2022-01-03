@@ -83,7 +83,6 @@ public class Range {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         Position $start = this.getStart();
         result = result * 59 + ($start == null ? 43 : ((Object)$start).hashCode());

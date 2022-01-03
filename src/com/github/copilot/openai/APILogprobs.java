@@ -98,7 +98,6 @@ final class APILogprobs {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         List<Integer> $textOffset = this.getTextOffset();
         result = result * 59 + ($textOffset == null ? 43 : ((Object)$textOffset).hashCode());

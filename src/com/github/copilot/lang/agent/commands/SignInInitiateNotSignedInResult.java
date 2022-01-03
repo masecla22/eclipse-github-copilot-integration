@@ -92,7 +92,6 @@ implements SignInInitiateResult {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         long $expiresInSeconds = this.getExpiresInSeconds();
         result = result * 59 + (int)($expiresInSeconds >>> 32 ^ $expiresInSeconds);

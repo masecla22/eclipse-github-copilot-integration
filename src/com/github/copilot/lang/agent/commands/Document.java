@@ -150,7 +150,6 @@ public class Document {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         result = result * 59 + (this.isUseSpaces() ? 79 : 97);
         result = result * 59 + this.getTabSize();

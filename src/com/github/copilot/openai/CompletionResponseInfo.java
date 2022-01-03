@@ -82,7 +82,6 @@ public final class CompletionResponseInfo {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         long $requestStartTimestamp = this.getRequestStartTimestamp();
         result = result * 59 + (int)($requestStartTimestamp >>> 32 ^ $requestStartTimestamp);

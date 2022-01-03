@@ -47,7 +47,6 @@ implements JsonRpcCommand<String> {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         String $uuid = this.getUuid();
         result = result * 59 + ($uuid == null ? 43 : $uuid.hashCode());

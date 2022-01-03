@@ -70,7 +70,6 @@ public class Position {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         result = result * 59 + this.getLine();
         result = result * 59 + this.getCharacter();

@@ -42,7 +42,6 @@ public final class JsonRpcResponse {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         result = result * 59 + this.getRequestId();
         JsonElement $response = this.getResponse();

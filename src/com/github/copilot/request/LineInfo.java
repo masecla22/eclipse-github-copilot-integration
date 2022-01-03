@@ -146,7 +146,6 @@ public final class LineInfo {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         result = result * 59 + this.getLineCount();
         result = result * 59 + this.getLineNumber();

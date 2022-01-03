@@ -79,7 +79,6 @@ public final class OpenAICompletionResponse {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         result = result * 59 + this.getCreatedTimestamp();
         String $id = this.getId();
@@ -159,7 +158,6 @@ public final class OpenAICompletionResponse {
         }
 
         public int hashCode() {
-            int PRIME = 59;
             int result = 1;
             result = result * 59 + Arrays.deepHashCode(this.getTokens());
             result = result * 59 + Arrays.hashCode(this.getTextOffset());
@@ -247,7 +245,6 @@ public final class OpenAICompletionResponse {
         }
 
         public int hashCode() {
-            int PRIME = 59;
             int result = 1;
             result = result * 59 + this.getIndex();
             String $text = this.getText();

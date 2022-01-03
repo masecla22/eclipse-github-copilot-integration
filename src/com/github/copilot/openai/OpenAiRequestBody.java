@@ -178,7 +178,6 @@ public final class OpenAiRequestBody {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         result = result * 59 + this.getMaxTokens();
         long $temperature = Double.doubleToLongBits(this.getTemperature());

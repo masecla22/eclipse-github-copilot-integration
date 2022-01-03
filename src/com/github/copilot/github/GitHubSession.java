@@ -25,7 +25,6 @@ public final class GitHubSession {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         String $token = this.getToken();
         result = result * 59 + ($token == null ? 43 : $token.hashCode());

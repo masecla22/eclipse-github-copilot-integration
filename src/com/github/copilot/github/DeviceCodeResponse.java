@@ -102,7 +102,6 @@ public class DeviceCodeResponse {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         long $expiresIn = this.getExpiresIn();
         result = result * 59 + (int)($expiresIn >>> 32 ^ $expiresIn);

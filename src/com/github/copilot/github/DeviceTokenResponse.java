@@ -164,7 +164,6 @@ class DeviceTokenResponse {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         long $slowDownIntervalSeconds = this.getSlowDownIntervalSeconds();
         result = result * 59 + (int)($slowDownIntervalSeconds >>> 32 ^ $slowDownIntervalSeconds);

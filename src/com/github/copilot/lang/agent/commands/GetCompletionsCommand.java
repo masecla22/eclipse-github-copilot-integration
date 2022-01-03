@@ -77,7 +77,6 @@ implements JsonRpcCommand<GetCompletionsResult> {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         Document $doc = this.getDoc();
         result = result * 59 + ($doc == null ? 43 : ((Object)$doc).hashCode());

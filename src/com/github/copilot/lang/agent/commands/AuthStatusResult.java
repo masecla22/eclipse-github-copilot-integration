@@ -92,7 +92,6 @@ public class AuthStatusResult {
     }
 
     public int hashCode() {
-        int PRIME = 59;
         int result = 1;
         Status $status = this.getStatus();
         result = result * 59 + ($status == null ? 43 : ((Object)((Object)$status)).hashCode());
