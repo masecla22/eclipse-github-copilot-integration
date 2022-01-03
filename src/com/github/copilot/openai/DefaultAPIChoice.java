@@ -8,9 +8,6 @@
 package com.github.copilot.openai;
 
 import com.github.copilot.completions.CompletionUtil;
-import com.github.copilot.openai.APIChoice;
-import com.github.copilot.openai.CompletionResponseInfo;
-import com.github.copilot.openai.TelemetryUtil;
 import com.github.copilot.telemetry.TelemetryData;
 import java.util.List;
 

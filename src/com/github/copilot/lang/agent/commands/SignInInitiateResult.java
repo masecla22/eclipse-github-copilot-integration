@@ -11,8 +11,6 @@
  */
 package com.github.copilot.lang.agent.commands;
 
-import com.github.copilot.lang.agent.commands.SignInInitiateNotSignedInResult;
-import com.github.copilot.lang.agent.commands.SignInInitiateSignedInResult;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;

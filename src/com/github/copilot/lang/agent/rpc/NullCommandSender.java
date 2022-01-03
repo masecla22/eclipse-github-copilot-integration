@@ -6,9 +6,6 @@
  */
 package com.github.copilot.lang.agent.rpc;
 
-import com.github.copilot.lang.agent.rpc.JsonRpcCommand;
-import com.github.copilot.lang.agent.rpc.JsonRpcCommandSender;
-import com.github.copilot.lang.agent.rpc.JsonRpcNotification;
 import java.io.IOException;
 
 public class NullCommandSender

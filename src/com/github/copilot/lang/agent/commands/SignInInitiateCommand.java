@@ -6,7 +6,6 @@
  */
 package com.github.copilot.lang.agent.commands;
 
-import com.github.copilot.lang.agent.commands.SignInInitiateResult;
 import com.github.copilot.lang.agent.rpc.JsonRpcCommand;
 
 public class SignInInitiateCommand

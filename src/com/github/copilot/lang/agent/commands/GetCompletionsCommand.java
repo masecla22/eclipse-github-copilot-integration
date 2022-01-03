@@ -8,8 +8,6 @@
  */
 package com.github.copilot.lang.agent.commands;
 
-import com.github.copilot.lang.agent.commands.Document;
-import com.github.copilot.lang.agent.commands.GetCompletionsResult;
 import com.github.copilot.lang.agent.rpc.JsonRpcCommand;
 import com.google.gson.annotations.SerializedName;
 import java.util.Map;

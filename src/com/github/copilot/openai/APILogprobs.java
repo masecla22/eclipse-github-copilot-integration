@@ -8,8 +8,6 @@
  */
 package com.github.copilot.openai;
 
-import com.github.copilot.openai.OpenAIServiceImpl;
-import com.github.copilot.openai.StringDoublePair;
 import com.google.gson.Gson;
 import java.util.List;
 import java.util.Map;

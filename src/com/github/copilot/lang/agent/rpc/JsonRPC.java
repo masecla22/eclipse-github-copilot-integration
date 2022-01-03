@@ -14,8 +14,6 @@ package com.github.copilot.lang.agent.rpc;
 
 import com.github.copilot.lang.agent.commands.AuthStatusResult;
 import com.github.copilot.lang.agent.commands.SignInInitiateResult;
-import com.github.copilot.lang.agent.rpc.JsonRpcErrorException;
-import com.github.copilot.lang.agent.rpc.JsonRpcResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;

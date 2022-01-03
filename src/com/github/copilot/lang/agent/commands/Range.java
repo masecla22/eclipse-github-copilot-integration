@@ -7,7 +7,6 @@
  */
 package com.github.copilot.lang.agent.commands;
 
-import com.github.copilot.lang.agent.commands.Position;
 import com.google.gson.annotations.SerializedName;
 
 public class Range {

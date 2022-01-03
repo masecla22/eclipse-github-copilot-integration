@@ -6,7 +6,6 @@
  */
 package com.github.copilot.completions;
 
-import com.github.copilot.completions.CopilotCompletionType;
 import java.util.List;
 
 public interface CopilotEditorInlay {
