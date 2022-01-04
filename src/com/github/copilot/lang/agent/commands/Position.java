@@ -10,7 +10,6 @@ package com.github.copilot.lang.agent.commands;
 
 import com.github.copilot.request.LineInfo;
 import com.google.gson.annotations.SerializedName;
-import com.intellij.openapi.util.text.StringUtil;
 
 public class Position {
 	@SerializedName(value = "line")
@@ -19,9 +18,6 @@ public class Position {
 	int character;
 
 	public Position(LineInfo lineInfo) {
-		if (lineInfo == null) {
-			throw new IllegalStateException("lineInfo cannot be null!");
-		}
 		this(lineInfo.getLineNumber(), lineInfo.getColumnOffset());
 	}
 
@@ -29,7 +25,7 @@ public class Position {
 		if (text == null) {
 			throw new IllegalStateException("text cannot be null!");
 		}
-		return StringUtil.lineColToOffset((CharSequence) text, (int) this.line, (int) this.character);
+		return lineColToOffset(text, this.line, this.character);
 	}
 
 	public int getLine() {
@@ -67,6 +63,26 @@ public class Position {
 
 	protected boolean canEqual(Object other) {
 		return other instanceof Position;
+	}
+
+	private int lineColToOffset(CharSequence text, int line, int col) {
+		int curLine = 0;
+		int offset = 0;
+		while (line != curLine) {
+			if (offset == text.length())
+				return -1;
+			char c = text.charAt(offset);
+			if (c == '\n') {
+				curLine++;
+			} else if (c == '\r') {
+				curLine++;
+				if (offset < text.length() - 1 && text.charAt(offset + 1) == '\n') {
+					offset++;
+				}
+			}
+			offset++;
+		}
+		return offset + col;
 	}
 
 	public int hashCode() {

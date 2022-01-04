@@ -4,7 +4,7 @@
  * Could not load the following classes:
  *  com.intellij.openapi.application.ApplicationManager
  *  com.intellij.openapi.application.ReadAction
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.fileTypes.FileType
  *  com.intellij.openapi.progress.ProgressManager
  *  com.intellij.openapi.project.Project
@@ -33,7 +33,7 @@ import com.github.copilot.util.CopilotStringUtil;
 import com.github.copilot.util.ObjectToIntFunction;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.application.ReadAction;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.progress.ProgressManager;
 import com.intellij.openapi.project.Project;

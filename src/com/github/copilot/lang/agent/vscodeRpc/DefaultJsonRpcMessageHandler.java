@@ -1,14 +1,8 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.google.gson.JsonParseException
- *  com.intellij.openapi.application.ApplicationManager
- *  com.intellij.openapi.diagnostic.Logger
- *  org.jetbrains.annotations.NotNull
- *  org.jetbrains.concurrency.AsyncPromise
- */
 package com.github.copilot.lang.agent.vscodeRpc;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import com.github.copilot.lang.agent.NotAuthenticatedException;
 import com.github.copilot.lang.agent.rpc.JsonRPC;
@@ -16,18 +10,19 @@ import com.github.copilot.lang.agent.rpc.JsonRpcErrorException;
 import com.github.copilot.lang.agent.rpc.JsonRpcMessageHandler;
 import com.github.copilot.lang.agent.rpc.JsonRpcResponse;
 import com.google.gson.JsonParseException;
-import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.diagnostic.Logger;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import org.jetbrains.concurrency.AsyncPromise;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import me.masecla.copilot.extra.Logger;
 
 public class DefaultJsonRpcMessageHandler implements JsonRpcMessageHandler {
 	private static final Logger LOG = Logger.getInstance(DefaultJsonRpcMessageHandler.class);
-	private final ConcurrentMap<Integer, PendingRequest<?>> pendingRequests = new ConcurrentHashMap();
+	@SuppressWarnings("rawtypes")
+	private final ConcurrentMap<Integer, PendingRequest> pendingRequests = new ConcurrentHashMap<>();
 
-	public <T> AsyncPromise<T> addPendingRequest(int requestId, String commandName, Class<T> responseType) {
-		AsyncPromise promise = new AsyncPromise();
+	public <T> CompletableFuture<Object> addPendingRequest(int requestId, String commandName, Class<T> responseType) {
+		CompletableFuture<Object> promise = new CompletableFuture<>();
+		@SuppressWarnings("unchecked")
 		PendingRequest<T> presentValue = this.pendingRequests.put(requestId,
 				new PendingRequest<T>(promise, responseType, commandName, System.currentTimeMillis()));
 		if (presentValue != null) {
@@ -53,11 +48,11 @@ public class DefaultJsonRpcMessageHandler implements JsonRpcMessageHandler {
 			this.handleErrorResponse(e);
 			return;
 		} catch (JsonParseException e) {
-			LOG.warn("JSON parsing error of agent response: " + message, (Throwable) e);
+			LOG.warn("JSON parsing error of agent response: " + message, e);
 			return;
 		}
 		int id = jsonResponse.getRequestId();
-		PendingRequest pending = this.pendingRequests.remove(id);
+		PendingRequest<?> pending = this.pendingRequests.remove(id);
 		if (pending == null) {
 			LOG.error("received unexpected response data for id: " + id);
 			return;
@@ -66,13 +61,10 @@ public class DefaultJsonRpcMessageHandler implements JsonRpcMessageHandler {
 			LOG.debug(String.format("[%d] Response received. Command: %s, duration: %d ms", id, pending.commandName,
 					timestamp - pending.startTimestamp));
 			Object parsedResponse = JsonRPC.parseResponse(jsonResponse.getResponse(), pending.resultType);
-			ApplicationManager.getApplication().executeOnPooledThread(() -> {
-				AsyncPromise promise = pending.promise;
-				promise.setResult(parsedResponse);
-			});
+			pending.getPromise().complete(parsedResponse);
 		} catch (Exception e) {
-			LOG.error("Error processing response of the agent", (Throwable) e);
-			ApplicationManager.getApplication().executeOnPooledThread(() -> pending.promise.setError((Throwable) e));
+			LOG.error("Error processing response of the agent", e);
+			pending.promise.completeExceptionally(e);
 		}
 	}
 
@@ -88,80 +80,26 @@ public class DefaultJsonRpcMessageHandler implements JsonRpcMessageHandler {
 			return;
 		}
 		if (message.contains("NotSignedIn")) {
-			pending.promise.setError((Throwable) new NotAuthenticatedException(id));
+			pending.promise.completeExceptionally(new NotAuthenticatedException(id));
 		} else {
-			pending.promise.setError((Throwable) e);
+			pending.promise.completeExceptionally(e);
 		}
 	}
 
+	@Getter
+	@EqualsAndHashCode
 	private static final class PendingRequest<T> {
-		private final AsyncPromise<T> promise;
+		private final CompletableFuture<Object> promise;
 		private final Class<T> resultType;
 		private final String commandName;
 		private final long startTimestamp;
 
-		public PendingRequest(AsyncPromise<T> promise, Class<T> resultType, String commandName, long startTimestamp) {
+		public PendingRequest(CompletableFuture<Object> promise, Class<T> resultType, String commandName,
+				long startTimestamp) {
 			this.promise = promise;
 			this.resultType = resultType;
 			this.commandName = commandName;
 			this.startTimestamp = startTimestamp;
-		}
-
-		public AsyncPromise<T> getPromise() {
-			return this.promise;
-		}
-
-		public Class<T> getResultType() {
-			return this.resultType;
-		}
-
-		public String getCommandName() {
-			return this.commandName;
-		}
-
-		public long getStartTimestamp() {
-			return this.startTimestamp;
-		}
-
-		public boolean equals(Object o) {
-			if (o == this) {
-				return true;
-			}
-			if (!(o instanceof PendingRequest)) {
-				return false;
-			}
-			PendingRequest other = (PendingRequest) o;
-			if (this.getStartTimestamp() != other.getStartTimestamp()) {
-				return false;
-			}
-			AsyncPromise<T> this$promise = this.getPromise();
-			AsyncPromise<T> other$promise = other.getPromise();
-			if (this$promise == null ? other$promise != null : !this$promise.equals(other$promise)) {
-				return false;
-			}
-			Class<T> this$resultType = this.getResultType();
-			Class<T> other$resultType = other.getResultType();
-			if (this$resultType == null ? other$resultType != null : !this$resultType.equals(other$resultType)) {
-				return false;
-			}
-			String this$commandName = this.getCommandName();
-			String other$commandName = other.getCommandName();
-			return !(this$commandName == null ? other$commandName != null
-					: !this$commandName.equals(other$commandName));
-		}
-
-		public int hashCode() {
-			int PRIME = 59;
-			int result = 1;
-			long $startTimestamp = this.getStartTimestamp();
-			result = result * 59 + (int) ($startTimestamp >>> 32 ^ $startTimestamp);
-			AsyncPromise<T> $promise = this.getPromise();
-			result = result * 59 + ($promise == null ? 43 : $promise.hashCode());
-			Class<T> $resultType = this.getResultType();
-			result = result * 59 + ($resultType == null ? 43 : $resultType.hashCode());
-			String $commandName = this.getCommandName();
-			result = result * 59 + ($commandName == null ? 43 : $commandName.hashCode());
-			return result;
 		}
 
 		public String toString() {

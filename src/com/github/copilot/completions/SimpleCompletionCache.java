@@ -2,7 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.util.containers.ContainerUtil
  *  com.intellij.util.containers.hash.EqualityPolicy
  *  com.intellij.util.containers.hash.LinkedHashMap
@@ -14,7 +14,7 @@ package com.github.copilot.completions;
 
 import com.github.copilot.completions.CompletionCache;
 import com.github.copilot.completions.CopilotCompletion;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.util.containers.ContainerUtil;
 import com.intellij.util.containers.hash.EqualityPolicy;
 import com.intellij.util.io.DigestUtil;

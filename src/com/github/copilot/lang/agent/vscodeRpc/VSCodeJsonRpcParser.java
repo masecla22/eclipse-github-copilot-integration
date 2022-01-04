@@ -1,19 +1,11 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.intellij.openapi.diagnostic.Logger
- *  org.jetbrains.annotations.NotNull
- *  org.jetbrains.annotations.TestOnly
- */
 package com.github.copilot.lang.agent.vscodeRpc;
+
+import java.nio.charset.StandardCharsets;
 
 import com.github.copilot.lang.agent.rpc.JsonRpcMessageHandler;
 import com.github.copilot.lang.agent.rpc.JsonRpcMessageParser;
-import com.github.copilot.lang.agent.vscodeRpc.ByteArray;
-import com.intellij.openapi.diagnostic.Logger;
-import java.nio.charset.StandardCharsets;
-import org.jetbrains.annotations.TestOnly;
+
+import me.masecla.copilot.extra.Logger;
 
 public class VSCodeJsonRpcParser implements JsonRpcMessageParser {
 	private static final Logger LOG = Logger.getInstance(VSCodeJsonRpcParser.class);
@@ -23,7 +15,6 @@ public class VSCodeJsonRpcParser implements JsonRpcMessageParser {
 	private int pendingContentLength = 0;
 	private final ByteArray pendingContent = new ByteArray();
 
-	@TestOnly
 	public String getPendingContent() {
 		String string = this.pendingContent.toString(StandardCharsets.UTF_8);
 		if (string == null) {

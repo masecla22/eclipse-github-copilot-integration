@@ -1,17 +1,10 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  com.intellij.openapi.diagnostic.Logger
- *  org.jetbrains.annotations.NotNull
- */
 package com.github.copilot.lang.agent.vscodeRpc;
 
 import com.github.copilot.lang.agent.rpc.JsonRPC;
 import com.github.copilot.lang.agent.rpc.JsonRpcCommand;
 import com.github.copilot.lang.agent.rpc.JsonRpcCommandSender;
 import com.github.copilot.lang.agent.rpc.JsonRpcNotification;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
@@ -64,9 +57,6 @@ public class VSCodeJsonRpcCommandSender implements JsonRpcCommandSender {
 	public VSCodeJsonRpcCommandSender(OutputStream target) {
 		if (target == null) {
 			throw new IllegalStateException("target cannot be null!");
-		}
-		if (target == null) {
-			throw new NullPointerException("target is marked non-null but is null");
 		}
 		this.target = target;
 	}

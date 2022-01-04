@@ -4,7 +4,7 @@
  * Could not load the following classes:
  *  com.intellij.openapi.Disposable
  *  com.intellij.openapi.application.ApplicationManager
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.util.io.DigestUtil
  *  com.microsoft.applicationinsights.TelemetryClient
  *  com.microsoft.applicationinsights.TelemetryConfiguration
@@ -25,7 +25,7 @@ import com.github.copilot.telemetry.TelemetryService;
 import com.github.copilot.util.String2DoubleMap;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.util.io.DigestUtil;
 import com.microsoft.applicationinsights.TelemetryClient;
 import com.microsoft.applicationinsights.TelemetryConfiguration;

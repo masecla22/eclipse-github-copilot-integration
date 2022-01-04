@@ -2,7 +2,7 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.util.Pair
  *  com.intellij.openapi.util.TextRange
  *  com.intellij.openapi.util.text.StringUtil
@@ -21,7 +21,7 @@ import com.github.copilot.lang.CommonLanguageSupport;
 import com.github.copilot.request.EditorRequest;
 import com.github.copilot.request.LineInfo;
 import com.github.copilot.util.CopilotStringUtil;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.util.text.StringUtil;

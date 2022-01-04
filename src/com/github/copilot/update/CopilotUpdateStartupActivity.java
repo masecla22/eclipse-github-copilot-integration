@@ -3,7 +3,7 @@
  * 
  * Could not load the following classes:
  *  com.intellij.openapi.application.ApplicationManager
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.project.Project
  *  com.intellij.openapi.startup.StartupActivity$Background
  *  com.intellij.util.concurrency.annotations.RequiresBackgroundThread
@@ -15,7 +15,7 @@ import com.github.copilot.settings.CopilotApplicationSettings;
 import com.github.copilot.settings.CopilotLocalApplicationSettings;
 import com.github.copilot.update.CopilotPluginUpdater;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.startup.StartupActivity;
 import com.intellij.util.concurrency.annotations.RequiresBackgroundThread;

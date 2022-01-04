@@ -3,7 +3,7 @@
  * 
  * Could not load the following classes:
  *  com.intellij.openapi.Disposable
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.util.Disposer
  *  it.unimi.dsi.fastutil.objects.Object2DoubleMap
  *  org.jetbrains.annotations.NotNull
@@ -21,7 +21,7 @@ import com.github.copilot.telemetry.TelemetryData;
 import com.github.copilot.telemetry.TelemetryService;
 import com.github.copilot.util.String2DoubleMap;
 import com.intellij.openapi.Disposable;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.util.Disposer;
 import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import java.util.HashMap;

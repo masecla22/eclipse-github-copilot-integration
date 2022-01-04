@@ -5,7 +5,7 @@
  *  com.google.gson.Gson
  *  com.google.gson.GsonBuilder
  *  com.intellij.openapi.Disposable
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.util.Disposer
  *  it.unimi.dsi.fastutil.objects.Object2DoubleMap
  *  org.jetbrains.annotations.NotNull
@@ -31,7 +31,7 @@ import com.github.copilot.util.String2DoubleMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.intellij.openapi.Disposable;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.util.Disposer;
 import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import java.net.URI;

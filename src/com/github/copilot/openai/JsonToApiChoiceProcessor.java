@@ -3,7 +3,7 @@
  * 
  * Could not load the following classes:
  *  com.google.gson.JsonObject
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  org.jetbrains.annotations.NotNull
  */
 package com.github.copilot.openai;
@@ -17,7 +17,7 @@ import com.github.copilot.telemetry.TelemetryData;
 import com.github.copilot.util.Cancellable;
 import com.github.copilot.util.RequestCancelledException;
 import com.google.gson.JsonObject;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import java.net.http.HttpResponse;
 import java.util.concurrent.Flow;
 import java.util.concurrent.SubmissionPublisher;

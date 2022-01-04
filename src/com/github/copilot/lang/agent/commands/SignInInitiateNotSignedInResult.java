@@ -6,8 +6,6 @@
  */
 package com.github.copilot.lang.agent.commands;
 
-import com.github.copilot.lang.agent.commands.SignInInitiateResult;
-
 public final class SignInInitiateNotSignedInResult implements SignInInitiateResult {
 	private final String userCode;
 	private final String verificationUri;
@@ -19,27 +17,17 @@ public final class SignInInitiateNotSignedInResult implements SignInInitiateResu
 		return false;
 	}
 
-	/*
-	 * WARNING - void declaration
-	 */
 	public SignInInitiateNotSignedInResult(String userCode, String verificationUri, long expiresInSeconds, long l) {
-		void intervalSeconds;
 		if (userCode == null) {
 			throw new IllegalStateException("userCode cannot be null!");
 		}
 		if (verificationUri == null) {
 			throw new IllegalStateException("verificationUri cannot be null!");
 		}
-		if (userCode == null) {
-			throw new NullPointerException("userCode is marked non-null but is null");
-		}
-		if (verificationUri == null) {
-			throw new NullPointerException("verificationUri is marked non-null but is null");
-		}
 		this.userCode = userCode;
 		this.verificationUri = verificationUri;
 		this.expiresInSeconds = expiresInSeconds;
-		this.intervalSeconds = intervalSeconds;
+		this.intervalSeconds = 0l;
 	}
 
 	public String getUserCode() {

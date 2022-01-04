@@ -4,7 +4,7 @@
  * Could not load the following classes:
  *  com.intellij.codeInsight.editorActions.TypedHandlerDelegate
  *  com.intellij.codeInsight.editorActions.TypedHandlerDelegate$Result
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.editor.Editor
  *  com.intellij.openapi.project.Project
  *  com.intellij.psi.PsiFile
@@ -15,7 +15,7 @@ package com.github.copilot.editor;
 import com.github.copilot.editor.CopilotEditorManager;
 import com.github.copilot.settings.CopilotApplicationSettings;
 import com.intellij.codeInsight.editorActions.TypedHandlerDelegate;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;

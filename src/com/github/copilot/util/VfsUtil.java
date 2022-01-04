@@ -3,7 +3,7 @@
  * 
  * Could not load the following classes:
  *  com.intellij.openapi.application.ApplicationManager
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.vfs.VirtualFile
  *  com.intellij.testFramework.LightVirtualFile
  *  org.jetbrains.annotations.NotNull
@@ -11,7 +11,7 @@
 package com.github.copilot.util;
 
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.testFramework.LightVirtualFile;
 import java.io.IOException;

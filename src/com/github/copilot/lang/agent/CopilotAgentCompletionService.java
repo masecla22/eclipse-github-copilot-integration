@@ -4,7 +4,7 @@
  * Could not load the following classes:
  *  com.intellij.lang.Language
  *  com.intellij.openapi.application.ApplicationManager
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.editor.Editor
  *  com.intellij.openapi.util.TextRange
  *  org.jetbrains.annotations.NotNull
@@ -40,7 +40,7 @@ import com.github.copilot.request.EditorRequest;
 import com.github.copilot.settings.CopilotApplicationSettings;
 import com.intellij.lang.Language;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.util.TextRange;
 import java.util.ArrayList;

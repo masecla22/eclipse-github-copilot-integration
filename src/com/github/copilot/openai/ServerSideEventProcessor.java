@@ -4,7 +4,7 @@
  * Could not load the following classes:
  *  com.google.gson.JsonObject
  *  com.google.gson.JsonSyntaxException
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  org.jetbrains.annotations.NotNull
  *  org.jetbrains.annotations.Nullable
  */
@@ -17,7 +17,7 @@ import com.github.copilot.util.RequestCancelledException;
 import com.github.copilot.util.RequestTimeoutException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import java.util.concurrent.Flow;
 import java.util.concurrent.SubmissionPublisher;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -40,7 +40,7 @@ class ServerSideEventProcessor implements Flow.Subscriber<String> {
 		this.isClosed = new AtomicBoolean();
 		this.receivedDone = new AtomicBoolean();
 		this.request = request;
-		this.eventPublisher = new SubmissionPublisher(CopilotExecutors.getExecutor(), Flow.defaultBufferSize());
+		this.eventPublisher = new SubmissionPublisher<>(CopilotExecutors.getExecutor(), Flow.defaultBufferSize());
 		this.eventPublisher.subscribe(jsonSubscriber);
 	}
 

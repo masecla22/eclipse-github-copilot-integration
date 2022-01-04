@@ -10,7 +10,7 @@
  *  com.intellij.execution.process.ProcessListener
  *  com.intellij.execution.process.ProcessOutputTypes
  *  com.intellij.openapi.Disposable
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.util.Key
  *  com.intellij.util.io.BaseDataReader$SleepingPolicy
  *  com.intellij.util.io.BaseOutputReader$Options
@@ -39,13 +39,14 @@ import com.intellij.execution.process.ProcessEvent;
 import com.intellij.execution.process.ProcessListener;
 import com.intellij.execution.process.ProcessOutputTypes;
 import com.intellij.openapi.Disposable;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.util.Key;
 import com.intellij.util.io.BaseDataReader;
 import com.intellij.util.io.BaseOutputReader;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.jetbrains.concurrency.AsyncPromise;
 import org.jetbrains.concurrency.Promise;
@@ -75,7 +76,7 @@ public class CopilotAgentProcessServiceImpl implements CopilotAgentProcessServic
 				}
 			}
 		} catch (Exception e) {
-			LOG.error("Failed to launch agent process", (Throwable) e);
+			LOG.error("Failed to launch agent process", e);
 		}
 		this.agentProcess = process;
 		this.messageSender = process == null ? new NullCommandSender()
@@ -93,7 +94,7 @@ public class CopilotAgentProcessServiceImpl implements CopilotAgentProcessServic
 				this.agentProcess.killProcess();
 			}
 		} catch (Exception e) {
-			LOG.error("error terminating agent", (Throwable) e);
+			LOG.error("error terminating agent", e);
 		}
 	}
 
@@ -103,8 +104,8 @@ public class CopilotAgentProcessServiceImpl implements CopilotAgentProcessServic
 	 * aggressive exception aggregation
 	 */
 	@Override
-	public <T> Promise<T> executeCommand(JsonRpcCommand<T> command) {
-		AsyncPromise<T> asyncPromise;
+	public <T> CompletableFuture<T> executeCommand(JsonRpcCommand<T> command) {
+		CompletableFuture<Object> asyncPromise;
 		if (command == null) {
 			throw new IllegalStateException("command cannot be null!");
 		}
@@ -124,7 +125,7 @@ public class CopilotAgentProcessServiceImpl implements CopilotAgentProcessServic
 				asyncPromise = this.messageHandler.addPendingRequest(nextRequestId, command.getCommandName(),
 						command.getResponseType());
 			} catch (Exception e) {
-				LOG.error("exception sending command to Copilot agent, request id: " + nextRequestId, (Throwable) e);
+				LOG.error("exception sending command to Copilot agent, request id: " + nextRequestId, e);
 				Promise promise = Promises.rejectedPromise((String) e.getMessage());
 				// MONITOREXIT @DISABLED, blocks:[3, 4] lbl20 : MonitorExitStatement:
 				// MONITOREXIT : var2_2
@@ -157,7 +158,7 @@ public class CopilotAgentProcessServiceImpl implements CopilotAgentProcessServic
 				LOG.debug("Sending notification, name: " + notification.getCommandName());
 				this.messageSender.sendNotification(notification);
 			} catch (Exception e) {
-				LOG.error("exception sending notification to Copilot agent", (Throwable) e);
+				LOG.error("exception sending notification to Copilot agent", e);
 			}
 		}
 	}

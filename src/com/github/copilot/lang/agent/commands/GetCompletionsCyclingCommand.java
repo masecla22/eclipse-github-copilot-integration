@@ -7,16 +7,14 @@
  */
 package com.github.copilot.lang.agent.commands;
 
-import com.github.copilot.lang.agent.commands.Document;
-import com.github.copilot.lang.agent.commands.GetCompletionsCommand;
 import java.util.Map;
 
 public class GetCompletionsCyclingCommand extends GetCompletionsCommand {
 	public GetCompletionsCyclingCommand(Document doc, Map<Object, Object> options) {
+		super(doc, options);
 		if (doc == null) {
 			throw new IllegalStateException("doc cannot be null!");
 		}
-		super(doc, options);
 	}
 
 	@Override

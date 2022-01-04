@@ -3,7 +3,7 @@
  * 
  * Could not load the following classes:
  *  com.intellij.openapi.application.ReadAction
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.editor.Editor
  *  com.intellij.openapi.project.Project
  *  com.intellij.openapi.util.text.StringUtil
@@ -44,7 +44,7 @@ import com.github.copilot.telemetry.TelemetryData;
 import com.github.copilot.telemetry.TelemetryService;
 import com.github.copilot.util.String2DoubleMap;
 import com.intellij.openapi.application.ReadAction;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.text.StringUtil;

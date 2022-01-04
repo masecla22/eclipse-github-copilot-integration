@@ -4,7 +4,7 @@
  * Could not load the following classes:
  *  com.intellij.execution.configurations.PathEnvironmentVariableUtil
  *  com.intellij.openapi.application.ApplicationManager
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  org.jetbrains.annotations.Nullable
  */
 package com.github.copilot.lang.agent;
@@ -12,7 +12,7 @@ package com.github.copilot.lang.agent;
 import com.github.copilot.CopilotPlugin;
 import com.intellij.execution.configurations.PathEnvironmentVariableUtil;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;

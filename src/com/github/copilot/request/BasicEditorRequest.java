@@ -4,7 +4,7 @@
  * Could not load the following classes:
  *  com.intellij.lang.Language
  *  com.intellij.openapi.Disposable
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.project.Project
  *  com.intellij.openapi.util.Disposer
  *  com.intellij.psi.PsiFile
@@ -25,7 +25,7 @@ import com.github.copilot.request.LineInfo;
 import com.github.copilot.request.RequestId;
 import com.intellij.lang.Language;
 import com.intellij.openapi.Disposable;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.Disposer;
 import com.intellij.psi.PsiFile;

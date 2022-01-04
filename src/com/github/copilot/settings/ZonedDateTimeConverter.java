@@ -2,14 +2,14 @@
  * Decompiled with CFR 0.152.
  * 
  * Could not load the following classes:
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.util.xmlb.Converter
  *  org.jetbrains.annotations.NotNull
  *  org.jetbrains.annotations.Nullable
  */
 package com.github.copilot.settings;
 
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.util.xmlb.Converter;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;

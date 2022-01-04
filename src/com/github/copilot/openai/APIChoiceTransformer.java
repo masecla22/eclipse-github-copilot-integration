@@ -5,7 +5,7 @@
  *  com.google.gson.JsonElement
  *  com.google.gson.JsonObject
  *  com.google.gson.JsonSyntaxException
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.util.Pair
  *  com.intellij.openapi.util.text.StringUtil
  *  it.unimi.dsi.fastutil.doubles.DoubleArrayList

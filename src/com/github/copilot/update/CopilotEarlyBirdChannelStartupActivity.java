@@ -7,7 +7,7 @@
  *  com.intellij.notification.NotificationType
  *  com.intellij.openapi.actionSystem.AnAction
  *  com.intellij.openapi.application.ApplicationManager
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.project.Project
  *  com.intellij.openapi.startup.StartupActivity
  *  com.intellij.openapi.updateSettings.impl.UpdateSettings
@@ -23,7 +23,7 @@ import com.intellij.notification.NotificationAction;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.startup.StartupActivity;
 import com.intellij.openapi.updateSettings.impl.UpdateSettings;

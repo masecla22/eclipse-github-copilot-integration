@@ -4,7 +4,7 @@
  * Could not load the following classes:
  *  com.intellij.notification.NotificationType
  *  com.intellij.openapi.application.ApplicationManager
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.progress.ProcessCanceledException
  *  com.intellij.openapi.progress.ProgressIndicator
  *  com.intellij.openapi.progress.ProgressManager
@@ -44,7 +44,7 @@ import com.github.copilot.status.CopilotStatus;
 import com.github.copilot.status.CopilotStatusService;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.progress.ProcessCanceledException;
 import com.intellij.openapi.progress.ProgressIndicator;
 import com.intellij.openapi.progress.ProgressManager;

@@ -5,7 +5,7 @@
  *  com.intellij.lang.Language
  *  com.intellij.openapi.Disposable
  *  com.intellij.openapi.application.ApplicationManager
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.editor.DefaultLanguageHighlighterColors
  *  com.intellij.openapi.editor.Editor
  *  com.intellij.openapi.editor.EditorSettings
@@ -61,7 +61,7 @@ import com.github.copilot.util.RequestTimeoutException;
 import com.intellij.lang.Language;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.EditorSettings;

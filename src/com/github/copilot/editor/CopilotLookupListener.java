@@ -4,7 +4,7 @@
  * Could not load the following classes:
  *  com.intellij.codeInsight.lookup.Lookup
  *  com.intellij.codeInsight.lookup.LookupManagerListener
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.editor.Editor
  *  com.intellij.psi.PsiFile
  *  org.jetbrains.annotations.Nullable
@@ -17,7 +17,7 @@ import com.github.copilot.editor.InlayDisposeContext;
 import com.github.copilot.settings.CopilotApplicationSettings;
 import com.intellij.codeInsight.lookup.Lookup;
 import com.intellij.codeInsight.lookup.LookupManagerListener;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.PsiFile;
 

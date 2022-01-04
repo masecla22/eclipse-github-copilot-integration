@@ -3,7 +3,7 @@
  * 
  * Could not load the following classes:
  *  com.intellij.openapi.Disposable
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.util.Disposer
  *  javax.annotation.concurrent.GuardedBy
  *  org.jetbrains.annotations.NotNull
@@ -16,7 +16,7 @@ import com.github.copilot.openai.JsonToApiChoiceProcessor;
 import com.github.copilot.openai.ServerSideEventProcessor;
 import com.github.copilot.request.EditorRequest;
 import com.intellij.openapi.Disposable;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.util.Disposer;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;

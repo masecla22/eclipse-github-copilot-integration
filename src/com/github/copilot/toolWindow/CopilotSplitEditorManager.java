@@ -3,7 +3,7 @@
  * 
  * Could not load the following classes:
  *  com.intellij.openapi.application.ApplicationManager
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.editor.Document
  *  com.intellij.openapi.editor.Editor
  *  com.intellij.openapi.project.Project
@@ -23,7 +23,7 @@ import com.github.copilot.request.CompletionType;
 import com.github.copilot.request.EditorRequest;
 import com.github.copilot.toolWindow.OpenCopilotHandler;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;

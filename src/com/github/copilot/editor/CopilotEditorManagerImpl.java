@@ -11,7 +11,7 @@
  *  com.intellij.openapi.application.ApplicationManager
  *  com.intellij.openapi.command.CommandProcessor
  *  com.intellij.openapi.command.WriteCommandAction
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.editor.Document
  *  com.intellij.openapi.editor.Editor
  *  com.intellij.openapi.editor.EditorCustomElementRenderer
@@ -69,7 +69,7 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.command.WriteCommandAction;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.EditorCustomElementRenderer;

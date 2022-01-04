@@ -4,7 +4,7 @@
  * Could not load the following classes:
  *  com.intellij.openapi.command.CommandEvent
  *  com.intellij.openapi.command.CommandListener
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.editor.Editor
  *  com.intellij.openapi.fileEditor.FileEditorManager
  *  com.intellij.openapi.project.Project
@@ -16,7 +16,7 @@ import com.github.copilot.editor.CopilotEditorManager;
 import com.github.copilot.settings.CopilotApplicationSettings;
 import com.intellij.openapi.command.CommandEvent;
 import com.intellij.openapi.command.CommandListener;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;

@@ -7,7 +7,7 @@
  *  com.google.gson.JsonSyntaxException
  *  com.intellij.notification.NotificationType
  *  com.intellij.openapi.application.ApplicationManager
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.progress.ProcessCanceledException
  *  com.intellij.openapi.progress.ProgressIndicator
  *  com.intellij.openapi.progress.ProgressManager

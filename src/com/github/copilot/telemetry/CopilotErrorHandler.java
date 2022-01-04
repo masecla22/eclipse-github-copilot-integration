@@ -8,7 +8,7 @@
  *  com.intellij.openapi.application.ApplicationManager
  *  com.intellij.openapi.diagnostic.ErrorReportSubmitter
  *  com.intellij.openapi.diagnostic.IdeaLoggingEvent
- *  com.intellij.openapi.diagnostic.Logger
+ *  me.masecla.copilot.extra.Logger
  *  com.intellij.openapi.diagnostic.SubmittedReportInfo
  *  com.intellij.openapi.diagnostic.SubmittedReportInfo$SubmissionStatus
  *  com.intellij.openapi.progress.ProgressIndicator
@@ -29,7 +29,7 @@ import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.ErrorReportSubmitter;
 import com.intellij.openapi.diagnostic.IdeaLoggingEvent;
-import com.intellij.openapi.diagnostic.Logger;
+import me.masecla.copilot.extra.Logger;
 import com.intellij.openapi.diagnostic.SubmittedReportInfo;
 import com.intellij.openapi.progress.ProgressIndicator;
 import com.intellij.openapi.progress.Task;
