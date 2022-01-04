@@ -217,7 +217,7 @@ public class PromptUtils {
 		if (text == null) {
 			throw new IllegalStateException("text cannot be null!");
 		}
-		int nChars = (int) Math.floor((double) n * 2.5);
+		int nChars = (int) Math.floor(n * 2.5);
 		int textLength = text.length();
 		String string = textLength < nChars ? text : text.substring(textLength - nChars, textLength);
 		if (string == null) {
@@ -230,7 +230,7 @@ public class PromptUtils {
 		if (text == null) {
 			throw new IllegalStateException("text cannot be null!");
 		}
-		return (int) Math.ceil((double) text.length() / 2.5);
+		return (int) Math.ceil(text.length() / 2.5);
 	}
 
 	static boolean hasLanguageMarker(String source) {

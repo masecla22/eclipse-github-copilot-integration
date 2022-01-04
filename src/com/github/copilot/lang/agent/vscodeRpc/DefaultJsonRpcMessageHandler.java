@@ -57,7 +57,7 @@ public class DefaultJsonRpcMessageHandler implements JsonRpcMessageHandler {
 			return;
 		}
 		int id = jsonResponse.getRequestId();
-		PendingRequest pending = (PendingRequest) this.pendingRequests.remove(id);
+		PendingRequest pending = this.pendingRequests.remove(id);
 		if (pending == null) {
 			LOG.error("received unexpected response data for id: " + id);
 			return;
@@ -82,7 +82,7 @@ public class DefaultJsonRpcMessageHandler implements JsonRpcMessageHandler {
 		}
 		int id = e.getRequestId();
 		String message = e.getMessage();
-		PendingRequest pending = (PendingRequest) this.pendingRequests.remove(id);
+		PendingRequest<?> pending = this.pendingRequests.remove(id);
 		if (pending == null) {
 			LOG.warn("no pending response found for request ID " + id);
 			return;

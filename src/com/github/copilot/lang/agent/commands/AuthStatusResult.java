@@ -79,7 +79,7 @@ public class AuthStatusResult {
         }
         Status this$status = this.getStatus();
         Status other$status = other.getStatus();
-        if (this$status == null ? other$status != null : !((Object)((Object)this$status)).equals((Object)other$status)) {
+        if (this$status == null ? other$status != null : !(this$status).equals(other$status)) {
             return false;
         }
         String this$user = this.getUser();
@@ -94,7 +94,7 @@ public class AuthStatusResult {
     public int hashCode() {
         int result = 1;
         Status $status = this.getStatus();
-        result = result * 59 + ($status == null ? 43 : ((Object)((Object)$status)).hashCode());
+        result = result * 59 + ($status == null ? 43 : ($status).hashCode());
         String $user = this.getUser();
         result = result * 59 + ($user == null ? 43 : $user.hashCode());
         return result;

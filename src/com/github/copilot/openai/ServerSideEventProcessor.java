@@ -82,7 +82,7 @@ class ServerSideEventProcessor implements Flow.Subscriber<String> {
 		}
 		try {
 			String line = item.substring(5).trim();
-			JsonObject json = (JsonObject) OpenAI.GSON.fromJson(line, JsonObject.class);
+			JsonObject json = OpenAI.GSON.fromJson(line, JsonObject.class);
 			if (LOG.isTraceEnabled()) {
 				LOG.trace(String.format("%d: publish JSON object", this.request.getRequestId()));
 			}

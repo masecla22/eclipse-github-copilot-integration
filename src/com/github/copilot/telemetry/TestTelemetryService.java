@@ -62,7 +62,7 @@ public class TestTelemetryService implements TelemetryService {
 		if (data == null) {
 			throw new IllegalStateException("data cannot be null!");
 		}
-		this.track(name, data.getProperties(), (Map<String, Double>) data.getMetrics());
+		this.track(name, data.getProperties(), data.getMetrics());
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class TestTelemetryService implements TelemetryService {
 		if (data == null) {
 			throw new IllegalStateException("data cannot be null!");
 		}
-		this.trackSecure(name, data.getProperties(), (Map<String, Double>) data.getMetrics());
+		this.trackSecure(name, data.getProperties(), data.getMetrics());
 	}
 
 	@Override

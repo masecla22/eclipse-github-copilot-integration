@@ -20,15 +20,14 @@
  */
 package com.github.copilot.openai;
 
-import com.github.copilot.openai.APIChoice;
-import com.github.copilot.openai.APIJsonDataStreaming;
-import com.github.copilot.openai.APILogprobs;
-import com.github.copilot.openai.CompletionResponseInfo;
-import com.github.copilot.openai.DefaultAPIChoice;
-import com.github.copilot.openai.OpenAI;
-import com.github.copilot.openai.OpenAICompletionResponse;
-import com.github.copilot.openai.OpenAIHttpUtil;
-import com.github.copilot.openai.StringDoublePair;
+import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Consumer;
+import java.util.regex.Pattern;
+
 import com.github.copilot.request.EditorRequestUtil;
 import com.github.copilot.request.LanguageEditorRequest;
 import com.github.copilot.telemetry.TelemetryData;
@@ -39,9 +38,8 @@ import com.github.copilot.util.String2DoubleMap;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.util.text.StringUtil;
+
 import it.unimi.dsi.fastutil.doubles.DoubleArrayList;
 import it.unimi.dsi.fastutil.doubles.DoubleList;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -49,13 +47,6 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMaps;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
-import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.function.Consumer;
-import java.util.regex.Pattern;
 
 class APIChoiceTransformer {
 	private static final Logger LOG = Logger.getInstance(APIChoiceTransformer.class);
@@ -93,7 +84,7 @@ class APIChoiceTransformer {
 			return;
 		}
 		try {
-			OpenAICompletionResponse completion = (OpenAICompletionResponse) OpenAI.GSON.fromJson((JsonElement) json,
+			OpenAICompletionResponse completion = OpenAI.GSON.fromJson((JsonElement) json,
 					OpenAICompletionResponse.class);
 			this.completionId = completion.id;
 			this.completionCreatedTimestamp = completion.createdTimestamp;
@@ -102,7 +93,7 @@ class APIChoiceTransformer {
 					return;
 				}
 				int index = choice.index;
-				APIJsonDataStreaming solution = (APIJsonDataStreaming) this.solutions.computeIfAbsent(index,
+				APIJsonDataStreaming solution = this.solutions.computeIfAbsent(index,
 						key -> new APIJsonDataStreaming());
 				if (solution == null)
 					continue;
@@ -110,8 +101,8 @@ class APIChoiceTransformer {
 				OpenAICompletionResponse.Logprobs logprobs = choice.logprobs;
 				if (logprobs != null) {
 					solution.tokens.add(List.of(logprobs.tokens));
-					solution.textOffset.add(IntList.of((int[]) logprobs.textOffset));
-					solution.logprobs.add(DoubleList.of((double[]) logprobs.tokenLogprobs));
+					solution.textOffset.add(IntList.of(logprobs.textOffset));
+					solution.logprobs.add(DoubleList.of(logprobs.tokenLogprobs));
 					solution.topLogprobs.add(logprobs.topLogprobs);
 				}
 				Integer finishOffset = null;
@@ -150,8 +141,7 @@ class APIChoiceTransformer {
 			if (solution == null) {
 				return;
 			}
-			Pair<APIChoice, APILogprobs> apiChoicePair = this.prepareSolutionForReturn((APIJsonDataStreaming) solution,
-					null, (int) index);
+			Pair<APIChoice, APILogprobs> apiChoicePair = this.prepareSolutionForReturn(solution, null, index);
 			if (apiChoicePair != null) {
 				this.onNewItem.accept((APIChoice) apiChoicePair.first);
 				this.logCompletionChoice((APIChoice) apiChoicePair.first, (APILogprobs) apiChoicePair.second);
@@ -208,34 +198,34 @@ class APIChoiceTransformer {
 		assert (numText == numTokens);
 		assert (numText == numOffsets);
 		assert (numText == numLogprobs);
-		DoubleList flattenedLogprobs = data.logprobs.stream().filter(Objects::nonNull)
-				.reduce((DoubleList) new DoubleArrayList(), (result, list) -> {
+		DoubleList flattenedLogprobs = data.logprobs.stream().filter(Objects::nonNull).reduce(new DoubleArrayList(),
+				(result, list) -> {
 					result.addAll(list);
 					return result;
 				});
-		List<StringDoublePair> flattenedTopLogprobs = data.topLogprobs.stream().filter(Objects::nonNull)
-				.reduce(new ArrayList(), (result, mapList) -> {
+		List<StringDoublePair> flattenedTopLogprobs = data.topLogprobs.stream().filter(c -> c != null)
+				.reduce(new ArrayList<StringDoublePair>(), (result, mapList) -> {
 					for (String2DoubleMap map : mapList) {
-						map.forEach((key, value) -> result.add(new StringDoublePair((String) key, (double) value)));
+						map.forEach((key, value) -> result.add(new StringDoublePair(key, value)));
 					}
 					return result;
 				}, (listA, listB) -> {
-					ArrayList result = new ArrayList(listA.size() + listB.size());
+					ArrayList<StringDoublePair> result = new ArrayList<>(listA.size() + listB.size());
 					result.addAll(listA);
 					result.addAll(listB);
 					return result;
 				});
-		IntList flattenedOffsets = data.textOffset.stream().filter(Objects::nonNull)
-				.reduce((IntList) new IntArrayList(), (result, list) -> {
+		IntList flattenedOffsets = data.textOffset.stream().filter(Objects::nonNull).reduce(new IntArrayList(),
+				(result, list) -> {
 					result.addAll(list);
 					return result;
 				});
-		List flattenedTokens = data.tokens.stream().filter(Objects::nonNull).reduce(new ArrayList(), (result, list) -> {
-			result.addAll(list);
-			return result;
-		});
-		return new APILogprobs((List<Integer>) flattenedOffsets, (List<Double>) flattenedLogprobs, flattenedTopLogprobs,
-				flattenedTokens);
+		List<String> flattenedTokens = data.tokens.stream().filter(Objects::nonNull).reduce(new ArrayList<String>(),
+				(result, list) -> {
+					result.addAll(list);
+					return result;
+				});
+		return new APILogprobs(flattenedOffsets, flattenedLogprobs, flattenedTopLogprobs, flattenedTokens);
 	}
 
 	void updateWithResponse(HttpResponse.ResponseInfo responseInfo) {

@@ -98,7 +98,7 @@ public final class PromptInfo {
 		BlockMode this$blockMode = this.getBlockMode();
 		BlockMode other$blockMode = other.getBlockMode();
 		return !(this$blockMode == null ? other$blockMode != null
-				: !((Object) ((Object) this$blockMode)).equals((Object) other$blockMode));
+				: !(this$blockMode).equals(other$blockMode));
 	}
 
 	public int hashCode() {
@@ -112,7 +112,7 @@ public final class PromptInfo {
 		String $trailingWhitespace = this.getTrailingWhitespace();
 		result = result * 59 + ($trailingWhitespace == null ? 43 : $trailingWhitespace.hashCode());
 		BlockMode $blockMode = this.getBlockMode();
-		result = result * 59 + ($blockMode == null ? 43 : ((Object) ((Object) $blockMode)).hashCode());
+		result = result * 59 + ($blockMode == null ? 43 : ($blockMode).hashCode());
 		return result;
 	}
 

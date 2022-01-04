@@ -281,7 +281,7 @@ public final class BasicEditorRequest implements LanguageEditorRequest, Disposab
 		CompletionType this$completionType = this.getCompletionType();
 		CompletionType other$completionType = other.getCompletionType();
 		if (this$completionType == null ? other$completionType != null
-				: !((Object) ((Object) this$completionType)).equals((Object) other$completionType)) {
+				: !(this$completionType).equals(other$completionType)) {
 			return false;
 		}
 		Language this$fileLanguage = this.getFileLanguage();
@@ -324,7 +324,7 @@ public final class BasicEditorRequest implements LanguageEditorRequest, Disposab
 		LanguageSupport $language = this.getLanguage();
 		result = result * 59 + ($language == null ? 43 : $language.hashCode());
 		CompletionType $completionType = this.getCompletionType();
-		result = result * 59 + ($completionType == null ? 43 : ((Object) ((Object) $completionType)).hashCode());
+		result = result * 59 + ($completionType == null ? 43 : ($completionType).hashCode());
 		Language $fileLanguage = this.getFileLanguage();
 		result = result * 59 + ($fileLanguage == null ? 43 : $fileLanguage.hashCode());
 		String $relativeFilePath = this.getRelativeFilePath();

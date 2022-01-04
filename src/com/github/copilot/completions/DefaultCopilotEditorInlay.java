@@ -74,7 +74,7 @@ final class DefaultCopilotEditorInlay implements CopilotEditorInlay {
 		}
 		CopilotCompletionType this$type = this.getType();
 		CopilotCompletionType other$type = other.getType();
-		if (this$type == null ? other$type != null : !((Object) ((Object) this$type)).equals((Object) other$type)) {
+		if (this$type == null ? other$type != null : !(this$type).equals(other$type)) {
 			return false;
 		}
 		List<String> this$completionLines = this.getCompletionLines();
@@ -88,7 +88,7 @@ final class DefaultCopilotEditorInlay implements CopilotEditorInlay {
 		int result = 1;
 		result = result * 59 + this.getEditorOffset();
 		CopilotCompletionType $type = this.getType();
-		result = result * 59 + ($type == null ? 43 : ((Object) ((Object) $type)).hashCode());
+		result = result * 59 + ($type == null ? 43 : ($type).hashCode());
 		List<String> $completionLines = this.getCompletionLines();
 		result = result * 59 + ($completionLines == null ? 43 : ((Object) $completionLines).hashCode());
 		return result;

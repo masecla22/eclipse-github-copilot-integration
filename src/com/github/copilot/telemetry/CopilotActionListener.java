@@ -42,7 +42,7 @@ public class CopilotActionListener implements AnActionListener {
 		Map<String, Double> metrics = Map.of();
 		if (event.getInputEvent() != null) {
 			metrics = Map.of("runningTimeMs",
-					(double) System.currentTimeMillis() - (double) event.getInputEvent().getWhen());
+					System.currentTimeMillis() - (double) event.getInputEvent().getWhen());
 		}
 		String id = ActionManager.getInstance().getId(action);
 		boolean isError = !result.isPerformed();

@@ -160,7 +160,7 @@ public class AzureInsightsTelemetryService implements TelemetryService, Disposab
 		HashMap<String, String> properties = new HashMap<String, String>();
 		data.addProperties(properties);
 		String2DoubleMap metrics = new String2DoubleMap();
-		data.addMetrics((Object2DoubleMap<String>) metrics);
+		data.addMetrics(metrics);
 		long issuedTimestamp = data.getIssuedTimestamp();
 		if (issuedTimestamp > 0L) {
 			metrics.put("timeSinceIssuedMs", (double) now - (double) issuedTimestamp);
@@ -168,7 +168,7 @@ public class AzureInsightsTelemetryService implements TelemetryService, Disposab
 		if ((displayedTimestamp = data.getDisplayedTimestamp()) > 0L) {
 			metrics.put("timeSinceDisplayedMs", (double) now - (double) displayedTimestamp);
 		}
-		this.doTrack(client, name, properties, (Map<String, Double>) ((Object) metrics));
+		this.doTrack(client, name, properties, (Map<String, Double>) (metrics));
 	}
 
 	private void doTrack(TelemetryClient client, String name, Map<String, String> properties,

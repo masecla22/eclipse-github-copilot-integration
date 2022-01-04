@@ -17,13 +17,14 @@ import com.github.copilot.completions.CopilotCompletion;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.util.containers.ContainerUtil;
 import com.intellij.util.containers.hash.EqualityPolicy;
-import com.intellij.util.containers.hash.LinkedHashMap;
 import com.intellij.util.io.DigestUtil;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.LinkedHashMap;
 import java.util.Objects;
+import java.util.Vector;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -38,8 +39,8 @@ public class SimpleCompletionCache implements CompletionCache {
 	private boolean lastIsMultiline;
 
 	public SimpleCompletionCache(final int cacheSize) {
-		this.cache = new LinkedHashMap<CacheKey, List<CopilotCompletion>>(cacheSize, 0.6f, EqualityPolicy.CANONICAL,
-				true) {
+		this.cache = new LinkedHashMap<CacheKey, List<CopilotCompletion>>(cacheSize, 0.6f, true) {
+			private static final long serialVersionUID = 1L;
 
 			protected boolean removeEldestEntry(Map.Entry<CacheKey, List<CopilotCompletion>> eldest, CacheKey key,
 					List<CopilotCompletion> value) {
@@ -66,9 +67,6 @@ public class SimpleCompletionCache implements CompletionCache {
 		}
 	}
 
-	/*
-	 * WARNING - Removed try catching itself - possible behaviour change.
-	 */
 	@Override
 	public List<CopilotCompletion> get(String prompt, boolean isMultiline) {
 		if (prompt == null) {
@@ -78,17 +76,14 @@ public class SimpleCompletionCache implements CompletionCache {
 		Lock readLock = this.lock.readLock();
 		readLock.lock();
 		try {
-			List list = (List) this.cache
-					.get((Object) new CacheKey(SimpleCompletionCache.promptHash(prompt), isMultiline));
+			List<CopilotCompletion> list = this.cache
+					.get(new CacheKey(SimpleCompletionCache.promptHash(prompt), isMultiline));
 			return list;
 		} finally {
 			readLock.unlock();
 		}
 	}
 
-	/*
-	 * WARNING - Removed try catching itself - possible behaviour change.
-	 */
 	@Override
 	public List<CopilotCompletion> getLatest(String prefix) {
 		if (prefix == null) {
@@ -128,8 +123,7 @@ public class SimpleCompletionCache implements CompletionCache {
 			this.lastPromptHash = SimpleCompletionCache.promptHash(prompt);
 			this.lastIsMultiline = isMultiline;
 			CacheKey key = new CacheKey(this.lastPromptHash, this.lastIsMultiline);
-			List apiChoices = (List) this.cache.computeIfAbsent((Object) key,
-					s -> ContainerUtil.createLockFreeCopyOnWriteList());
+			List<CopilotCompletion> apiChoices = this.cache.computeIfAbsent(key, s -> new Vector<>());
 			apiChoices.add(item.asCached());
 		} finally {
 			writeLock.unlock();
@@ -179,7 +173,7 @@ public class SimpleCompletionCache implements CompletionCache {
 		if (this.lastPrefix == null || this.lastPromptHash == null || !prefix.startsWith(this.lastPrefix)) {
 			return null;
 		}
-		List result = (List) this.cache.get((Object) new CacheKey(this.lastPromptHash, this.lastIsMultiline));
+		List<CopilotCompletion> result = this.cache.get(new CacheKey(this.lastPromptHash, this.lastIsMultiline));
 		if (result == null) {
 			return null;
 		}

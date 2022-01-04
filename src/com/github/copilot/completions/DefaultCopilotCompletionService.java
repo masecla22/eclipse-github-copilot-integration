@@ -188,7 +188,7 @@ public class DefaultCopilotCompletionService implements CopilotCompletionService
 		int maxTokens = settings.maxTokens;
 		int topP = settings.topP;
 		Float temperature = settings.temperature;
-		if (temperature == null || (double) temperature.floatValue() < 0.0 || (double) temperature.floatValue() > 1.0) {
+		if (temperature == null || temperature.floatValue() < 0.0 || temperature.floatValue() > 1.0) {
 			temperature = Float.valueOf(OpenAI.getTemperatureForSamples(completionCount));
 		}
 		if (enableCaching && (cachedItems = this.cache.get(prompt.getPrompt(), isMultilineCompletion)) != null) {
@@ -209,7 +209,7 @@ public class DefaultCopilotCompletionService implements CopilotCompletionService
 					LOG.warn(String.format("[%d] Response received. Duration: %d ms", request.getRequestId(),
 							System.currentTimeMillis() - timestamp));
 					this.cache.add(request.getCurrentDocumentPrefix(), prompt.getPrompt(), isMultilineCompletion,
-							(CopilotCompletion) newItem);
+							newItem);
 				}));
 		return true;
 	}

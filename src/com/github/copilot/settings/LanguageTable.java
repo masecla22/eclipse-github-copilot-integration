@@ -108,7 +108,7 @@ class LanguageTable extends ListTableWithButtons<LanguageChoice> {
 		}
 
 		public Comparator<LanguageChoice> getComparator() {
-			return Comparator.comparing(lang -> this.getLabel((LanguageChoice) lang).toLowerCase());
+			return Comparator.comparing(lang -> this.getLabel(lang).toLowerCase());
 		}
 
 		public String valueOf(LanguageChoice languageChoice) {

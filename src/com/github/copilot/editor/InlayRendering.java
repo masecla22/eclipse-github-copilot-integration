@@ -92,7 +92,7 @@ final class InlayRendering {
 		int lineHeight = editor.getLineHeight();
 		double fontBaseline = Math
 				.ceil(font.createGlyphVector(metrics.getFontRenderContext(), "Alb").getVisualBounds().getHeight());
-		float linePadding = (float) ((double) lineHeight - fontBaseline) / 2.0f;
+		float linePadding = (float) (lineHeight - fontBaseline) / 2.0f;
 		g2.translate(region.getX(), region.getY());
 		g2.setClip(0, 0, (int) region.getWidth(), (int) region.getHeight());
 		for (String line : contentLines) {

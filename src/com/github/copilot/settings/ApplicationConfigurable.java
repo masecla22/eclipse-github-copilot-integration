@@ -59,7 +59,7 @@ public class ApplicationConfigurable implements Configurable {
 		if (this.form.isEnableIdeCompletions() != settings.isShowIdeCompletions()) {
 			return true;
 		}
-		if (!this.form.getUpdateChannel().equals((Object) this.findConfiguredChannel())) {
+		if (!this.form.getUpdateChannel().equals(this.findConfiguredChannel())) {
 			return true;
 		}
 		return !this.form.getDisabledLanguages().equals(settings.getDisabledLanguageIds());
@@ -74,11 +74,11 @@ public class ApplicationConfigurable implements Configurable {
 		settings.setDisabledLanguageIds(this.form.getDisabledLanguages());
 		UpdateChannel oldChannel = this.findConfiguredChannel();
 		UpdateChannel newChannel = this.form.getUpdateChannel();
-		if (!oldChannel.equals((Object) newChannel)) {
-			if (!UpdateChannel.Stable.equals((Object) oldChannel)) {
+		if (!oldChannel.equals(newChannel)) {
+			if (!UpdateChannel.Stable.equals(oldChannel)) {
 				UpdateSettings.getInstance().getStoredPluginHosts().remove(oldChannel.getChannelUrl());
 			}
-			if (!UpdateChannel.Stable.equals((Object) newChannel)) {
+			if (!UpdateChannel.Stable.equals(newChannel)) {
 				UpdateSettings.getInstance().getStoredPluginHosts().add(newChannel.getChannelUrl());
 			}
 		}

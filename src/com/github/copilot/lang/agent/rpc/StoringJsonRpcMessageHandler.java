@@ -7,12 +7,11 @@
  */
 package com.github.copilot.lang.agent.rpc;
 
-import com.github.copilot.lang.agent.rpc.JsonRpcMessageHandler;
+import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.compress.utils.Lists;
 
 public class StoringJsonRpcMessageHandler implements JsonRpcMessageHandler {
-	private final List<String> messages = Lists.newArrayList();
+	private final List<String> messages = new ArrayList<>();
 
 	@Override
 	public void handleJsonMessage(String message) {

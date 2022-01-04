@@ -138,7 +138,7 @@ class ApiChoiceToInlaySetProcessor implements Flow.Subscriber<APIChoice> {
 		metrics.put("meanLogProb", meanLogProb == null ? Double.NaN : meanLogProb);
 		metrics.put("numTokens", item.getNumTokens());
 		TelemetryService.getInstance().track("ghostText.performance",
-				TelemetryData.extend(baseData, props, (Object2DoubleMap<String>) metrics));
+				TelemetryData.extend(baseData, props, metrics));
 	}
 
 }

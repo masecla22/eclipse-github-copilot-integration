@@ -213,7 +213,7 @@ public class AgentEditorRequest implements EditorRequest, Disposable {
 		CompletionType this$completionType = this.getCompletionType();
 		CompletionType other$completionType = other.getCompletionType();
 		if (this$completionType == null ? other$completionType != null
-				: !((Object) ((Object) this$completionType)).equals((Object) other$completionType)) {
+				: !(this$completionType).equals(other$completionType)) {
 			return false;
 		}
 		Language this$fileLanguage = this.getFileLanguage();
@@ -258,7 +258,7 @@ public class AgentEditorRequest implements EditorRequest, Disposable {
 		Project $project = this.getProject();
 		result = result * 59 + ($project == null ? 43 : $project.hashCode());
 		CompletionType $completionType = this.getCompletionType();
-		result = result * 59 + ($completionType == null ? 43 : ((Object) ((Object) $completionType)).hashCode());
+		result = result * 59 + ($completionType == null ? 43 : ($completionType).hashCode());
 		Language $fileLanguage = this.getFileLanguage();
 		result = result * 59 + ($fileLanguage == null ? 43 : $fileLanguage.hashCode());
 		String $relativeFilePath = this.getRelativeFilePath();

@@ -430,7 +430,7 @@ public class GitHubDeviceAuthService implements GitHubService {
 			String json = HttpRequests.request((String) "https://api.github.com/copilot_internal/token")
 					.tuner(c -> c.addRequestProperty("Authorization", "token " + session.getToken()))
 					.readTimeout((int) TimeUnit.SECONDS.toMillis(5L)).readString(null);
-			return (GitHubCopilotToken) gson.fromJson(json, GitHubCopilotToken.class);
+			return gson.fromJson(json, GitHubCopilotToken.class);
 		} catch (HttpRequests.HttpStatusException e) {
 			TelemetryService.getInstance().track("auth.request_failed");
 			LOG.debug("Unexpected HTTP status retrieving Copilot token", (Throwable) e);

@@ -233,7 +233,7 @@ class CopilotDefaultInlayRenderer implements CopilotInlayRenderer {
 		}
 		CopilotCompletionType this$type = this.getType();
 		CopilotCompletionType other$type = other.getType();
-		if (this$type == null ? other$type != null : !((Object) ((Object) this$type)).equals((Object) other$type)) {
+		if (this$type == null ? other$type != null : !(this$type).equals(other$type)) {
 			return false;
 		}
 		Inlay<CopilotInlayRenderer> this$inlay = this.getInlay();
@@ -255,7 +255,7 @@ class CopilotDefaultInlayRenderer implements CopilotInlayRenderer {
 		String $content = this.getContent();
 		result = result * 59 + ($content == null ? 43 : $content.hashCode());
 		CopilotCompletionType $type = this.getType();
-		result = result * 59 + ($type == null ? 43 : ((Object) ((Object) $type)).hashCode());
+		result = result * 59 + ($type == null ? 43 : ($type).hashCode());
 		Inlay<CopilotInlayRenderer> $inlay = this.getInlay();
 		result = result * 59 + ($inlay == null ? 43 : $inlay.hashCode());
 		return result;

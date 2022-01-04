@@ -23,8 +23,8 @@ import com.google.gson.JsonSyntaxException;
 
 public final class JsonRPC {
 	private static final Gson GSON = new GsonBuilder()
-			.registerTypeAdapter(AuthStatusResult.class, (Object) new AuthStatusResult.TypeAdapter())
-			.registerTypeAdapter(SignInInitiateResult.class, (Object) new SignInInitiateResult.TypeAdapter()).create();
+			.registerTypeAdapter(AuthStatusResult.class, new AuthStatusResult.TypeAdapter())
+			.registerTypeAdapter(SignInInitiateResult.class, new SignInInitiateResult.TypeAdapter()).create();
 
 	private JsonRPC() {
 	}
@@ -38,10 +38,10 @@ public final class JsonRPC {
 		}
 		JsonObject json = new JsonObject();
 		json.addProperty("jsonrpc", "2.0");
-		json.addProperty("id", (Number) requestId);
+		json.addProperty("id", requestId);
 		json.addProperty("method", name);
 		json.add("params", GSON.toJsonTree(command));
-		return GSON.toJson((JsonElement) json);
+		return GSON.toJson(json);
 	}
 
 	public static String serializeNotification(String name, Object command) {
@@ -55,7 +55,7 @@ public final class JsonRPC {
 		json.addProperty("jsonrpc", "2.0");
 		json.addProperty("method", name);
 		json.add("params", GSON.toJsonTree(command));
-		return GSON.toJson((JsonElement) json);
+		return GSON.toJson(json);
 	}
 
 	public static JsonRpcResponse parseResponse(String responseContent)
@@ -64,7 +64,7 @@ public final class JsonRPC {
 		if (responseContent == null) {
 			throw new IllegalStateException("responseContent cannot be null!");
 		}
-		if ((response = (JsonObject) GSON.fromJson(responseContent, JsonObject.class)).has("error")) {
+		if ((response = GSON.fromJson(responseContent, JsonObject.class)).has("error")) {
 			int id = response.getAsJsonPrimitive("id").getAsInt();
 			JsonObject error = (JsonObject) response.get("error");
 			String message = error.getAsJsonPrimitive("message").getAsString();
@@ -79,11 +79,11 @@ public final class JsonRPC {
 		if (json == null) {
 			throw new IllegalStateException("json cannot be null!");
 		}
-		Object object = GSON.fromJson(json, responseType);
+		T object = GSON.fromJson(json, responseType);
 		if (object == null) {
 			throw new IllegalStateException("object cannot be null!");
 		}
-		return (T) object;
+		return object;
 	}
 
 }

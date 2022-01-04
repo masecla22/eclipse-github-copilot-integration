@@ -21,7 +21,9 @@ import it.unimi.dsi.fastutil.objects.Object2DoubleOpenHashMap;
 import java.io.IOException;
 
 public final class String2DoubleMap extends Object2DoubleOpenHashMap<String> {
+	private static final long serialVersionUID = -4680414524405617139L;
 	public static final Object2DoubleMap<String> EMPTY = new Object2DoubleMaps.EmptyMap<String>() {
+		private static final long serialVersionUID = 4680414524405687139L;
 	};
 
 	public static Object2DoubleMap<String> of() {
@@ -29,7 +31,7 @@ public final class String2DoubleMap extends Object2DoubleOpenHashMap<String> {
 	}
 
 	public static Object2DoubleMap<String> of(String key, double value) {
-		return Object2DoubleMaps.singleton((Object) key, (double) value);
+		return Object2DoubleMaps.singleton(key, value);
 	}
 
 	public static Object2DoubleMap<String> of(String k1, double v1, String k2, double v2) {
@@ -71,8 +73,8 @@ public final class String2DoubleMap extends Object2DoubleOpenHashMap<String> {
 	public static final class TypeAdapter extends com.google.gson.TypeAdapter<String2DoubleMap> {
 		public void write(JsonWriter jsonWriter, String2DoubleMap string2DoubleMap) throws IOException {
 			jsonWriter.beginObject();
-			for (Object2DoubleMap.Entry entry : string2DoubleMap.object2DoubleEntrySet()) {
-				jsonWriter.name((String) entry.getKey());
+			for (Object2DoubleMap.Entry<String> entry : string2DoubleMap.object2DoubleEntrySet()) {
+				jsonWriter.name(entry.getKey());
 				jsonWriter.value(entry.getDoubleValue());
 			}
 			jsonWriter.endObject();

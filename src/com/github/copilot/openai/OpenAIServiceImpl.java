@@ -46,8 +46,8 @@ import java.util.concurrent.Flow;
 
 public class OpenAIServiceImpl implements OpenAIService {
 	static final Gson GSON = new GsonBuilder()
-			.registerTypeAdapter(Object2DoubleMap.class, (Object) new String2DoubleMap.TypeAdapter())
-			.registerTypeAdapter(StringDoublePair.class, (Object) new StringDoublePair.TypeAdapter())
+			.registerTypeAdapter(Object2DoubleMap.class, new String2DoubleMap.TypeAdapter())
+			.registerTypeAdapter(StringDoublePair.class, new StringDoublePair.TypeAdapter())
 			.disableHtmlEscaping().create();
 	private static final Logger LOG = Logger.getInstance(OpenAIServiceImpl.class);
 	private final HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofMillis(10000L))
@@ -161,7 +161,7 @@ public class OpenAIServiceImpl implements OpenAIService {
 				if (LOG.isTraceEnabled()) {
 					LOG.trace(ex);
 				}
-				bodyHandler.close((Throwable) ex);
+				bodyHandler.close(ex);
 			} else {
 				bodyHandler.close(null);
 			}
@@ -191,7 +191,7 @@ public class OpenAIServiceImpl implements OpenAIService {
 		}
 		OpenAiRequestBody request = new OpenAiRequestBody(prompt, maxTokens, temperature, topP, count, 2, true,
 				stopMarkers, blockMode == BlockMode.ServerSideIndentation, (int) nextLineIndent);
-		String string = GSON.toJson((Object) request);
+		String string = GSON.toJson(request);
 		if (string == null) {
 			throw new IllegalStateException("string cannot be null!");
 		}

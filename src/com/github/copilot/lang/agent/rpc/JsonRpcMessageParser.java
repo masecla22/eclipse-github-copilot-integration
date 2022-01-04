@@ -7,9 +7,6 @@
  */
 package com.github.copilot.lang.agent.rpc;
 
-import javax.annotation.concurrent.NotThreadSafe;
-
-@NotThreadSafe
 public interface JsonRpcMessageParser {
 	public void append(String var1);
 

@@ -11,10 +11,10 @@ public class JsonRpcErrorException extends RuntimeException {
 	private final int requestId;
 
 	public JsonRpcErrorException(int requestId, String message) {
+		super(message);
 		if (message == null) {
 			throw new IllegalStateException("message cannot be null!");
 		}
-		super(message);
 		this.requestId = requestId;
 	}
 
