@@ -33,62 +33,61 @@ import com.intellij.openapi.wm.WindowManager;
 import com.intellij.psi.PsiFile;
 import java.util.Map;
 
-abstract class AbstractDisableCopilotCompletionsAction
-extends AnAction
-implements CopilotAction {
-    private final boolean forCurrentFile;
+abstract class AbstractDisableCopilotCompletionsAction extends AnAction implements CopilotAction {
+	private final boolean forCurrentFile;
 
-    public void update(AnActionEvent e) {
-        Project project;
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        if ((project = e.getProject()) == null) {
-            e.getPresentation().setEnabledAndVisible(false);
-            return;
-        }
-        PsiFile file = (PsiFile)e.getData(CommonDataKeys.PSI_FILE);
-        boolean enabledGlobally = CopilotApplicationSettings.settings().enableCompletions;
-        boolean enabledForFile = file != null && CopilotApplicationSettings.settings().isEnabled(file.getLanguage());
-        e.getPresentation().setEnabledAndVisible(enabledGlobally && enabledForFile);
-    }
+	public void update(AnActionEvent e) {
+		Project project;
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		if ((project = e.getProject()) == null) {
+			e.getPresentation().setEnabledAndVisible(false);
+			return;
+		}
+		PsiFile file = (PsiFile) e.getData(CommonDataKeys.PSI_FILE);
+		boolean enabledGlobally = CopilotApplicationSettings.settings().enableCompletions;
+		boolean enabledForFile = file != null && CopilotApplicationSettings.settings().isEnabled(file.getLanguage());
+		e.getPresentation().setEnabledAndVisible(enabledGlobally && enabledForFile);
+	}
 
-    public void actionPerformed(AnActionEvent e) {
-        StatusBar bar;
-        boolean global;
-        Project project;
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        if ((project = e.getProject()) == null || project.isDisposed()) {
-            return;
-        }
-        PsiFile file = (PsiFile)e.getData(CommonDataKeys.PSI_FILE);
-        boolean bl = global = !this.forCurrentFile || file == null;
-        if (global) {
-            CopilotApplicationSettings.settings().enableCompletions = false;
-        } else {
-            CopilotApplicationSettings.settings().disableLanguage(file.getLanguage());
-        }
-        Editor editor = (Editor)e.getData(CommonDataKeys.EDITOR);
-        if (editor != null && !editor.isDisposed()) {
-            CopilotEditorManager.getInstance().disposeInlays(editor, InlayDisposeContext.SettingsChange);
-        }
-        if ((bar = WindowManager.getInstance().getStatusBar(project)) != null) {
-            bar.setInfo(CopilotBundle.get("action.copilot.disableCopilot.statusEnabled"));
-        }
-        CopilotStatusBarWidget.update(project);
-        String languageId = file == null ? "*" : VSCodeLanguageMap.INTELLIJ_VSCODE_MAP.getOrDefault(file.getLanguage().getID(), file.getLanguage().getID());
-        TelemetryData telemetryData = TelemetryData.createIssued(Map.of("languageId", languageId));
-        TelemetryService.getInstance().track("statusBar" + (global ? ".globalOff" : ".languageOff"), telemetryData);
-    }
+	public void actionPerformed(AnActionEvent e) {
+		StatusBar bar;
+		boolean global;
+		Project project;
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		if ((project = e.getProject()) == null || project.isDisposed()) {
+			return;
+		}
+		PsiFile file = (PsiFile) e.getData(CommonDataKeys.PSI_FILE);
+		boolean bl = global = !this.forCurrentFile || file == null;
+		if (global) {
+			CopilotApplicationSettings.settings().enableCompletions = false;
+		} else {
+			CopilotApplicationSettings.settings().disableLanguage(file.getLanguage());
+		}
+		Editor editor = (Editor) e.getData(CommonDataKeys.EDITOR);
+		if (editor != null && !editor.isDisposed()) {
+			CopilotEditorManager.getInstance().disposeInlays(editor, InlayDisposeContext.SettingsChange);
+		}
+		if ((bar = WindowManager.getInstance().getStatusBar(project)) != null) {
+			bar.setInfo(CopilotBundle.get("action.copilot.disableCopilot.statusEnabled"));
+		}
+		CopilotStatusBarWidget.update(project);
+		String languageId = file == null ? "*"
+				: VSCodeLanguageMap.INTELLIJ_VSCODE_MAP.getOrDefault(file.getLanguage().getID(),
+						file.getLanguage().getID());
+		TelemetryData telemetryData = TelemetryData.createIssued(Map.of("languageId", languageId));
+		TelemetryService.getInstance().track("statusBar" + (global ? ".globalOff" : ".languageOff"), telemetryData);
+	}
 
-    public boolean isDumbAware() {
-        return true;
-    }
+	public boolean isDumbAware() {
+		return true;
+	}
 
-    public AbstractDisableCopilotCompletionsAction(boolean forCurrentFile) {
-        this.forCurrentFile = forCurrentFile;
-    }
+	public AbstractDisableCopilotCompletionsAction(boolean forCurrentFile) {
+		this.forCurrentFile = forCurrentFile;
+	}
 }
-

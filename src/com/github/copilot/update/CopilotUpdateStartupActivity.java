@@ -22,32 +22,29 @@ import com.intellij.util.concurrency.annotations.RequiresBackgroundThread;
 import java.time.ZonedDateTime;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class CopilotUpdateStartupActivity
-implements StartupActivity.Background {
-    private static final Logger LOG = Logger.getInstance(CopilotUpdateStartupActivity.class);
-    private final AtomicBoolean hasRun = new AtomicBoolean(false);
+public class CopilotUpdateStartupActivity implements StartupActivity.Background {
+	private static final Logger LOG = Logger.getInstance(CopilotUpdateStartupActivity.class);
+	private final AtomicBoolean hasRun = new AtomicBoolean(false);
 
-    @RequiresBackgroundThread
-    public void runActivity(Project project) {
-        if (project == null) {
-            throw new IllegalStateException("project cannot be null!");
-        }
-        if (!this.hasRun.compareAndSet(false, true) || ApplicationManager.getApplication().isUnitTestMode()) {
-            return;
-        }
-        if (!CopilotApplicationSettings.settings().checkForUpdate) {
-            LOG.debug("Update check is disabled");
-            return;
-        }
-        ZonedDateTime now = ZonedDateTime.now();
-        ZonedDateTime lastCheck = CopilotLocalApplicationSettings.settings().lastUpdateCheck;
-        if (lastCheck != null && lastCheck.plusDays(1L).isAfter(now)) {
-            return;
-        }
-        CopilotLocalApplicationSettings.settings().lastUpdateCheck = now;
-        new CopilotPluginUpdater.CheckUpdatesTask(project).queue();
-    }
+	@RequiresBackgroundThread
+	public void runActivity(Project project) {
+		if (project == null) {
+			throw new IllegalStateException("project cannot be null!");
+		}
+		if (!this.hasRun.compareAndSet(false, true) || ApplicationManager.getApplication().isUnitTestMode()) {
+			return;
+		}
+		if (!CopilotApplicationSettings.settings().checkForUpdate) {
+			LOG.debug("Update check is disabled");
+			return;
+		}
+		ZonedDateTime now = ZonedDateTime.now();
+		ZonedDateTime lastCheck = CopilotLocalApplicationSettings.settings().lastUpdateCheck;
+		if (lastCheck != null && lastCheck.plusDays(1L).isAfter(now)) {
+			return;
+		}
+		CopilotLocalApplicationSettings.settings().lastUpdateCheck = now;
+		new CopilotPluginUpdater.CheckUpdatesTask(project).queue();
+	}
 
-    
 }
-

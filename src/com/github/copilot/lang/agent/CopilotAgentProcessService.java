@@ -14,20 +14,19 @@ import com.intellij.openapi.application.ApplicationManager;
 import org.jetbrains.concurrency.Promise;
 
 public interface CopilotAgentProcessService {
-        public static CopilotAgentProcessService getInstance() {
-        CopilotAgentProcessService copilotAgentProcessService = (CopilotAgentProcessService)ApplicationManager.getApplication().getService(CopilotAgentProcessService.class);
-        if (copilotAgentProcessService == null) {
-            throw new IllegalStateException("copilotAgentProcessService cannot be null!");
-        }
-        return copilotAgentProcessService;
-    }
+	public static CopilotAgentProcessService getInstance() {
+		CopilotAgentProcessService copilotAgentProcessService = (CopilotAgentProcessService) ApplicationManager
+				.getApplication().getService(CopilotAgentProcessService.class);
+		if (copilotAgentProcessService == null) {
+			throw new IllegalStateException("copilotAgentProcessService cannot be null!");
+		}
+		return copilotAgentProcessService;
+	}
 
-    public boolean isSupported();
+	public boolean isSupported();
 
-        public <T> Promise<T> executeCommand(JsonRpcCommand<T> var1);
+	public <T> Promise<T> executeCommand(JsonRpcCommand<T> var1);
 
-    public void executeNotification(JsonRpcNotification var1);
+	public void executeNotification(JsonRpcNotification var1);
 
-    
 }
-

@@ -20,74 +20,74 @@ import it.unimi.dsi.fastutil.objects.Object2DoubleMaps;
 import it.unimi.dsi.fastutil.objects.Object2DoubleOpenHashMap;
 import java.io.IOException;
 
-public final class String2DoubleMap
-extends Object2DoubleOpenHashMap<String> {
-    public static final Object2DoubleMap<String> EMPTY = new Object2DoubleMaps.EmptyMap<String>(){};
+public final class String2DoubleMap extends Object2DoubleOpenHashMap<String> {
+	public static final Object2DoubleMap<String> EMPTY = new Object2DoubleMaps.EmptyMap<String>() {
+	};
 
-    public static Object2DoubleMap<String> of() {
-        return EMPTY;
-    }
+	public static Object2DoubleMap<String> of() {
+		return EMPTY;
+	}
 
-    public static Object2DoubleMap<String> of(String key, double value) {
-        return Object2DoubleMaps.singleton((Object)key, (double)value);
-    }
+	public static Object2DoubleMap<String> of(String key, double value) {
+		return Object2DoubleMaps.singleton((Object) key, (double) value);
+	}
 
-    public static Object2DoubleMap<String> of(String k1, double v1, String k2, double v2) {
-        String2DoubleMap map = new String2DoubleMap();
-        map.put(k1, v1);
-        map.put(k2, v2);
-        return map;
-    }
+	public static Object2DoubleMap<String> of(String k1, double v1, String k2, double v2) {
+		String2DoubleMap map = new String2DoubleMap();
+		map.put(k1, v1);
+		map.put(k2, v2);
+		return map;
+	}
 
-    public static Object2DoubleMap<String> of(String k1, double v1, String k2, double v2, String k3, double v3) {
-        String2DoubleMap map = new String2DoubleMap();
-        map.put(k1, v1);
-        map.put(k2, v2);
-        map.put(k3, v3);
-        return map;
-    }
+	public static Object2DoubleMap<String> of(String k1, double v1, String k2, double v2, String k3, double v3) {
+		String2DoubleMap map = new String2DoubleMap();
+		map.put(k1, v1);
+		map.put(k2, v2);
+		map.put(k3, v3);
+		return map;
+	}
 
-    public static Object2DoubleMap<String> of(String k1, double v1, String k2, double v2, String k3, double v3, String k4, double v4) {
-        String2DoubleMap map = new String2DoubleMap();
-        map.put(k1, v1);
-        map.put(k2, v2);
-        map.put(k3, v3);
-        map.put(k4, v4);
-        return map;
-    }
+	public static Object2DoubleMap<String> of(String k1, double v1, String k2, double v2, String k3, double v3,
+			String k4, double v4) {
+		String2DoubleMap map = new String2DoubleMap();
+		map.put(k1, v1);
+		map.put(k2, v2);
+		map.put(k3, v3);
+		map.put(k4, v4);
+		return map;
+	}
 
-    public static Object2DoubleMap<String> of(String k1, double v1, String k2, double v2, String k3, double v3, String k4, double v4, String k5, double v5) {
-        String2DoubleMap map = new String2DoubleMap();
-        map.put(k1, v1);
-        map.put(k2, v2);
-        map.put(k3, v3);
-        map.put(k4, v4);
-        map.put(k5, v5);
-        return map;
-    }
+	public static Object2DoubleMap<String> of(String k1, double v1, String k2, double v2, String k3, double v3,
+			String k4, double v4, String k5, double v5) {
+		String2DoubleMap map = new String2DoubleMap();
+		map.put(k1, v1);
+		map.put(k2, v2);
+		map.put(k3, v3);
+		map.put(k4, v4);
+		map.put(k5, v5);
+		return map;
+	}
 
-    public static final class TypeAdapter
-    extends com.google.gson.TypeAdapter<String2DoubleMap> {
-        public void write(JsonWriter jsonWriter, String2DoubleMap string2DoubleMap) throws IOException {
-            jsonWriter.beginObject();
-            for (Object2DoubleMap.Entry entry : string2DoubleMap.object2DoubleEntrySet()) {
-                jsonWriter.name((String)entry.getKey());
-                jsonWriter.value(entry.getDoubleValue());
-            }
-            jsonWriter.endObject();
-        }
+	public static final class TypeAdapter extends com.google.gson.TypeAdapter<String2DoubleMap> {
+		public void write(JsonWriter jsonWriter, String2DoubleMap string2DoubleMap) throws IOException {
+			jsonWriter.beginObject();
+			for (Object2DoubleMap.Entry entry : string2DoubleMap.object2DoubleEntrySet()) {
+				jsonWriter.name((String) entry.getKey());
+				jsonWriter.value(entry.getDoubleValue());
+			}
+			jsonWriter.endObject();
+		}
 
-        public String2DoubleMap read(JsonReader jsonReader) throws IOException {
-            String2DoubleMap map = new String2DoubleMap();
-            jsonReader.beginObject();
-            while (jsonReader.hasNext()) {
-                String key = jsonReader.nextName();
-                double value = jsonReader.nextDouble();
-                map.put(key, value);
-            }
-            jsonReader.endObject();
-            return map;
-        }
-    }
+		public String2DoubleMap read(JsonReader jsonReader) throws IOException {
+			String2DoubleMap map = new String2DoubleMap();
+			jsonReader.beginObject();
+			while (jsonReader.hasNext()) {
+				String key = jsonReader.nextName();
+				double value = jsonReader.nextDouble();
+				map.put(key, value);
+			}
+			jsonReader.endObject();
+			return map;
+		}
+	}
 }
-

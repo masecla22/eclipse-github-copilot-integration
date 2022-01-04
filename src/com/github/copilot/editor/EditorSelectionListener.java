@@ -28,39 +28,36 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 
-public class EditorSelectionListener
-implements FileEditorManagerListener {
-    private final Project project;
+public class EditorSelectionListener implements FileEditorManagerListener {
+	private final Project project;
 
-    public EditorSelectionListener(Project project) {
-        if (project == null) {
-            throw new IllegalStateException("project cannot be null!");
-        }
-        this.project = project;
-    }
+	public EditorSelectionListener(Project project) {
+		if (project == null) {
+			throw new IllegalStateException("project cannot be null!");
+		}
+		this.project = project;
+	}
 
-    public void selectionChanged(FileEditorManagerEvent event) {
-        VirtualFile oldFile;
-        if (event == null) {
-            throw new IllegalStateException("event cannot be null!");
-        }
-        if ((oldFile = event.getOldFile()) == null || !oldFile.isValid()) {
-            return;
-        }
-        PsiFile psiFile = PsiManager.getInstance((Project)this.project).findFile(oldFile);
-        if (psiFile == null || !psiFile.isValid()) {
-            return;
-        }
-        if (LanguageSupport.find(psiFile) == null) {
-            return;
-        }
-        FileEditor oldEditor = event.getOldEditor();
-        if (oldEditor instanceof TextEditor) {
-            Editor editor = ((TextEditor)oldEditor).getEditor();
-            CopilotEditorManager.getInstance().disposeInlays(editor, InlayDisposeContext.UserAction);
-        }
-    }
+	public void selectionChanged(FileEditorManagerEvent event) {
+		VirtualFile oldFile;
+		if (event == null) {
+			throw new IllegalStateException("event cannot be null!");
+		}
+		if ((oldFile = event.getOldFile()) == null || !oldFile.isValid()) {
+			return;
+		}
+		PsiFile psiFile = PsiManager.getInstance((Project) this.project).findFile(oldFile);
+		if (psiFile == null || !psiFile.isValid()) {
+			return;
+		}
+		if (LanguageSupport.find(psiFile) == null) {
+			return;
+		}
+		FileEditor oldEditor = event.getOldEditor();
+		if (oldEditor instanceof TextEditor) {
+			Editor editor = ((TextEditor) oldEditor).getEditor();
+			CopilotEditorManager.getInstance().disposeInlays(editor, InlayDisposeContext.UserAction);
+		}
+	}
 
-    
 }
-

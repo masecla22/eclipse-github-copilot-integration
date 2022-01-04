@@ -6,8 +6,6 @@
  */
 package com.github.copilot.lang.agent.rpc;
 
-
 public interface JsonRpcNotification {
-        public String getCommandName();
+	public String getCommandName();
 }
-

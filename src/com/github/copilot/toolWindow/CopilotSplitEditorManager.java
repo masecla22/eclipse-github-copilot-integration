@@ -34,57 +34,58 @@ import com.intellij.psi.PsiFile;
 import com.intellij.util.concurrency.annotations.RequiresEdt;
 
 public class CopilotSplitEditorManager {
-    private static final Logger LOG = Logger.getInstance(CopilotSplitEditorManager.class);
+	private static final Logger LOG = Logger.getInstance(CopilotSplitEditorManager.class);
 
-        public static CopilotSplitEditorManager getInstance() {
-        CopilotSplitEditorManager copilotSplitEditorManager = (CopilotSplitEditorManager)ApplicationManager.getApplication().getService(CopilotSplitEditorManager.class);
-        if (copilotSplitEditorManager == null) {
-            throw new IllegalStateException("copilotSplitEditorManager cannot be null!");
-        }
-        return copilotSplitEditorManager;
-    }
+	public static CopilotSplitEditorManager getInstance() {
+		CopilotSplitEditorManager copilotSplitEditorManager = (CopilotSplitEditorManager) ApplicationManager
+				.getApplication().getService(CopilotSplitEditorManager.class);
+		if (copilotSplitEditorManager == null) {
+			throw new IllegalStateException("copilotSplitEditorManager cannot be null!");
+		}
+		return copilotSplitEditorManager;
+	}
 
-    @RequiresEdt
-    public void openCopilot(Editor editor, boolean force) {
-        OpenCopilotHandler handler;
-        if (editor == null) {
-            throw new IllegalStateException("editor cannot be null!");
-        }
-        LOG.debug("openCopilot");
-        if (!force && !CopilotEditorUtil.isFocusedEditor(editor)) {
-            LOG.debug("skipping completions for unfocused editor: " + editor);
-            return;
-        }
-        Project project = editor.getProject();
-        if (project == null) {
-            return;
-        }
-        Document document = editor.getDocument();
-        PsiFile psiFile = PsiDocumentManager.getInstance((Project)project).getPsiFile(document);
-        if (psiFile == null) {
-            return;
-        }
-        LanguageSupport language = LanguageSupport.find(psiFile);
-        if (language == null) {
-            return;
-        }
-        int offset = editor.getCaretModel().getOffset();
-        int eolOffset = editor.getDocument().getLineEndOffset(editor.getDocument().getLineNumber(offset));
-        EditorRequest request = CopilotCompletionService.getInstance().createRequest(editor, eolOffset, CompletionType.OpenCopilot);
-        if (request == null) {
-            return;
-        }
-        CopilotEditorUtil.addEditorRequest(editor, request);
-        ToolWindow toolWindow = ToolWindowManager.getInstance((Project)project).getToolWindow("github.copilotToolWindow");
-        if (toolWindow != null) {
-            toolWindow.getContentManager().removeAllContents(true);
-            toolWindow.show();
-        }
-        if ((handler = OpenCopilotHandler.create(project, psiFile.getFileType(), editor, request)) != null) {
-            handler.updateToolWindow();
-        }
-    }
+	@RequiresEdt
+	public void openCopilot(Editor editor, boolean force) {
+		OpenCopilotHandler handler;
+		if (editor == null) {
+			throw new IllegalStateException("editor cannot be null!");
+		}
+		LOG.debug("openCopilot");
+		if (!force && !CopilotEditorUtil.isFocusedEditor(editor)) {
+			LOG.debug("skipping completions for unfocused editor: " + editor);
+			return;
+		}
+		Project project = editor.getProject();
+		if (project == null) {
+			return;
+		}
+		Document document = editor.getDocument();
+		PsiFile psiFile = PsiDocumentManager.getInstance((Project) project).getPsiFile(document);
+		if (psiFile == null) {
+			return;
+		}
+		LanguageSupport language = LanguageSupport.find(psiFile);
+		if (language == null) {
+			return;
+		}
+		int offset = editor.getCaretModel().getOffset();
+		int eolOffset = editor.getDocument().getLineEndOffset(editor.getDocument().getLineNumber(offset));
+		EditorRequest request = CopilotCompletionService.getInstance().createRequest(editor, eolOffset,
+				CompletionType.OpenCopilot);
+		if (request == null) {
+			return;
+		}
+		CopilotEditorUtil.addEditorRequest(editor, request);
+		ToolWindow toolWindow = ToolWindowManager.getInstance((Project) project)
+				.getToolWindow("github.copilotToolWindow");
+		if (toolWindow != null) {
+			toolWindow.getContentManager().removeAllContents(true);
+			toolWindow.show();
+		}
+		if ((handler = OpenCopilotHandler.create(project, psiFile.getFileType(), editor, request)) != null) {
+			handler.updateToolWindow();
+		}
+	}
 
-    
 }
-

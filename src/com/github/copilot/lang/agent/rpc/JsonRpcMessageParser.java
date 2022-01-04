@@ -11,8 +11,7 @@ import javax.annotation.concurrent.NotThreadSafe;
 
 @NotThreadSafe
 public interface JsonRpcMessageParser {
-    public void append(String var1);
+	public void append(String var1);
 
-    public void close();
+	public void close();
 }
-

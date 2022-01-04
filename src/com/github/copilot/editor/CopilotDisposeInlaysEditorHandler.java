@@ -20,44 +20,43 @@ import com.intellij.openapi.editor.Caret;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.actionSystem.EditorActionHandler;
 
-public class CopilotDisposeInlaysEditorHandler
-extends EditorActionHandler {
-        private final EditorActionHandler baseHandler;
+public class CopilotDisposeInlaysEditorHandler extends EditorActionHandler {
+	private final EditorActionHandler baseHandler;
 
-    public CopilotDisposeInlaysEditorHandler(EditorActionHandler baseHandler) {
-        this.baseHandler = baseHandler;
-    }
+	public CopilotDisposeInlaysEditorHandler(EditorActionHandler baseHandler) {
+		this.baseHandler = baseHandler;
+	}
 
-    protected boolean isEnabledForCaret(Editor editor, Caret caret, DataContext dataContext) {
-        CopilotEditorManager manager;
-        if (editor == null) {
-            throw new IllegalStateException("editor cannot be null!");
-        }
-        if (caret == null) {
-            throw new IllegalStateException("caret cannot be null!");
-        }
-        return (manager = CopilotEditorManager.getInstance()).isAvailable(editor) && manager.hasCompletionInlays(editor) && LookupManager.getActiveLookup((Editor)editor) == null || this.baseHandler != null && this.baseHandler.isEnabled(editor, caret, dataContext);
-    }
+	protected boolean isEnabledForCaret(Editor editor, Caret caret, DataContext dataContext) {
+		CopilotEditorManager manager;
+		if (editor == null) {
+			throw new IllegalStateException("editor cannot be null!");
+		}
+		if (caret == null) {
+			throw new IllegalStateException("caret cannot be null!");
+		}
+		return (manager = CopilotEditorManager.getInstance()).isAvailable(editor) && manager.hasCompletionInlays(editor)
+				&& LookupManager.getActiveLookup((Editor) editor) == null
+				|| this.baseHandler != null && this.baseHandler.isEnabled(editor, caret, dataContext);
+	}
 
-    public boolean executeInCommand(Editor editor, DataContext dataContext) {
-        if (editor == null) {
-            throw new IllegalStateException("editor cannot be null!");
-        }
-        return this.baseHandler != null && this.baseHandler.executeInCommand(editor, dataContext);
-    }
+	public boolean executeInCommand(Editor editor, DataContext dataContext) {
+		if (editor == null) {
+			throw new IllegalStateException("editor cannot be null!");
+		}
+		return this.baseHandler != null && this.baseHandler.executeInCommand(editor, dataContext);
+	}
 
-    protected void doExecute(Editor editor, Caret caret, DataContext dataContext) {
-        if (editor == null) {
-            throw new IllegalStateException("editor cannot be null!");
-        }
-        if (LookupManager.getActiveLookup((Editor)editor) == null) {
-            CopilotEditorManager.getInstance().disposeInlays(editor, InlayDisposeContext.CaretChange);
-        }
-        if (this.baseHandler != null && this.baseHandler.isEnabled(editor, caret, dataContext)) {
-            this.baseHandler.execute(editor, caret, dataContext);
-        }
-    }
+	protected void doExecute(Editor editor, Caret caret, DataContext dataContext) {
+		if (editor == null) {
+			throw new IllegalStateException("editor cannot be null!");
+		}
+		if (LookupManager.getActiveLookup((Editor) editor) == null) {
+			CopilotEditorManager.getInstance().disposeInlays(editor, InlayDisposeContext.CaretChange);
+		}
+		if (this.baseHandler != null && this.baseHandler.isEnabled(editor, caret, dataContext)) {
+			this.baseHandler.execute(editor, caret, dataContext);
+		}
+	}
 
-    
 }
-

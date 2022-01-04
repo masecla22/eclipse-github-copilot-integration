@@ -19,34 +19,33 @@ import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 
 public interface SignInInitiateResult {
-    public boolean isAlreadySignedIn();
+	public boolean isAlreadySignedIn();
 
-    public static final class TypeAdapter
-    implements JsonDeserializer<SignInInitiateResult> {
-        public SignInInitiateResult deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext context) throws JsonParseException {
-            String status;
-            JsonObject o = jsonElement.getAsJsonObject();
-            switch (status = o.getAsJsonPrimitive("status").getAsString()) {
-                case "PromptUserDeviceFlow": {
-                    return this.readAuthRequired(o);
-                }
-                case "AlreadySignedIn": {
-                    return new SignInInitiateSignedInResult();
-                }
-            }
-            throw new IllegalStateException("Unexpected status: " + status);
-        }
+	public static final class TypeAdapter implements JsonDeserializer<SignInInitiateResult> {
+		public SignInInitiateResult deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext context)
+				throws JsonParseException {
+			String status;
+			JsonObject o = jsonElement.getAsJsonObject();
+			switch (status = o.getAsJsonPrimitive("status").getAsString()) {
+			case "PromptUserDeviceFlow": {
+				return this.readAuthRequired(o);
+			}
+			case "AlreadySignedIn": {
+				return new SignInInitiateSignedInResult();
+			}
+			}
+			throw new IllegalStateException("Unexpected status: " + status);
+		}
 
-        private SignInInitiateResult readAuthRequired(JsonObject o) {
-            if (o == null) {
-                throw new IllegalStateException("o cannot be null!");
-            }
-            String userCode = o.getAsJsonPrimitive("userCode").getAsString();
-            String uri = o.getAsJsonPrimitive("verificationUri").getAsString();
-            long expiresIn = o.getAsJsonPrimitive("expiresIn").getAsLong();
-            long interval = o.getAsJsonPrimitive("interval").getAsLong();
-            return new SignInInitiateNotSignedInResult(userCode, uri, expiresIn, interval);
-        }
-    }
+		private SignInInitiateResult readAuthRequired(JsonObject o) {
+			if (o == null) {
+				throw new IllegalStateException("o cannot be null!");
+			}
+			String userCode = o.getAsJsonPrimitive("userCode").getAsString();
+			String uri = o.getAsJsonPrimitive("verificationUri").getAsString();
+			long expiresIn = o.getAsJsonPrimitive("expiresIn").getAsLong();
+			long interval = o.getAsJsonPrimitive("interval").getAsLong();
+			return new SignInInitiateNotSignedInResult(userCode, uri, expiresIn, interval);
+		}
+	}
 }
-

@@ -8,22 +8,22 @@ package com.github.copilot;
 
 import com.intellij.openapi.util.IconLoader;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 public final class CopilotIcons {
-    public static final Icon COPILOT;
-    public static final Icon StatusBarIcon;
-    public static final Icon StatusBarIconDisabled;
-    public static final Icon StatusBarIconError;
-    public static final Icon ToolWindowIcon;
+	public static final Icon COPILOT;
+	public static final Icon StatusBarIcon;
+	public static final Icon StatusBarIconDisabled;
+	public static final Icon StatusBarIconError;
+	public static final Icon ToolWindowIcon;
 
-    private CopilotIcons() {
-    }
+	private CopilotIcons() {
+	}
 
-    static {
-        StatusBarIcon = COPILOT = IconLoader.getIcon((String)"icons/copilot.svg", CopilotIcons.class);
-        StatusBarIconDisabled = IconLoader.getIcon((String)"icons/copilot_disabled.svg", CopilotIcons.class);
-        StatusBarIconError = IconLoader.getIcon((String)"icons/copilot_error.svg", CopilotIcons.class);
-        ToolWindowIcon = IconLoader.getIcon((String)"icons/copilot_toolwindow.svg", CopilotIcons.class);
-    }
+	static {
+		StatusBarIcon = COPILOT = IconLoader.getIcon((String) "icons/copilot.svg", CopilotIcons.class);
+		StatusBarIconDisabled = IconLoader.getIcon((String) "icons/copilot_disabled.svg", CopilotIcons.class);
+		StatusBarIconError = IconLoader.getIcon((String) "icons/copilot_error.svg", CopilotIcons.class);
+		ToolWindowIcon = IconLoader.getIcon((String) "icons/copilot_toolwindow.svg", CopilotIcons.class);
+	}
 }
-

@@ -19,24 +19,22 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 
-public class OpenCopilotDisableReaderModeMatcher
-implements ReaderModeMatcher {
-        public Boolean matches(Project project, VirtualFile virtualFile, Editor editor, ReaderModeProvider.ReaderMode readerMode) {
-        if (project == null) {
-            throw new IllegalStateException("project cannot be null!");
-        }
-        if (virtualFile == null) {
-            throw new IllegalStateException("virtualFile cannot be null!");
-        }
-        if (readerMode == null) {
-            throw new IllegalStateException("readerMode cannot be null!");
-        }
-        if (OpenCopilotHandler.isCopilotSnippetFile(virtualFile)) {
-            return false;
-        }
-        return null;
-    }
+public class OpenCopilotDisableReaderModeMatcher implements ReaderModeMatcher {
+	public Boolean matches(Project project, VirtualFile virtualFile, Editor editor,
+			ReaderModeProvider.ReaderMode readerMode) {
+		if (project == null) {
+			throw new IllegalStateException("project cannot be null!");
+		}
+		if (virtualFile == null) {
+			throw new IllegalStateException("virtualFile cannot be null!");
+		}
+		if (readerMode == null) {
+			throw new IllegalStateException("readerMode cannot be null!");
+		}
+		if (OpenCopilotHandler.isCopilotSnippetFile(virtualFile)) {
+			return false;
+		}
+		return null;
+	}
 
-    
 }
-

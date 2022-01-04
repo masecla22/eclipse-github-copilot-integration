@@ -38,91 +38,90 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
 import java.awt.event.KeyEvent;
 
-public class CopilotApplyInlaysAction
-extends EditorAction
-implements DumbAware,
-CopilotAction {
-    public static final String ID = "copilot.applyInlays";
+public class CopilotApplyInlaysAction extends EditorAction implements DumbAware, CopilotAction {
+	public static final String ID = "copilot.applyInlays";
 
-    public CopilotApplyInlaysAction() {
-        super((EditorActionHandler)new ApplyInlaysHandler());
-        this.setInjectedContext(true);
-    }
+	public CopilotApplyInlaysAction() {
+		super((EditorActionHandler) new ApplyInlaysHandler());
+		this.setInjectedContext(true);
+	}
 
-    public void update(AnActionEvent e) {
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        if (this.isIgnoredKeyboardEvent(e)) {
-            e.getPresentation().setEnabled(false);
-            return;
-        }
-        super.update(e);
-    }
+	public void update(AnActionEvent e) {
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		if (this.isIgnoredKeyboardEvent(e)) {
+			e.getPresentation().setEnabled(false);
+			return;
+		}
+		super.update(e);
+	}
 
-    private boolean isIgnoredKeyboardEvent(AnActionEvent e) {
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        if (!(e.getInputEvent() instanceof KeyEvent)) {
-            return false;
-        }
-        if (((KeyEvent)e.getInputEvent()).getKeyChar() != '\t') {
-            return false;
-        }
-        Project project = e.getProject();
-        if (project == null) {
-            return false;
-        }
-        Editor editor = this.getEditor(e.getDataContext());
-        if (editor == null) {
-            return false;
-        }
-        int blockIndent = CodeStyle.getIndentOptions((Project)project, (Document)editor.getDocument()).INDENT_SIZE;
-        int caretOffset = editor.getCaretModel().getOffset();
-        int line = editor.getDocument().getLineNumber(caretOffset);
-        int caretAfterTab = EditorUtilCopy.indentLine(project, editor, line, blockIndent, caretOffset);
-        TextRange tabRange = TextRange.from((int)caretOffset, (int)caretAfterTab);
-        CopilotEditorManager editorManager = CopilotEditorManager.getInstance();
-        return editorManager.countCompletionInlays(editor, tabRange, true, false, false, false) == 0 && editorManager.countCompletionInlays(editor, tabRange, false, true, true, false) == 0;
-    }
+	private boolean isIgnoredKeyboardEvent(AnActionEvent e) {
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		if (!(e.getInputEvent() instanceof KeyEvent)) {
+			return false;
+		}
+		if (((KeyEvent) e.getInputEvent()).getKeyChar() != '\t') {
+			return false;
+		}
+		Project project = e.getProject();
+		if (project == null) {
+			return false;
+		}
+		Editor editor = this.getEditor(e.getDataContext());
+		if (editor == null) {
+			return false;
+		}
+		int blockIndent = CodeStyle.getIndentOptions((Project) project, (Document) editor.getDocument()).INDENT_SIZE;
+		int caretOffset = editor.getCaretModel().getOffset();
+		int line = editor.getDocument().getLineNumber(caretOffset);
+		int caretAfterTab = EditorUtilCopy.indentLine(project, editor, line, blockIndent, caretOffset);
+		TextRange tabRange = TextRange.from((int) caretOffset, (int) caretAfterTab);
+		CopilotEditorManager editorManager = CopilotEditorManager.getInstance();
+		return editorManager.countCompletionInlays(editor, tabRange, true, false, false, false) == 0
+				&& editorManager.countCompletionInlays(editor, tabRange, false, true, true, false) == 0;
+	}
 
-    static boolean isSupported(Editor editor) {
-        Project project;
-        if (editor == null) {
-            throw new IllegalStateException("editor cannot be null!");
-        }
-        return (project = editor.getProject()) != null && editor.getCaretModel().getCaretCount() == 1 && LookupManager.getActiveLookup((Editor)editor) == null && CopilotEditorManager.getInstance().hasCompletionInlays(editor) && TemplateManager.getInstance((Project)project).getActiveTemplate(editor) == null;
-    }
+	static boolean isSupported(Editor editor) {
+		Project project;
+		if (editor == null) {
+			throw new IllegalStateException("editor cannot be null!");
+		}
+		return (project = editor.getProject()) != null && editor.getCaretModel().getCaretCount() == 1
+				&& LookupManager.getActiveLookup((Editor) editor) == null
+				&& CopilotEditorManager.getInstance().hasCompletionInlays(editor)
+				&& TemplateManager.getInstance((Project) project).getActiveTemplate(editor) == null;
+	}
 
-    private static class ApplyInlaysHandler
-    extends EditorActionHandler {
-        private ApplyInlaysHandler() {
-        }
+	private static class ApplyInlaysHandler extends EditorActionHandler {
+		private ApplyInlaysHandler() {
+		}
 
-        protected boolean isEnabledForCaret(Editor editor, Caret caret, DataContext dataContext) {
-            if (editor == null) {
-                throw new IllegalStateException("editor cannot be null!");
-            }
-            if (caret == null) {
-                throw new IllegalStateException("caret cannot be null!");
-            }
-            return CopilotApplyInlaysAction.isSupported(editor);
-        }
+		protected boolean isEnabledForCaret(Editor editor, Caret caret, DataContext dataContext) {
+			if (editor == null) {
+				throw new IllegalStateException("editor cannot be null!");
+			}
+			if (caret == null) {
+				throw new IllegalStateException("caret cannot be null!");
+			}
+			return CopilotApplyInlaysAction.isSupported(editor);
+		}
 
-        public boolean executeInCommand(Editor editor, DataContext dataContext) {
-            if (editor == null) {
-                throw new IllegalStateException("editor cannot be null!");
-            }
-            return false;
-        }
+		public boolean executeInCommand(Editor editor, DataContext dataContext) {
+			if (editor == null) {
+				throw new IllegalStateException("editor cannot be null!");
+			}
+			return false;
+		}
 
-        protected void doExecute(Editor editor, Caret caret, DataContext dataContext) {
-            if (editor == null) {
-                throw new IllegalStateException("editor cannot be null!");
-            }
-            CopilotEditorManager.getInstance().applyCompletion(editor);
-        }
-    }
+		protected void doExecute(Editor editor, Caret caret, DataContext dataContext) {
+			if (editor == null) {
+				throw new IllegalStateException("editor cannot be null!");
+			}
+			CopilotEditorManager.getInstance().applyCompletion(editor);
+		}
+	}
 }
-

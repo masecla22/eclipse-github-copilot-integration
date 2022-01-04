@@ -14,26 +14,23 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.application.ApplicationManager;
 import java.util.UUID;
 
-public class CopilotTestExceptionAction
-extends AnAction {
-    public void update(AnActionEvent e) {
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        e.getPresentation().setEnabledAndVisible(ApplicationManager.getApplication().isInternal());
-    }
+public class CopilotTestExceptionAction extends AnAction {
+	public void update(AnActionEvent e) {
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		e.getPresentation().setEnabledAndVisible(ApplicationManager.getApplication().isInternal());
+	}
 
-    public boolean isDumbAware() {
-        return true;
-    }
+	public boolean isDumbAware() {
+		return true;
+	}
 
-    public void actionPerformed(AnActionEvent e) {
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        throw new RuntimeException("Test exception by GitHub Copilot plugin, " + UUID.randomUUID());
-    }
+	public void actionPerformed(AnActionEvent e) {
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		throw new RuntimeException("Test exception by GitHub Copilot plugin, " + UUID.randomUUID());
+	}
 
-    
 }
-

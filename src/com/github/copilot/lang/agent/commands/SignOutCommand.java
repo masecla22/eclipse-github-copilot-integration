@@ -8,16 +8,14 @@ package com.github.copilot.lang.agent.commands;
 
 import com.github.copilot.lang.agent.rpc.JsonRpcCommand;
 
-public class SignOutCommand
-implements JsonRpcCommand<AuthStatusResult> {
-    @Override
-        public String getCommandName() {
-        return "signOut";
-    }
+public class SignOutCommand implements JsonRpcCommand<AuthStatusResult> {
+	@Override
+	public String getCommandName() {
+		return "signOut";
+	}
 
-    @Override
-        public Class<AuthStatusResult> getResponseType() {
-        return AuthStatusResult.class;
-    }
+	@Override
+	public Class<AuthStatusResult> getResponseType() {
+		return AuthStatusResult.class;
+	}
 }
-

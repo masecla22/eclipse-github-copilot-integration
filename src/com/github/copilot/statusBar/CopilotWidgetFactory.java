@@ -19,35 +19,32 @@ import com.intellij.openapi.wm.impl.status.widget.StatusBarEditorBasedWidgetFact
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NonNls;
 
-public class CopilotWidgetFactory
-extends StatusBarEditorBasedWidgetFactory {
-    @NonNls
-        public String getId() {
-        return "com.github.copilot";
-    }
+public class CopilotWidgetFactory extends StatusBarEditorBasedWidgetFactory {
+	@NonNls
+	public String getId() {
+		return "com.github.copilot";
+	}
 
-    @Nls
-        public String getDisplayName() {
-        String string = CopilotBundle.get("statusBar.displayName");
-        if (string == null) {
-            throw new IllegalStateException("string cannot be null!");
-        }
-        return string;
-    }
+	@Nls
+	public String getDisplayName() {
+		String string = CopilotBundle.get("statusBar.displayName");
+		if (string == null) {
+			throw new IllegalStateException("string cannot be null!");
+		}
+		return string;
+	}
 
-        public StatusBarWidget createWidget(Project project) {
-        if (project == null) {
-            throw new IllegalStateException("project cannot be null!");
-        }
-        return new CopilotStatusBarWidget(project);
-    }
+	public StatusBarWidget createWidget(Project project) {
+		if (project == null) {
+			throw new IllegalStateException("project cannot be null!");
+		}
+		return new CopilotStatusBarWidget(project);
+	}
 
-    public void disposeWidget(StatusBarWidget widget) {
-        if (widget == null) {
-            throw new IllegalStateException("widget cannot be null!");
-        }
-    }
+	public void disposeWidget(StatusBarWidget widget) {
+		if (widget == null) {
+			throw new IllegalStateException("widget cannot be null!");
+		}
+	}
 
-    
 }
-

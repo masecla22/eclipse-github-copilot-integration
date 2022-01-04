@@ -9,15 +9,14 @@ package com.github.copilot.completions;
 import java.util.List;
 
 public interface CopilotEditorInlay {
-        public CopilotCompletionType getType();
+	public CopilotCompletionType getType();
 
-        public List<String> getLines();
+	public List<String> getLines();
 
-    public int getEditorOffset();
+	public int getEditorOffset();
 
-    default public boolean isEmptyCompletion() {
-        List<String> completion = this.getLines();
-        return completion.isEmpty() || completion.size() == 1 && completion.get(0).isEmpty();
-    }
+	default public boolean isEmptyCompletion() {
+		List<String> completion = this.getLines();
+		return completion.isEmpty() || completion.size() == 1 && completion.get(0).isEmpty();
+	}
 }
-

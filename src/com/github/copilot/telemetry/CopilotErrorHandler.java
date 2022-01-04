@@ -39,50 +39,51 @@ import com.intellij.util.Consumer;
 import java.awt.Component;
 import java.util.Map;
 
-public class CopilotErrorHandler
-extends ErrorReportSubmitter {
-    private static final Logger LOG = Logger.getInstance(CopilotErrorHandler.class);
+public class CopilotErrorHandler extends ErrorReportSubmitter {
+	private static final Logger LOG = Logger.getInstance(CopilotErrorHandler.class);
 
-    @NlsActions.ActionText
-        public String getReportActionText() {
-        String string = CopilotBundle.get("errorHandler.reportAction.text");
-        if (string == null) {
-            throw new IllegalStateException("string cannot be null!");
-        }
-        return string;
-    }
+	@NlsActions.ActionText
+	public String getReportActionText() {
+		String string = CopilotBundle.get("errorHandler.reportAction.text");
+		if (string == null) {
+			throw new IllegalStateException("string cannot be null!");
+		}
+		return string;
+	}
 
-    public boolean submit(final IdeaLoggingEvent [] events, final String additionalInfo, Component parentComponent, final Consumer<? super SubmittedReportInfo> consumer) {
-        if (parentComponent == null) {
-            throw new IllegalStateException("parentComponent cannot be null!");
-        }
-        if (consumer == null) {
-            throw new IllegalStateException("consumer cannot be null!");
-        }
-        if (events == null) {
-            throw new IllegalStateException("events cannot be null!");
-        }
-        Project project = (Project)CommonDataKeys.PROJECT.getData(DataManager.getInstance().getDataContext(parentComponent));
-        new Task.Backgroundable(project, CopilotBundle.get("errorHandler.reportDialog.title"), false){
+	public boolean submit(final IdeaLoggingEvent[] events, final String additionalInfo, Component parentComponent,
+			final Consumer<? super SubmittedReportInfo> consumer) {
+		if (parentComponent == null) {
+			throw new IllegalStateException("parentComponent cannot be null!");
+		}
+		if (consumer == null) {
+			throw new IllegalStateException("consumer cannot be null!");
+		}
+		if (events == null) {
+			throw new IllegalStateException("events cannot be null!");
+		}
+		Project project = (Project) CommonDataKeys.PROJECT
+				.getData(DataManager.getInstance().getDataContext(parentComponent));
+		new Task.Backgroundable(project, CopilotBundle.get("errorHandler.reportDialog.title"), false) {
 
-            public void run(ProgressIndicator indicator) {
-                if (indicator == null) {
-                	throw new IllegalStateException("indicator cannot be null");
-                }
-                for (IdeaLoggingEvent event : events) {
-                    Object data = event.getData();
-                    if (data instanceof AbstractMessage) {
-                        TelemetryService.getInstance().trackException(((AbstractMessage)data).getThrowable(), additionalInfo != null ? Map.of("userNotes", additionalInfo) : Map.of());
-                        continue;
-                    }
-                    LOG.warn("Unable to report error report due to missing exception: " + event);
-                }
-                ApplicationManager.getApplication().invokeLater(() -> consumer.consume((Object)new SubmittedReportInfo(SubmittedReportInfo.SubmissionStatus.NEW_ISSUE)));
-            }
-        }.queue();
-        return true;
-    }
+			public void run(ProgressIndicator indicator) {
+				if (indicator == null) {
+					throw new IllegalStateException("indicator cannot be null");
+				}
+				for (IdeaLoggingEvent event : events) {
+					Object data = event.getData();
+					if (data instanceof AbstractMessage) {
+						TelemetryService.getInstance().trackException(((AbstractMessage) data).getThrowable(),
+								additionalInfo != null ? Map.of("userNotes", additionalInfo) : Map.of());
+						continue;
+					}
+					LOG.warn("Unable to report error report due to missing exception: " + event);
+				}
+				ApplicationManager.getApplication().invokeLater(() -> consumer
+						.consume((Object) new SubmittedReportInfo(SubmittedReportInfo.SubmissionStatus.NEW_ISSUE)));
+			}
+		}.queue();
+		return true;
+	}
 
-    
 }
-

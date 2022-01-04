@@ -12,6 +12,5 @@ import javax.annotation.concurrent.Immutable;
 
 @Immutable
 public interface InlayMessage {
-    public void inlaysUpdated(EditorRequest var1);
+	public void inlaysUpdated(EditorRequest var1);
 }
-

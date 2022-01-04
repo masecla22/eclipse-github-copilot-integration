@@ -12,10 +12,8 @@ import com.github.copilot.lang.LanguageSupport;
 import com.github.copilot.request.EditorRequest;
 import com.intellij.psi.PsiFile;
 
-public interface LanguageEditorRequest
-extends EditorRequest {
-        public LanguageSupport getLanguage();
+public interface LanguageEditorRequest extends EditorRequest {
+	public LanguageSupport getLanguage();
 
-        public PsiFile createFile();
+	public PsiFile createFile();
 }
-

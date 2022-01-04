@@ -15,34 +15,30 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 final class ToolWindowUtil {
-    ToolWindowUtil() {
-    }
+	ToolWindowUtil() {
+	}
 
-        static StatusText getEmptyText(ToolWindow toolWindow) {
-        Method method;
-        if (toolWindow == null) {
-            throw new IllegalStateException("toolWindow cannot be null!");
-        }
-        if ((method = ToolWindowUtil.getEmptyText(toolWindow.getClass())) == null) {
-            return null;
-        }
-        try {
-            return (StatusText)method.invoke(toolWindow, new Object[0]);
-        }
-        catch (IllegalAccessException | InvocationTargetException e) {
-            return null;
-        }
-    }
+	static StatusText getEmptyText(ToolWindow toolWindow) {
+		Method method;
+		if (toolWindow == null) {
+			throw new IllegalStateException("toolWindow cannot be null!");
+		}
+		if ((method = ToolWindowUtil.getEmptyText(toolWindow.getClass())) == null) {
+			return null;
+		}
+		try {
+			return (StatusText) method.invoke(toolWindow, new Object[0]);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			return null;
+		}
+	}
 
-        static Method getEmptyText(Class<? extends ToolWindow> klazz) {
-        try {
-            return klazz.getMethod("getEmptyText", new Class[0]);
-        }
-        catch (NoSuchMethodException e) {
-            return null;
-        }
-    }
+	static Method getEmptyText(Class<? extends ToolWindow> klazz) {
+		try {
+			return klazz.getMethod("getEmptyText", new Class[0]);
+		} catch (NoSuchMethodException e) {
+			return null;
+		}
+	}
 
-    
 }
-

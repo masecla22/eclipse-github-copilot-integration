@@ -14,16 +14,15 @@ import javax.annotation.concurrent.ThreadSafe;
 
 @ThreadSafe
 public interface CompletionCache {
-    public boolean isLatestPrefix(String var1);
+	public boolean isLatestPrefix(String var1);
 
-        public List<CopilotCompletion> get(String var1, boolean var2);
+	public List<CopilotCompletion> get(String var1, boolean var2);
 
-        public List<CopilotCompletion> getLatest(String var1);
+	public List<CopilotCompletion> getLatest(String var1);
 
-    public void add(String var1, String var2, boolean var3, CopilotCompletion var4);
+	public void add(String var1, String var2, boolean var3, CopilotCompletion var4);
 
-    public void updateLatest(String var1, String var2, boolean var3);
+	public void updateLatest(String var1, String var2, boolean var3);
 
-    public void clear();
+	public void clear();
 }
-

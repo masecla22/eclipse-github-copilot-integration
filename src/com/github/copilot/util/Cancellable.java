@@ -1,20 +1,19 @@
 package com.github.copilot.util;
 
 public interface Cancellable {
-    public static final Cancellable DUMB = new Cancellable(){
+	public static final Cancellable DUMB = new Cancellable() {
 
-        @Override
-        public boolean isCancelled() {
-            return false;
-        }
+		@Override
+		public boolean isCancelled() {
+			return false;
+		}
 
-        @Override
-        public void cancel() {
-        }
-    };
+		@Override
+		public void cancel() {
+		}
+	};
 
-    public boolean isCancelled();
+	public boolean isCancelled();
 
-    public void cancel();
+	public void cancel();
 }
-

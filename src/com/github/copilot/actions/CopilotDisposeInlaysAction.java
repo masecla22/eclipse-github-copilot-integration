@@ -25,55 +25,49 @@ import com.intellij.openapi.editor.actionSystem.EditorAction;
 import com.intellij.openapi.editor.actionSystem.EditorActionHandler;
 import com.intellij.openapi.project.DumbAware;
 
-public class CopilotDisposeInlaysAction
-extends EditorAction
-implements DumbAware,
-CopilotAction {
-    public CopilotDisposeInlaysAction() {
-        super((EditorActionHandler)new DisposeInlaysHandler());
-        this.setInjectedContext(true);
-    }
+public class CopilotDisposeInlaysAction extends EditorAction implements DumbAware, CopilotAction {
+	public CopilotDisposeInlaysAction() {
+		super((EditorActionHandler) new DisposeInlaysHandler());
+		this.setInjectedContext(true);
+	}
 
-    static boolean isSupported(Editor editor) {
-        CopilotEditorManager manager;
-        if (editor == null) {
-            throw new IllegalStateException("editor cannot be null!");
-        }
-        return (manager = CopilotEditorManager.getInstance()).isAvailable(editor) && manager.hasCompletionInlays(editor) && LookupManager.getActiveLookup((Editor)editor) == null;
-    }
+	static boolean isSupported(Editor editor) {
+		CopilotEditorManager manager;
+		if (editor == null) {
+			throw new IllegalStateException("editor cannot be null!");
+		}
+		return (manager = CopilotEditorManager.getInstance()).isAvailable(editor) && manager.hasCompletionInlays(editor)
+				&& LookupManager.getActiveLookup((Editor) editor) == null;
+	}
 
-    
+	private static class DisposeInlaysHandler extends EditorActionHandler {
+		private DisposeInlaysHandler() {
+		}
 
-    private static class DisposeInlaysHandler
-    extends EditorActionHandler {
-        private DisposeInlaysHandler() {
-        }
+		protected boolean isEnabledForCaret(Editor editor, Caret caret, DataContext dataContext) {
+			if (editor == null) {
+				throw new IllegalStateException("editor cannot be null!");
+			}
+			if (caret == null) {
+				throw new IllegalStateException("caret cannot be null!");
+			}
+			return CopilotDisposeInlaysAction.isSupported(editor);
+		}
 
-        protected boolean isEnabledForCaret(Editor editor, Caret caret, DataContext dataContext) {
-            if (editor == null) {
-                throw new IllegalStateException("editor cannot be null!");
-            }
-            if (caret == null) {
-                throw new IllegalStateException("caret cannot be null!");
-            }
-            return CopilotDisposeInlaysAction.isSupported(editor);
-        }
+		public boolean executeInCommand(Editor editor, DataContext dataContext) {
+			if (editor == null) {
+				throw new IllegalStateException("editor cannot be null!");
+			}
+			return false;
+		}
 
-        public boolean executeInCommand(Editor editor, DataContext dataContext) {
-            if (editor == null) {
-                throw new IllegalStateException("editor cannot be null!");
-            }
-            return false;
-        }
-
-        protected void doExecute(Editor editor, Caret caret, DataContext dataContext) {
-            if (editor == null) {
-                throw new IllegalStateException("editor cannot be null!");
-            }
-            if (LookupManager.getActiveLookup((Editor)editor) == null) {
-                CopilotEditorManager.getInstance().disposeInlays(editor, InlayDisposeContext.UserAction);
-            }
-        }
-    }
+		protected void doExecute(Editor editor, Caret caret, DataContext dataContext) {
+			if (editor == null) {
+				throw new IllegalStateException("editor cannot be null!");
+			}
+			if (LookupManager.getActiveLookup((Editor) editor) == null) {
+				CopilotEditorManager.getInstance().disposeInlays(editor, InlayDisposeContext.UserAction);
+			}
+		}
+	}
 }
-

@@ -14,60 +14,59 @@ import java.util.Collections;
 import java.util.Map;
 
 public interface TelemetryService {
-        public static TelemetryService getInstance() {
-        TelemetryService telemetryService = (TelemetryService)ApplicationManager.getApplication().getService(TelemetryService.class);
-        if (telemetryService == null) {
-            throw new IllegalStateException("telemetryService cannot be null!");
-        }
-        return telemetryService;
-    }
+	public static TelemetryService getInstance() {
+		TelemetryService telemetryService = (TelemetryService) ApplicationManager.getApplication()
+				.getService(TelemetryService.class);
+		if (telemetryService == null) {
+			throw new IllegalStateException("telemetryService cannot be null!");
+		}
+		return telemetryService;
+	}
 
-    public void setTrackingId(String var1);
+	public void setTrackingId(String var1);
 
-    public void trackException(Throwable var1, Map<String, String> var2);
+	public void trackException(Throwable var1, Map<String, String> var2);
 
-    public void track(String var1, TelemetryData var2);
+	public void track(String var1, TelemetryData var2);
 
-    default public void track(String name) {
-        if (name == null) {
-            throw new IllegalStateException("name cannot be null!");
-        }
-        this.track(name, Collections.emptyMap(), Collections.emptyMap());
-    }
+	default public void track(String name) {
+		if (name == null) {
+			throw new IllegalStateException("name cannot be null!");
+		}
+		this.track(name, Collections.emptyMap(), Collections.emptyMap());
+	}
 
-    default public void track(String name, Map<String, String> properties) {
-        if (name == null) {
-            throw new IllegalStateException("name cannot be null!");
-        }
-        if (properties == null) {
-            throw new IllegalStateException("properties cannot be null!");
-        }
-        this.track(name, properties, Collections.emptyMap());
-    }
+	default public void track(String name, Map<String, String> properties) {
+		if (name == null) {
+			throw new IllegalStateException("name cannot be null!");
+		}
+		if (properties == null) {
+			throw new IllegalStateException("properties cannot be null!");
+		}
+		this.track(name, properties, Collections.emptyMap());
+	}
 
-    public void track(String var1, Map<String, String> var2, Map<String, Double> var3);
+	public void track(String var1, Map<String, String> var2, Map<String, Double> var3);
 
-    public void trackSecure(String var1, TelemetryData var2);
+	public void trackSecure(String var1, TelemetryData var2);
 
-    default public void trackSecure(String name) {
-        if (name == null) {
-            throw new IllegalStateException("name cannot be null!");
-        }
-        this.trackSecure(name, Collections.emptyMap(), Collections.emptyMap());
-    }
+	default public void trackSecure(String name) {
+		if (name == null) {
+			throw new IllegalStateException("name cannot be null!");
+		}
+		this.trackSecure(name, Collections.emptyMap(), Collections.emptyMap());
+	}
 
-    public void trackSecure(String var1, Map<String, String> var2, Map<String, Double> var3);
+	public void trackSecure(String var1, Map<String, String> var2, Map<String, Double> var3);
 
-    default public void trackSecure(String name, Map<String, String> properties) {
-        if (name == null) {
-            throw new IllegalStateException("name cannot be null!");
-        }
-        if (properties == null) {
-            throw new IllegalStateException("properties cannot be null!");
-        }
-        this.trackSecure(name, properties, Collections.emptyMap());
-    }
+	default public void trackSecure(String name, Map<String, String> properties) {
+		if (name == null) {
+			throw new IllegalStateException("name cannot be null!");
+		}
+		if (properties == null) {
+			throw new IllegalStateException("properties cannot be null!");
+		}
+		this.trackSecure(name, properties, Collections.emptyMap());
+	}
 
-    
 }
-

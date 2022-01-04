@@ -23,30 +23,26 @@ import java.awt.event.ActionListener;
 import javax.swing.KeyStroke;
 import org.jetbrains.annotations.NonNls;
 
-class DataProviderPanel
-extends JBPanelWithEmptyText
-implements DataProvider {
-    private final Disposable parentDisposable;
+class DataProviderPanel extends JBPanelWithEmptyText implements DataProvider {
+	private final Disposable parentDisposable;
 
-    public void registerKeyboardAction(ActionListener anAction, String aCommand, KeyStroke aKeyStroke, int aCondition) {
-        super.registerKeyboardAction(anAction, aCommand, aKeyStroke, aCondition);
-    }
+	public void registerKeyboardAction(ActionListener anAction, String aCommand, KeyStroke aKeyStroke, int aCondition) {
+		super.registerKeyboardAction(anAction, aCommand, aKeyStroke, aCondition);
+	}
 
-    DataProviderPanel(Disposable parentDisposable) {
-        super((LayoutManager)new VerticalLayout(5));
-        this.parentDisposable = parentDisposable;
-    }
+	DataProviderPanel(Disposable parentDisposable) {
+		super((LayoutManager) new VerticalLayout(5));
+		this.parentDisposable = parentDisposable;
+	}
 
-        public Object getData(@NonNls String dataId) {
-        if (dataId == null) {
-            throw new IllegalStateException("dataId cannot be null!");
-        }
-        if (PlatformDataKeys.UI_DISPOSABLE.is(dataId)) {
-            return this.parentDisposable;
-        }
-        return null;
-    }
+	public Object getData(@NonNls String dataId) {
+		if (dataId == null) {
+			throw new IllegalStateException("dataId cannot be null!");
+		}
+		if (PlatformDataKeys.UI_DISPOSABLE.is(dataId)) {
+			return this.parentDisposable;
+		}
+		return null;
+	}
 
-    
 }
-

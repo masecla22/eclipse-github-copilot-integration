@@ -55,136 +55,141 @@ import com.intellij.util.containers.ContainerUtil;
 import java.util.List;
 
 public final class CopilotEditorUtil {
-    static final Key<List<EditorRequest>> KEY_REQUESTS = Key.create((String)"copilot.editorRequests");
+	static final Key<List<EditorRequest>> KEY_REQUESTS = Key.create((String) "copilot.editorRequests");
 
-    private CopilotEditorUtil() {
-    }
+	private CopilotEditorUtil() {
+	}
 
-    public static boolean isFocusedEditor(Editor editor) {
-        if (editor == null) {
-            throw new IllegalStateException("editor cannot be null!");
-        }
-        if (ApplicationManager.getApplication().isUnitTestMode()) {
-            return true;
-        }
-        return editor.getContentComponent().isFocusOwner();
-    }
+	public static boolean isFocusedEditor(Editor editor) {
+		if (editor == null) {
+			throw new IllegalStateException("editor cannot be null!");
+		}
+		if (ApplicationManager.getApplication().isUnitTestMode()) {
+			return true;
+		}
+		return editor.getContentComponent().isFocusOwner();
+	}
 
-    public static boolean isSelectedEditor(Editor editor) {
-        Project project;
-        if (editor == null) {
-            throw new IllegalStateException("editor cannot be null!");
-        }
-        if ((project = editor.getProject()) == null || project.isDisposed()) {
-            return false;
-        }
-        FileEditorManager editorManager = FileEditorManager.getInstance((Project)project);
-        if (editorManager == null) {
-            return false;
-        }
-        if (editorManager instanceof FileEditorManagerImpl) {
-            Editor current = ((FileEditorManagerImpl)editorManager).getSelectedTextEditor(true);
-            return current != null && current.equals(editor);
-        }
-        FileEditor current = editorManager.getSelectedEditor();
-        return current instanceof TextEditor && editor.equals(((TextEditor)current).getEditor());
-    }
+	public static boolean isSelectedEditor(Editor editor) {
+		Project project;
+		if (editor == null) {
+			throw new IllegalStateException("editor cannot be null!");
+		}
+		if ((project = editor.getProject()) == null || project.isDisposed()) {
+			return false;
+		}
+		FileEditorManager editorManager = FileEditorManager.getInstance((Project) project);
+		if (editorManager == null) {
+			return false;
+		}
+		if (editorManager instanceof FileEditorManagerImpl) {
+			Editor current = ((FileEditorManagerImpl) editorManager).getSelectedTextEditor(true);
+			return current != null && current.equals(editor);
+		}
+		FileEditor current = editorManager.getSelectedEditor();
+		return current instanceof TextEditor && editor.equals(((TextEditor) current).getEditor());
+	}
 
-    @RequiresEdt
-        public static BasicEditorRequest createEditorRequest(Editor editor, int offset, CompletionType completionType) {
-        Project project;
-        if (editor == null) {
-            throw new IllegalStateException("editor cannot be null!");
-        }
-        if (completionType == null) {
-            throw new IllegalStateException("completionType cannot be null!");
-        }
-        if ((project = editor.getProject()) == null) {
-            return null;
-        }
-        Document document = editor.getDocument();
-        PsiFile file = PsiDocumentManager.getInstance((Project)project).getPsiFile(document);
-        if (file == null) {
-            return null;
-        }
-        LanguageSupport language = LanguageSupport.find(file);
-        if (language == null) {
-            return null;
-        }
-        boolean useTabs = editor.getSettings().isUseTabCharacter(project);
-        int tabWidth = editor.getSettings().getTabSize(project);
-        String relativePath = CopilotEditorUtil.getRelativeFilePath(project, file);
-        LineInfo lineInfo = LineInfo.create(document, offset);
-        return new BasicEditorRequest(project, language, completionType, file.getLanguage(), relativePath, document.getText(), offset, lineInfo, useTabs, tabWidth, document instanceof DocumentEx ? Integer.valueOf(((DocumentEx)document).getModificationSequence()) : null);
-    }
+	@RequiresEdt
+	public static BasicEditorRequest createEditorRequest(Editor editor, int offset, CompletionType completionType) {
+		Project project;
+		if (editor == null) {
+			throw new IllegalStateException("editor cannot be null!");
+		}
+		if (completionType == null) {
+			throw new IllegalStateException("completionType cannot be null!");
+		}
+		if ((project = editor.getProject()) == null) {
+			return null;
+		}
+		Document document = editor.getDocument();
+		PsiFile file = PsiDocumentManager.getInstance((Project) project).getPsiFile(document);
+		if (file == null) {
+			return null;
+		}
+		LanguageSupport language = LanguageSupport.find(file);
+		if (language == null) {
+			return null;
+		}
+		boolean useTabs = editor.getSettings().isUseTabCharacter(project);
+		int tabWidth = editor.getSettings().getTabSize(project);
+		String relativePath = CopilotEditorUtil.getRelativeFilePath(project, file);
+		LineInfo lineInfo = LineInfo.create(document, offset);
+		return new BasicEditorRequest(project, language, completionType, file.getLanguage(), relativePath,
+				document.getText(), offset, lineInfo, useTabs, tabWidth,
+				document instanceof DocumentEx ? Integer.valueOf(((DocumentEx) document).getModificationSequence())
+						: null);
+	}
 
-    public static int whitespacePrefixLength(String lineContent) {
-        int i;
-        if (lineContent == null) {
-            throw new IllegalStateException("lineContent cannot be null!");
-        }
-        int maxLength = lineContent.length();
-        for (i = 0; i < maxLength; ++i) {
-            char c = lineContent.charAt(i);
-            if (c == ' ' || c == '\t') continue;
-            return i;
-        }
-        return i;
-    }
+	public static int whitespacePrefixLength(String lineContent) {
+		int i;
+		if (lineContent == null) {
+			throw new IllegalStateException("lineContent cannot be null!");
+		}
+		int maxLength = lineContent.length();
+		for (i = 0; i < maxLength; ++i) {
+			char c = lineContent.charAt(i);
+			if (c == ' ' || c == '\t')
+				continue;
+			return i;
+		}
+		return i;
+	}
 
-        public static String getRelativeFilePath(Project project, PsiFile file) {
-        String path;
-        VirtualFile root;
-        if (project == null) {
-            throw new IllegalStateException("project cannot be null!");
-        }
-        if (file == null) {
-            throw new IllegalStateException("file cannot be null!");
-        }
-        String relativePath = file.getName();
-        VirtualFile vFile = file.getVirtualFile();
-        if (vFile != null && (root = ProjectRootManager.getInstance((Project)project).getFileIndex().getContentRootForFile(vFile)) != null && (path = VfsUtilCore.getRelativePath((VirtualFile)vFile, (VirtualFile)root)) != null) {
-            relativePath = path;
-        }
-        String string = relativePath;
-        if (string == null) {
-            throw new IllegalStateException("string cannot be null!");
-        }
-        return string;
-    }
+	public static String getRelativeFilePath(Project project, PsiFile file) {
+		String path;
+		VirtualFile root;
+		if (project == null) {
+			throw new IllegalStateException("project cannot be null!");
+		}
+		if (file == null) {
+			throw new IllegalStateException("file cannot be null!");
+		}
+		String relativePath = file.getName();
+		VirtualFile vFile = file.getVirtualFile();
+		if (vFile != null
+				&& (root = ProjectRootManager.getInstance((Project) project).getFileIndex()
+						.getContentRootForFile(vFile)) != null
+				&& (path = VfsUtilCore.getRelativePath((VirtualFile) vFile, (VirtualFile) root)) != null) {
+			relativePath = path;
+		}
+		String string = relativePath;
+		if (string == null) {
+			throw new IllegalStateException("string cannot be null!");
+		}
+		return string;
+	}
 
-        public static LanguageSupport findLanguageSupport(Editor editor) {
-        Project project;
-        if (editor == null) {
-            throw new IllegalStateException("editor cannot be null!");
-        }
-        if ((project = editor.getProject()) == null || project.isDisposed()) {
-            return null;
-        }
-        if (editor instanceof EditorEx && !editor.getDocument().isWritable()) {
-            return null;
-        }
-        PsiFile psiFile = PsiDocumentManager.getInstance((Project)project).getPsiFile(editor.getDocument());
-        if (psiFile == null || !psiFile.isValid() || !psiFile.isWritable()) {
-            return null;
-        }
-        return LanguageSupport.find(psiFile);
-    }
+	public static LanguageSupport findLanguageSupport(Editor editor) {
+		Project project;
+		if (editor == null) {
+			throw new IllegalStateException("editor cannot be null!");
+		}
+		if ((project = editor.getProject()) == null || project.isDisposed()) {
+			return null;
+		}
+		if (editor instanceof EditorEx && !editor.getDocument().isWritable()) {
+			return null;
+		}
+		PsiFile psiFile = PsiDocumentManager.getInstance((Project) project).getPsiFile(editor.getDocument());
+		if (psiFile == null || !psiFile.isValid() || !psiFile.isWritable()) {
+			return null;
+		}
+		return LanguageSupport.find(psiFile);
+	}
 
-    public static void addEditorRequest(Editor editor, EditorRequest request) {
-        if (editor == null) {
-            throw new IllegalStateException("editor cannot be null!");
-        }
-        if (request == null) {
-            throw new IllegalStateException("request cannot be null!");
-        }
-        EditorUtil.disposeWithEditor((Editor)editor, request::cancel);
-        if (!KEY_REQUESTS.isIn((UserDataHolder)editor)) {
-            KEY_REQUESTS.set((UserDataHolder)editor, (Object)ContainerUtil.createLockFreeCopyOnWriteList());
-        }
-        ((List)KEY_REQUESTS.getRequired((UserDataHolder)editor)).add(request);
-    }
+	public static void addEditorRequest(Editor editor, EditorRequest request) {
+		if (editor == null) {
+			throw new IllegalStateException("editor cannot be null!");
+		}
+		if (request == null) {
+			throw new IllegalStateException("request cannot be null!");
+		}
+		EditorUtil.disposeWithEditor((Editor) editor, request::cancel);
+		if (!KEY_REQUESTS.isIn((UserDataHolder) editor)) {
+			KEY_REQUESTS.set((UserDataHolder) editor, (Object) ContainerUtil.createLockFreeCopyOnWriteList());
+		}
+		((List) KEY_REQUESTS.getRequired((UserDataHolder) editor)).add(request);
+	}
 
-    
 }
-

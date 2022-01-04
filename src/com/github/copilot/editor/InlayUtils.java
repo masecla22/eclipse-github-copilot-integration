@@ -22,6 +22,6 @@ class InlayUtils {
 
     static InlayProperties createBlockProperties(int n) {
         return new InlayProperties().relatesToPrecedingText(true).showAbove(false).priority(Integer.MAX_VALUE - n);
-    }
+	}
 }
 

@@ -22,67 +22,68 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
 public final class JsonRPC {
-    private static final Gson GSON = new GsonBuilder().registerTypeAdapter(AuthStatusResult.class, (Object)new AuthStatusResult.TypeAdapter()).registerTypeAdapter(SignInInitiateResult.class, (Object)new SignInInitiateResult.TypeAdapter()).create();
+	private static final Gson GSON = new GsonBuilder()
+			.registerTypeAdapter(AuthStatusResult.class, (Object) new AuthStatusResult.TypeAdapter())
+			.registerTypeAdapter(SignInInitiateResult.class, (Object) new SignInInitiateResult.TypeAdapter()).create();
 
-    private JsonRPC() {
-    }
+	private JsonRPC() {
+	}
 
-    public static String serializeCommand(int requestId, String name, Object command) {
-        if (name == null) {
-            throw new IllegalStateException("name cannot be null!");
-        }
-        if (command == null) {
-            throw new IllegalStateException("command cannot be null!");
-        }
-        JsonObject json = new JsonObject();
-        json.addProperty("jsonrpc", "2.0");
-        json.addProperty("id", (Number)requestId);
-        json.addProperty("method", name);
-        json.add("params", GSON.toJsonTree(command));
-        return GSON.toJson((JsonElement)json);
-    }
+	public static String serializeCommand(int requestId, String name, Object command) {
+		if (name == null) {
+			throw new IllegalStateException("name cannot be null!");
+		}
+		if (command == null) {
+			throw new IllegalStateException("command cannot be null!");
+		}
+		JsonObject json = new JsonObject();
+		json.addProperty("jsonrpc", "2.0");
+		json.addProperty("id", (Number) requestId);
+		json.addProperty("method", name);
+		json.add("params", GSON.toJsonTree(command));
+		return GSON.toJson((JsonElement) json);
+	}
 
-    public static String serializeNotification(String name, Object command) {
-        if (name == null) {
-            throw new IllegalStateException("name cannot be null!");
-        }
-        if (command == null) {
-            throw new IllegalStateException("command cannot be null!");
-        }
-        JsonObject json = new JsonObject();
-        json.addProperty("jsonrpc", "2.0");
-        json.addProperty("method", name);
-        json.add("params", GSON.toJsonTree(command));
-        return GSON.toJson((JsonElement)json);
-    }
+	public static String serializeNotification(String name, Object command) {
+		if (name == null) {
+			throw new IllegalStateException("name cannot be null!");
+		}
+		if (command == null) {
+			throw new IllegalStateException("command cannot be null!");
+		}
+		JsonObject json = new JsonObject();
+		json.addProperty("jsonrpc", "2.0");
+		json.addProperty("method", name);
+		json.add("params", GSON.toJsonTree(command));
+		return GSON.toJson((JsonElement) json);
+	}
 
-    public static JsonRpcResponse parseResponse(String responseContent) throws JsonRpcErrorException, JsonParseException {
-        JsonObject response;
-        if (responseContent == null) {
-            throw new IllegalStateException("responseContent cannot be null!");
-        }
-        if ((response = (JsonObject)GSON.fromJson(responseContent, JsonObject.class)).has("error")) {
-            int id = response.getAsJsonPrimitive("id").getAsInt();
-            JsonObject error = (JsonObject)response.get("error");
-            String message = error.getAsJsonPrimitive("message").getAsString();
-            throw new JsonRpcErrorException(id, message);
-        }
-        int id = response.getAsJsonPrimitive("id").getAsInt();
-        JsonElement resultJSON = response.get("result");
-        return new JsonRpcResponse(id, resultJSON);
-    }
+	public static JsonRpcResponse parseResponse(String responseContent)
+			throws JsonRpcErrorException, JsonParseException {
+		JsonObject response;
+		if (responseContent == null) {
+			throw new IllegalStateException("responseContent cannot be null!");
+		}
+		if ((response = (JsonObject) GSON.fromJson(responseContent, JsonObject.class)).has("error")) {
+			int id = response.getAsJsonPrimitive("id").getAsInt();
+			JsonObject error = (JsonObject) response.get("error");
+			String message = error.getAsJsonPrimitive("message").getAsString();
+			throw new JsonRpcErrorException(id, message);
+		}
+		int id = response.getAsJsonPrimitive("id").getAsInt();
+		JsonElement resultJSON = response.get("result");
+		return new JsonRpcResponse(id, resultJSON);
+	}
 
-        public static <T> T parseResponse(JsonElement json, Class<T> responseType) throws JsonSyntaxException {
-        if (json == null) {
-            throw new IllegalStateException("json cannot be null!");
-        }
-        Object object = GSON.fromJson(json, responseType);
-        if (object == null) {
-            throw new IllegalStateException("object cannot be null!");
-        }
-        return (T)object;
-    }
+	public static <T> T parseResponse(JsonElement json, Class<T> responseType) throws JsonSyntaxException {
+		if (json == null) {
+			throw new IllegalStateException("json cannot be null!");
+		}
+		Object object = GSON.fromJson(json, responseType);
+		if (object == null) {
+			throw new IllegalStateException("object cannot be null!");
+		}
+		return (T) object;
+	}
 
-    
 }
-

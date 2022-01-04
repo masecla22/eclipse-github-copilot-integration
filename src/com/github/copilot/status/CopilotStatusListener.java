@@ -12,8 +12,8 @@ import com.intellij.util.messages.Topic;
 
 @FunctionalInterface
 public interface CopilotStatusListener {
-    public static final Topic<CopilotStatusListener> TOPIC = Topic.create((String)"copilot.status", CopilotStatusListener.class);
+	public static final Topic<CopilotStatusListener> TOPIC = Topic.create((String) "copilot.status",
+			CopilotStatusListener.class);
 
-    public void onCopilotStatus(CopilotStatus var1);
+	public void onCopilotStatus(CopilotStatus var1);
 }
-

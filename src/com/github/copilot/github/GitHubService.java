@@ -31,42 +31,47 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 public interface GitHubService {
-    public static GitHubService getInstance() {
-        return (GitHubService)ApplicationManager.getApplication().getService(GitHubService.class);
-    }
+	public static GitHubService getInstance() {
+		return (GitHubService) ApplicationManager.getApplication().getService(GitHubService.class);
+	}
 
-    @RequiresBackgroundThread
-    public void refreshStatus();
+	@RequiresBackgroundThread
+	public void refreshStatus();
 
-    public boolean isSignedIn();
+	public boolean isSignedIn();
 
-    @RequiresEdt
-    public void loginInteractive(Project var1);
+	@RequiresEdt
+	public void loginInteractive(Project var1);
 
-        public GitHubCopilotToken fetchCopilotTokenInteractive(Project var1, GitHubSession var2, boolean var3, UnauthorizedTokenCallback var4, Consumer<Project> var5);
+	public GitHubCopilotToken fetchCopilotTokenInteractive(Project var1, GitHubSession var2, boolean var3,
+			UnauthorizedTokenCallback var4, Consumer<Project> var5);
 
-    public void logout();
+	public void logout();
 
-        public GitHubCopilotToken getCopilotToken(boolean var1, long var2, TimeUnit var4);
+	public GitHubCopilotToken getCopilotToken(boolean var1, long var2, TimeUnit var4);
 
-        default public GitHubCopilotToken getCopilotToken() {
-        return this.getCopilotToken(false, 0L, TimeUnit.MILLISECONDS);
-    }
+	default public GitHubCopilotToken getCopilotToken() {
+		return this.getCopilotToken(false, 0L, TimeUnit.MILLISECONDS);
+	}
 
-    @RequiresEdt
-    default public void showLoginNotification(Project project, boolean force) {
-        if (project == null) {
-            throw new IllegalStateException("project cannot be null!");
-        }
-        boolean shown = CopilotApplicationSettings.settings().signinNotificationShown;
-        if (force || !shown) {
-            if (!force) {
-                CopilotApplicationSettings.settings().signinNotificationShown = true;
-            }
-            CopilotNotifications.createFullContentNotification(CopilotBundle.get("github.loginNotification.title"), CopilotBundle.get("github.loginNotification.text"), NotificationType.WARNING, true).addAction((AnAction)NotificationAction.createExpiring((String)CopilotBundle.get("github.loginNotification.loginAction"), (e, notification) -> GitHubService.getInstance().loginInteractive(project))).notify(project);
-        }
-    }
+	@RequiresEdt
+	default public void showLoginNotification(Project project, boolean force) {
+		if (project == null) {
+			throw new IllegalStateException("project cannot be null!");
+		}
+		boolean shown = CopilotApplicationSettings.settings().signinNotificationShown;
+		if (force || !shown) {
+			if (!force) {
+				CopilotApplicationSettings.settings().signinNotificationShown = true;
+			}
+			CopilotNotifications
+					.createFullContentNotification(CopilotBundle.get("github.loginNotification.title"),
+							CopilotBundle.get("github.loginNotification.text"), NotificationType.WARNING, true)
+					.addAction((AnAction) NotificationAction.createExpiring(
+							(String) CopilotBundle.get("github.loginNotification.loginAction"),
+							(e, notification) -> GitHubService.getInstance().loginInteractive(project)))
+					.notify(project);
+		}
+	}
 
-    
 }
-

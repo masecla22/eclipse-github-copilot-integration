@@ -17,21 +17,21 @@ import com.intellij.openapi.diagnostic.RuntimeExceptionWithAttachments;
 import com.intellij.openapi.util.ShutDownTracker;
 
 public final class ApplicationUtil {
-    private ApplicationUtil() {
-    }
+	private ApplicationUtil() {
+	}
 
-    public static void assertIsNonDispatchThread() {
-        Application app = ApplicationManager.getApplication();
-        if (app.isUnitTestMode() || app.isHeadlessEnvironment()) {
-            return;
-        }
-        if (!app.isDispatchThread()) {
-            return;
-        }
-        if (ShutDownTracker.isShutdownHookRunning()) {
-            return;
-        }
-        throw new RuntimeExceptionWithAttachments("Access from event dispatch thread is not allowed.", new Attachment[0]);
-    }
+	public static void assertIsNonDispatchThread() {
+		Application app = ApplicationManager.getApplication();
+		if (app.isUnitTestMode() || app.isHeadlessEnvironment()) {
+			return;
+		}
+		if (!app.isDispatchThread()) {
+			return;
+		}
+		if (ShutDownTracker.isShutdownHookRunning()) {
+			return;
+		}
+		throw new RuntimeExceptionWithAttachments("Access from event dispatch thread is not allowed.",
+				new Attachment[0]);
+	}
 }
-

@@ -11,6 +11,5 @@ import com.intellij.psi.PsiElement;
 
 @FunctionalInterface
 public interface IsValidBlockFunction {
-    public boolean isValidBlock(PsiElement var1, boolean var2);
+	public boolean isValidBlock(PsiElement var1, boolean var2);
 }
-

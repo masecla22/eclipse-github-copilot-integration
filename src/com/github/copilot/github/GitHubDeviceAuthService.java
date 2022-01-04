@@ -264,74 +264,85 @@ public class GitHubDeviceAuthService implements GitHubService {
 	}
 
 	private DeviceCodeResponse retrieveDeviceCode(Project project) {
-        if (project == null) {
-            throw new IllegalStateException("project cannot be null!");
-        }
-        try {
-            return (DeviceCodeResponse)ProgressManager.getInstance().run((Task.WithResult)new Task.WithResult<DeviceCodeResponse, Exception>(project, "Retrieving GitHub Device Code", true){
+		if (project == null) {
+			throw new IllegalStateException("project cannot be null!");
+		}
+		try {
+			return (DeviceCodeResponse) ProgressManager.getInstance()
+					.run((Task.WithResult) new Task.WithResult<DeviceCodeResponse, Exception>(project,
+							"Retrieving GitHub Device Code", true) {
 
-                protected DeviceCodeResponse compute(ProgressIndicator indicator) throws Exception {
-                    if (indicator == null) {
-                    	throw new IllegalStateException("indicator cannot be null");
-                    }
-                    String url = Urls.newFromEncoded((String)GitHubDeviceAuthService.CODE_REQUEST_URL).addParameters(Map.of("client_id", GitHubDeviceAuthService.GITHUB_APP_ID, "scope", "read:user")).toExternalForm();
-                    String json = HttpRequests.post((String)url, null).accept("application/json").readString(indicator);
-                    return (DeviceCodeResponse)gson.fromJson(json, DeviceCodeResponse.class);
-                }
-            });
-        }
-        catch (Exception e) {
-            LOG.warn("error retrieving device code", (Throwable)e);
-            return null;
-        }
-    }
+						protected DeviceCodeResponse compute(ProgressIndicator indicator) throws Exception {
+							if (indicator == null) {
+								throw new IllegalStateException("indicator cannot be null");
+							}
+							String url = Urls.newFromEncoded((String) GitHubDeviceAuthService.CODE_REQUEST_URL)
+									.addParameters(Map.of("client_id", GitHubDeviceAuthService.GITHUB_APP_ID, "scope",
+											"read:user"))
+									.toExternalForm();
+							String json = HttpRequests.post((String) url, null).accept("application/json")
+									.readString(indicator);
+							return (DeviceCodeResponse) gson.fromJson(json, DeviceCodeResponse.class);
+						}
+					});
+		} catch (Exception e) {
+			LOG.warn("error retrieving device code", (Throwable) e);
+			return null;
+		}
+	}
 
 	private DeviceTokenResponse retrieveToken(Project project, final DeviceCodeResponse codeResponse) {
-        if (codeResponse == null) {
-            throw new IllegalStateException("codeResponse cannot be null!");
-        }
-        try {
-            String title = CopilotBundle.get("deviceAuth.progressTitle");
-            return (DeviceTokenResponse)ProgressManager.getInstance().run((Task.WithResult)new Task.WithResult<DeviceTokenResponse, Exception>(project, title, true){
+		if (codeResponse == null) {
+			throw new IllegalStateException("codeResponse cannot be null!");
+		}
+		try {
+			String title = CopilotBundle.get("deviceAuth.progressTitle");
+			return (DeviceTokenResponse) ProgressManager.getInstance()
+					.run((Task.WithResult) new Task.WithResult<DeviceTokenResponse, Exception>(project, title, true) {
 
-                protected DeviceTokenResponse compute(ProgressIndicator indicator) {
-                    if (indicator == null) {
-                    	throw new IllegalStateException("indicator cannot be null");
-                    }
-                    indicator.setText2(CopilotBundle.get("deviceAuth.progressTitle2"));
-                    long waitIntervalMillis = codeResponse.getIntervalMillis();
-                    while (!indicator.isCanceled()) {
-                        GitHubDeviceAuthService.this.waitForGitHub(indicator, waitIntervalMillis);
-                        String url = Urls.newFromEncoded((String)GitHubDeviceAuthService.DEVICE_POLL_URL).addParameters(Map.of("client_id", GitHubDeviceAuthService.GITHUB_APP_ID, "device_code", codeResponse.getDeviceCode(), "grant_type", GitHubDeviceAuthService.GRANT_TYPE)).toExternalForm();
-                        try {
-                            String json = HttpRequests.post((String)url, null).accept("application/json").readString(indicator);
-                            DeviceTokenResponse response = (DeviceTokenResponse)gson.fromJson(json, DeviceTokenResponse.class);
-                            if (response.isAuthorizationPendingError()) continue;
-                            if (response.isSlowDownError()) {
-                                waitIntervalMillis = Math.max(response.getSlowDownIntervalMillis(), codeResponse.getIntervalMillis());
-                                continue;
-                            }
-                            return response;
-                        }
-                        catch (ProcessCanceledException e) {
-                            LOG.debug("Polling for device code cancelled by user", (Throwable)e);
-                            return null;
-                        }
-                        catch (Exception e) {
-                            LOG.debug("Exception waiting for GitHub token", (Throwable)e);
-                        }
-                    }
-                    return null;
-                }
-            });
-        }
-        catch (Exception e) {
-            if (!(e instanceof ProcessCanceledException)) {
-                LOG.warn("error polling for GitHub token", (Throwable)e);
-            }
-            return null;
-        }
-    }
+						protected DeviceTokenResponse compute(ProgressIndicator indicator) {
+							if (indicator == null) {
+								throw new IllegalStateException("indicator cannot be null");
+							}
+							indicator.setText2(CopilotBundle.get("deviceAuth.progressTitle2"));
+							long waitIntervalMillis = codeResponse.getIntervalMillis();
+							while (!indicator.isCanceled()) {
+								GitHubDeviceAuthService.this.waitForGitHub(indicator, waitIntervalMillis);
+								String url = Urls.newFromEncoded((String) GitHubDeviceAuthService.DEVICE_POLL_URL)
+										.addParameters(Map.of("client_id", GitHubDeviceAuthService.GITHUB_APP_ID,
+												"device_code", codeResponse.getDeviceCode(), "grant_type",
+												GitHubDeviceAuthService.GRANT_TYPE))
+										.toExternalForm();
+								try {
+									String json = HttpRequests.post((String) url, null).accept("application/json")
+											.readString(indicator);
+									DeviceTokenResponse response = (DeviceTokenResponse) gson.fromJson(json,
+											DeviceTokenResponse.class);
+									if (response.isAuthorizationPendingError())
+										continue;
+									if (response.isSlowDownError()) {
+										waitIntervalMillis = Math.max(response.getSlowDownIntervalMillis(),
+												codeResponse.getIntervalMillis());
+										continue;
+									}
+									return response;
+								} catch (ProcessCanceledException e) {
+									LOG.debug("Polling for device code cancelled by user", (Throwable) e);
+									return null;
+								} catch (Exception e) {
+									LOG.debug("Exception waiting for GitHub token", (Throwable) e);
+								}
+							}
+							return null;
+						}
+					});
+		} catch (Exception e) {
+			if (!(e instanceof ProcessCanceledException)) {
+				LOG.warn("error polling for GitHub token", (Throwable) e);
+			}
+			return null;
+		}
+	}
 
 	private void waitForGitHub(ProgressIndicator indicator, long intervalMillis) {
 		if (indicator == null) {

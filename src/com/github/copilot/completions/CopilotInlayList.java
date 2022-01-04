@@ -12,16 +12,14 @@ import com.github.copilot.completions.CopilotEditorInlay;
 import com.intellij.openapi.util.TextRange;
 import java.util.List;
 
-public interface CopilotInlayList
-extends Iterable<CopilotEditorInlay> {
-    public boolean isEmpty();
+public interface CopilotInlayList extends Iterable<CopilotEditorInlay> {
+	public boolean isEmpty();
 
-        public CopilotCompletion getCopilotCompletion();
+	public CopilotCompletion getCopilotCompletion();
 
-        public TextRange getReplacementRange();
+	public TextRange getReplacementRange();
 
-        public String getReplacementText();
+	public String getReplacementText();
 
-        public List<CopilotEditorInlay> getInlays();
+	public List<CopilotEditorInlay> getInlays();
 }
-

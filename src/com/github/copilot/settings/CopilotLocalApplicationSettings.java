@@ -19,38 +19,37 @@ import com.intellij.openapi.components.RoamingType;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 
-@State(name="github-copilot-local", storages={@Storage(value="github-copilot.local.xml", roamingType=RoamingType.DISABLED)})
-public class CopilotLocalApplicationSettings
-implements PersistentStateComponent<CopilotLocalApplicationState> {
-    private CopilotLocalApplicationState state;
+@State(name = "github-copilot-local", storages = {
+		@Storage(value = "github-copilot.local.xml", roamingType = RoamingType.DISABLED) })
+public class CopilotLocalApplicationSettings implements PersistentStateComponent<CopilotLocalApplicationState> {
+	private CopilotLocalApplicationState state;
 
-        public static CopilotLocalApplicationState settings() {
-        CopilotLocalApplicationState state = ((CopilotLocalApplicationSettings)ApplicationManager.getApplication().getService(CopilotLocalApplicationSettings.class)).getState();
-        assert (state != null);
-        CopilotLocalApplicationState copilotLocalApplicationState = state;
-        if (copilotLocalApplicationState == null) {
-            throw new IllegalStateException("copilotLocalApplicationState cannot be null!");
-        }
-        return copilotLocalApplicationState;
-    }
+	public static CopilotLocalApplicationState settings() {
+		CopilotLocalApplicationState state = ((CopilotLocalApplicationSettings) ApplicationManager.getApplication()
+				.getService(CopilotLocalApplicationSettings.class)).getState();
+		assert (state != null);
+		CopilotLocalApplicationState copilotLocalApplicationState = state;
+		if (copilotLocalApplicationState == null) {
+			throw new IllegalStateException("copilotLocalApplicationState cannot be null!");
+		}
+		return copilotLocalApplicationState;
+	}
 
-        public synchronized CopilotLocalApplicationState getState() {
-        return this.state;
-    }
+	public synchronized CopilotLocalApplicationState getState() {
+		return this.state;
+	}
 
-    public synchronized void noStateLoaded() {
-        CopilotLocalApplicationState state = new CopilotLocalApplicationState();
-        state.githubTokenMigration = true;
-        this.state = state;
-    }
+	public synchronized void noStateLoaded() {
+		CopilotLocalApplicationState state = new CopilotLocalApplicationState();
+		state.githubTokenMigration = true;
+		this.state = state;
+	}
 
-    public synchronized void loadState(CopilotLocalApplicationState state) {
-        if (state == null) {
-            throw new IllegalStateException("state cannot be null!");
-        }
-        this.state = state;
-    }
+	public synchronized void loadState(CopilotLocalApplicationState state) {
+		if (state == null) {
+			throw new IllegalStateException("state cannot be null!");
+		}
+		this.state = state;
+	}
 
-    
 }
-

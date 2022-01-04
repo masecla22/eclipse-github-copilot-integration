@@ -6,9 +6,7 @@
  */
 package com.github.copilot.util;
 
-
 @FunctionalInterface
 public interface ObjectToIntFunction<T> {
-    public int apply(T var1);
+	public int apply(T var1);
 }
-

@@ -11,6 +11,5 @@ import com.intellij.openapi.project.Project;
 
 @FunctionalInterface
 public interface UnauthorizedTokenCallback {
-    public void onUnauthorizedToken(Project var1, String var2);
+	public void onUnauthorizedToken(Project var1, String var2);
 }
-

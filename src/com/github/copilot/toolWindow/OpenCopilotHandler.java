@@ -115,299 +115,323 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 class OpenCopilotHandler {
-    private static final Logger LOG = Logger.getInstance(OpenCopilotHandler.class);
-    private static final int MAX_EDITOR_HEIGHT = 200;
-    private static final Key<Boolean> COPILOT_PREVIEW_EDITOR = Key.create((String)"copilot.openCopilotPreview");
-    private final Project project;
-    private final ToolWindow toolWindow;
-    private final FileType fileType;
-    private final Editor editor;
-        private final EditorRequest editorRequest;
-    private final AtomicInteger solutionIndex;
-    private final Set<List<CopilotEditorInlay>> allCompletions;
-    private final List<JButton> allButtons;
-    private final List<Editor> allEditors;
-    private final DataProviderPanel contentPanel;
-    private volatile Content toolWindowContent;
+	private static final Logger LOG = Logger.getInstance(OpenCopilotHandler.class);
+	private static final int MAX_EDITOR_HEIGHT = 200;
+	private static final Key<Boolean> COPILOT_PREVIEW_EDITOR = Key.create((String) "copilot.openCopilotPreview");
+	private final Project project;
+	private final ToolWindow toolWindow;
+	private final FileType fileType;
+	private final Editor editor;
+	private final EditorRequest editorRequest;
+	private final AtomicInteger solutionIndex;
+	private final Set<List<CopilotEditorInlay>> allCompletions;
+	private final List<JButton> allButtons;
+	private final List<Editor> allEditors;
+	private final DataProviderPanel contentPanel;
+	private volatile Content toolWindowContent;
 
-        static OpenCopilotHandler create(Project project, FileType fileType, Editor editor, EditorRequest request) {
-        ToolWindow toolWindow;
-        if (project == null) {
-            throw new IllegalStateException("project cannot be null!");
-        }
-        if (fileType == null) {
-            throw new IllegalStateException("fileType cannot be null!");
-        }
-        if (editor == null) {
-            throw new IllegalStateException("editor cannot be null!");
-        }
-        if (request == null) {
-            throw new IllegalStateException("request cannot be null!");
-        }
-        if ((toolWindow = ToolWindowManager.getInstance((Project)project).getToolWindow("github.copilotToolWindow")) == null) {
-            return null;
-        }
-        return new OpenCopilotHandler(project, toolWindow, fileType, editor, request);
-    }
+	static OpenCopilotHandler create(Project project, FileType fileType, Editor editor, EditorRequest request) {
+		ToolWindow toolWindow;
+		if (project == null) {
+			throw new IllegalStateException("project cannot be null!");
+		}
+		if (fileType == null) {
+			throw new IllegalStateException("fileType cannot be null!");
+		}
+		if (editor == null) {
+			throw new IllegalStateException("editor cannot be null!");
+		}
+		if (request == null) {
+			throw new IllegalStateException("request cannot be null!");
+		}
+		if ((toolWindow = ToolWindowManager.getInstance((Project) project)
+				.getToolWindow("github.copilotToolWindow")) == null) {
+			return null;
+		}
+		return new OpenCopilotHandler(project, toolWindow, fileType, editor, request);
+	}
 
-    static boolean isCopilotSnippetFile(VirtualFile virtualFile) {
-        if (virtualFile == null) {
-            throw new IllegalStateException("virtualFile cannot be null!");
-        }
-        return COPILOT_PREVIEW_EDITOR.isIn((UserDataHolder)virtualFile);
-    }
+	static boolean isCopilotSnippetFile(VirtualFile virtualFile) {
+		if (virtualFile == null) {
+			throw new IllegalStateException("virtualFile cannot be null!");
+		}
+		return COPILOT_PREVIEW_EDITOR.isIn((UserDataHolder) virtualFile);
+	}
 
-    OpenCopilotHandler(Project project, ToolWindow toolWindow, FileType fileType, Editor editor, EditorRequest editorRequest) {
-        if (project == null) {
-            throw new IllegalStateException("project cannot be null!");
-        }
-        if (toolWindow == null) {
-            throw new IllegalStateException("toolWindow cannot be null!");
-        }
-        if (fileType == null) {
-            throw new IllegalStateException("fileType cannot be null!");
-        }
-        if (editor == null) {
-            throw new IllegalStateException("editor cannot be null!");
-        }
-        if (editorRequest == null) {
-            throw new IllegalStateException("editorRequest cannot be null!");
-        }
-        this.solutionIndex = new AtomicInteger(1);
-        this.allCompletions = ContainerUtil.newConcurrentSet();
-        this.allButtons = ContainerUtil.createLockFreeCopyOnWriteList();
-        this.allEditors = ContainerUtil.createLockFreeCopyOnWriteList();
-        this.project = project;
-        this.toolWindow = toolWindow;
-        this.fileType = fileType;
-        this.editor = editor;
-        this.editorRequest = editorRequest;
-        this.contentPanel = new DataProviderPanel(toolWindow.getDisposable());
-        Disposer.tryRegister((Disposable)toolWindow.getDisposable(), editorRequest::cancel);
-    }
+	OpenCopilotHandler(Project project, ToolWindow toolWindow, FileType fileType, Editor editor,
+			EditorRequest editorRequest) {
+		if (project == null) {
+			throw new IllegalStateException("project cannot be null!");
+		}
+		if (toolWindow == null) {
+			throw new IllegalStateException("toolWindow cannot be null!");
+		}
+		if (fileType == null) {
+			throw new IllegalStateException("fileType cannot be null!");
+		}
+		if (editor == null) {
+			throw new IllegalStateException("editor cannot be null!");
+		}
+		if (editorRequest == null) {
+			throw new IllegalStateException("editorRequest cannot be null!");
+		}
+		this.solutionIndex = new AtomicInteger(1);
+		this.allCompletions = ContainerUtil.newConcurrentSet();
+		this.allButtons = ContainerUtil.createLockFreeCopyOnWriteList();
+		this.allEditors = ContainerUtil.createLockFreeCopyOnWriteList();
+		this.project = project;
+		this.toolWindow = toolWindow;
+		this.fileType = fileType;
+		this.editor = editor;
+		this.editorRequest = editorRequest;
+		this.contentPanel = new DataProviderPanel(toolWindow.getDisposable());
+		Disposer.tryRegister((Disposable) toolWindow.getDisposable(), editorRequest::cancel);
+	}
 
-    void updateToolWindow() {
-        this.contentPanel.setFocusCycleRoot(true);
-        this.contentPanel.setBorder(JBUI.Borders.empty((int)3));
-        this.toolWindowContent = this.toolWindow.getContentManager().getFactory().createContent((JComponent)new JBScrollPane((Component)((Object)this.contentPanel), 20, 31), null, false);
-        this.toolWindow.getContentManager().addContent(this.toolWindowContent);
-        Disposer.tryRegister((Disposable)this.toolWindow.getDisposable(), this.editorRequest::cancel);
-        Disposer.tryRegister((Disposable)this.editorRequest.getDisposable(), this::setEditorChangedEmptyText);
-        if (!GitHubService.getInstance().isSignedIn()) {
-            this.setContentEmptyText(CopilotBundle.get("openCopilot.notAuthenticatedError"), SimpleTextAttributes.ERROR_ATTRIBUTES);
-            return;
-        }
-        this.setContentEmptyText(CopilotBundle.get("openCopilot.calculatingEmptyText"), null);
-        GitHubCopilotToken copilotToken = GitHubService.getInstance().getCopilotToken();
-        CopilotCompletionService service = CopilotCompletionService.getInstance();
-        boolean sent = service.fetchCompletions(this.editorRequest, copilotToken, 10, new Flow.Subscriber<List<CopilotInlayList>>(){
-            private volatile Flow.Subscription subscription;
+	void updateToolWindow() {
+		this.contentPanel.setFocusCycleRoot(true);
+		this.contentPanel.setBorder(JBUI.Borders.empty((int) 3));
+		this.toolWindowContent = this.toolWindow.getContentManager().getFactory().createContent(
+				(JComponent) new JBScrollPane((Component) ((Object) this.contentPanel), 20, 31), null, false);
+		this.toolWindow.getContentManager().addContent(this.toolWindowContent);
+		Disposer.tryRegister((Disposable) this.toolWindow.getDisposable(), this.editorRequest::cancel);
+		Disposer.tryRegister((Disposable) this.editorRequest.getDisposable(), this::setEditorChangedEmptyText);
+		if (!GitHubService.getInstance().isSignedIn()) {
+			this.setContentEmptyText(CopilotBundle.get("openCopilot.notAuthenticatedError"),
+					SimpleTextAttributes.ERROR_ATTRIBUTES);
+			return;
+		}
+		this.setContentEmptyText(CopilotBundle.get("openCopilot.calculatingEmptyText"), null);
+		GitHubCopilotToken copilotToken = GitHubService.getInstance().getCopilotToken();
+		CopilotCompletionService service = CopilotCompletionService.getInstance();
+		boolean sent = service.fetchCompletions(this.editorRequest, copilotToken, 10,
+				new Flow.Subscriber<List<CopilotInlayList>>() {
+					private volatile Flow.Subscription subscription;
 
-            @Override
-            public void onSubscribe(Flow.Subscription subscription) {
-                this.subscription = subscription;
-                this.subscription.request(1L);
-            }
+					@Override
+					public void onSubscribe(Flow.Subscription subscription) {
+						this.subscription = subscription;
+						this.subscription.request(1L);
+					}
 
-            @Override
-            public void onNext(List<CopilotInlayList> inlaySets) {
-                LOG.debug("onNext: " + inlaySets.size());
-                this.subscription.request(1L);
-                for (CopilotInlayList inlayList : inlaySets) {
-                    List<CopilotEditorInlay> editorInlays = inlayList.getInlays();
-                    if (OpenCopilotHandler.this.allCompletions.contains(editorInlays)) continue;
-                    OpenCopilotHandler.this.allCompletions.add(editorInlays);
-                    OpenCopilotHandler.this.addCompletion((JPanel)((Object)OpenCopilotHandler.this.contentPanel), inlayList);
-                }
-            }
+					@Override
+					public void onNext(List<CopilotInlayList> inlaySets) {
+						LOG.debug("onNext: " + inlaySets.size());
+						this.subscription.request(1L);
+						for (CopilotInlayList inlayList : inlaySets) {
+							List<CopilotEditorInlay> editorInlays = inlayList.getInlays();
+							if (OpenCopilotHandler.this.allCompletions.contains(editorInlays))
+								continue;
+							OpenCopilotHandler.this.allCompletions.add(editorInlays);
+							OpenCopilotHandler.this
+									.addCompletion((JPanel) ((Object) OpenCopilotHandler.this.contentPanel), inlayList);
+						}
+					}
 
-            @Override
-            public void onError(Throwable throwable) {
-                if (LOG.isTraceEnabled()) {
-                    LOG.trace(throwable);
-                }
-                ApplicationManager.getApplication().invokeLater(() -> {
-                    if (throwable instanceof RequestCancelledException) {
-                        if (!OpenCopilotHandler.this.editorRequest.isCancelled()) {
-                            OpenCopilotHandler.this.setEditorChangedEmptyText();
-                        }
-                    } else if (throwable instanceof RequestTimeoutException) {
-                        OpenCopilotHandler.this.setContentEmptyText(CopilotBundle.get("openCopilot.requestTimeoutError"), SimpleTextAttributes.ERROR_ATTRIBUTES);
-                    } else {
-                        OpenCopilotHandler.this.setContentEmptyText(CopilotBundle.get("openCopilot.unknownRequestError"), SimpleTextAttributes.ERROR_ATTRIBUTES);
-                    }
-                });
-            }
+					@Override
+					public void onError(Throwable throwable) {
+						if (LOG.isTraceEnabled()) {
+							LOG.trace(throwable);
+						}
+						ApplicationManager.getApplication().invokeLater(() -> {
+							if (throwable instanceof RequestCancelledException) {
+								if (!OpenCopilotHandler.this.editorRequest.isCancelled()) {
+									OpenCopilotHandler.this.setEditorChangedEmptyText();
+								}
+							} else if (throwable instanceof RequestTimeoutException) {
+								OpenCopilotHandler.this.setContentEmptyText(
+										CopilotBundle.get("openCopilot.requestTimeoutError"),
+										SimpleTextAttributes.ERROR_ATTRIBUTES);
+							} else {
+								OpenCopilotHandler.this.setContentEmptyText(
+										CopilotBundle.get("openCopilot.unknownRequestError"),
+										SimpleTextAttributes.ERROR_ATTRIBUTES);
+							}
+						});
+					}
 
-            @Override
-            public void onComplete() {
-                LOG.debug("onComplete");
-                ApplicationManager.getApplication().invokeLater(() -> {
-                    if (OpenCopilotHandler.this.allEditors.isEmpty() && !OpenCopilotHandler.this.editorRequest.isCancelled()) {
-                        OpenCopilotHandler.this.setContentEmptyText(CopilotBundle.get("openCopilot.noCompletions"), SimpleTextAttributes.ERROR_ATTRIBUTES);
-                    } else {
-                        OpenCopilotHandler.this.toolWindow.getContentManager().requestFocus(OpenCopilotHandler.this.toolWindowContent, false);
-                    }
-                });
-            }
-        });
-        if (!sent) {
-            this.setContentEmptyText(CopilotBundle.get("openCopilot.noCompletions"), SimpleTextAttributes.ERROR_ATTRIBUTES);
-        }
-    }
+					@Override
+					public void onComplete() {
+						LOG.debug("onComplete");
+						ApplicationManager.getApplication().invokeLater(() -> {
+							if (OpenCopilotHandler.this.allEditors.isEmpty()
+									&& !OpenCopilotHandler.this.editorRequest.isCancelled()) {
+								OpenCopilotHandler.this.setContentEmptyText(
+										CopilotBundle.get("openCopilot.noCompletions"),
+										SimpleTextAttributes.ERROR_ATTRIBUTES);
+							} else {
+								OpenCopilotHandler.this.toolWindow.getContentManager()
+										.requestFocus(OpenCopilotHandler.this.toolWindowContent, false);
+							}
+						});
+					}
+				});
+		if (!sent) {
+			this.setContentEmptyText(CopilotBundle.get("openCopilot.noCompletions"),
+					SimpleTextAttributes.ERROR_ATTRIBUTES);
+		}
+	}
 
-    @RequiresBackgroundThread
-    private void addCompletion(final JPanel contentPanel, CopilotInlayList completion) {
-        if (contentPanel == null) {
-            throw new IllegalStateException("contentPanel cannot be null!");
-        }
-        if (completion == null) {
-            throw new IllegalStateException("completion cannot be null!");
-        }
-        StringBuilder content = new StringBuilder();
-        for (CopilotEditorInlay inlay : completion) {
-            for (String line : inlay.getLines()) {
-                content.append(line).append("\n");
-            }
-        }
-        int currentSolutionIndex = this.solutionIndex.getAndIncrement();
-        String solutionLabel = CopilotBundle.get("openCopilot.editor.solution.label", currentSolutionIndex);
-        ApplicationManager.getApplication().invokeLater(() -> {
-            LightVirtualFile snippetFile = new LightVirtualFile(solutionLabel, this.fileType, (CharSequence)content);
-            COPILOT_PREVIEW_EDITOR.set((UserDataHolder)snippetFile, (Object)true);
-            snippetFile.setWritable(false);
-            final EditorTextField editor = this.createSnippetEditor(snippetFile);
-            if (editor == null) {
-                LOG.error("unable to create preview editor for file. File type: " + this.fileType + ", file: " + snippetFile);
-                return;
-            }
-            final SmallButton acceptButton = new SmallButton(CopilotBundle.get("openCopilot.solution.accept", currentSolutionIndex));
-            acceptButton.setToolTipText(CopilotBundle.get("openCopilot.solution.accept.tooltip"));
-            acceptButton.addFocusListener(new FocusAdapter(){
+	@RequiresBackgroundThread
+	private void addCompletion(final JPanel contentPanel, CopilotInlayList completion) {
+		if (contentPanel == null) {
+			throw new IllegalStateException("contentPanel cannot be null!");
+		}
+		if (completion == null) {
+			throw new IllegalStateException("completion cannot be null!");
+		}
+		StringBuilder content = new StringBuilder();
+		for (CopilotEditorInlay inlay : completion) {
+			for (String line : inlay.getLines()) {
+				content.append(line).append("\n");
+			}
+		}
+		int currentSolutionIndex = this.solutionIndex.getAndIncrement();
+		String solutionLabel = CopilotBundle.get("openCopilot.editor.solution.label", currentSolutionIndex);
+		ApplicationManager.getApplication().invokeLater(() -> {
+			LightVirtualFile snippetFile = new LightVirtualFile(solutionLabel, this.fileType, (CharSequence) content);
+			COPILOT_PREVIEW_EDITOR.set((UserDataHolder) snippetFile, (Object) true);
+			snippetFile.setWritable(false);
+			final EditorTextField editor = this.createSnippetEditor(snippetFile);
+			if (editor == null) {
+				LOG.error("unable to create preview editor for file. File type: " + this.fileType + ", file: "
+						+ snippetFile);
+				return;
+			}
+			final SmallButton acceptButton = new SmallButton(
+					CopilotBundle.get("openCopilot.solution.accept", currentSolutionIndex));
+			acceptButton.setToolTipText(CopilotBundle.get("openCopilot.solution.accept.tooltip"));
+			acceptButton.addFocusListener(new FocusAdapter() {
 
-                @Override
-                public void focusGained(FocusEvent e) {
-                    FocusEvent.Cause cause = e.getCause();
-                    if (cause != FocusEvent.Cause.TRAVERSAL_BACKWARD && cause != FocusEvent.Cause.TRAVERSAL_FORWARD) {
-                        return;
-                    }
-                    Rectangle buttonRect = acceptButton.getBounds();
-                    Point buttonPos = SwingUtilities.convertPoint(acceptButton, buttonRect.getLocation(), contentPanel);
-                    buttonRect.setLocation(buttonPos);
-                    Rectangle editorRect = editor.getBounds();
-                    Point editorPos = SwingUtilities.convertPoint((Component)editor, editorRect.getLocation(), contentPanel);
-                    editorRect.setLocation(editorPos);
-                    contentPanel.scrollRectToVisible(buttonRect.union(editorRect));
-                }
-            });
-            acceptButton.addActionListener(actionEvent -> this.acceptSolution(this.project, this.editorRequest, completion));
-            JPanel header = new JPanel((LayoutManager)new HorizontalLayout(0));
-            header.add(acceptButton);
-            contentPanel.add(header);
-            contentPanel.add((Component)editor);
-            if (this.allButtons.isEmpty()) {
-                acceptButton.requestFocusInWindow();
-            }
-            this.allButtons.add(acceptButton);
-            Dimension editorPreferredSize = contentPanel.getPreferredSize();
-            editor.setMaximumSize((Dimension)new JBDimension(0, 200));
-            Editor wrappedEditor = editor.getEditor();
-            if (wrappedEditor != null) {
-                this.allEditors.add(wrappedEditor);
-                wrappedEditor.getScrollingModel().scrollVertically(0);
-                int contentHeight = wrappedEditor instanceof EditorEx ? ((EditorEx)wrappedEditor).getContentSize().height : wrappedEditor.getContentComponent().getHeight();
-                int height = Math.min(200, contentHeight += wrappedEditor.getLineHeight());
-                editor.setPreferredSize(new Dimension(editorPreferredSize.width, height));
-            }
-            editor.invalidate();
-            contentPanel.setFocusTraversalPolicy((FocusTraversalPolicy)new ListFocusTraversalPolicy(this.allButtons));
-        });
-    }
+				@Override
+				public void focusGained(FocusEvent e) {
+					FocusEvent.Cause cause = e.getCause();
+					if (cause != FocusEvent.Cause.TRAVERSAL_BACKWARD && cause != FocusEvent.Cause.TRAVERSAL_FORWARD) {
+						return;
+					}
+					Rectangle buttonRect = acceptButton.getBounds();
+					Point buttonPos = SwingUtilities.convertPoint(acceptButton, buttonRect.getLocation(), contentPanel);
+					buttonRect.setLocation(buttonPos);
+					Rectangle editorRect = editor.getBounds();
+					Point editorPos = SwingUtilities.convertPoint((Component) editor, editorRect.getLocation(),
+							contentPanel);
+					editorRect.setLocation(editorPos);
+					contentPanel.scrollRectToVisible(buttonRect.union(editorRect));
+				}
+			});
+			acceptButton.addActionListener(
+					actionEvent -> this.acceptSolution(this.project, this.editorRequest, completion));
+			JPanel header = new JPanel((LayoutManager) new HorizontalLayout(0));
+			header.add(acceptButton);
+			contentPanel.add(header);
+			contentPanel.add((Component) editor);
+			if (this.allButtons.isEmpty()) {
+				acceptButton.requestFocusInWindow();
+			}
+			this.allButtons.add(acceptButton);
+			Dimension editorPreferredSize = contentPanel.getPreferredSize();
+			editor.setMaximumSize((Dimension) new JBDimension(0, 200));
+			Editor wrappedEditor = editor.getEditor();
+			if (wrappedEditor != null) {
+				this.allEditors.add(wrappedEditor);
+				wrappedEditor.getScrollingModel().scrollVertically(0);
+				int contentHeight = wrappedEditor instanceof EditorEx
+						? ((EditorEx) wrappedEditor).getContentSize().height
+						: wrappedEditor.getContentComponent().getHeight();
+				int height = Math.min(200, contentHeight += wrappedEditor.getLineHeight());
+				editor.setPreferredSize(new Dimension(editorPreferredSize.width, height));
+			}
+			editor.invalidate();
+			contentPanel.setFocusTraversalPolicy((FocusTraversalPolicy) new ListFocusTraversalPolicy(this.allButtons));
+		});
+	}
 
-        private EditorTextField createSnippetEditor(LightVirtualFile snippetFile) {
-        Language language;
-        if (snippetFile == null) {
-            throw new IllegalStateException("snippetFile cannot be null!");
-        }
-        if ((language = snippetFile.getLanguage()) == null && snippetFile.getFileType() instanceof LanguageFileType) {
-            language = ((LanguageFileType)snippetFile.getFileType()).getLanguage();
-        }
-        if (language == null) {
-            return null;
-        }
-        EditorTextField editor = EditorTextFieldProvider.getInstance().getEditorField(language, this.project, List.of(editorEx -> {
-            EditorSettings editorSettings = editorEx.getSettings();
-            editorSettings.setLineNumbersShown(false);
-            editorSettings.setLineMarkerAreaShown(false);
-            editorSettings.setAutoCodeFoldingEnabled(false);
-            editorSettings.setUseSoftWraps(true);
-            editorSettings.setAnimatedScrolling(false);
-            editorSettings.setBlinkCaret(false);
-            editorSettings.setRightMarginShown(false);
-            editorSettings.setShowIntentionBulb(false);
-            editorEx.setViewer(true);
-            editorEx.setCaretVisible(false);
-            editorEx.setCaretEnabled(false);
-            editorEx.putUserData(IncrementalFindAction.SEARCH_DISABLED, (Object)Boolean.TRUE);
-            editorEx.setRendererMode(false);
-            EditorColorsScheme scheme = EditorColorsManager.getInstance().getSchemeForCurrentUITheme();
-            Color c = scheme.getColor(EditorColors.READONLY_BACKGROUND_COLOR);
-            editorEx.setBackgroundColor(c != null ? c : scheme.getDefaultBackground());
-            editorEx.setColorsScheme(scheme);
-            editorEx.setPrefixTextAndAttributes(this.editorRequest.getLineInfo().getLinePrefix(), scheme.getAttributes(DefaultLanguageHighlighterColors.LINE_COMMENT));
-        }));
-        FileViewProvider snippetViewProvider = PsiManager.getInstance((Project)this.project).findViewProvider((VirtualFile)snippetFile);
-        if (snippetViewProvider != null) {
-            editor.setDocument(snippetViewProvider.getDocument());
-        }
-        editor.setViewer(true);
-        editor.setFocusable(false);
-        return editor;
-    }
+	private EditorTextField createSnippetEditor(LightVirtualFile snippetFile) {
+		Language language;
+		if (snippetFile == null) {
+			throw new IllegalStateException("snippetFile cannot be null!");
+		}
+		if ((language = snippetFile.getLanguage()) == null && snippetFile.getFileType() instanceof LanguageFileType) {
+			language = ((LanguageFileType) snippetFile.getFileType()).getLanguage();
+		}
+		if (language == null) {
+			return null;
+		}
+		EditorTextField editor = EditorTextFieldProvider.getInstance().getEditorField(language, this.project,
+				List.of(editorEx -> {
+					EditorSettings editorSettings = editorEx.getSettings();
+					editorSettings.setLineNumbersShown(false);
+					editorSettings.setLineMarkerAreaShown(false);
+					editorSettings.setAutoCodeFoldingEnabled(false);
+					editorSettings.setUseSoftWraps(true);
+					editorSettings.setAnimatedScrolling(false);
+					editorSettings.setBlinkCaret(false);
+					editorSettings.setRightMarginShown(false);
+					editorSettings.setShowIntentionBulb(false);
+					editorEx.setViewer(true);
+					editorEx.setCaretVisible(false);
+					editorEx.setCaretEnabled(false);
+					editorEx.putUserData(IncrementalFindAction.SEARCH_DISABLED, (Object) Boolean.TRUE);
+					editorEx.setRendererMode(false);
+					EditorColorsScheme scheme = EditorColorsManager.getInstance().getSchemeForCurrentUITheme();
+					Color c = scheme.getColor(EditorColors.READONLY_BACKGROUND_COLOR);
+					editorEx.setBackgroundColor(c != null ? c : scheme.getDefaultBackground());
+					editorEx.setColorsScheme(scheme);
+					editorEx.setPrefixTextAndAttributes(this.editorRequest.getLineInfo().getLinePrefix(),
+							scheme.getAttributes(DefaultLanguageHighlighterColors.LINE_COMMENT));
+				}));
+		FileViewProvider snippetViewProvider = PsiManager.getInstance((Project) this.project)
+				.findViewProvider((VirtualFile) snippetFile);
+		if (snippetViewProvider != null) {
+			editor.setDocument(snippetViewProvider.getDocument());
+		}
+		editor.setViewer(true);
+		editor.setFocusable(false);
+		return editor;
+	}
 
-    private void acceptSolution(Project project, EditorRequest editorRequest, CopilotInlayList completion) {
-        if (project == null) {
-            throw new IllegalStateException("project cannot be null!");
-        }
-        if (editorRequest == null) {
-            throw new IllegalStateException("editorRequest cannot be null!");
-        }
-        if (completion == null) {
-            throw new IllegalStateException("completion cannot be null!");
-        }
-        if (this.toolWindowContent != null) {
-            this.toolWindow.getContentManager().removeContent(this.toolWindowContent, true);
-        }
-        this.toolWindow.hide();
-        FileEditor mainEditor = FileEditorManagerEx.getInstanceEx((Project)project).getSelectedEditor();
-        if (!(mainEditor instanceof TextEditor)) {
-            return;
-        }
-        CopilotEditorManager manager = CopilotEditorManager.getInstance();
-        Editor textEditor = ((TextEditor)mainEditor).getEditor();
-        manager.applyCompletion(project, textEditor, editorRequest, completion);
-    }
+	private void acceptSolution(Project project, EditorRequest editorRequest, CopilotInlayList completion) {
+		if (project == null) {
+			throw new IllegalStateException("project cannot be null!");
+		}
+		if (editorRequest == null) {
+			throw new IllegalStateException("editorRequest cannot be null!");
+		}
+		if (completion == null) {
+			throw new IllegalStateException("completion cannot be null!");
+		}
+		if (this.toolWindowContent != null) {
+			this.toolWindow.getContentManager().removeContent(this.toolWindowContent, true);
+		}
+		this.toolWindow.hide();
+		FileEditor mainEditor = FileEditorManagerEx.getInstanceEx((Project) project).getSelectedEditor();
+		if (!(mainEditor instanceof TextEditor)) {
+			return;
+		}
+		CopilotEditorManager manager = CopilotEditorManager.getInstance();
+		Editor textEditor = ((TextEditor) mainEditor).getEditor();
+		manager.applyCompletion(project, textEditor, editorRequest, completion);
+	}
 
-    private void setEditorChangedEmptyText() {
-        if (this.toolWindowContent.isValid()) {
-            this.setContentEmptyText(CopilotBundle.get("openCopilot.editorChangedError"), SimpleTextAttributes.REGULAR_ATTRIBUTES);
-        }
-    }
+	private void setEditorChangedEmptyText() {
+		if (this.toolWindowContent.isValid()) {
+			this.setContentEmptyText(CopilotBundle.get("openCopilot.editorChangedError"),
+					SimpleTextAttributes.REGULAR_ATTRIBUTES);
+		}
+	}
 
-    private void setContentEmptyText(String text, SimpleTextAttributes attrs) {
-        if (text == null) {
-            throw new IllegalStateException("text cannot be null!");
-        }
-        this.contentPanel.removeAll();
-        this.contentPanel.getEmptyText().clear();
-        if (attrs == null) {
-            this.contentPanel.getEmptyText().setText(text);
-        } else {
-            this.contentPanel.getEmptyText().setText(text, attrs);
-        }
-        OpenCopilotToolWindowFactory.appendRefreshLine(this.contentPanel.getEmptyText(), this.editor);
-    }
+	private void setContentEmptyText(String text, SimpleTextAttributes attrs) {
+		if (text == null) {
+			throw new IllegalStateException("text cannot be null!");
+		}
+		this.contentPanel.removeAll();
+		this.contentPanel.getEmptyText().clear();
+		if (attrs == null) {
+			this.contentPanel.getEmptyText().setText(text);
+		} else {
+			this.contentPanel.getEmptyText().setText(text, attrs);
+		}
+		OpenCopilotToolWindowFactory.appendRefreshLine(this.contentPanel.getEmptyText(), this.editor);
+	}
 
-    
 }
-

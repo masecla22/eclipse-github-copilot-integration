@@ -21,30 +21,30 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.PsiFile;
 
-public class CopilotLookupListener
-implements LookupManagerListener {
-    private static final Logger LOG = Logger.getInstance(CopilotLookupListener.class);
+public class CopilotLookupListener implements LookupManagerListener {
+	private static final Logger LOG = Logger.getInstance(CopilotLookupListener.class);
 
-    public void activeLookupChanged(Lookup oldLookup, Lookup newLookup) {
-        PsiFile psiFile;
-        LOG.debug("activeLookupChanged");
-        Lookup validLookup = newLookup != null ? newLookup : oldLookup;
-        PsiFile psiFile2 = psiFile = validLookup != null ? validLookup.getPsiFile() : null;
-        if (psiFile != null && !CopilotApplicationSettings.isCopilotEnabled(psiFile)) {
-            return;
-        }
-        CopilotEditorManager editorManager = CopilotEditorManager.getInstance();
-        if (oldLookup != null && newLookup == null) {
-            Editor editor;
-            PsiFile file = oldLookup.getPsiFile();
-            if (file != null && CopilotEditorUtil.isSelectedEditor(editor = oldLookup.getEditor()) && editorManager.isAvailable(editor) && !editor.getDocument().isInBulkUpdate()) {
-                editorManager.editorModified(editor, editor.getCaretModel().getOffset(), true);
-            }
-        } else if (newLookup != null && oldLookup == null && !CopilotApplicationSettings.settings().isShowIdeCompletions()) {
-            Editor editor = newLookup.getEditor();
-            editorManager.cancelCompletionRequests(editor);
-            editorManager.disposeInlays(editor, InlayDisposeContext.IdeCompletion);
-        }
-    }
+	public void activeLookupChanged(Lookup oldLookup, Lookup newLookup) {
+		PsiFile psiFile;
+		LOG.debug("activeLookupChanged");
+		Lookup validLookup = newLookup != null ? newLookup : oldLookup;
+		PsiFile psiFile2 = psiFile = validLookup != null ? validLookup.getPsiFile() : null;
+		if (psiFile != null && !CopilotApplicationSettings.isCopilotEnabled(psiFile)) {
+			return;
+		}
+		CopilotEditorManager editorManager = CopilotEditorManager.getInstance();
+		if (oldLookup != null && newLookup == null) {
+			Editor editor;
+			PsiFile file = oldLookup.getPsiFile();
+			if (file != null && CopilotEditorUtil.isSelectedEditor(editor = oldLookup.getEditor())
+					&& editorManager.isAvailable(editor) && !editor.getDocument().isInBulkUpdate()) {
+				editorManager.editorModified(editor, editor.getCaretModel().getOffset(), true);
+			}
+		} else if (newLookup != null && oldLookup == null
+				&& !CopilotApplicationSettings.settings().isShowIdeCompletions()) {
+			Editor editor = newLookup.getEditor();
+			editorManager.cancelCompletionRequests(editor);
+			editorManager.disposeInlays(editor, InlayDisposeContext.IdeCompletion);
+		}
+	}
 }
-

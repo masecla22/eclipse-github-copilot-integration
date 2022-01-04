@@ -17,44 +17,41 @@ import com.intellij.lang.Language;
 import com.intellij.openapi.Disposable;
 import com.intellij.openapi.project.Project;
 
-public interface EditorRequest
-extends Cancellable {
-        public LineInfo getLineInfo();
+public interface EditorRequest extends Cancellable {
+	public LineInfo getLineInfo();
 
-    public boolean equalsRequest(EditorRequest var1);
+	public boolean equalsRequest(EditorRequest var1);
 
-        default public String getCurrentDocumentPrefix() {
-        String string = this.getDocumentContent().substring(0, this.getOffset());
-        if (string == null) {
-            throw new IllegalStateException("string cannot be null!");
-        }
-        return string;
-    }
+	default public String getCurrentDocumentPrefix() {
+		String string = this.getDocumentContent().substring(0, this.getOffset());
+		if (string == null) {
+			throw new IllegalStateException("string cannot be null!");
+		}
+		return string;
+	}
 
-        public String getDocumentContent();
+	public String getDocumentContent();
 
-        public Language getFileLanguage();
+	public Language getFileLanguage();
 
-        public String getRelativeFilePath();
+	public String getRelativeFilePath();
 
-        public Project getProject();
+	public Project getProject();
 
-        public CompletionType getCompletionType();
+	public CompletionType getCompletionType();
 
-    public int getOffset();
+	public int getOffset();
 
-    public boolean isUseTabIndents();
+	public boolean isUseTabIndents();
 
-    public int getTabWidth();
+	public int getTabWidth();
 
-    public int getRequestId();
+	public int getRequestId();
 
-    public Disposable getDisposable();
+	public Disposable getDisposable();
 
-    public long getRequestTimestamp();
+	public long getRequestTimestamp();
 
-        public Integer getDocumentModificationSequence();
+	public Integer getDocumentModificationSequence();
 
-    
 }
-

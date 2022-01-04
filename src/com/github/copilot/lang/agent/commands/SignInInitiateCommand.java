@@ -8,16 +8,14 @@ package com.github.copilot.lang.agent.commands;
 
 import com.github.copilot.lang.agent.rpc.JsonRpcCommand;
 
-public class SignInInitiateCommand
-implements JsonRpcCommand<SignInInitiateResult> {
-    @Override
-        public String getCommandName() {
-        return "signInInitiate";
-    }
+public class SignInInitiateCommand implements JsonRpcCommand<SignInInitiateResult> {
+	@Override
+	public String getCommandName() {
+		return "signInInitiate";
+	}
 
-    @Override
-        public Class<SignInInitiateResult> getResponseType() {
-        return SignInInitiateResult.class;
-    }
+	@Override
+	public Class<SignInInitiateResult> getResponseType() {
+		return SignInInitiateResult.class;
+	}
 }
-

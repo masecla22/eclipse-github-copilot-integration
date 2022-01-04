@@ -20,28 +20,24 @@ import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.DumbAware;
 
-public class CopilotRequestCompletionsAction
-extends AnAction
-implements DumbAware,
-CopilotAction {
-    public void update(AnActionEvent e) {
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        Editor editor = (Editor)e.getData(CommonDataKeys.EDITOR);
-        e.getPresentation().setEnabled(editor != null && CopilotEditorUtil.isSelectedEditor(editor));
-    }
+public class CopilotRequestCompletionsAction extends AnAction implements DumbAware, CopilotAction {
+	public void update(AnActionEvent e) {
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		Editor editor = (Editor) e.getData(CommonDataKeys.EDITOR);
+		e.getPresentation().setEnabled(editor != null && CopilotEditorUtil.isSelectedEditor(editor));
+	}
 
-    public void actionPerformed(AnActionEvent e) {
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        CopilotEditorManager editorManager = CopilotEditorManager.getInstance();
-        Editor editor = (Editor)e.getData(CommonDataKeys.EDITOR);
-        if (editor == null || !CopilotEditorUtil.isSelectedEditor(editor) || !editorManager.isAvailable(editor)) {
-            return;
-        }
-        editorManager.editorModified(editor, true);
-    }
+	public void actionPerformed(AnActionEvent e) {
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		CopilotEditorManager editorManager = CopilotEditorManager.getInstance();
+		Editor editor = (Editor) e.getData(CommonDataKeys.EDITOR);
+		if (editor == null || !CopilotEditorUtil.isSelectedEditor(editor) || !editorManager.isAvailable(editor)) {
+			return;
+		}
+		editorManager.editorModified(editor, true);
+	}
 }
-

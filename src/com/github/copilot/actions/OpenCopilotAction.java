@@ -18,30 +18,28 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.editor.Editor;
 
-public class OpenCopilotAction
-extends AnAction
-implements CopilotAction {
-    public void update(AnActionEvent e) {
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        Editor editor = (Editor)e.getData(CommonDataKeys.EDITOR);
-        e.getPresentation().setEnabled(editor != null && CopilotEditorManager.getInstance().isAvailable(editor));
-    }
+public class OpenCopilotAction extends AnAction implements CopilotAction {
+	public void update(AnActionEvent e) {
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		Editor editor = (Editor) e.getData(CommonDataKeys.EDITOR);
+		e.getPresentation().setEnabled(editor != null && CopilotEditorManager.getInstance().isAvailable(editor));
+	}
 
-    public boolean isDumbAware() {
-        return true;
-    }
+	public boolean isDumbAware() {
+		return true;
+	}
 
-    public void actionPerformed(AnActionEvent e) {
-        Editor editor;
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        if ((editor = (Editor)e.getData(CommonDataKeys.EDITOR)) == null || !CopilotEditorManager.getInstance().isAvailable(editor)) {
-            return;
-        }
-        CopilotSplitEditorManager.getInstance().openCopilot(editor, true);
-    }
+	public void actionPerformed(AnActionEvent e) {
+		Editor editor;
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		if ((editor = (Editor) e.getData(CommonDataKeys.EDITOR)) == null
+				|| !CopilotEditorManager.getInstance().isAvailable(editor)) {
+			return;
+		}
+		CopilotSplitEditorManager.getInstance().openCopilot(editor, true);
+	}
 }
-

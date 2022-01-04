@@ -13,42 +13,39 @@ import com.github.copilot.openai.CompletionResponseInfo;
 import com.github.copilot.telemetry.TelemetryData;
 import com.intellij.openapi.util.text.StringUtil;
 
-public interface APIChoice
-extends CopilotCompletion {
-        public CompletionResponseInfo getResponseInfo();
+public interface APIChoice extends CopilotCompletion {
+	public CompletionResponseInfo getResponseInfo();
 
-    default public int getCompletionTextLength() {
-        int sum = 0;
-        for (String line : this.getCompletion()) {
-            sum += line.length();
-        }
-        return sum;
-    }
+	default public int getCompletionTextLength() {
+		int sum = 0;
+		for (String line : this.getCompletion()) {
+			sum += line.length();
+		}
+		return sum;
+	}
 
-        default public String getCompletionText() {
-        String string = StringUtil.join(this.getCompletion(), (String)"\n");
-        if (string == null) {
-            throw new IllegalStateException("string cannot be null!");
-        }
-        return string;
-    }
+	default public String getCompletionText() {
+		String string = StringUtil.join(this.getCompletion(), (String) "\n");
+		if (string == null) {
+			throw new IllegalStateException("string cannot be null!");
+		}
+		return string;
+	}
 
-    public int getChoiceIndex();
+	public int getChoiceIndex();
 
-    public int getNumTokens();
+	public int getNumTokens();
 
-    public int getRequestID();
+	public int getRequestID();
 
-        public String getCompletionId();
+	public String getCompletionId();
 
-    public int getCreatedTimestamp();
+	public int getCreatedTimestamp();
 
-        public Double getMeanLogProb();
+	public Double getMeanLogProb();
 
-        public TelemetryData getTelemetryData();
+	public TelemetryData getTelemetryData();
 
-    public boolean isCached();
+	public boolean isCached();
 
-    
 }
-

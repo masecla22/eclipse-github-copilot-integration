@@ -17,32 +17,31 @@ import java.util.concurrent.TimeUnit;
 import org.jetbrains.annotations.TestOnly;
 
 @TestOnly
-public class GitHubDelegatingTestService
-extends DelegatingGitHubService {
-    public static GitHubDelegatingTestService getInstance() {
-        return (GitHubDelegatingTestService)ApplicationManager.getApplication().getService(GitHubService.class);
-    }
+public class GitHubDelegatingTestService extends DelegatingGitHubService {
+	public static GitHubDelegatingTestService getInstance() {
+		return (GitHubDelegatingTestService) ApplicationManager.getApplication().getService(GitHubService.class);
+	}
 
-    @TestOnly
-    public void setCopilotTokenString(String token) {
-        GitHubCopilotToken copilotToken = token == null ? null : new GitHubCopilotToken(token, System.currentTimeMillis() / 1000L + TimeUnit.HOURS.toSeconds(1L));
-        this.setCopilotToken(copilotToken);
-    }
+	@TestOnly
+	public void setCopilotTokenString(String token) {
+		GitHubCopilotToken copilotToken = token == null ? null
+				: new GitHubCopilotToken(token, System.currentTimeMillis() / 1000L + TimeUnit.HOURS.toSeconds(1L));
+		this.setCopilotToken(copilotToken);
+	}
 
-    @TestOnly
-    public void refreshGitHubSession() {
-        if (CopilotAgent.isAgentSupportedAndEnabled()) {
-            throw new UnsupportedOperationException("todo");
-        }
-        this.defaultService.refreshStatus();
-    }
+	@TestOnly
+	public void refreshGitHubSession() {
+		if (CopilotAgent.isAgentSupportedAndEnabled()) {
+			throw new UnsupportedOperationException("todo");
+		}
+		this.defaultService.refreshStatus();
+	}
 
-    @TestOnly
-    public void setCopilotToken(GitHubCopilotToken token) {
-        if (CopilotAgent.isAgentSupportedAndEnabled()) {
-            throw new UnsupportedOperationException("todo");
-        }
-        this.defaultService.setCopilotToken(token);
-    }
+	@TestOnly
+	public void setCopilotToken(GitHubCopilotToken token) {
+		if (CopilotAgent.isAgentSupportedAndEnabled()) {
+			throw new UnsupportedOperationException("todo");
+		}
+		this.defaultService.setCopilotToken(token);
+	}
 }
-

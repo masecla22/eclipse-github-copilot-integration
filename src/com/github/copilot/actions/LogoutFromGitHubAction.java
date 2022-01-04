@@ -22,24 +22,21 @@ import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 
-public class LogoutFromGitHubAction
-extends AnAction
-implements DumbAware,
-CopilotAction {
-    public void update(AnActionEvent e) {
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        e.getPresentation().setEnabled(GitHubService.getInstance().isSignedIn());
-    }
+public class LogoutFromGitHubAction extends AnAction implements DumbAware, CopilotAction {
+	public void update(AnActionEvent e) {
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		e.getPresentation().setEnabled(GitHubService.getInstance().isSignedIn());
+	}
 
-    public void actionPerformed(AnActionEvent e) {
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        GitHubService.getInstance().logout();
-        CopilotStatusService.notifyApplication(CopilotStatus.NotSignedIn);
-        Messages.showInfoMessage((Project)e.getProject(), (String)CopilotBundle.get("github.logout.success.message"), (String)CopilotBundle.get("github.logout.success.title"));
-    }
+	public void actionPerformed(AnActionEvent e) {
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		GitHubService.getInstance().logout();
+		CopilotStatusService.notifyApplication(CopilotStatus.NotSignedIn);
+		Messages.showInfoMessage((Project) e.getProject(), (String) CopilotBundle.get("github.logout.success.message"),
+				(String) CopilotBundle.get("github.logout.success.title"));
+	}
 }
-

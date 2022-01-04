@@ -18,29 +18,26 @@ import com.intellij.openapi.fileEditor.FileEditorManagerListener;
 import com.intellij.openapi.fileEditor.TextEditor;
 import com.intellij.openapi.project.Project;
 
-public class OpenCopilotEditorManagerListener
-implements FileEditorManagerListener {
-    private final Project project;
+public class OpenCopilotEditorManagerListener implements FileEditorManagerListener {
+	private final Project project;
 
-    public OpenCopilotEditorManagerListener(Project project) {
-        if (project == null) {
-            throw new IllegalStateException("project cannot be null!");
-        }
-        this.project = project;
-    }
+	public OpenCopilotEditorManagerListener(Project project) {
+		if (project == null) {
+			throw new IllegalStateException("project cannot be null!");
+		}
+		this.project = project;
+	}
 
-    public void selectionChanged(FileEditorManagerEvent event) {
-        FileEditor newEditor;
-        if (event == null) {
-            throw new IllegalStateException("event cannot be null!");
-        }
-        if ((newEditor = event.getNewEditor()) instanceof TextEditor) {
-            OpenCopilotToolWindowFactory.editorSelectionChanged(this.project, ((TextEditor)newEditor).getEditor());
-        } else {
-            OpenCopilotToolWindowFactory.editorSelectionChanged(this.project, null);
-        }
-    }
+	public void selectionChanged(FileEditorManagerEvent event) {
+		FileEditor newEditor;
+		if (event == null) {
+			throw new IllegalStateException("event cannot be null!");
+		}
+		if ((newEditor = event.getNewEditor()) instanceof TextEditor) {
+			OpenCopilotToolWindowFactory.editorSelectionChanged(this.project, ((TextEditor) newEditor).getEditor());
+		} else {
+			OpenCopilotToolWindowFactory.editorSelectionChanged(this.project, null);
+		}
+	}
 
-    
 }
-

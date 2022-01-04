@@ -30,53 +30,48 @@ import com.intellij.psi.PsiFile;
 import com.intellij.util.IncorrectOperationException;
 import java.util.Map;
 
-public class OpenCopilotIntention
-extends BaseIntentionAction
-implements DumbAware,
-PriorityAction {
-    public OpenCopilotIntention() {
-        this.setText(CopilotBundle.get("intention.openCopilot.text"));
-    }
+public class OpenCopilotIntention extends BaseIntentionAction implements DumbAware, PriorityAction {
+	public OpenCopilotIntention() {
+		this.setText(CopilotBundle.get("intention.openCopilot.text"));
+	}
 
-        @IntentionFamilyName
-    public String getFamilyName() {
-        String string = CopilotBundle.get("intention.openCopilot.familyName");
-        if (string == null) {
-            throw new IllegalStateException("string cannot be null!");
-        }
-        return string;
-    }
+	@IntentionFamilyName
+	public String getFamilyName() {
+		String string = CopilotBundle.get("intention.openCopilot.familyName");
+		if (string == null) {
+			throw new IllegalStateException("string cannot be null!");
+		}
+		return string;
+	}
 
-    public boolean isAvailable(Project project, Editor editor, PsiFile file) {
-        if (project == null) {
-            throw new IllegalStateException("project cannot be null!");
-        }
-        if (!CopilotEditorUtil.isSelectedEditor(editor)) {
-            return false;
-        }
-        return CopilotEditorManager.getInstance().isAvailable(editor);
-    }
+	public boolean isAvailable(Project project, Editor editor, PsiFile file) {
+		if (project == null) {
+			throw new IllegalStateException("project cannot be null!");
+		}
+		if (!CopilotEditorUtil.isSelectedEditor(editor)) {
+			return false;
+		}
+		return CopilotEditorManager.getInstance().isAvailable(editor);
+	}
 
-    public boolean startInWriteAction() {
-        return false;
-    }
+	public boolean startInWriteAction() {
+		return false;
+	}
 
-        public PriorityAction.Priority getPriority() {
-        PriorityAction.Priority priority = PriorityAction.Priority.LOW;
-        if (priority == null) {
-            throw new IllegalStateException("priority cannot be null!");
-        }
-        return priority;
-    }
+	public PriorityAction.Priority getPriority() {
+		PriorityAction.Priority priority = PriorityAction.Priority.LOW;
+		if (priority == null) {
+			throw new IllegalStateException("priority cannot be null!");
+		}
+		return priority;
+	}
 
-    public void invoke(Project project, Editor editor, PsiFile file) throws IncorrectOperationException {
-        if (project == null) {
-            throw new IllegalStateException("project cannot be null!");
-        }
-        CopilotSplitEditorManager.getInstance().openCopilot(editor, true);
-        TelemetryService.getInstance().track("command.executed", Map.of("command", "intention.openCopilot"));
-    }
+	public void invoke(Project project, Editor editor, PsiFile file) throws IncorrectOperationException {
+		if (project == null) {
+			throw new IllegalStateException("project cannot be null!");
+		}
+		CopilotSplitEditorManager.getInstance().openCopilot(editor, true);
+		TelemetryService.getInstance().track("command.executed", Map.of("command", "intention.openCopilot"));
+	}
 
-    
 }
-

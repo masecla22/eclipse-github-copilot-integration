@@ -20,36 +20,34 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
 
-public class CompletionPopupInhibitor
-extends TypedHandlerDelegate {
-    private static final Logger LOG = Logger.getInstance(CompletionPopupInhibitor.class);
+public class CompletionPopupInhibitor extends TypedHandlerDelegate {
+	private static final Logger LOG = Logger.getInstance(CompletionPopupInhibitor.class);
 
-        public TypedHandlerDelegate.Result checkAutoPopup(char charTyped, Project project, Editor editor, PsiFile file) {
-        boolean showIdeCompletions;
-        if (project == null) {
-            throw new IllegalStateException("project cannot be null!");
-        }
-        if (editor == null) {
-            throw new IllegalStateException("editor cannot be null!");
-        }
-        if (file == null) {
-            throw new IllegalStateException("file cannot be null!");
-        }
-        if (!(showIdeCompletions = CopilotApplicationSettings.settings().isShowIdeCompletions()) && CopilotEditorManager.getInstance().hasTypingAsSuggestedData(editor, charTyped)) {
-            LOG.debug("inhibiting IDE completion popup because typing-as-suggested is available");
-            TypedHandlerDelegate.Result result = TypedHandlerDelegate.Result.STOP;
-            if (result == null) {
-                throw new IllegalStateException("result cannot be null!");
-            }
-            return result;
-        }
-        TypedHandlerDelegate.Result result = super.checkAutoPopup(charTyped, project, editor, file);
-        if (result == null) {
-            throw new IllegalStateException("result cannot be null!");
-        }
-        return result;
-    }
+	public TypedHandlerDelegate.Result checkAutoPopup(char charTyped, Project project, Editor editor, PsiFile file) {
+		boolean showIdeCompletions;
+		if (project == null) {
+			throw new IllegalStateException("project cannot be null!");
+		}
+		if (editor == null) {
+			throw new IllegalStateException("editor cannot be null!");
+		}
+		if (file == null) {
+			throw new IllegalStateException("file cannot be null!");
+		}
+		if (!(showIdeCompletions = CopilotApplicationSettings.settings().isShowIdeCompletions())
+				&& CopilotEditorManager.getInstance().hasTypingAsSuggestedData(editor, charTyped)) {
+			LOG.debug("inhibiting IDE completion popup because typing-as-suggested is available");
+			TypedHandlerDelegate.Result result = TypedHandlerDelegate.Result.STOP;
+			if (result == null) {
+				throw new IllegalStateException("result cannot be null!");
+			}
+			return result;
+		}
+		TypedHandlerDelegate.Result result = super.checkAutoPopup(charTyped, project, editor, file);
+		if (result == null) {
+			throw new IllegalStateException("result cannot be null!");
+		}
+		return result;
+	}
 
-    
 }
-

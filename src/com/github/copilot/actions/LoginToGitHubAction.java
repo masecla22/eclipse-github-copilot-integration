@@ -16,22 +16,18 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.DumbAware;
 import java.util.Objects;
 
-public class LoginToGitHubAction
-extends AnAction
-implements DumbAware,
-CopilotAction {
-    public void update(AnActionEvent e) {
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        e.getPresentation().setEnabled(e.getProject() != null);
-    }
+public class LoginToGitHubAction extends AnAction implements DumbAware, CopilotAction {
+	public void update(AnActionEvent e) {
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		e.getPresentation().setEnabled(e.getProject() != null);
+	}
 
-    public void actionPerformed(AnActionEvent e) {
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        GitHubService.getInstance().loginInteractive(Objects.requireNonNull(e.getProject()));
-    }
+	public void actionPerformed(AnActionEvent e) {
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		GitHubService.getInstance().loginInteractive(Objects.requireNonNull(e.getProject()));
+	}
 }
-

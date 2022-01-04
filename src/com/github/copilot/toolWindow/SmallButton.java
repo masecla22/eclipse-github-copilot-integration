@@ -13,29 +13,27 @@ import java.awt.Font;
 import java.awt.Insets;
 import javax.swing.JButton;
 
-class SmallButton
-extends JButton {
-    /**
+class SmallButton extends JButton {
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7243341939381218642L;
 
 	public SmallButton(String label) {
-        if (label == null) {
-            throw new IllegalStateException("label cannot be null!");
-        }
-        super(label);
-        this.setFont((Font)JBUI.Fonts.smallFont());
-    }
+		if (label == null) {
+			throw new IllegalStateException("label cannot be null!");
+		}
+		super(label);
+		this.setFont((Font) JBUI.Fonts.smallFont());
+	}
 
-    @Override
-    public Insets getInsets(Insets insets) {
-        return this.getInsets();
-    }
+	@Override
+	public Insets getInsets(Insets insets) {
+		return this.getInsets();
+	}
 
-    @Override
-    public Insets getInsets() {
-        return JBUI.emptyInsets();
-    }
+	@Override
+	public Insets getInsets() {
+		return JBUI.emptyInsets();
+	}
 }
-

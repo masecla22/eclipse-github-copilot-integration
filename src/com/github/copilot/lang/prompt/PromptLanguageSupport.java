@@ -21,39 +21,38 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 
 public interface PromptLanguageSupport {
-    public static final ExtensionPointName<PromptLanguageSupport> EP = new ExtensionPointName("com.github.copilot.prompt");
+	public static final ExtensionPointName<PromptLanguageSupport> EP = new ExtensionPointName(
+			"com.github.copilot.prompt");
 
-        public static PromptLanguageSupport find(CopilotLanguage language) {
-        if (language == null) {
-            throw new IllegalStateException("language cannot be null!");
-        }
-        return (PromptLanguageSupport)EP.findFirstSafe(e -> e.isAvailable(language));
-    }
+	public static PromptLanguageSupport find(CopilotLanguage language) {
+		if (language == null) {
+			throw new IllegalStateException("language cannot be null!");
+		}
+		return (PromptLanguageSupport) EP.findFirstSafe(e -> e.isAvailable(language));
+	}
 
-    public boolean isAvailable(CopilotLanguage var1);
+	public boolean isAvailable(CopilotLanguage var1);
 
-        public String getLanguageMarker(PsiFile var1);
+	public String getLanguageMarker(PsiFile var1);
 
-        public String getLanguageId(PsiFile var1);
+	public String getLanguageId(PsiFile var1);
 
-        public String getPathMarker(Language var1, String var2);
+	public String getPathMarker(Language var1, String var2);
 
-        public PsiElement findParentFunction(PsiFile var1, int var2);
+	public PsiElement findParentFunction(PsiFile var1, int var2);
 
-        public TextRange findFunctionRange(PsiElement var1);
+	public TextRange findFunctionRange(PsiElement var1);
 
-        public PsiElement findNextSiblingFunction(PsiElement var1);
+	public PsiElement findNextSiblingFunction(PsiElement var1);
 
-    public boolean isSupportingMultilineCompletion(Language var1);
+	public boolean isSupportingMultilineCompletion(Language var1);
 
-        default public BlockMode getBlockMode() {
-        BlockMode blockMode = BlockMode.Client;
-        if (blockMode == null) {
-            throw new IllegalStateException("blockMode cannot be null!");
-        }
-        return blockMode;
-    }
+	default public BlockMode getBlockMode() {
+		BlockMode blockMode = BlockMode.Client;
+		if (blockMode == null) {
+			throw new IllegalStateException("blockMode cannot be null!");
+		}
+		return blockMode;
+	}
 
-    
 }
-

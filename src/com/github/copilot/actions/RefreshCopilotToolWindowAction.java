@@ -23,35 +23,33 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.project.Project;
 
-public class RefreshCopilotToolWindowAction
-extends AnAction {
-    public RefreshCopilotToolWindowAction() {
-        super(CopilotBundle.get("openCopilot.refreshAction"), null, AllIcons.Actions.Refresh);
-        AnAction refreshAction = ActionManager.getInstance().getAction("Refresh");
-        if (refreshAction != null) {
-            this.copyShortcutFrom(refreshAction);
-        }
-    }
+public class RefreshCopilotToolWindowAction extends AnAction {
+	public RefreshCopilotToolWindowAction() {
+		super(CopilotBundle.get("openCopilot.refreshAction"), null, AllIcons.Actions.Refresh);
+		AnAction refreshAction = ActionManager.getInstance().getAction("Refresh");
+		if (refreshAction != null) {
+			this.copyShortcutFrom(refreshAction);
+		}
+	}
 
-    public void update(AnActionEvent e) {
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        e.getPresentation().setEnabledAndVisible(e.getProject() != null);
-    }
+	public void update(AnActionEvent e) {
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		e.getPresentation().setEnabledAndVisible(e.getProject() != null);
+	}
 
-    public void actionPerformed(AnActionEvent e) {
-        Project project;
-        if (e == null) {
-            throw new IllegalStateException("e cannot be null!");
-        }
-        if ((project = e.getProject()) == null) {
-            return;
-        }
-        Editor editor = FileEditorManager.getInstance((Project)project).getSelectedTextEditor();
-        if (editor != null) {
-            CopilotSplitEditorManager.getInstance().openCopilot(editor, true);
-        }
-    }
+	public void actionPerformed(AnActionEvent e) {
+		Project project;
+		if (e == null) {
+			throw new IllegalStateException("e cannot be null!");
+		}
+		if ((project = e.getProject()) == null) {
+			return;
+		}
+		Editor editor = FileEditorManager.getInstance((Project) project).getSelectedTextEditor();
+		if (editor != null) {
+			CopilotSplitEditorManager.getInstance().openCopilot(editor, true);
+		}
+	}
 }
-

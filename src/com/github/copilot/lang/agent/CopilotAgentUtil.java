@@ -20,40 +20,40 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class CopilotAgentUtil {
-    private static final Logger LOG = Logger.getInstance(CopilotAgentUtil.class);
+	private static final Logger LOG = Logger.getInstance(CopilotAgentUtil.class);
 
-        public static Path getNodeExecutablePath() {
-        File path = PathEnvironmentVariableUtil.findExecutableInPathOnAnyOS((String)"node");
-        if (path == null) {
-            LOG.warn("node executable not found in $PATH");
-            return null;
-        }
-        Path nioPath = path.toPath();
-        if (!Files.isExecutable(nioPath)) {
-            LOG.warn("node executable has no execute permissions: " + nioPath);
-            return null;
-        }
-        LOG.debug("Found node executable at " + nioPath);
-        return nioPath;
-    }
+	public static Path getNodeExecutablePath() {
+		File path = PathEnvironmentVariableUtil.findExecutableInPathOnAnyOS((String) "node");
+		if (path == null) {
+			LOG.warn("node executable not found in $PATH");
+			return null;
+		}
+		Path nioPath = path.toPath();
+		if (!Files.isExecutable(nioPath)) {
+			LOG.warn("node executable has no execute permissions: " + nioPath);
+			return null;
+		}
+		LOG.debug("Found node executable at " + nioPath);
+		return nioPath;
+	}
 
-        public static Path getAgentDirectoryPath() {
-        String envValue;
-        if (ApplicationManager.getApplication().isUnitTestMode() && (envValue = System.getenv("GITHUB_COPILOT_AGENTDIR")) != null) {
-            Path envPath = Paths.get(envValue, new String[0]);
-            if (!Files.exists(envPath, new LinkOption[0])) {
-                LOG.error("GITHUB_COPILOT_AGENTDIR path doesn't exist: " + envPath);
-                return null;
-            }
-            return envPath;
-        }
-        Path basePath = CopilotPlugin.getPluginBasePath();
-        Path distPath = basePath.resolve("copilot-agent/dist");
-        if (Files.exists(distPath, new LinkOption[0])) {
-            return distPath;
-        }
-        LOG.error("Unable to locate the Copilot agent dist path in base path: " + basePath);
-        return null;
-    }
+	public static Path getAgentDirectoryPath() {
+		String envValue;
+		if (ApplicationManager.getApplication().isUnitTestMode()
+				&& (envValue = System.getenv("GITHUB_COPILOT_AGENTDIR")) != null) {
+			Path envPath = Paths.get(envValue, new String[0]);
+			if (!Files.exists(envPath, new LinkOption[0])) {
+				LOG.error("GITHUB_COPILOT_AGENTDIR path doesn't exist: " + envPath);
+				return null;
+			}
+			return envPath;
+		}
+		Path basePath = CopilotPlugin.getPluginBasePath();
+		Path distPath = basePath.resolve("copilot-agent/dist");
+		if (Files.exists(distPath, new LinkOption[0])) {
+			return distPath;
+		}
+		LOG.error("Unable to locate the Copilot agent dist path in base path: " + basePath);
+		return null;
+	}
 }
-

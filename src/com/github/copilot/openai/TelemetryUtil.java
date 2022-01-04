@@ -14,28 +14,32 @@ import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import java.util.Map;
 
 class TelemetryUtil {
-    TelemetryUtil() {
-    }
+	TelemetryUtil() {
+	}
 
-        static TelemetryData createChoiceTelemetry(APIChoice choice, TelemetryData base) {
-        if (choice == null) {
-            throw new IllegalStateException("choice cannot be null!");
-        }
-        if (base == null) {
-            throw new IllegalStateException("base cannot be null!");
-        }
-        Object2DoubleMap<String> metrics = String2DoubleMap.of("numTokens", choice.getNumTokens(), "compCharLen", choice.getCompletionTextLength(), "numLines", choice.getCompletion().size());
-        Double meanLogProb = choice.getMeanLogProb();
-        if (meanLogProb != null) {
-            metrics.put((Object)"meanLogProb", choice.getMeanLogProb().doubleValue());
-        }
-        TelemetryData telemetryData = TelemetryData.extend(base, Map.of("headerRequestId", choice.getResponseInfo().getHeaderRequestId(), "completionId", choice.getCompletionId(), "choiceIndex", String.valueOf(choice.getChoiceIndex()), "created", String.valueOf(choice.getCreatedTimestamp()), "serverExperiments", choice.getResponseInfo().getServerExperiments()), metrics);
-        if (telemetryData == null) {
-            throw new IllegalStateException("telemetryData cannot be null!");
-        }
-        return telemetryData;
-    }
+	static TelemetryData createChoiceTelemetry(APIChoice choice, TelemetryData base) {
+		if (choice == null) {
+			throw new IllegalStateException("choice cannot be null!");
+		}
+		if (base == null) {
+			throw new IllegalStateException("base cannot be null!");
+		}
+		Object2DoubleMap<String> metrics = String2DoubleMap.of("numTokens", choice.getNumTokens(), "compCharLen",
+				choice.getCompletionTextLength(), "numLines", choice.getCompletion().size());
+		Double meanLogProb = choice.getMeanLogProb();
+		if (meanLogProb != null) {
+			metrics.put((Object) "meanLogProb", choice.getMeanLogProb().doubleValue());
+		}
+		TelemetryData telemetryData = TelemetryData.extend(base,
+				Map.of("headerRequestId", choice.getResponseInfo().getHeaderRequestId(), "completionId",
+						choice.getCompletionId(), "choiceIndex", String.valueOf(choice.getChoiceIndex()), "created",
+						String.valueOf(choice.getCreatedTimestamp()), "serverExperiments",
+						choice.getResponseInfo().getServerExperiments()),
+				metrics);
+		if (telemetryData == null) {
+			throw new IllegalStateException("telemetryData cannot be null!");
+		}
+		return telemetryData;
+	}
 
-    
 }
-
